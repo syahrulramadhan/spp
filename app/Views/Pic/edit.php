@@ -1,0 +1,63 @@
+<?= $this->extend('layout/template'); ?>
+
+<?= $this->section('content') ?>
+
+<nav aria-label="breadcrumb">
+    <ol class="breadcrumb">
+        <li class="breadcrumb-item"><a href="<?= base_url(); ?>">Dashboard</a></li>
+        <li class="breadcrumb-item active" aria-current="page">Data</li>
+        <li class="breadcrumb-item"><a href="<?= base_url('pic'); ?>">PIC</a></li>
+        <li class="breadcrumb-item"><a href="<?= base_url('pic/' . $result['id']); ?>"><?= $result['nama_depan'] . " " . $result['nama_belakang'] ?></a></li>
+        <li class="breadcrumb-item active" aria-current="page"><?= $title ?></li>
+    </ol>
+</nav>
+
+<div class="d-flex align-items-center p-3 my-1 text-white-50 bg-info rounded shadow-sm">
+    <div class="lh-100">
+        <h6 class="mb-0 text-white lh-100 text-uppercase"><?= $title ?></h6>
+    </div>
+</div>
+
+<?php if(session()->getFlashdata('pesan')): ?>
+    <div class="alert alert-success" role="alert">
+    <?= session()->getFlashdata('pesan') ?>
+    </div>
+<?php endif; ?>
+
+<div class="card mb-3">
+    <div class="row">
+        <div class="col-md-12">
+            <div class="card-body">
+
+                <?= $validation->listErrors() ?>
+
+                <form action="/pic/update/<?= $result['id']; ?>" method="post" enctype="multipart/form-data">
+                    <?= csrf_field(); ?>
+
+                    <div class="form-group row">
+                        <label for="user_id" class="col-sm-2 col-form-label">User </label>
+                        <div class="col-sm-10">
+                            <?= form_dropdown('user_id', $options_user, $result['user_id'], ['class' => 'custom-select ']); ?>
+                        </div>
+                    </div>
+
+                    <div class="form-group row">
+                        <label for="status" class="col-sm-2 col-form-label">Status </label>
+                        <div class="col-sm-10">
+                            <?= form_dropdown('status', $options_status, $result['status'], ['class' => 'custom-select ']); ?>
+                        </div>
+                    </div>
+
+                    <div class="form-group row">
+                        <div class="col-sm-10">
+                        <button type="submit" class="btn btn-info">Ubah Data</button>
+                        <a class="btn btn-info" href="/pic/<?= $result['id']; ?>">Lihat Rekap</a>
+                        </div>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+
+<?= $this->endsection(); ?>
