@@ -50,7 +50,7 @@ class Pages extends BaseController
 			'result_chart_kualitas' => $this->chart('chart_kualitas', $jenis_klpd, $tahun),
 		];
 
-		return view('pages/index', $data);
+		return view('Pages/index', $data);
 	}
 
 	public function chart($param = "", $jenis_klpd, $tahun){
