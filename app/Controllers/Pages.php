@@ -407,25 +407,26 @@ class Pages extends BaseController
 			'nama_depan' => [
 				'rules' => 'required',
 				'errors' => [
-					'required' => '{field} nama depan harus diisi.'
+					'required' => 'Nama depan harus diisi.'
+				]
+			],
+			'nama_belakang' => [
+				'rules' => 'required',
+				'errors' => [
+					'required' => 'Nama belakang harus diisi.'
 				]
 			],
 			'email' => [
-				'rules' => 'required',
+				'rules' => 'required|valid_email',
 				'errors' => [
-					'required' => '{field} email harus diisi.'
+					'required' => 'Email harus diisi.',
+					'valid_email' => 'Silakan periksa format email anda.'
 				]
 			],
 			'nomor_telepon' => [
 				'rules' => 'required',
 				'errors' => [
-					'required' => '{field} nomor telepon harus diisi.'
-				]
-			],
-			'jabatan' => [
-				'rules' => 'required',
-				'errors' => [
-					'required' => '{field} jabatan harus diisi.'
+					'required' => 'Nomor telepon harus diisi.'
 				]
 			]
 		])){
@@ -434,15 +435,25 @@ class Pages extends BaseController
 			return redirect()->to('/pages/profil/' . $id)->withInput()->with('validation', $validation);
 		}
 
-		$this->userModel->save([
+		$pass = $this->setPassword($this->request->getVar('password'));
+
+		$save = [
 			'id' => $id,
 			'nama_depan' => $this->request->getVar('nama_depan'),
 			'nama_belakang' => $this->request->getVar('nama_belakang'),
 			'email' => $this->request->getVar('email'),
-			'password' => md5($this->request->getVar('password')),
 			'nomor_telepon' => $this->request->getVar('nomor_telepon'),
 			'jabatan' => $this->request->getVar('jabatan')
-		]);
+		];
+
+		if($this->request->getVar('password')){
+			$save['salt'] = $pass['salt'];
+			$save['password'] = $pass['password'];
+		}
+
+		//echo "<pre>"; print_r($save); exit;
+
+		$this->userModel->save($save);
 		
 		session()->setFlashdata('pesan', 'Data berhasil diubah.');
 		

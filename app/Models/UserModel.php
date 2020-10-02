@@ -7,7 +7,7 @@ class UserModel extends Model
     protected $table            = 'user';
     protected $primaryKey       = 'id';
     protected $userTimestamps   = true;
-    protected $allowedFields    = ['nama_depan', 'nama_belakang', 'email', 'password', 'salt', 'nomor_telepon', 'role', 'jabatan', 'created_by'];
+    protected $allowedFields    = ['nama_depan', 'nama_belakang', 'email', 'username', 'password', 'salt', 'nomor_telepon', 'role', 'jabatan', 'created_by'];
 	//protected $returnType       = 'App\Entities\User';
     protected $useTimestamps    = false;
     

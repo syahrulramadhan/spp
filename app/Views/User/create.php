@@ -25,18 +25,25 @@
                 <form action="/user/save" method="post" enctype="multipart/form-data">
                     <?= csrf_field(); ?>
                     <div class="form-group row">
+                        <label for="nama_depan" class="col-sm-2 col-form-label">Nama Depan</label>
+                        <div class="col-sm-10">
+                            <input type="text" class="form-control <?= ($validation->hasError('nama_depan')) ? 'is-invalid' : ''; ?>" id="nama_depan" name="nama_depan" autofocus value="<?= old('nama_depan'); ?>">
+                            <div class="invalid-feedback"><?= $validation->getError('nama_depan'); ?></div>
+                        </div>
+                    </div>
+                    <div class="form-group row">
                         <label for="nama_belakang" class="col-sm-2 col-form-label">Nama Belakang</label>
                         <div class="col-sm-10">
                             <input type="text" class="form-control <?= ($validation->hasError('nama_belakang')) ? 'is-invalid' : ''; ?>" id="nama_belakang" name="nama_belakang" value="<?= old('nama_belakang'); ?>">
                             <div class="invalid-feedback"><?= $validation->getError('nama_belakang'); ?></div>
                         </div>
                     </div>
-                    
+
                     <div class="form-group row">
-                        <label for="nama_depan" class="col-sm-2 col-form-label">Nama Depan</label>
+                        <label for="username" class="col-sm-2 col-form-label">Username</label>
                         <div class="col-sm-10">
-                            <input type="text" class="form-control <?= ($validation->hasError('nama_depan')) ? 'is-invalid' : ''; ?>" id="nama_depan" name="nama_depan" autofocus value="<?= old('nama_depan'); ?>">
-                            <div class="invalid-feedback"><?= $validation->getError('nama_depan'); ?></div>
+                            <input type="username" class="form-control <?= ($validation->hasError('username')) ? 'is-invalid' : ''; ?>" id="username" name="username" value="<?= old('username'); ?>">
+                            <div class="invalid-feedback"><?= $validation->getError('username'); ?></div>
                         </div>
                     </div>
                     <div class="form-group row">
@@ -49,8 +56,15 @@
                     <div class="form-group row">
                         <label for="password" class="col-sm-2 col-form-label">Password</label>
                         <div class="col-sm-10">
-                            <input type="password" class="form-control <?= ($validation->hasError('password')) ? 'is-invalid' : ''; ?>" id="password" name="password" value="<?= old('email'); ?>">
+                            <input type="password" class="form-control <?= ($validation->hasError('password')) ? 'is-invalid' : ''; ?>" id="password" name="password" value="<?= old('password'); ?>">
                             <div class="invalid-feedback"><?= $validation->getError('password'); ?></div>
+                        </div>
+                    </div>
+                    <div class="form-group row">
+                        <label for="repassword" class="col-sm-2 col-form-label">Ulangi Password</label>
+                        <div class="col-sm-10">
+                            <input type="password" class="form-control <?= ($validation->hasError('repassword')) ? 'is-invalid' : ''; ?>" id="repassword" name="repassword" value="<?= old('repassword'); ?>">
+                            <div class="invalid-feedback"><?= $validation->getError('repassword'); ?></div>
                         </div>
                     </div>
                     <div class="form-group row">
@@ -63,12 +77,13 @@
                     <div class="form-group row">
                         <label for="role" class="col-sm-2 col-form-label">Role</label>
                         <div class="col-sm-10">
-                            <?= form_dropdown('role', $options_role, '', ['class' => 'custom-select ']); ?>
+                            <?php $isinvalid = ($validation->hasError('role')) ? 'is-invalid' : ''; ?>
+                            <?= form_dropdown('role', $options_role, old('role'), ['class' => "custom-select  $isinvalid"]); ?>
                             <div class="invalid-feedback"><?= $validation->getError('role'); ?></div>
                         </div>
                     </div>
                     <div class="form-group row">
-                        <label for="jabatan" class="col-sm-2 col-form-label">Jabatan</label>
+                        <label for="jabatan" class="col-sm-2 col-form-label">Jabatan  <small>(Opsional)</small></label>
                         <div class="col-sm-10">
                             <input type="text" class="form-control <?= ($validation->hasError('jabatan')) ? 'is-invalid' : ''; ?>" id="jabatan" name="jabatan" value="<?= old('jabatan'); ?>">
                             <div class="invalid-feedback"><?= $validation->getError('jabatan'); ?></div>

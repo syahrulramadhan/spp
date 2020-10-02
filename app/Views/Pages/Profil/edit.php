@@ -29,18 +29,23 @@
                 <form action="/pages/profil_update/<?= $result['id']; ?>" method="post" enctype="multipart/form-data">
                     <?= csrf_field(); ?>
                     <div class="form-group row">
+                        <label for="nama_depan" class="col-sm-2 col-form-label">Nama Depan</label>
+                        <div class="col-sm-10">
+                            <input type="text" class="form-control <?= ($validation->hasError('nama_depan')) ? 'is-invalid' : ''; ?>" id="nama_depan" name="nama_depan" autofocus value="<?= (old('nama_depan')) ? old('nama_depan') : $result['nama_depan']; ?>">
+                            <div class="invalid-feedback"><?= $validation->getError('nama_depan'); ?></div>
+                        </div>
+                    </div>
+                    <div class="form-group row">
                         <label for="nama_belakang" class="col-sm-2 col-form-label">Nama Belakang</label>
                         <div class="col-sm-10">
                             <input type="text" class="form-control <?= ($validation->hasError('nama_belakang')) ? 'is-invalid' : ''; ?>" id="nama_belakang" name="nama_belakang" value="<?= (old('nama_belakang')) ? old('nama_belakang') : $result['nama_belakang']; ?>">
                             <div class="invalid-feedback"><?= $validation->getError('nama_belakang'); ?></div>
                         </div>
                     </div>
-                    
                     <div class="form-group row">
-                        <label for="nama_depan" class="col-sm-2 col-form-label">Nama Depan</label>
+                        <label for="role" class="col-sm-2 col-form-label">Username</label>
                         <div class="col-sm-10">
-                            <input type="text" class="form-control <?= ($validation->hasError('nama_depan')) ? 'is-invalid' : ''; ?>" id="nama_depan" name="nama_depan" autofocus value="<?= (old('nama_depan')) ? old('nama_depan') : $result['nama_depan']; ?>">
-                            <div class="invalid-feedback"><?= $validation->getError('nama_depan'); ?></div>
+                            <?= $result['username'] ?>
                         </div>
                     </div>
                     <div class="form-group row">
@@ -53,7 +58,7 @@
                     <div class="form-group row">
                         <label for="password" class="col-sm-2 col-form-label">Password</label>
                         <div class="col-sm-10">
-                            <input type="password" class="form-control <?= ($validation->hasError('password')) ? 'is-invalid' : ''; ?>" id="password" name="password" value="<?= old('email'); ?>">
+                            <input type="password" class="form-control <?= ($validation->hasError('password')) ? 'is-invalid' : ''; ?>" id="password" name="password" value="<?= old('password'); ?>">
                             <div class="invalid-feedback"><?= $validation->getError('password'); ?></div>
                         </div>
                     </div>

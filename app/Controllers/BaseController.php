@@ -223,4 +223,19 @@ class BaseController extends Controller
 
 		return $result;
 	}
+
+	public function setPassword(string $pass, $salt = "")
+	{
+		if($salt){
+			$result['salt'] = $salt;
+		}else{
+			$salt = uniqid('', true);
+
+			$result['salt'] = $salt;
+		}
+		
+		$result['password'] = md5(md5($salt.$pass));
+
+		return $result;
+	}
 }

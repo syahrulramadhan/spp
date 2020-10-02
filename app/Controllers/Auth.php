@@ -8,8 +8,6 @@ class Auth extends BaseController
 		helper('form');
 		$this->validation = \Config\Services::validation();
         $this->session = session();
-        
-        ini_set("display_errors", "1");
 	}
 
 	public function register(){
@@ -63,32 +61,13 @@ class Auth extends BaseController
 			$user = $userModel->where('email', $username)->first();
 
             //echo "<pre>"; print_r($user); exit;
-            
+
             if($user)
 			{
-                /*
-				$salt = $user->salt;
-				if($user->password!==md5($salt.$password))
-				{
-					$this->session->setFlashdata('errors', ['Password Salah']);
-				}else{
-                    $newdata = [
-                        'nama_lengkap'  => $user->nama_depan . " " . $user->nama_belakang,
-                        'username'      => $user->username,
-						'email'         => $user->email,
-                        'id'            => $user->id,
-                        'role'          => $user->role,
-                        'logged_in'     => TRUE
-                    ];
-
-					$this->session->set($newdata);
-
-					return redirect()->to(site_url('pages'));
-                }
-                */
-
-                if($user['password']!==md5($password))
-				{
+				$salt = $user['salt'];
+				$pass = $this->setPassword($password, $salt);
+				
+				if($user['password'] !== $pass['password']){
 					$this->session->setFlashdata('errors', ['Password Salah']);
 				}else{
                     $newdata = [
@@ -102,8 +81,8 @@ class Auth extends BaseController
 
 					$this->session->set($newdata);
 
-					return redirect()->to(base_url('pages'));
-				}
+					return redirect()->to(site_url('pages'));
+                }
 			}else{
 				$this->session->setFlashdata('errors', ['User Tidak Ditemukan']);
 			}

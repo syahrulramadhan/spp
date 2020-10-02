@@ -70,31 +70,54 @@ class User extends BaseController
 			'nama_depan' => [
 				'rules' => 'required',
 				'errors' => [
-					'required' => '{field} nama depan harus diisi.'
+					'required' => 'Nama depan harus diisi.'
+				]
+			],
+			'nama_belakang' => [
+				'rules' => 'required',
+				'errors' => [
+					'required' => 'Nama belakang harus diisi.'
 				]
 			],
 			'email' => [
-				'rules' => 'required',
+				'rules' => 'required|valid_email',
 				'errors' => [
-					'required' => '{field} email harus diisi.'
+					'required' => 'Email harus diisi.',
+					'valid_email' => 'Silakan periksa format email anda.'
+				]
+			],
+			'username' => [
+				'rules' => 'required|min_length[10]',
+				'errors' => [
+					'required' => 'Username harus diisi.',
+					'min_length' => 'Kata sandi anda terlalu pendek.'
+				]
+			],
+			'password' => [
+				'rules' => 'required|min_length[10]',
+				'errors' => [
+					'required' => 'Password harus diisi.',
+					'min_length' => 'Kata sandi anda terlalu pendek.'
+				]
+			],
+			'repassword' => [
+				'rules' => 'required|min_length[10]|matches[password]',
+				'errors' => [
+					'required' => 'Nomor telepon harus diisi.',
+					'min_length' => 'Kata sandi anda terlalu pendek.',
+					'matches' => 'Kata sandi yang diulang tidak sama'
 				]
 			],
 			'nomor_telepon' => [
 				'rules' => 'required',
 				'errors' => [
-					'required' => '{field} nomor telepon harus diisi.'
-				]
-			],
-			'jabatan' => [
-				'rules' => 'required',
-				'errors' => [
-					'required' => '{field} jabatan harus diisi.'
+					'required' => 'Nomor telepon harus diisi.'
 				]
 			],
 			'role' => [
 				'rules' => 'required',
 				'errors' => [
-					'required' => '{field} role harus diisi.'
+					'required' => 'Role harus diisi.'
 				]
 			]
 		])){
@@ -103,14 +126,19 @@ class User extends BaseController
 			return redirect()->to('/user/create')->withInput()->with('validation', $validation);
 		}
 
+		$pass = $this->setPassword($this->request->getVar('password'));
+
 		$this->userModel->save([
 			'nama_depan' => $this->request->getVar('nama_depan'),
 			'nama_belakang' => $this->request->getVar('nama_belakang'),
 			'email' => $this->request->getVar('email'),
-			'password' => md5($this->request->getVar('password')),
+			'username' => $this->request->getVar('username'),
+			'salt' => $pass['salt'],
+			'password' => $pass['password'],
 			'nomor_telepon' => $this->request->getVar('nomor_telepon'),
 			'jabatan' => $this->request->getVar('jabatan'),
-			'role' => $this->request->getVar('role')
+			'role' => $this->request->getVar('role'),
+			'created_by' => session('id')
 		]);
 		
 		session()->setFlashdata('pesan', 'Data berhasil ditambahkan.');
@@ -138,25 +166,26 @@ class User extends BaseController
 			'nama_depan' => [
 				'rules' => 'required',
 				'errors' => [
-					'required' => '{field} nama depan harus diisi.'
+					'required' => 'Nama depan harus diisi.'
+				]
+			],
+			'nama_belakang' => [
+				'rules' => 'required',
+				'errors' => [
+					'required' => 'Nama belakang harus diisi.'
 				]
 			],
 			'email' => [
-				'rules' => 'required',
+				'rules' => 'required|valid_email',
 				'errors' => [
-					'required' => '{field} email harus diisi.'
+					'required' => 'Email harus diisi.',
+					'valid_email' => 'Silakan periksa format email anda.'
 				]
 			],
 			'nomor_telepon' => [
 				'rules' => 'required',
 				'errors' => [
-					'required' => '{field} nomor telepon harus diisi.'
-				]
-			],
-			'jabatan' => [
-				'rules' => 'required',
-				'errors' => [
-					'required' => '{field} jabatan harus diisi.'
+					'required' => 'Nomor telepon harus diisi.'
 				]
 			]
 		])){
@@ -165,19 +194,20 @@ class User extends BaseController
 			return redirect()->to('/user/edit/' . $id)->withInput()->with('validation', $validation);
 		}
 
+		$pass = $this->setPassword($this->request->getVar('password'));
+
 		$update = [
 			'id' => $id,
 			'nama_depan' => $this->request->getVar('nama_depan'),
 			'nama_belakang' => $this->request->getVar('nama_belakang'),
 			'email' => $this->request->getVar('email'),
 			'nomor_telepon' => $this->request->getVar('nomor_telepon'),
-			'role' => $this->request->getVar('role'),
-			'jabatan' => $this->request->getVar('jabatan'),
-			'created_by' => session('id')
+			'jabatan' => $this->request->getVar('jabatan')
 		];
 
 		if($this->request->getVar('password')){
-			$update['password'] = md5($this->request->getVar('password'));
+			$update['salt'] = $pass['salt'];
+			$update['password'] = $pass['password'];
 		}
 
 		$this->userModel->save($update);
