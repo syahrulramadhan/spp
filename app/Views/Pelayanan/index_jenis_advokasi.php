@@ -40,18 +40,6 @@
             <div style="height: 60px;"><h3 class="mb-0"><?= $rows['nama_jenis_advokasi']; ?></h3></div>
             <div class="fluid text-center"><strong class="d-inline-block mb-2 text-primary"><?= $rows['jumlah_pelayanan']; ?></strong></div>
             <br/>
-            <!--<div class="my-2 text-muted"><?= date("d-m-Y", strtotime($rows['created_at'])); ?></div>-->
-            <!--<p class="card-text mb-2"><?= $rows['keterangan'] ?></p>-->
-            <!--
-            <div class="btn-group" role="group" aria-label="Basic example">
-                <?php if(in_array($rows['id'], array(8,9))){ ?>
-                    <a class="btn btn-success" href="/kegiatan" class="stretched-link">Entry</a>
-                <?php }else{ ?>
-                    <a class="btn btn-success" href="/pelayanan/create/<?= $rows['id']; ?>" class="stretched-link">Entry</a>
-                <?php } ?>
-                <a class="btn btn-success" href="/pelayanan" class="stretched-link">Rekap</a>
-            </div>
-            -->
             <?php if(in_array($rows['id'], array(8,9))){ ?>
                 <a class="btn btn-success" href="/kegiatan/create/<?= $rows['id']; ?>">Entry</a>
             <?php }else{ ?>
@@ -65,11 +53,7 @@
 <?php
     if($i % $jumlah == 0){
         echo "</div>";
-        //echo htmlentities('</div>');
-        //echo "<br>";
     }else if($i == count($jenis_advokasi_all)){
-        //echo htmlentities('</div>');
-        //echo "<br>";
         echo "</div>";
     }
 
