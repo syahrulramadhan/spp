@@ -11,6 +11,7 @@
       <li class="nav-item active">
         <a class="nav-link" href="<?= base_url(); ?>">Dashboard <span class="sr-only">(current)</span></a>
       </li>
+      <?php if(session('role') == 'ADMINISTRATOR'){ ?>
       <li class="nav-item dropdown">
         <a class="nav-link dropdown-toggle" href="#" id="dropdown01" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Data</a>
         <div class="dropdown-menu" aria-labelledby="dropdown01">
@@ -22,6 +23,7 @@
           <a class="dropdown-item" href="/user">User</a>
         </div>
       </li>
+      <?php } ?>
       <li class="nav-item">
         <a class="nav-link" href="/pelayanan/jenis-advokasi">Layanan</a>
       </li>
