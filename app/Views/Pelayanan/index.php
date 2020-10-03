@@ -28,7 +28,7 @@
                             <div class="input-group mb-3">
                                 <input type="text" class="form-control" placeholder="Masukan kata pencarian" name="q" value="<?= $keyword ?>" autofocus>
                                 <div class="input-group-append">
-                                    <button class="btn btn-outline-info" type="submit">Cari</button>
+                                    <button class="btn btn-outline-info" type="submit"><i class="fa fa-search"></i></button>
                                 </div>
                             </div>
                         </form>
