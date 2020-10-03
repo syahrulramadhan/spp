@@ -15,18 +15,20 @@
         </div>
         <form action="<?= base_url('pages') ?>" method="get" class="mt-2 form-inline">
             <?= csrf_field(); ?>
+
             <div class="form-group">
-                <label for="klpd" class="col-sm-2 col-form-label">Jenis K/L/Pemda </label>
-                <div class="col-sm-10">
+                <label for="klpd" class="col-form-label">Jenis K/L/Pemda </label>
+                <div class="col">
                     <?= form_dropdown('jenis_klpd', $options_jenis_klpd, $jenis_klpd, ['class' => 'custom-select ', 'id' => 'jenis_klpd']); ?>
                 </div>
             </div>
             <div class="form-group">
-                <label for="klpd" class="col-sm-2 col-form-label">Tahun </label>
-                <div class="col-sm-10">
+                <label for="klpd" class="col-form-label">Tahun </label>
+                <div class="col">
                     <?= form_dropdown('tahun', $options_tahun_layanan, $tahun, ['class' => 'custom-select ', 'id' => 'tahun']); ?>
                 </div>
-            </div>
+            </div> 
+
             <button type="submit" class="btn btn-info">Cari</button>
         </form>
         <div class="d-flex align-items-center p-3 my-1 text-white-50 bg-info rounded shadow-sm">
