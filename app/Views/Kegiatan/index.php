@@ -36,7 +36,7 @@
                         <th class="text-center col-small">#</th>
                         <th>NAMA KEGIATAN</th>
                         <th>TANGGAL PELAKSANAAN</th>
-                        <th>JUMLAH PESSERTA</th>
+                        <th style="width: 200px;" class="text-center col-small">JUMLAH PESERTA</th>
                         <th class="text-center col-small">DETAIL</th>
                     </tr>
                     </thead>
@@ -50,7 +50,7 @@
                         <th scope="row" class="text-center"><?= $i++; ?></th>
                         <td><?= $rows['nama_kegiatan']; ?></td>
                         <td><?= $rows['tanggal_pelaksanaan']; ?></td>
-                        <td class="text-center"><?= $rows['jumlah_pelayanan']; ?></td>
+                        <td class="text-center"><?= ($rows['jumlah_pelayanan']) ? $rows['jumlah_pelayanan'] : 0; ?></td>
                         <td class="text-center">
                             <?php /*
                             <div class="btn-group" role="group">

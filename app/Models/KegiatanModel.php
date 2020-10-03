@@ -10,7 +10,25 @@ class KegiatanModel extends Model
 
     public function getKegiatan($kegiatan_id = false){
         if($kegiatan_id == false){
-            return $this->findAll();
+            //return $this->findAll();
+
+            $builder = $this->db->table('kegiatan k');
+            $builder->select(
+                'k.id
+                , k.nama_kegiatan
+                , k.tanggal_pelaksanaan
+                , k.jenis_advokasi_id
+                , k.jenis_advokasi_nama
+                , k.tahapan
+                , (
+                    SELECT COUNT(*)
+                    FROM pelayanan
+                    WHERE pelayanan.kegiatan_id = k.id
+                    GROUP BY pelayanan.kegiatan_id
+                ) jumlah_pelayanan
+            ');
+
+            return $builder->get()->getResultArray();
         }
 
         return $this->where(['id' => $kegiatan_id])->first();
