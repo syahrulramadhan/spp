@@ -2,6 +2,8 @@
 
 <?= $this->section('content'); ?>
 
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+
 <nav aria-label="breadcrumb">
     <ol class="breadcrumb">
         <li class="breadcrumb-item"><a href="<?= base_url(); ?>">Dashboard</a></li>
@@ -21,7 +23,7 @@
         <div class="col-md-12">
             <div class="card-body">
 
-                <?php $validation->listErrors(); ?>
+                <?php /* $validation->listErrors(); */ ?>
 
                 <form action='<?= base_url("/pic/save"); ?>' method="post" enctype="multipart/form-data">
                     <?= csrf_field(); ?>
@@ -30,7 +32,7 @@
                         <label for="keterangan" class="col-sm-2 col-form-label">Nama Lengkap </label>
                         <div class="col-sm-10">
                             <?php $isinvalid = ($validation->hasError('user_id')) ? 'is-invalid' : ''; ?>
-                            <?= form_dropdown('user_id', $options_user, '', ['class' => "custom-select $isinvalid"]); ?>
+                            <?= form_dropdown('user_id', $options_user, '', ['id' => 'user_id','class' => "custom-select $isinvalid"]); ?>
                             <div class="invalid-feedback"><?= $validation->getError('user_id'); ?></div>
                         </div>
                     </div>
@@ -96,6 +98,11 @@
         </div>
     </div>
 </div>
+<script>
+$(document).ready(function(){
+    $('#user_id').select2();
+});
+</script>
 
 <?php /* $pager->links('pic', 'bootstrap_pagination'); */ ?>
 

@@ -2,7 +2,9 @@
 
 <?php $this->section('content'); ?>
 
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
 <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.3/js/select2.min.js"></script>
 
 <div class="row">
     <div class="col-md-8">
@@ -136,6 +138,9 @@
 </div>
 
 <script type="text/javascript">
+    $('#jenis_klpd').select2();
+    $('#tahun').select2();
+
     google.charts.load('current', {'packages':['bar']});
     google.charts.setOnLoadCallback(drawChartLayanan);
     google.charts.setOnLoadCallback(drawChartValuasi);

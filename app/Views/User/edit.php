@@ -28,7 +28,7 @@
     <div class="row">
         <div class="col-md-12">
             <div class="card-body">
-                <?= $validation->listErrors() ?>
+                <?php /* $validation->listErrors() */ ?>
                 <form action="/user/update/<?= $result['id']; ?>" method="post" enctype="multipart/form-data">
                     <?= csrf_field(); ?>
                     <div class="form-group row">

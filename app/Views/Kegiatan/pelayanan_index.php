@@ -122,6 +122,9 @@
 
 <script>
     $(document).ready(function(){
+        $('#klpd_id').select2();
+        $('#kd_satker').select2();
+        
         //default dropdown satuan kerja
         $("#field_satker").hide();
 

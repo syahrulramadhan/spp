@@ -2,6 +2,9 @@
 
 <?= $this->section('content'); ?>
 
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.3/js/select2.min.js"></script>
+
 <nav aria-label="breadcrumb">
     <ol class="breadcrumb">
         <li class="breadcrumb-item"><a href="<?= base_url(); ?>">Dashboard</a></li>
@@ -32,7 +35,7 @@
                         <label for="pic_id" class="col-sm-2 col-form-label">Nama Lengkap </label>
                         <div class="col-sm-10">
                             <?php $isinvalid = ($validation->hasError('pic_id')) ? 'is-invalid' : ''; ?>
-                            <?= form_dropdown('pic_id', $options_pic, '', ['class' => "custom-select $isinvalid"]); ?>
+                            <?= form_dropdown('pic_id', $options_pic, '', ['id' => 'pic_id', 'class' => "custom-select $isinvalid"]); ?>
                             <div class="invalid-feedback"><?= $validation->getError('pic_id'); ?></div>
                         </div>
                     </div>
@@ -93,5 +96,9 @@
         </div>
     </div>
 </div>
+
+<script type="text/javascript">
+    $('#pic_id').select2();
+</script>
 
 <?= $this->endSection(); ?>

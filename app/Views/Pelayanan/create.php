@@ -30,7 +30,7 @@
                         </div>
                     <?php endif; ?>
 
-                    <?= $validation->listErrors() ?>
+                    <?php /* $validation->listErrors() */ ?>
 
                     <?php /*
                     1	Surat
@@ -236,7 +236,7 @@
                         <label for="paket_jenis_pengadaan_id" class="col-sm-4 col-form-label">Jenis Barang/Jasa </label>
                         <div class="col-sm-8">
                             <?php $isinvalid = ($validation->hasError('paket_jenis_pengadaan_id')) ? 'is-invalid' : ''; ?>
-                            <?= form_dropdown('paket_jenis_pengadaan_id', $options_jenis_pengadaan, old('paket_jenis_pengadaan_id'), ['class' => "custom-select  $isinvalid"]); ?>
+                            <?= form_dropdown('paket_jenis_pengadaan_id', $options_jenis_pengadaan, old('paket_jenis_pengadaan_id'), ['id'=>'paket_jenis_pengadaan_id', 'class' => "custom-select  $isinvalid"]); ?>
                             <div class="invalid-feedback"><?= $validation->getError('paket_jenis_pengadaan_id'); ?></div>
                         </div>
                     </div>
@@ -272,7 +272,7 @@
                         <label for="kategori_permasalahan_id" class="col-sm-2 col-form-label">Kategori Permasalahan </label>
                         <div class="col-sm-4">
                             <?php $isinvalid = ($validation->hasError('kategori_permasalahan_id')) ? 'is-invalid' : ''; ?>
-                            <?= form_dropdown('kategori_permasalahan_id', $options_kategori_permasalahan, old('kategori_permasalahan_id'), ['class' => "custom-select $isinvalid"]); ?>
+                            <?= form_dropdown('kategori_permasalahan_id', $options_kategori_permasalahan, old('kategori_permasalahan_id'), ['id' => 'kategori_permasalahan_id', 'class' => "custom-select $isinvalid"]); ?>
                             <div class="invalid-feedback"><?= $validation->getError('kategori_permasalahan_id'); ?></div>
                         </div>
                     </div>
@@ -294,7 +294,7 @@
                         </label>
                         <div class="col-sm-8">
                             <?php $isinvalid = ($validation->hasError('pic_id')) ? 'is-invalid' : ''; ?>
-                            <?= form_dropdown('pic_id', $options_pic, '', ['class' => "custom-select $isinvalid"]); ?>
+                            <?= form_dropdown('pic_id', $options_pic, '', ['id' => 'pic_id', 'class' => "custom-select $isinvalid"]); ?>
                             <div class="invalid-feedback"><?= $validation->getError('pic_id'); ?></div>
                         </div>
                     </div>
@@ -362,6 +362,12 @@
 <script>
     $(document).ready(function(){
         $('.toast').toast('show');
+
+        $('#klpd_id').select2();
+        $('#kd_satker').select2();
+        $('#paket_jenis_pengadaan_id').select2();
+        $('#kategori_permasalahan_id').select2();
+        $('#pic_id').select2();
 
         if($('#klpd_id').val())
             get_satuan_kerja();

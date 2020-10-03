@@ -2,6 +2,8 @@
 
 <?= $this->section('content') ?>
 
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+
 <nav aria-label="breadcrumb">
     <ol class="breadcrumb">
         <li class="breadcrumb-item"><a href="<?= base_url(); ?>">Dashboard</a></li>
@@ -29,7 +31,7 @@
         <div class="col-md-12">
             <div class="card-body">
 
-                <?= $validation->listErrors() ?>
+                <?php /* $validation->listErrors()  */ ?>
 
                 <form action="/pic/update/<?= $result['id']; ?>" method="post" enctype="multipart/form-data">
                     <?= csrf_field(); ?>
@@ -37,14 +39,14 @@
                     <div class="form-group row">
                         <label for="user_id" class="col-sm-2 col-form-label">User </label>
                         <div class="col-sm-10">
-                            <?= form_dropdown('user_id', $options_user, $result['user_id'], ['class' => 'custom-select ']); ?>
+                            <?= form_dropdown('user_id', $options_user, $result['user_id'], ['id' => 'user_id', 'class' => 'custom-select ']); ?>
                         </div>
                     </div>
 
                     <div class="form-group row">
                         <label for="status" class="col-sm-2 col-form-label">Status </label>
                         <div class="col-sm-10">
-                            <?= form_dropdown('status', $options_status, $result['status'], ['class' => 'custom-select ']); ?>
+                            <?= form_dropdown('status', $options_status, $result['status'], ['id' => 'status', 'class' => 'custom-select ']); ?>
                         </div>
                     </div>
 
@@ -59,5 +61,12 @@
         </div>
     </div>
 </div>
+
+<script>
+$(document).ready(function(){
+    $('#user_id').select2();
+    $('#status').select2();
+});
+</script>
 
 <?= $this->endsection(); ?>

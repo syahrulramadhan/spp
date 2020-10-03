@@ -2,6 +2,9 @@
 
 <?= $this->section('content') ?>
 
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.3/js/select2.min.js"></script>
+
 <nav aria-label="breadcrumb">
     <ol class="breadcrumb">
         <li class="breadcrumb-item"><a href="<?= base_url(); ?>">Dashboard</a></li>
@@ -26,7 +29,7 @@
                     </div>
                 <?php endif; ?>
                 
-                <?= $validation->listErrors() ?>
+                <?php /* $validation->listErrors() */ ?>
                 
                 <form action="/kegiatan/save/<?= $result['id']; ?>" method="post" enctype="multipart/form-data">
                     <?= csrf_field(); ?>
@@ -69,6 +72,10 @@
         </div>
     </div>
 </div>
+
+<script type="text/javascript">
+    $('#tahapan').select2();
+</script>
 
 <?= $this->endsection(); ?>
 
