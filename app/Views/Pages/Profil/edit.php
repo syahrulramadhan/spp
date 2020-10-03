@@ -60,6 +60,9 @@
                         <div class="col-sm-10">
                             <input type="password" class="form-control <?= ($validation->hasError('password')) ? 'is-invalid' : ''; ?>" id="password" name="password" value="<?= old('password'); ?>">
                             <div class="invalid-feedback"><?= $validation->getError('password'); ?></div>
+                            <small id="passwordHelpInline" class="text-muted">
+                                Minimal panjang 10 karakter
+                            </small>
                         </div>
                     </div>
                     <div class="form-group row">

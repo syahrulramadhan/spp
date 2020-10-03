@@ -57,6 +57,9 @@
                         <label for="password" class="col-sm-2 col-form-label">Password</label>
                         <div class="col-sm-10">
                             <input type="password" class="form-control <?= ($validation->hasError('password')) ? 'is-invalid' : ''; ?>" id="password" name="password" value="<?= old('password'); ?>">
+                            <small id="passwordHelpInline" class="text-muted">
+                                Minimal panjang 10 karakter
+                            </small>
                             <div class="invalid-feedback"><?= $validation->getError('password'); ?></div>
                         </div>
                     </div>
@@ -64,6 +67,9 @@
                         <label for="repassword" class="col-sm-2 col-form-label">Ulangi Password</label>
                         <div class="col-sm-10">
                             <input type="password" class="form-control <?= ($validation->hasError('repassword')) ? 'is-invalid' : ''; ?>" id="repassword" name="repassword" value="<?= old('repassword'); ?>">
+                            <small id="passwordHelpInline" class="text-muted">
+                                Minimal panjang 10 karakter
+                            </small>
                             <div class="invalid-feedback"><?= $validation->getError('repassword'); ?></div>
                         </div>
                     </div>

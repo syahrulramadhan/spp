@@ -90,7 +90,7 @@ class User extends BaseController
 				'rules' => 'required|min_length[10]',
 				'errors' => [
 					'required' => 'Username harus diisi.',
-					'min_length' => 'Kata sandi anda terlalu pendek.'
+					'min_length' => 'Username anda terlalu pendek.'
 				]
 			],
 			'password' => [
