@@ -2,6 +2,8 @@
 
 <?= $this->section('content'); ?>
 
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+
 <nav aria-label="breadcrumb">
     <ol class="breadcrumb">
         <li class="breadcrumb-item"><a href="<?= base_url(); ?>">Dashboard</a></li>
@@ -19,6 +21,19 @@
                 </div>
             </div>
             <div class="card-body bg-white">
+                <div role="alert" aria-live="assertive" aria-atomic="true" class="toast" data-autohide="false">
+                    <div class="toast-header">
+                        <!--<img src="..." class="rounded mr-2" alt="...">-->
+                        <strong class="mr-auto">Keterangan</strong>
+                        <!--<small>11 mins ago</small>-->
+                        <button type="button" class="ml-2 mb-1 close" data-dismiss="toast" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                        </button>
+                    </div>
+                    <div class="toast-body">
+                        Agar selanjutnya wajib mengisi Peserta pada Layanan ini.
+                    </div>
+                </div>
                 <h5 class="card-title"><?= $result['nama_kegiatan'] ?></h5>
                 <p class="card-text"><?= $result['tanggal_pelaksanaan'] ?></p>
                 <p class="card-text"><?= $result['jenis_advokasi_nama'] ?></p>
@@ -30,7 +45,7 @@
                     <input type="hidden" name="_method" value="DELETE">
                     <button type="submit" class="btn btn-info" onclick="return confirm('Apakah anda yakin?');">Delete</button>
                 </form>
-                <a class="btn btn-info" href='<?= base_url("kegiatan/" . $result['id'] . "/" . $result['jenis_advokasi_id'] . "/pelayanan"); ?>'>Pelayanan</a>
+                <a class="btn btn-info" href='<?= base_url("kegiatan/" . $result['id'] . "/" . $result['jenis_advokasi_id'] . "/pelayanan"); ?>'>Input Peserta</a>
 
                 <a class="btn btn-info" href="/kegiatan">Lihat Rekap</a>
             </div>
@@ -39,7 +54,7 @@
             <div class="d-flex align-items-center p-3 my-1 text-white-50 bg-info rounded shadow-sm">
             <!--<img class="mr-3" src="../assets/brand/bootstrap-outline.svg" alt="" width="48" height="48">-->
                 <div class="lh-100">
-                    <h6 class="mb-0 text-white lh-100">MATERI</h6>
+                    <h6 class="mb-0 text-white lh-100">Dokumen</h6>
                 </div>
             </div>
 
@@ -114,5 +129,11 @@
         </div>
     </div>
 </div>
+
+<script>
+    $(document).ready(function(){
+        $('.toast').toast('show');
+    });
+</script>
 
 <?= $this->endSection(); ?>

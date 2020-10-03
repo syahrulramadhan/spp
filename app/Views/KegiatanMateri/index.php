@@ -28,7 +28,7 @@
                     <?= csrf_field(); ?>
 
                     <div class="form-group row">
-                        <label for="label_materi" class="col-sm-2 col-form-label">Nama Materi</label>
+                        <label for="label_materi" class="col-sm-2 col-form-label">Nama Dokumen</label>
                         <div class="col-sm-10">
                             <input type="text" class="form-control <?= ($validation->hasError('label_materi')) ? 'is-invalid' : ''; ?>" id="label_materi" name="label_materi" value="<?= old('label_materi'); ?>">
                             <div class="invalid-feedback"><?= $validation->getError('label_materi'); ?></div>
@@ -44,6 +44,9 @@
                             </div>
                             <?php } ?>
                             <?php echo form_upload('kegiatan_materi', ""); ?>
+                            <div>
+                                <small style="color:red">*.pdf, *.doc, *.docx, *.ppt, *.pptx (Max 2MB)</small>	
+                            </div>
                         </div>
                     </div>
 
@@ -73,7 +76,7 @@
                     <thead>
                     <tr>
                         <th class="text-center col-small">#</th>
-                        <th>NAMA MATERI</th>
+                        <th>NAMA DOKUMEN</th>
                         <th>UKURAN</th>
                         <th class="text-center col-small">PILIHAN</th>
                     </tr>

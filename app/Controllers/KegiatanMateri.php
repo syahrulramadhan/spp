@@ -20,7 +20,7 @@ class KegiatanMateri extends BaseController
         $arr = $this->kegiatanMateriModel->getMateriByKegiatanId($id);
  
 		$data = [
-            'title' => 'kegiatan materi',
+            'title' => 'Dokumen',
             'result' => $arr,
 			'kegiatan_id' => $id,
             'validation' => \Config\Services::validation()

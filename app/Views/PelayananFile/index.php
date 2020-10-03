@@ -45,6 +45,9 @@
                             </div>
                             <?php } ?>
                             <?php echo form_upload('pelayanan_file', ""); ?>
+                            <div>
+                                <small style="color:red">*.pdf, *.doc, *.docx, *.ppt, *.pptx (Max 2MB)</small>	
+                            </div>
                         </div>
                     </div>
 
