@@ -87,7 +87,6 @@
                                 <!--<svg class="bd-placeholder-img mr-2 rounded" width="32" height="32" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="xMidYMid slice" focusable="false" role="img" aria-label="Placeholder: 32x32"><title>Placeholder</title><rect width="100%" height="100%" fill="#17a2b8 "/><text x="50%" y="50%" fill="#17a2b8 " dy=".3em">32x32</text></svg>-->
                                 <p class="media-body pb-3 mb-0 small lh-125 border-bottom border-gray">
                                     <strong class="d-block text-gray-dark"><a href='<?= base_url("public/uploads/pelayanan/" . $file['nama_file']); ?>'><?= $file['label_file']; ?></a></strong>
-                                    <?= $rows['type']; ?>
                                     <span class="badge badge-pill bg-light align-text-bottom" ><?= $rows['size']; ?></span>
                                 </p>
                             </div>
@@ -129,8 +128,6 @@
                             <!--<svg class="bd-placeholder-img mr-2 rounded" width="32" height="32" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="xMidYMid slice" focusable="false" role="img" aria-label="Placeholder: 32x32"><title>Placeholder</title><rect width="100%" height="100%" fill="#17a2b8 "/><text x="50%" y="50%" fill="#17a2b8 " dy=".3em">32x32</text></svg>-->
                             <p class="media-body pb-3 mb-0 small lh-125 border-bottom border-gray">
                                 <strong class="d-block text-gray-dark"><?= $peserta['nama_peserta']; ?></strong>
-                                <?= $rows['type']; ?>
-                                <span class="badge badge-pill bg-light align-text-bottom" ><?= $rows['size']; ?></span>
                             </p>
                         </div>
                         
@@ -170,8 +167,6 @@
                                 <!--<svg class="bd-placeholder-img mr-2 rounded" width="32" height="32" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="xMidYMid slice" focusable="false" role="img" aria-label="Placeholder: 32x32"><title>Placeholder</title><rect width="100%" height="100%" fill="#17a2b8 "/><text x="50%" y="50%" fill="#17a2b8 " dy=".3em">32x32</text></svg>-->
                                 <p class="media-body pb-3 mb-0 small lh-125 border-bottom border-gray">
                                     <strong class="d-block text-gray-dark"><?= $pic['nama_depan'] . " " . $pic['nama_belakang']; ?></strong>
-                                    <?= $rows['type']; ?>
-                                    <span class="badge badge-pill bg-light align-text-bottom" ><?= $rows['size']; ?></span>
                                 </p>
                             </div>
 

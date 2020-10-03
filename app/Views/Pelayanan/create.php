@@ -153,15 +153,6 @@
                         </div>
                     </div>
                     <?php } ?>
-                    <?php /* if(in_array($result['id'], array(3))){ ?>
-                    <div class="form-group row">
-                        <label for="aktifitas" class="col-sm-4 col-form-label">Aktifitas</label>
-                        <div class="col-sm-8">
-                            <textarea class="form-control <?= ($validation->hasError('aktifitas')) ? 'is-invalid' : ''; ?>" id="aktifitas" rows="3" name="aktifitas"><?= old('aktifitas') ?></textarea>
-                            <div class="invalid-feedback"><?= $validation->getError('aktifitas'); ?></div>
-                        </div>
-                    </div>
-                    <?php } */ ?>
                     <?php if(in_array($result['id'], array(1,2,3,4,5,6,7))){ ?>
                     <div class="form-group row">
                         <label for="klpd" class="col-sm-4 col-form-label">K/L/Pemda </label>
@@ -245,27 +236,7 @@
             </div>
             <div class="col-md-12">
                 <div class="card-body">
-                    <!--
-                    <?php if(in_array($result['id'], array(1,2,3,4,5,6,7))){ ?>
-                    <div class="form-group row">
-                        <label for="paket_status" class="col-sm-2 col-form-label">Paket Status</label>
-                        <div class="col-sm-10">
-                            <input type="text" class="form-control <?= ($validation->hasError('paket_status')) ? 'is-invalid' : ''; ?>" id="paket_status" name="paket_status" value="<?= old('paket_status'); ?>">
-                            <div class="invalid-feedback"><?= $validation->getError('paket_status'); ?></div>
-                        </div>
-                    </div>
-                    <?php } ?>
-                    -->
                     <?php if(in_array($result['id'], array(4))){ ?>
-                    <!--
-                    <div class="form-group row">
-                        <label for="efisiensi" class="col-sm-2 col-form-label">Efisiensi</label>
-                        <div class="col-sm-10">
-                            <input type="text" class="form-control <?= ($validation->hasError('efisiensi')) ? 'is-invalid' : ''; ?>" id="efisiensi" name="efisiensi" value="<?= old('efisiensi'); ?>">
-                            <div class="invalid-feedback"><?= $validation->getError('efisiensi'); ?></div>
-                        </div>
-                    </div>
-                    -->
                     <?php } ?>
                     <?php if(in_array($result['id'], array(1,2,3,4,5,6,7))){ ?>
                     <div class="form-group row">
@@ -286,16 +257,32 @@
                         <label for="pic_id" class="col-sm-4 col-form-label">
                             <?php 
                                 if(in_array($result['id'], array(1,2))){
-                                    echo 'Drafter ';
+                                    echo 'Drafter 1';
                                 }else{
-                                    echo 'Pic ';
+                                    echo 'Pic 1';
                                 } 
                             ?>
                         </label>
                         <div class="col-sm-8">
                             <?php $isinvalid = ($validation->hasError('pic_id')) ? 'is-invalid' : ''; ?>
-                            <?= form_dropdown('pic_id', $options_pic, '', ['id' => 'pic_id', 'class' => "custom-select $isinvalid"]); ?>
+                            <?= form_dropdown('pic_id', $options_pic,  old('pic_id'), ['id' => 'pic_id', 'class' => "custom-select $isinvalid"]); ?>
                             <div class="invalid-feedback"><?= $validation->getError('pic_id'); ?></div>
+                        </div>
+                    </div>
+                    <div class="form-group row">
+                        <label for="pic_id" class="col-sm-4 col-form-label">
+                            <?php 
+                                if(in_array($result['id'], array(1,2))){
+                                    echo 'Drafter 2';
+                                }else{
+                                    echo 'Pic 2';
+                                } 
+                            ?>
+                        </label>
+                        <div class="col-sm-8">
+                            <?php $isinvalid = ($validation->hasError('pic_second_id')) ? 'is-invalid' : ''; ?>
+                            <?= form_dropdown('pic_second_id', $options_pic, old('pic_second_id'), ['id' => 'pic_second_id', 'class' => "custom-select $isinvalid"]); ?>
+                            <div class="invalid-feedback"><?= $validation->getError('pic_second_id'); ?></div>
                         </div>
                     </div>
                 </div>
@@ -368,6 +355,7 @@
         $('#paket_jenis_pengadaan_id').select2();
         $('#kategori_permasalahan_id').select2();
         $('#pic_id').select2();
+        $('#pic_second_id').select2();
 
         if($('#klpd_id').val())
             get_satuan_kerja();
@@ -388,7 +376,7 @@
 
                     console.log(JSON.parse(response));
 
-                    alert($('#klpd_id').val());
+                    //alert($('#klpd_id').val());
 
                     if($('#klpd_id').val() != ""){
                         $("#field_klpd_lainnya").hide();

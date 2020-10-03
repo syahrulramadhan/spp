@@ -207,7 +207,7 @@ class Pelayanan extends BaseController
 				$rules['pic_id'] = [
 					'rules' => 'required',
 					'errors' => [
-						'required' => ((in_array($id, array(1,2))) ? 'Drafter' : 'Pic') . ' harus diisi.'
+						'required' => ((in_array($id, array(1,2))) ? 'Drafter 1' : 'Pic 1') . ' harus diisi.'
 					]
 				];
 
@@ -225,6 +225,14 @@ class Pelayanan extends BaseController
 					'rules' => 'required',
 					'errors' => [
 						'required' => $label_tanggal . ' harus diisi.'
+					]
+				];
+
+				$rules['pelayanan_file'] = [
+					'rules' => 'mime_in[pelayanan_file,image/jpg,image/jpeg,image/png]|max_size[pelayanan_file,2048]',
+					'errors' => [
+						'mime_in' => 'Format file ini tidak didukung',
+						'max_size' => 'Ukuran file lebih besar dari 2 MB',
 					]
 				];
 			}
@@ -269,18 +277,26 @@ class Pelayanan extends BaseController
 					]);
 				}
 
-				if($this->request->getFile('pelayanan_file')){
-					$image = $this->request->getFile('pelayanan_file');
+				if($this->request->getVar('pic_second_id')){
+					$this->pelayananPicModel->save([
+						'pelayanan_id' => $pelayanan_id,
+						'pic_id' => $this->request->getVar('pic_second_id')
+					]);
+				}
 
-					$name = $image->getRandomName();
-					$type = $image->getClientMimeType();
-					$size = $image->getSize();
+				$file = $this->request->getFile('pelayanan_file');
+
+				if($file->isValid()){
+					
+					$name = $file->getRandomName();
+					$type = $file->getClientMimeType();
+					$size = $file->getSize();
 						
-					$image->move(ROOTPATH . 'public/uploads/pelayanan', $name);
+					$file->move(ROOTPATH . 'public/uploads/pelayanan', $name);
 
 					$this->pelayananFileModel->save([
 						'pelayanan_id' => $pelayanan_id,
-						'label_file' => $image->getName(),
+						'label_file' => $file->getName(),
 						'nama_file' => $name,
 						'size' => $size,
 						'type' => $type,
