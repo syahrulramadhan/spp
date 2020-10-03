@@ -84,6 +84,23 @@ class Kegiatan extends BaseController
 			]
 		];
 
+		$rules['nama_narasumber'] = [
+			'rules' => 'required',
+			'errors' => [
+				'required' => 'Narasumber 1 harus diisi.'
+			]
+		];
+
+		/*
+		$rules['kegiatan_file'] = [
+			'rules' => 'mime_in[kegiatan_file,image/jpg,image/jpeg,image/png]|max_size[kegiatan_file,2048]',
+			'errors' => [
+				'mime_in' => 'Format file ini tidak didukung',
+				'max_size' => 'Ukuran file lebih besar dari 2 MB'
+			]
+		];
+		*/
+
 		if(in_array($jenis_advokasi_id, array(8))){
 			$rules['tahapan'] = [
 				'rules' => 'required',
@@ -109,6 +126,42 @@ class Kegiatan extends BaseController
 		];
 
 		$kegiatan_id = $this->kegiatanModel->store($save);
+
+		if($kegiatan_id){
+			if($this->request->getVar('nama_narasumber')){
+				$this->kegiatanNarasumberModel->save([
+					'kegiatan_id' => $kegiatan_id,
+					'nama_narasumber' => $this->request->getVar('nama_narasumber')
+				]);
+			}
+
+			if($this->request->getVar('nama_narasumber_second')){
+				$this->kegiatanNarasumberModel->save([
+					'kegiatan_id' => $kegiatan_id,
+					'nama_narasumber' => $this->request->getVar('nama_narasumber_second')
+				]);
+			}
+
+			$file = $this->request->getFile('kegiatan_file');
+
+			if($file->isValid()){
+				
+				$name = $file->getRandomName();
+				$type = $file->getClientMimeType();
+				$size = $file->getSize();
+					
+				$file->move(ROOTPATH . 'public/uploads/kegiatan', $name);
+
+				$this->kegiatanMateriModel->save([
+					'kegiatan_id' => $kegiatan_id,
+					'label_materi' => $file->getName(),
+					'nama_materi' => $name,
+					'size' => $size,
+					'type' => $type,
+					'created_by' => session('id')
+				]);
+			}
+		}
 		
 		session()->setFlashdata('pesan', 'Data berhasil ditambahkan.');
 		

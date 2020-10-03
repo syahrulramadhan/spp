@@ -18,20 +18,19 @@
         <h6 class="mb-0 text-white lh-100 text-uppercase">Form <?= $result['nama_jenis_advokasi']; ?></h6>
     </div>
 </div>
+<form action="/kegiatan/save/<?= $result['id']; ?>" method="post" enctype="multipart/form-data">
+    <div class="card mb-3">
+        <div class="row">
+            <div class="col-md-12">
+                <div class="card-body">
+                    <?php if(session()->getFlashdata('pesan')): ?>
+                        <div class="alert alert-success" role="alert">
+                        <?= session()->getFlashdata('pesan') ?>
+                        </div>
+                    <?php endif; ?>
 
-<div class="card mb-3">
-    <div class="row">
-        <div class="col-md-12">
-            <div class="card-body">
-                <?php if(session()->getFlashdata('pesan')): ?>
-                    <div class="alert alert-success" role="alert">
-                    <?= session()->getFlashdata('pesan') ?>
-                    </div>
-                <?php endif; ?>
-                
-                <?php /* $validation->listErrors() */ ?>
-                
-                <form action="/kegiatan/save/<?= $result['id']; ?>" method="post" enctype="multipart/form-data">
+                    <?php /* $validation->listErrors(); */ ?>
+
                     <?= csrf_field(); ?>
 
                     <input type="hidden" name="jenis_advokasi_id" value="<?= $result['id']; ?>">   
@@ -47,7 +46,7 @@
                     <div class="form-group row">
                         <label for="tanggal_pelaksanaan" class="col-sm-2 col-form-label">Tanggal Pelaksanaan</label>
                         <div class="col-sm-10">
-                            <input type="text" class="form-control <?= ($validation->hasError('tanggal_pelaksanaan')) ? 'is-invalid' : ''; ?>" id="tanggal_pelaksanaan" name="tanggal_pelaksanaan" autofocus value="<?= old('tanggal_pelaksanaan'); ?>">
+                            <input type="text" class="form-control <?= ($validation->hasError('tanggal_pelaksanaan')) ? 'is-invalid' : ''; ?>" id="tanggal_pelaksanaan" name="tanggal_pelaksanaan" value="<?= old('tanggal_pelaksanaan'); ?>">
                             <div class="invalid-feedback"><?= $validation->getError('tanggal_pelaksanaan'); ?></div>
                         </div>
                     </div>
@@ -56,25 +55,79 @@
                         <label for="tahapan" class="col-sm-2 col-form-label">Tahapan </label>
                         <div class="col-sm-10">
                             <?php $isinvalid = ($validation->hasError('tahapan')) ? 'is-invalid' : ''; ?>
-                            <?= form_dropdown('tahapan', ['' => '--Pilih--', 'AWARNESS' => 'Awarness', 'KOMITMEN' => 'Komitmen', 'PENINGKATAN_KAPASITAS' => 'Peningkatan Kapasitas', 'MONITORING_COACHING' => 'Mentoring/Coaching'], old('tahapan'), ['class' => "custom-select $isinvalid", 'id' => 'tahapan']); ?>
+                            <?= form_dropdown('tahapan', ['' => '--Pilih--', 'AWARENESS' => 'Awareness', 'KOMITMEN' => 'Komitmen', 'PENINGKATAN_KAPASITAS' => 'Peningkatan Kapasitas', 'MONITORING_COACHING' => 'Mentoring/Coaching'], old('tahapan'), ['class' => "custom-select $isinvalid", 'id' => 'tahapan']); ?>
                             <div class="invalid-feedback"><?= $validation->getError('tahapan'); ?></div>
                         </div>
                     </div>
                     <?php } ?>
+                </div>
+            </div>
+            <div class="col-md-6">
+                <div class="card-body">
+                    <div class="form-group row">
+                        <label for="nama_narasumber" class="col-sm-4 col-form-label">Narasumber 1</label>
+                        <div class="col-sm-8">
+                            <input type="text" class="form-control <?= ($validation->hasError('nama_narasumber')) ? 'is-invalid' : ''; ?>" id="nama_narasumber" name="nama_narasumber" value="<?= old('nama_narasumber'); ?>">
+                            <div class="invalid-feedback"><?= $validation->getError('nama_narasumber'); ?></div>
+                        </div>
+                    </div>
+                    <div class="form-group row">
+                        <label for="nama_narasumber_second" class="col-sm-4 col-form-label">Narasumber 2 <small>(Opsional)</small></label>
+                        <div class="col-sm-8">
+                            <input type="text" class="form-control <?= ($validation->hasError('nama_narasumber_second')) ? 'is-invalid' : ''; ?>" id="nama_narasumber_second" name="nama_narasumber_second" value="<?= old('nama_narasumber_second'); ?>">
+                            <div class="invalid-feedback"><?= $validation->getError('nama_narasumber_second'); ?></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-6">
+                <div class="card-body">
+                    <div class="form-group row">
+                        <label for="keterangan" class="col-sm-4 col-form-label">
+                            Upload Dokume <small>(Opsional)</small>
+                        </label>
+                        <div class="col-sm-8">
+                            <div><input class="form-control" style="margin-top: 0.5em;" type="file" name="kegiatan_file" size="20" /></div>
+                            <div id="inputForm"></div>
+                            <div style="color: white;">
+                                <a id="addInput" style="margin: 0.5em 0;" class="btn btn-info"><i class="fa fa-plus"></i></a>
+                                <a id="removeInput" class="btn btn-info"><i class="fa fa-minus"></i></a>
+                                <a id="removeAllInput" class="btn btn-info"><i class="fa fa-trash"></i></a>
+                            </div>
+                            <small style="color:red">*.pdf, *.doc, *.docx, *.ppt, *.pptx (Max 2MB)</small>	
+                        </div>
+                    </div>
+                </div> 
+            </div>
+            <div class="col-md-12">
+                <div class="card-body">
                     <div class="form-group row">
                         <div class="col-sm-10">
                         <button type="submit" class="btn btn-info">Tambah Data</button>
                         <a class="btn btn-info" href="/kegiatan">Lihat Rekap</a>
                         </div>
                     </div>
-                </form>
+                </div>
             </div>
         </div>
     </div>
-</div>
+</form>
 
 <script type="text/javascript">
     $('#tahapan').select2();
+
+    $("#addInput").on("click",function(){
+        var str = '<input class="form-control" id="removeInputFile" style="margin-top: 0.5em;" type="file" name="pelayanan_file[]" size="20" />';
+        $("#inputForm").append(str);
+    });
+
+    $("#removeInput").on("click",function(){
+        $("#removeInputFile").remove();
+    });
+
+    $("#removeAllInput").on("click",function(){
+        $("#inputForm input").remove();
+    });
 </script>
 
 <?= $this->endsection(); ?>

@@ -28,9 +28,8 @@ class Pelayanan extends BaseController
 		$this->pelayananPesertaModel = new PelayananPesertaModel();
 		$this->pelayananPicModel = new PelayananPicModel();
 		$this->picModel = new picModel();
-		helper('form');
 
-		ini_set("display_errors", "1");
+		helper('form');
 	}
 
 	public function index()
@@ -188,7 +187,6 @@ class Pelayanan extends BaseController
 				];
 			}
 
-
 			if(in_array($id, array(1,2,3,4,5,6,7))){
 				$rules['paket_jenis_pengadaan_id'] = [
 					'rules' => 'required',
@@ -228,13 +226,15 @@ class Pelayanan extends BaseController
 					]
 				];
 
+				/*
 				$rules['pelayanan_file'] = [
 					'rules' => 'mime_in[pelayanan_file,image/jpg,image/jpeg,image/png]|max_size[pelayanan_file,2048]',
 					'errors' => [
 						'mime_in' => 'Format file ini tidak didukung',
-						'max_size' => 'Ukuran file lebih besar dari 2 MB',
+						'max_size' => 'Ukuran file lebih besar dari 2 MB'
 					]
 				];
+				*/
 			}
 			
 			if(!$this->validate($rules)){

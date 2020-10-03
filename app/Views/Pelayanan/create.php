@@ -304,10 +304,10 @@
                         <div class="col-sm-8">
                             <div><input class="form-control" style="margin-top: 0.5em;" type="file" name="pelayanan_file" size="20" /></div>
                             <div id="inputForm"></div>
-                            <div>
-                                <a id="addInput" style="margin: 0.5em 0;" class="btn btn-logan"><i class="fa fa-plus"></i></a>
-                                <a id="removeInput" class="btn btn-logan"><i class="fa fa-minus"></i></a>
-                                <a id="removeAllInput" class="btn btn-logan"><i class="fa fa-trash"></i></a>
+                            <div style="color: white;">
+                                <a id="addInput" style="margin: 0.5em 0;" class="btn btn-info"><i class="fa fa-plus"></i></a>
+                                <a id="removeInput" class="btn btn-info"><i class="fa fa-minus"></i></a>
+                                <a id="removeAllInput" class="btn btn-info"><i class="fa fa-trash"></i></a>
                             </div>
                             <small style="color:red">*.pdf, *.doc, *.docx, *.ppt, *.pptx (Max 2MB)</small>	
                         </div>
