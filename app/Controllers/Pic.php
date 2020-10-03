@@ -14,33 +14,25 @@ class Pic extends BaseController
 
 	public function index()
 	{
-		//ini_set("display_errors", "1");
-
 		$keyword = $this->request->getVar('q');
 
-		//if($keyword){
-			$result = $this->picModel->getPic($keyword);
-		//}else
-			//$result = $this->picModel;
+		if($keyword){
+			$result = $this->picModel->getPaginatedPicData($keyword);
+		}else
+			$result = $this->picModel->getPaginatedPicData();
 
-		//$currentPage = ($this->request->getVar('page_pic')) ? $this->request->getVar('page_pic') : 1;
-		//$per_page = 10;
+		$currentPage = ($this->request->getVar('page_pic')) ? $this->request->getVar('page_pic') : 1;
+		$per_page = 10;
 
 		$data = [
             'title' => 'PIC',
-			//'result' => $result->paginate($per_page, 'pic'),
-			'result' => $result,
+			'result' => $result->paginate($per_page, 'pic'),
 			'options_user' => $this->options_user(),
-			'options_role' => [
-				'' => '--Pilih--',
-				'ACTIVE' => 'AKTIF',
-				'NON_ACTIVE' => 'TIDAK AKTIF'
-			],
 			'validation' => \Config\Services::validation(),
 			'keyword' => $keyword,
-			//'pager' => $this->picModel->pager,
-			//'per_page' => $per_page,
-			//'currentPage' => $currentPage
+			'pager' => $result->pager,
+			'per_page' => $per_page,
+			'currentPage' => $currentPage
 		];
 
 		return view('Pic/index', $data);

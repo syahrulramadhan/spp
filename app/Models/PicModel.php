@@ -28,7 +28,7 @@ class PicModel extends Model
 
     public function getUserPic(){
         $builder = $this->db->table('user u');
-        $builder->select('u.id user_id, u.nama_depan, u.nama_belakang, u.email, u.nomor_telepon, u.role, u.jabatan, p.id, p.status');
+        $builder->select('u.id user_id, u.nama_depan, u.nama_belakang, u.username, u.email, u.nomor_telepon, u.role, u.jabatan, p.id, p.status');
         $builder->join('pic p', 'u.id = p.user_id', 'left');
         $builder->where('p.user_id IS NULL');
 
@@ -41,5 +41,18 @@ class PicModel extends Model
             return $this->select('u.id user_id, u.nama_depan, u.nama_belakang, u.email, u.nomor_telepon, u.role, u.jabatan, p.id, p.status')->table('pic p')->join('user u', 'u.id = p.user_id', 'left')->like('u.nama_depan', $q)->orLike('u.nama_belakang', $q);
         
         return $this->table('pic p')->join('user u', 'u.id = p.user_id', 'left');
+    }
+
+    public function getPaginatedPicData(string $keyword = ''){
+        if ($keyword)
+        {
+            return $this->select('user.id user_id, user.nama_depan, user.nama_belakang, user.username, user.email, user.nomor_telepon, user.role, user.jabatan, pic.id, pic.status')
+                ->join('user', 'user.id = pic.user_id', 'left')
+                ->like('user.nama_depan', $keyword)
+                ->orLike('user.nama_belakang', $keyword);
+        }
+
+        return $this->select('user.id user_id, user.nama_depan, user.nama_belakang, user.username, user.email, user.nomor_telepon, user.role, user.jabatan, pic.id, pic.status')
+            ->join('user', 'user.id = pic.user_id', 'left');
     }
 }
