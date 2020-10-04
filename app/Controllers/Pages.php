@@ -230,13 +230,25 @@ class Pages extends BaseController
 
 	public function klpd()
 	{
-		$arr = $this->klpdModel->getKlpd();
+		$keyword = $this->request->getVar('q');
+
+		if($keyword){
+			$result = $this->klpdModel->getPaginatedKlpdData($keyword);
+		}else
+			$result = $this->klpdModel->getPaginatedKlpdData();
+
+		$currentPage = ($this->request->getVar('page_klpd')) ? $this->request->getVar('page_klpd') : 1;
+		$per_page = 10;
 
 		$data = [
             'title' => 'K/L/Pemda',
-			'result' => $arr,
-			'result_grafik_layanan' => $this->klpd_grafik(),
-			'result_grafik_valuasi' => $this->klpd_grafik('grafik_valuasi')
+			//'result_grafik_layanan' => $this->klpd_grafik(),
+			//'result_grafik_valuasi' => $this->klpd_grafik('grafik_valuasi'),
+			'result' => $result->paginate($per_page, 'klpd'),
+			'keyword' => $keyword,
+			'pager' => $result->pager,
+			'per_page' => $per_page,
+			'currentPage' => $currentPage
 		];
 		
 		return view('Pages/Klpd/index', $data);

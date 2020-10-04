@@ -47,6 +47,42 @@ class KlpdModel extends Model
         return $this->where(['id' => $klpd_id])->first();
     }
 
+    public function getPaginatedKlpdData(string $keyword = ''){
+        $select = '
+            klpd.id
+            , klpd.klpd_id
+            , klpd.nama_klpd
+            , klpd.jenis_klpd
+            , (
+                SELECT COUNT(*)
+                FROM pelayanan
+                WHERE pelayanan.klpd_id = klpd.klpd_id
+                GROUP BY pelayanan.klpd_id
+            ) jumlah_pelayanan
+            , (
+                SELECT SUM(pelayanan.paket_nilai_pagu)
+                FROM pelayanan
+                WHERE pelayanan.klpd_id = klpd.klpd_id
+                GROUP BY pelayanan.klpd_id
+            ) jumlah_valuasi
+            , (
+                SELECT COUNT(DISTINCT(pelayanan.jenis_advokasi_id))
+                FROM pelayanan
+                WHERE pelayanan.klpd_id = klpd.klpd_id
+                GROUP BY pelayanan.klpd_id
+            ) jumlah_kualitas
+        ';
+
+        if ($keyword)
+        {
+            return $this->select($select)
+                ->like('klpd.nama_klpd', $keyword)
+                ->orderBy('nama_klpd ASC');
+        }
+
+        return $this->select($select)->orderBy('nama_klpd ASC');
+    }
+
     public function klpdById($id_klpd)
     {
         $builder = $this->db->table('klpd');

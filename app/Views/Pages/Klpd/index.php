@@ -13,6 +13,7 @@
     </ol>
 </nav>
 
+<?php /*
 <div class="row mb-2">
     <div class="col-md-6">
         <div class="d-flex align-items-center p-3 my-1 text-white-50 bg-info rounded shadow-sm">
@@ -31,6 +32,7 @@
         <div id="donutchart_valuasi" style="width: 100%; height: 500px;"></div>
     </div>
 </div>
+*/ ?>
 
 <div class="d-flex align-items-center p-3 my-1 text-white-50 bg-info rounded shadow-sm">
     <div class="lh-100">
@@ -47,6 +49,20 @@
                     <?= session()->getFlashdata('pesan') ?>
                     </div>
                 <?php endif; ?>
+                
+                <div class="row">
+                    <div class="col-9"></div>
+                    <div class="col-3 pull-right">
+                        <form action="" method="GET">
+                            <div class="input-group mb-3">
+                            <input type="text" class="form-control" placeholder="Masukan kata pencarian" name="q" value="<?= $keyword ?>" autofocus>
+                            <div class="input-group-append">
+                                <button class="btn btn-outline-info" type="submit"><i class="fa fa-search"></i></button>
+                            </div>
+                            </div>
+                        </form>
+                    </div>
+                </div>
 
                 <table class="table table-sm">
                     <thead>
@@ -62,7 +78,7 @@
                     </thead>
                     <tbody>
                     <?php
-                        $i = 1;
+                        $i = 1 + ($per_page * ($currentPage - 1));
 
                         foreach($result as $rows):
                     ?>
@@ -106,11 +122,13 @@
                     <?php endforeach; ?>
                     </tbody>
                 </table>
+                <?= $pager->links('klpd', 'bootstrap_pagination'); ?>
             </div>
         </div>
     </div>
 </div>
 
+<?php /*
 <script type="text/javascript">
     google.charts.load("current", {packages:["corechart"]});
     google.charts.setOnLoadCallback(drawChartLayanan);
@@ -140,5 +158,6 @@
         chart.draw(data, options);
     }
 </script>
+*/ ?>
 
 <?= $this->endSection(); ?>
