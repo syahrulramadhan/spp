@@ -351,13 +351,25 @@ class Pages extends BaseController
 
 	public function jenis_pengadaan()
 	{
-		$arr = $this->jenisPengadaanModel->getJenisPengadaan();
+		$keyword = $this->request->getVar('q');
+
+		if($keyword){
+			$result = $this->jenisPengadaanModel->getPaginatedJenisPengadaanData($keyword);
+		}else
+			$result = $this->jenisPengadaanModel->getPaginatedJenisPengadaanData();
+
+		$currentPage = ($this->request->getVar('page_jenis_pengadaan')) ? $this->request->getVar('page_jenis_pengadaan') : 1;
+		$per_page = 2;
 
 		$data = [
             'title' => 'Jenis Barang/Jasa',
-			'result' => $arr,
 			'result_grafik_layanan' => $this->jenis_pengadaan_grafik(),
 			'result_grafik_valuasi' => $this->jenis_pengadaan_grafik('grafik_valuasi'),
+			'result' => $result->paginate($per_page, 'jenis_pengadaan'),
+			'keyword' => $keyword,
+			'pager' => $result->pager,
+			'per_page' => $per_page,
+			'currentPage' => $currentPage
 		];
     
 		return view('Pages/JenisPengadaan/index', $data);

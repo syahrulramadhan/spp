@@ -47,6 +47,20 @@
                     <?= session()->getFlashdata('pesan') ?>
                     </div>
                 <?php endif; ?>
+                
+                <div class="row">
+                    <div class="col-9"></div>
+                    <div class="col-3 pull-right">
+                        <form action="" method="GET">
+                            <div class="input-group mb-3">
+                            <input type="text" class="form-control" placeholder="Masukan kata pencarian" name="q" value="<?= $keyword ?>" autofocus>
+                            <div class="input-group-append">
+                                <button class="btn btn-outline-info" type="submit"><i class="fa fa-search"></i></button>
+                            </div>
+                            </div>
+                        </form>
+                    </div>
+                </div>
 
                 <table class="table table-sm">
                     <thead>
@@ -59,7 +73,7 @@
                     </thead>
                     <tbody>
                     <?php
-                        $i = 1;
+                        $i = 1 + ($per_page * ($currentPage - 1));
 
                         foreach($result as $rows):
                     ?>
@@ -76,6 +90,7 @@
                     <?php endforeach; ?>
                     </tbody>
                 </table>
+                <?= $pager->links('jenis_pengadaan', 'bootstrap_pagination'); ?>
             </div>
         </div>
     </div>
