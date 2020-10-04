@@ -255,14 +255,29 @@ class Pages extends BaseController
 	}
 
 	public function klpd_detail($id){
+		$keyword = $this->request->getVar('q');
+
 		$jenis_klpd = $this->request->getVar('jenis_klpd');
 		$tahun = ($this->request->getVar('tahun')) ? $this->request->getVar('tahun') : date('Y');
+
 		$result = $this->klpdModel->getKlpd($id);
 
+		if($keyword)
+			$result_satuan_kerja = $this->satuanKerjaModel->getPaginatedSatuanKerjaData($result['klpd_id'], $keyword);
+		else
+			$result_satuan_kerja = $this->satuanKerjaModel->getPaginatedSatuanKerjaData($result['klpd_id']);;
+
+		$currentPage = ($this->request->getVar('page_satuan_kerja')) ? $this->request->getVar('page_satuan_kerja') : 1;
+		$per_page = 10;
+		
 		$data = [
 			'title' => 'Detail K/L/Pemda',
 			'result' => $result,
-			'result_satuan_kerja' => $this->satuanKerjaModel->getSatuanKerjaByKlpdId($result['klpd_id']),
+			'result_satuan_kerja' => $result_satuan_kerja->paginate($per_page, 'satuan_kerja'),
+			'keyword' => $keyword,
+			'pager' => $result_satuan_kerja->pager,
+			'per_page' => $per_page,
+			'currentPage' => $currentPage,
 			'jenis_klpd' => $jenis_klpd,
 			'tahun' => $tahun,
 			'options_jenis_klpd' => $this->options_jenis_klpd(),

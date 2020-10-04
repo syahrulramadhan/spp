@@ -29,4 +29,12 @@ class SatuanKerjaModel extends Model
 
         return $builder->get()->getRowArray();
     }
+
+    public function getPaginatedSatuanKerjaData($klpd_id, string $keyword = ''){
+        if ($keyword){
+            return $this->table('satuan_kerja')->where('satuan_kerja.kd_klpd', $klpd_id)->like('satuan_kerja.nama_satker', $keyword);
+        }
+
+        return $this->table('satuan_kerja')->where('satuan_kerja.kd_klpd', $klpd_id);
+    }
 }
