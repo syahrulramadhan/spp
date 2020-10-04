@@ -35,13 +35,17 @@
                     <div class="form-group row">
                         <label for="klpd" class="col-sm-2 col-form-label">K/L/Pemda </label>
                         <div class="col-sm-10">
-                            <?= form_dropdown('klpd_id', $options_klpd, old('klpd_id'), ['class' => 'custom-select ', 'id' => 'klpd_id']); ?>
+                            <?php $isinvalid = ($validation->hasError('klpd_id')) ? 'is-invalid' : ''; ?>
+                            <?= form_dropdown('klpd_id', $options_klpd, old('klpd_id'), ['class' => 'custom-select ', 'id' => 'klpd_id', 'class' => "custom-select  $isinvalid"]); ?>
+                            <div class="invalid-feedback"><?= $validation->getError('klpd_id'); ?></div>
                         </div>
                     </div>
                     <div class="form-group row" id="field_satker">
                         <label for="kd_satker" class="col-sm-2 col-form-label">Satuan Kerja </label>
                         <div class="col-sm-10">
-                            <?= form_dropdown('kd_satker', '', old('kd_satker'), ['class' => 'custom-select', 'id' => 'kd_satker']); ?>
+                            <?php $isinvalid = ($validation->hasError('kd_satker')) ? 'is-invalid' : ''; ?>
+                            <?= form_dropdown('kd_satker', '', old('kd_satker'), ['class' => 'custom-select', 'id' => 'kd_satker', 'class' => "custom-select  $isinvalid"]); ?>
+                            <div class="invalid-feedback"><?= $validation->getError('kd_satker'); ?></div>
                         </div>
                     </div>
                     <div class="form-group row" id="field_klpd_lainnya">
@@ -52,7 +56,7 @@
                         </div>
                     </div>
                     <div class="form-group row">
-                        <label for="keterangan" class="col-sm-2 col-form-label">Keterangan</label>
+                        <label for="keterangan" class="col-sm-2 col-form-label">Keterangan <small>(Opsional)</small></label>
                         <div class="col-sm-10">
                             <textarea class="form-control <?= ($validation->hasError('keterangan')) ? 'is-invalid' : ''; ?>" id="keterangan" rows="3" name="keterangan"><?= old('keterangan') ?></textarea>
                             <div class="invalid-feedback"><?= $validation->getError('keterangan'); ?></div>
@@ -126,34 +130,57 @@
         $('#kd_satker').select2();
         
         //default dropdown satuan kerja
-        $("#field_satker").hide();
+        var klpd_id = $('#klpd_id').val();
+
+        //alert(klpd_id); 
+
+        if(klpd_id != ""){
+            $("#field_klpd_lainnya").hide();
+            $("#field_satker").show();
+
+            var kd_satker = '<?= (old('kd_satker')) ? old('kd_satker') : $result['satuan_kerja_id'] ?>';
+
+            get_satuan_kerja(kd_satker);
+        }else{
+            $("#field_klpd_lainnya").show();
+            $("#field_satker").hide();
+        }
 
         // Add <select > element
         $('#klpd_id').change(function(){
+            var klpd_id = $('#klpd_id').val();
+
+            if(klpd_id != ""){
+                $("#field_klpd_lainnya").hide();
+                $("#field_satker").show();
+
+                get_satuan_kerja();
+            }else{
+                $("#field_klpd_lainnya").show();
+                $("#field_satker").hide();
+            }
+        });
+
+        function get_satuan_kerja(){
             $.ajax({
                 url: '<?= base_url('pages/satuan-kerja-ajax') ?>/' + $('#klpd_id').val(),
                 type: 'get',
                 success: function(response){
                     var data = JSON.parse(response);
 
-                    console.log(JSON.parse(response));
+                    onsole.log(JSON.parse(response));
 
-                    if($('#klpd_id').val() != 0){
-                        $("#field_klpd_lainnya").hide();
-                        $("#field_satker").show();
-                    }else{
-                        $("#field_klpd_lainnya").show();
-                        $("#field_satker").hide();
-                    }
-
-                    $("#kd_satker").html("<option value='0' selected>--Pilih--</option>");
+                    $("#kd_satker").html("<option value='' selected>--Pilih--</option>");
 
                     $.each(data, function(i, item) {
                         $("#kd_satker").append("<option value='" + data[i].kd_satker + "'>" + data[i].nama_satker + "</option>");
                     });
+
+                    if(kd_satker)
+                        $("#kd_satker").val(kd_satker);
                 }
             });
-        });
+        }
     });
 </script>
 

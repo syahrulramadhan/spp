@@ -260,12 +260,14 @@ class Pelayanan extends BaseController
 				'paket_nama' => $this->request->getVar('paket_nama'),
 				'paket_nilai_pagu' => $this->request->getVar('paket_nilai_pagu'),
 				'paket_jenis_pengadaan_id' => $this->request->getVar('paket_jenis_pengadaan_id'),
-				'paket_status' => $this->request->getVar('paket_status'),
+				//'paket_status' => $this->request->getVar('paket_status'),
 				//'efisiensi' => $this->request->getVar('efisiensi'),
 				'kategori_permasalahan_id' => $this->request->getVar('kategori_permasalahan_id'),
 				'keterangan' => $this->request->getVar('keterangan'),
 				'created_by' => session('id')
 			];
+
+			//echo "<pre>"; print_r($save); exit;
 
 			$pelayanan_id = $this->pelayananModel->store($save);
 
@@ -423,13 +425,6 @@ class Pelayanan extends BaseController
 					]
 				];
 			
-				$rules['pic_id'] = [
-					'rules' => 'required',
-					'errors' => [
-						'required' => ((in_array($id, array(1,2))) ? 'Drafter' : 'Pic') . ' harus diisi.'
-					]
-				];
-			
 				if(in_array($id, array(1))){
 					$label_tanggal = 'Tanggal Surat Keluar';
 				}else if(in_array($id, array(3))){
@@ -472,11 +467,10 @@ class Pelayanan extends BaseController
 				'paket_nama' => $this->request->getVar('paket_nama'),
 				'paket_nilai_pagu' => $this->request->getVar('paket_nilai_pagu'),
 				'paket_jenis_pengadaan_id' => $this->request->getVar('paket_jenis_pengadaan_id'),
-				'paket_status' => $this->request->getVar('paket_status'),
-				'efisiensi' => $this->request->getVar('efisiensi'),
+				//'paket_status' => $this->request->getVar('paket_status'),
+				//'efisiensi' => $this->request->getVar('efisiensi'),
 				'kategori_permasalahan_id' => $this->request->getVar('kategori_permasalahan_id'),
-				'keterangan' => $this->request->getVar('keterangan'),
-				'user_id' => 1
+				'keterangan' => $this->request->getVar('keterangan')
 			];
 
 			//echo "<pre>"; print_r($save); exit;

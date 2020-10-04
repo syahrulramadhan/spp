@@ -357,40 +357,54 @@
         $('#pic_id').select2();
         $('#pic_second_id').select2();
 
-        if($('#klpd_id').val())
-            get_satuan_kerja();
+        var klpd_id = $('#klpd_id').val();
 
-        $("#field_satker").hide();
+        //alert(klpd_id); 
+
+        if(klpd_id != ""){
+            $("#field_klpd_lainnya").hide();
+            $("#field_satker").show();
+
+            var kd_satker = '<?= (old('kd_satker')) ? old('kd_satker') : $result['satuan_kerja_id'] ?>';
+
+            get_satuan_kerja(kd_satker);
+        }else{
+            $("#field_klpd_lainnya").show();
+            $("#field_satker").hide();
+        }
 
         // Add <select > element
         $('#klpd_id').change(function(){
-            get_satuan_kerja();
+            var klpd_id = $('#klpd_id').val();
+
+            if(klpd_id != ""){
+                $("#field_klpd_lainnya").hide();
+                $("#field_satker").show();
+
+                get_satuan_kerja();
+            }else{
+                $("#field_klpd_lainnya").show();
+                $("#field_satker").hide();
+            }
         });
         
-        function get_satuan_kerja(){
+        function get_satuan_kerja(kd_satker = 0){
             $.ajax({
                 url: '<?= base_url('pages/satuan-kerja-ajax') ?>/' + $('#klpd_id').val(),
                 type: 'get',
                 success: function(response){
                     var data = JSON.parse(response);
 
-                    console.log(JSON.parse(response));
-
-                    //alert($('#klpd_id').val());
-
-                    if($('#klpd_id').val() != ""){
-                        $("#field_klpd_lainnya").hide();
-                        $("#field_satker").show();
-                    }else{
-                        $("#field_klpd_lainnya").show();
-                        $("#field_satker").hide();
-                    }
+                    onsole.log(JSON.parse(response));
 
                     $("#kd_satker").html("<option value='' selected>--Pilih--</option>");
 
                     $.each(data, function(i, item) {
-                        $("#kd_satker").append("<option " + data[i].kd_satker + ">" + data[i].nama_satker + "</option>");
+                        $("#kd_satker").append("<option value='" + data[i].kd_satker + "'>" + data[i].nama_satker + "</option>");
                     });
+
+                    if(kd_satker)
+                        $("#kd_satker").val(kd_satker);
                 }
             });
         }

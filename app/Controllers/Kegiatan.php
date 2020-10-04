@@ -290,10 +290,33 @@ class Kegiatan extends BaseController
 			]
 		];
 
+		if(! $this->request->getVar('klpd_id')){
+			$rules['klpd_nama_lainnya'] = [
+				'rules' => 'required',
+				'errors' => [
+					'required' => "Instansi lainnya harus diisi"
+				]
+			];
+		}else{
+			$rules['klpd_id'] = [
+				'rules' => 'required',
+				'errors' => [
+					'required' => 'K/L/Pemda harus diisi.'
+				]
+			];
+
+			$rules['kd_satker'] = [
+				'rules' => 'required',
+				'errors' => [
+					'required' => 'Satuan kerja harus diisi.'
+				]
+			];
+		}
+
 		if(!$this->validate($rules)){
 
 			$validation = \Config\Services::validation();
-			return redirect()->to('/pelayanan/create/' . $id)->withInput()->with('validation', $validation);
+			return redirect()->to("/kegiatan/$kegiatan_id/$jenis_advokasi_id/pelayanan")->withInput()->with('validation', $validation);
 		}
 
 		$save = [
@@ -320,7 +343,7 @@ class Kegiatan extends BaseController
 	public function options_klpd(){
 		$arr = new KlpdModel();
 
-		$result = ['0' => '--Pilih--'];
+		$result = ['' => '--Pilih--'];
 
 		foreach ($arr->getKlpd() as $row){
 			$result[$row['klpd_id']] = $row['nama_klpd'];

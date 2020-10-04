@@ -31,7 +31,7 @@
                         </div>
                     <?php endif; ?>
 
-                    <?php /* $validation->listErrors() */  ?>
+                    <?= $validation->listErrors(); ?>
 
                     <?php /*
                     1	Surat
@@ -46,7 +46,7 @@
                     */ ?>
                     <?= csrf_field(); ?>
 
-                    <?php if(in_array($result['id'], array(4,5))){ ?>
+                    <?php if(in_array($result['jenis_advokasi_id'], array(4,5))){ ?>
                     <div role="alert" aria-live="assertive" aria-atomic="true" class="toast" data-autohide="false">
                         <div class="toast-header">
                             <!--<img src="..." class="rounded mr-2" alt="...">-->
@@ -271,14 +271,17 @@
         $('#kategori_permasalahan_id').select2();
         $('#pic_id').select2();
 
-        //default dropdown satuan kerja
-        if($('#klpd_id').val() != 0){
+        var klpd_id = $('#klpd_id').val();
+
+        //alert(klpd_id); 
+
+        if(klpd_id != ""){
             $("#field_klpd_lainnya").hide();
             $("#field_satker").show();
-
+            
             var kd_satker = '<?= (old('kd_satker')) ? old('kd_satker') : $result['satuan_kerja_id'] ?>';
 
-            satuan_kerja(kd_satker);
+            get_satuan_kerja(kd_satker);
         }else{
             $("#field_klpd_lainnya").show();
             $("#field_satker").hide();
@@ -286,10 +289,20 @@
 
         // Add <select > element
         $('#klpd_id').change(function(){
-            satuan_kerja();
+            var klpd_id = $('#klpd_id').val();
+
+            if(klpd_id != ""){
+                $("#field_klpd_lainnya").hide();
+                $("#field_satker").show();
+
+                get_satuan_kerja();
+            }else{
+                $("#field_klpd_lainnya").show();
+                $("#field_satker").hide();
+            }
         });
 
-        function satuan_kerja(kd_satker = 0){
+        function get_satuan_kerja(kd_satker = 0){
             $.ajax({
                 url: '<?= base_url('pages/satuan-kerja-ajax') ?>/' + $('#klpd_id').val(),
                 type: 'get',
@@ -298,21 +311,14 @@
 
                     console.log(JSON.parse(response));
 
-                    if($('#klpd_id').val() != 0){
-                        $("#field_klpd_lainnya").hide();
-                        $("#field_satker").show();
-                    }else{
-                        $("#field_klpd_lainnya").show();
-                        $("#field_satker").hide();
-                    }
-
                     $("#kd_satker").html("<option value='0'>--Pilih--</option>");
 
                     $.each(data, function(i, item) {
                         $("#kd_satker").append("<option value='" + data[i].kd_satker + "'>" + data[i].nama_satker + "</option>");
                     });
 
-                    $("#kd_satker").val(kd_satker);
+                    if(kd_satker)
+                        $("#kd_satker").val(kd_satker);
                 }
             });
         }
