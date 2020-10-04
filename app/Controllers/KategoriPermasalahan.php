@@ -23,13 +23,25 @@ class KategoriPermasalahan extends BaseController
 
 	public function index()
 	{
-		$arr = $this->kategoriPermasalahanModel->getKategoriPermasalahan();
+		$keyword = $this->request->getVar('q');
+
+		if($keyword){
+			$result = $this->kategoriPermasalahanModel->getPaginatedKategoriPermasalahanData($keyword);
+		}else
+			$result = $this->kategoriPermasalahanModel->getPaginatedKategoriPermasalahanData();
+
+		$currentPage = ($this->request->getVar('page_kategori_permasalahan')) ? $this->request->getVar('page_kategori_permasalahan') : 1;
+		$per_page = 10;
 
 		$data = [
             'title' => 'Kategori Permasalahan',
-            'result' => $arr,
 			'result_grafik_layanan' => $this->grafik(),
-			'result_grafik_valuasi' => $this->grafik('grafik_valuasi')
+			'result_grafik_valuasi' => $this->grafik('grafik_valuasi'),
+			'result' => $result->paginate($per_page, 'kategori_permasalahan'),
+			'keyword' => $keyword,
+			'pager' => $result->pager,
+			'per_page' => $per_page,
+			'currentPage' => $currentPage
         ];
         
         return view('KategoriPermasalahan/index', $data);

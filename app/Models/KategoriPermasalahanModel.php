@@ -36,4 +36,31 @@ class KategoriPermasalahanModel extends Model
 
         return $this->where(['id' => $kategori_permasalahan_id])->first();
     }
+
+    public function getPaginatedKategoriPermasalahanData(string $keyword = ''){
+        $select = '
+            kategori_permasalahan.id
+            , kategori_permasalahan.nama_kategori_permasalahan
+            , kategori_permasalahan.keterangan
+            , (
+                SELECT COUNT(*)
+                FROM pelayanan
+                WHERE pelayanan.kategori_permasalahan_id = kategori_permasalahan.id
+                GROUP BY pelayanan.kategori_permasalahan_id
+            ) jumlah_pelayanan
+            , (
+                SELECT SUM(pelayanan.paket_nilai_pagu)
+                FROM pelayanan
+                WHERE pelayanan.kategori_permasalahan_id = kategori_permasalahan.id
+                GROUP BY pelayanan.kategori_permasalahan_id
+            ) jumlah_valuasi
+        ';
+
+        if ($keyword){
+            return $this->select($select)
+                ->like('kategori_permasalahan.nama_kategori_permasalahan', $keyword);
+        }
+
+        return $this->select($select);
+    }
 }
