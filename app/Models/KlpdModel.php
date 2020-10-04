@@ -54,6 +54,17 @@ class KlpdModel extends Model
 
         return $builder->get()->getRowArray();
     }
+
+    public function klpdByName($nama_klpd)
+    {
+        $builder = $this->db->table('klpd');
+        $builder->select('klpd.klpd_id, klpd.nama_klpd');
+        $builder->like('nama_klpd', $nama_klpd);
+        $builder->orderBy('nama_klpd ASC');
+        $builder->limit(10);
+
+        return $builder->get()->getResultArray();
+    }
     
     public function getCountKlpd($jenis_klpd){
         $builder = $this->db->table('klpd');

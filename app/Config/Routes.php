@@ -44,6 +44,7 @@ $routes->get('/pages/klpd/(:num)', 'Pages::klpd_detail/$1');
 $routes->get('/pages/klpd/(:num)/satuan-kerja/', 'Pages::satuan_kerja');
 $routes->get('/pages/klpd/(:num)/satuan-kerja/(:num)', 'Pages::satuan_kerja_detail/$1/$2');
 $routes->get('/pages/satuan-kerja-ajax/(:any)', 'Pages::satuan_kerja_ajax/$1');
+$routes->get('/pages/klpd-ajax/(:any)', 'Pages::klpd_ajax/$1');
 
 $routes->get('/pages/profil/(:num)', 'Pages::profil/$1');
 $routes->get('/pages/profil-update/(:num)', 'Pages::profil_update/$1');

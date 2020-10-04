@@ -309,6 +309,13 @@ class Pages extends BaseController
 		return view('Pages/SatuanKerja/index', $data);
 	}
 
+	public function klpd_ajax($klpd_nama)
+	{	
+		$result = $this->klpdModel->klpdByName($klpd_nama);
+
+		echo json_encode($result, JSON_PRETTY_PRINT);
+	}
+
 	public function satuan_kerja_ajax($klpd_id)
 	{
 		$result = $this->satuanKerjaModel->getSatuanKerjaByKlpdId($klpd_id);
