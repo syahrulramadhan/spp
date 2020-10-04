@@ -42,10 +42,11 @@
             <br/>
             <?php if(in_array($rows['id'], array(8,9))){ ?>
                 <a class="btn btn-success" href="/kegiatan/create/<?= $rows['id']; ?>">Entry</a>
+                <a class="btn btn-info" style="margin-top: 5px;" href="/kegiatan" class="stretched-link">Rekap</a>
             <?php }else{ ?>
                 <a class="btn btn-success" href="/pelayanan/create/<?= $rows['id']; ?>">Entry</a>
+                <a class="btn btn-info" style="margin-top: 5px;" href="/pelayanan" class="stretched-link">Rekap</a>
             <?php } ?>
-            <a class="btn btn-info" style="margin-top: 5px;" href="/pelayanan" class="stretched-link">Rekap</a>
         </div>
     </div>
 </div>
