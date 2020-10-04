@@ -19,7 +19,7 @@ class User extends BaseController
 		$keyword = $this->request->getVar('q');
 
 		if($keyword)
-			$user = $this->userModel->search($keyword);
+			$user = $this->userModel->getPaginatedUserData($keyword);
 		else
 			$user = $this->userModel;
 
