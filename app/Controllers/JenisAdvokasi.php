@@ -31,16 +31,14 @@ class JenisAdvokasi extends BaseController
 		}else
 			$result = $this->jenisAdvokasiModel->getPaginatedJenisAdvokasiData();
 
-		//echo "<pre>"; print_r($result); exit; 
-
 		$currentPage = ($this->request->getVar('page_jenis_advokasi')) ? $this->request->getVar('page_jenis_advokasi') : 1;
 		$per_page = 10;
 		
 		$data = [
             'title' => 'Jenis Advokasi',
-			'result' => $result->paginate($per_page, 'jenis_advokasi'),
 			'result_grafik_layanan' => $this->grafik(),
 			'result_grafik_valuasi' => $this->grafik('grafik_valuasi'),
+			'result' => $result->paginate($per_page, 'jenis_advokasi'),
 			'keyword' => $keyword,
 			'pager' => $result->pager,
 			'per_page' => $per_page,

@@ -374,7 +374,7 @@ class Pages extends BaseController
 			$result = $this->jenisPengadaanModel->getPaginatedJenisPengadaanData();
 
 		$currentPage = ($this->request->getVar('page_jenis_pengadaan')) ? $this->request->getVar('page_jenis_pengadaan') : 1;
-		$per_page = 2;
+		$per_page = 10;
 
 		$data = [
             'title' => 'Jenis Barang/Jasa',

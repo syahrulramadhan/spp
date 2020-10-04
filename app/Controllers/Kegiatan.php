@@ -32,11 +32,23 @@ class Kegiatan extends BaseController
 
 	public function index()
 	{
-		$arr = $this->kegiatanModel->getKegiatan();
+		$keyword = $this->request->getVar('q');
+		
+		if($keyword){
+			$result = $this->kegiatanModel->getPaginatedKegiatanData($keyword);
+		}else
+			$result = $this->kegiatanModel->getPaginatedKegiatanData();
+
+		$currentPage = ($this->request->getVar('page_kegiatan')) ? $this->request->getVar('page_kegiatan') : 1;
+		$per_page = 10;
 
 		$data = [
             'title' => 'Kegiatan',
-            'result' => $arr
+            'result' => $result->paginate($per_page, 'kegiatan'),
+			'keyword' => $keyword,
+			'pager' => $result->pager,
+			'per_page' => $per_page,
+			'currentPage' => $currentPage
         ];
         
         return view('Kegiatan/index', $data);

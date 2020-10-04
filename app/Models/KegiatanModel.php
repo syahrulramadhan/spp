@@ -39,4 +39,28 @@ class KegiatanModel extends Model
 
         return $this->db->insertID();
     }
+
+    public function getPaginatedKegiatanData(string $keyword = ''){
+        $select = '
+            kegiatan.id
+            , kegiatan.nama_kegiatan
+            , kegiatan.tanggal_pelaksanaan
+            , kegiatan.jenis_advokasi_id
+            , kegiatan.jenis_advokasi_nama
+            , kegiatan.tahapan
+            , (
+                SELECT COUNT(*)
+                FROM pelayanan
+                WHERE pelayanan.kegiatan_id = kegiatan.id
+                GROUP BY pelayanan.kegiatan_id
+            ) jumlah_pelayanan
+        ';
+
+        if($keyword){
+            return $this->select($select)
+                ->like('kegiatan.nama_kegiatan', $keyword);
+        }
+
+        return $this->select($select);
+    }
 }

@@ -19,17 +19,30 @@
     <div class="row">
         <div class="col-md-12">
             <div class="card-body">
-
-                <div class="mb-3">
-                    <a href="/kegiatan/create/8" class="btn btn-info">Clearing House</a>
-                    <a href="/kegiatan/create/9" class="btn btn-info">Bimbingan Teknis</a>
-                </div>
-
                 <?php if(session()->getFlashdata('pesan')): ?>
                     <div class="alert alert-success" role="alert">
                     <?= session()->getFlashdata('pesan') ?>
                     </div>
                 <?php endif; ?>
+
+                <div class="row">
+                    <div class="col-9">
+                        <div class="mb-3">
+                            <a href="/kegiatan/create/8" class="btn btn-info">Clearing House</a>
+                            <a href="/kegiatan/create/9" class="btn btn-info">Bimbingan Teknis</a>
+                        </div>
+                    </div>
+                    <div class="col-3 pull-right">
+                        <form action="" method="GET">
+                            <div class="input-group mb-3">
+                            <input type="text" class="form-control" placeholder="Masukan kata pencarian" name="q" value="<?= $keyword ?>" autofocus>
+                            <div class="input-group-append">
+                                <button class="btn btn-outline-info" type="submit"><i class="fa fa-search"></i></button>
+                            </div>
+                            </div>
+                        </form>
+                    </div>
+                </div>
                 <table class="table table-sm">
                     <thead>
                     <tr>
@@ -42,7 +55,7 @@
                     </thead>
                     <tbody>
                     <?php
-                        $i = 1;
+                        $i = 1 + ($per_page * ($currentPage - 1));
 
                         foreach($result as $rows):
                     ?>
@@ -82,6 +95,7 @@
                     <?php endforeach; ?>
                     </tbody>
                 </table>
+                <?= $pager->links('kegiatan', 'bootstrap_pagination'); ?>
             </div>
         </div>
     </div>
