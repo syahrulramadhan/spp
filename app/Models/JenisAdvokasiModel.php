@@ -50,5 +50,33 @@ class JenisAdvokasiModel extends Model
         }
 		
         return $arr;
-	}
+    }
+    
+    public function getPaginatedJenisAdvokasiData(string $keyword = ''){
+        $select = 'jenis_advokasi.id
+            , jenis_advokasi.nama_jenis_advokasi
+            , jenis_advokasi.image_jenis_advokasi
+            , jenis_advokasi.keterangan
+            , (
+                SELECT COUNT(*)
+                FROM pelayanan
+                WHERE pelayanan.jenis_advokasi_id = jenis_advokasi.id
+                GROUP BY pelayanan.jenis_advokasi_id
+            ) jumlah_pelayanan
+            , (
+                SELECT SUM(pelayanan.paket_nilai_pagu)
+                FROM pelayanan
+                WHERE pelayanan.jenis_advokasi_id = jenis_advokasi.id
+                GROUP BY pelayanan.jenis_advokasi_id
+            ) jumlah_valuasi
+        ';
+
+        if ($keyword)
+        {
+            return $this->select($select)
+                ->like('jenis_advokasi.nama_jenis_advokasi', $keyword);
+        }
+
+        return $this->select($select);
+    }
 }

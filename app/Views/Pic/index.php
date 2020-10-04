@@ -107,16 +107,16 @@
                     <?php endforeach; ?>
                     </tbody>
                 </table>
+                <?= $pager->links('pic', 'bootstrap_pagination'); ?>
             </div>
         </div>
     </div>
 </div>
+
 <script>
 $(document).ready(function(){
     $('#user_id').select2();
 });
 </script>
-
-<?= $pager->links('pic', 'bootstrap_pagination'); ?>
 
 <?= $this->endSection(); ?>

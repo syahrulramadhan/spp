@@ -24,13 +24,27 @@ class JenisAdvokasi extends BaseController
 
 	public function index()
 	{
-		$arr = $this->jenisAdvokasiModel->getJenisAdvokasi();
+		$keyword = $this->request->getVar('q');
 
+		if($keyword){
+			$result = $this->jenisAdvokasiModel->getPaginatedJenisAdvokasiData($keyword);
+		}else
+			$result = $this->jenisAdvokasiModel->getPaginatedJenisAdvokasiData();
+
+		//echo "<pre>"; print_r($result); exit; 
+
+		$currentPage = ($this->request->getVar('page_jenis_advokasi')) ? $this->request->getVar('page_jenis_advokasi') : 1;
+		$per_page = 10;
+		
 		$data = [
             'title' => 'Jenis Advokasi',
-			'result' => $arr,
+			'result' => $result->paginate($per_page, 'jenis_advokasi'),
 			'result_grafik_layanan' => $this->grafik(),
 			'result_grafik_valuasi' => $this->grafik('grafik_valuasi'),
+			'keyword' => $keyword,
+			'pager' => $result->pager,
+			'per_page' => $per_page,
+			'currentPage' => $currentPage
 		];
     
 		return view('JenisAdvokasi/index', $data);

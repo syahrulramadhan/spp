@@ -19,7 +19,7 @@ class UserModel extends Model
         return $this->where(['id' => $user_id])->first();
     }
 
-    public function search($q){
-        return $this->table('user')->like('nama_depan', $q)->orLike('nama_belakang', $q);
+    public function search(string $keyword = ''){
+        return $this->table('user')->like('nama_depan', $keyword)->orLike('nama_belakang', $keyword);
     }
 }
