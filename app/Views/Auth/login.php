@@ -45,7 +45,7 @@
                 <?php endif ?>
                 <?= form_open('Auth/login') ?>
                     <div class="form-group">
-                        <?= form_label("Username", "username") ?>
+                        <?= form_label("Username/Email", "username") ?>
                         <?= form_input($username) ?>
                     </div>
                     <div class="form-group">
