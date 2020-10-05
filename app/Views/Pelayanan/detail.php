@@ -58,14 +58,17 @@
                 <p class="card-text"><?= $result['jenis_advokasi_nama'] ?></p>
                 <p class="card-text"><?= $result['nama_kategori_permasalahan'] ?></p>
                 <p class="card-text"><?= $result['keterangan'] ?></p>
-
-                <a href="/pelayanan/<?= $result['jenis_advokasi_id']; ?>/edit/<?= $result['id']; ?>" class="btn btn-info">Edit</a>
                 
+                <?php if(in_array($result['jenis_advokasi_id'], array(1,2,3,4,5,6,7))){ ?>
+                <a href="/pelayanan/<?= $result['jenis_advokasi_id']; ?>/edit/<?= $result['id']; ?>" class="btn btn-info">Edit</a>
+                <?php } ?>
+
                 <a class="btn btn-info" href="/pelayanan">Lihat Rekap</a>
             </div>
         </div>
         <div class="col-md-4">
-            <?php if(in_array($result['jenis_advokasi_id'], array(1,3,5))){ ?>
+            <?php /* if(in_array($result['jenis_advokasi_id'], array(1,3,5))){ */ ?>
+            <?php if(in_array($result['jenis_advokasi_id'], array(1,2,3,4,5,6,7))){ ?>
                 <div class="d-flex align-items-center p-3 my-1 text-white-50 bg-info rounded shadow-sm">
                 <!--<img class="mr-3" src="../assets/brand/bootstrap-outline.svg" alt="" width="48" height="48">-->
                     <div class="lh-100">

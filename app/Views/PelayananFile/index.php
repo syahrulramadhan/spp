@@ -39,11 +39,11 @@
                     <div class="form-group row">
                         <?php echo form_label('File', 'pelayanan_file', ['class' => 'col-sm-2 col-form-label']); ?>
                         <div class="col-sm-10">
-                            <?php if($result['pelayanan_file']){ ?>
+                            <?php /* if($result['nama_file']){  ?>
                             <div class="row">
-                                <div class="col-3"><img src="<?php echo base_url('uploads/pelayanan/'.$result['pelayanan_file']) ?>" class="img-thumbnail"></div>
+                                <div class="col-3"><img src="<?php echo base_url('uploads/pelayanan/'.$result['nama_file']) ?>" class="img-thumbnail"></div>
                             </div>
-                            <?php } ?>
+                            <?php } */ ?>
                             <?php echo form_upload('pelayanan_file', ""); ?>
                             <div>
                                 <small style="color:red">*.pdf, *.doc, *.docx, *.ppt, *.pptx (Max 2MB)</small>	
