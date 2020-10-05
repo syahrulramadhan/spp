@@ -48,6 +48,7 @@
                     <tr>
                         <th class="text-center col-small">NO</th>
                         <th>NAMA LENGKAP</th>
+                        <th>USERNAME</th>
                         <th>EMAIL</th>
                         <th>TELEPON</th>
                         <th>ROLE</th>
@@ -69,6 +70,7 @@
                                 </a>
                             </div>
                         </td>
+                        <td><?= $rows['username']; ?></td>
                         <td><?= $rows['email']; ?></td>
                         <td><?= $rows['nomor_telepon']; ?></td>
                         <td>

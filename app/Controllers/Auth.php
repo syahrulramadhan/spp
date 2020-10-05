@@ -58,7 +58,7 @@ class Auth extends BaseController
 			$username = $this->request->getPost('username');
 			$password = $this->request->getPost('password');
 
-			$user = $userModel->where('email', $username)->first();
+			$user = $userModel->where('username', $username)->orwhere('email', $username)->first();
 
             //echo "<pre>"; print_r($user); exit;
 
