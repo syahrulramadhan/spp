@@ -38,11 +38,11 @@
                     <div class="form-group row">
                         <?php echo form_label('File', 'kegiatan_materi', ['class' => 'col-sm-2 col-form-label']); ?>
                         <div class="col-sm-10">
-                            <?php if($result['kegiatan_materi']){ ?>
+                            <?php /* if($result['kegiatan_materi']){ ?>
                             <div class="row">
                                 <div class="col-3"><img src="<?php echo base_url('uploads/kegiatan/'.$result['kegiatan_materi']) ?>" class="img-thumbnail"></div>
                             </div>
-                            <?php } ?>
+                            <?php } */ ?>
                             <?php echo form_upload('kegiatan_materi', ""); ?>
                             <div>
                                 <small style="color:red">*.pdf, *.doc, *.docx, *.ppt, *.pptx (Max 2MB)</small>	

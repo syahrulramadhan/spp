@@ -65,6 +65,20 @@
                         <td><?= $rows['tanggal_pelaksanaan']; ?></td>
                         <td class="text-center"><?= ($rows['jumlah_pelayanan']) ? $rows['jumlah_pelayanan'] : 0; ?></td>
                         <td class="text-center">
+                            <div class="btn-group">
+                                <a href="<?= base_url('kegiatan/' . $rows['id']); ?>" class="btn btn-sm btn-success">
+                                    <i class="fa fa-eye"></i>
+                                </a>
+                                <a href="<?= base_url('kegiatan/' . $rows['id'] . '/materi'); ?>" class="btn btn-sm btn-success">
+                                    <i class="fa fa-file"></i>
+                                </a>
+                                <a href="<?= base_url('kegiatan/' . $rows['id'] . '/' . $rows['jenis_advokasi_id'] . '/pelayanan'); ?>" class="btn btn-sm btn-success">
+                                    <i class="fa fa-users"></i>
+                                </a>
+                                <a href="<?= base_url('kegiatan/' . $rows['id'] . '/narasumber'); ?>" class="btn btn-sm btn-success">
+                                    <i class="fa fa-user"></i>
+                                </a>
+                            </div>
                             <?php /*
                             <div class="btn-group" role="group">
                                 <button id="btnGroupDrop1" type="button" class="btn btn-primary dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
@@ -89,7 +103,7 @@
                                 </div>
                             </div>
                             */ ?>
-                            <a class="text-decoration-none" href="kegiatan/<?= $rows['id']; ?>">Lihat</a>
+                            <!--<a class="text-decoration-none" href="kegiatan/<?= $rows['id']; ?>">Lihat</a>-->
                         </td>
                     </tr>
                     <?php endforeach; ?>
