@@ -48,22 +48,23 @@
                     
                     <?php if(in_array($result['id'], array(4,5))){ ?>
                     <div role="alert" aria-live="assertive" aria-atomic="true" class="toast" data-autohide="false">
-                        <div class="toast-header">
+                        <div class="toast-header bg-warning ">
                             <!--<img src="..." class="rounded mr-2" alt="...">-->
-                            <strong class="mr-auto">Keterangan</strong>
+                            <strong class="mr-auto text-white"><i class="fa fa-warning"></i> PERINGATAN </strong>
                             <!--<small>11 mins ago</small>-->
+
                             <button type="button" class="ml-2 mb-1 close" data-dismiss="toast" aria-label="Close">
                             <span aria-hidden="true">&times;</span>
                             </button>
                         </div>
                         <div class="toast-body">
-                        <?php 
-                            if(in_array($result['id'], array(4))){
-                                echo 'Diisi berdasarkan Paket Konsolidasi bukan setiap Kegiatan.';
-                            }else if(in_array($result['id'], array(5))){
-                                echo 'Diisi berdasarkan Paket Pendampingan/Probity Advice bukan setiap Kegiatan';
-                            }
-                        ?>
+                            <?php 
+                                if(in_array($result['id'], array(4))){
+                                    echo 'Diisi berdasarkan Paket Konsolidasi bukan setiap Kegiatan.';
+                                }else if(in_array($result['id'], array(5))){
+                                    echo 'Diisi berdasarkan Paket Pendampingan/Probity Advice bukan setiap Kegiatan';
+                                }
+                            ?>
                         </div>
                     </div>
                     <?php } ?>
