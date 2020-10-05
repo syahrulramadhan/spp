@@ -438,6 +438,68 @@ class Pages extends BaseController
 		return json_encode($grafik, JSON_PRETTY_PRINT);
 	}
 
+	public function ubah_password($id){
+		$data = [
+			'title' => 'Form Ubah Data Password',
+			'validation' => \Config\Services::validation(),
+			'result' => [
+				"id" => $id
+			]
+		];
+
+		return view('Pages/Profil/edit_password', $data);
+	}
+
+	public function ubah_password_update($id){
+		if(!$this->validate([
+			'password_lama' => [
+				'rules' => 'required|valid_password',
+				'errors' => [
+					'required' => 'Kata sandi lama harus diisi.',
+					'valid_password' => 'Kata sandi tidak ditemukan.'
+				]
+			],
+			'repassword_lama' => [
+				'rules' => 'required|matches[password_lama]',
+				'errors' => [
+					'required' => 'Ulangi kata sandi lama harus diisi.',
+					'matches' => 'Kata sandi lama yang diulang tidak sama'
+				]
+			],
+			'password' => [
+				'rules' => 'required|min_length[10]',
+				'errors' => [
+					'required' => 'Kata sandi harus diisi.',
+					'min_length' => 'Kata sandi anda terlalu pendek.'
+				]
+			],
+			'repassword' => [
+				'rules' => 'required|min_length[10]|matches[password]',
+				'errors' => [
+					'required' => 'Ulangi kata sandi harus diisi.',
+					'min_length' => 'Ulangi kata sandi anda terlalu pendek.',
+					'matches' => 'Kata sandi yang diulang tidak sama'
+				]
+			]
+		])){
+
+			$validation = \Config\Services::validation();
+			return redirect()->to('/pages/ubah-password/' . $id)->withInput()->with('validation', $validation);
+		}
+
+		$pass = $this->setPassword($this->request->getVar('password'));
+
+		$this->userModel->save([
+			'id' => $id,
+			'salt' => $pass['salt'],
+			'password' => $pass['password'],
+		]);
+		
+		session()->setFlashdata('pesan', 'Data berhasil ditambahkan.');
+		
+		return redirect()->to('/pages/ubah-password/' . $id);
+	}
+
 	public function profil($id){
 		$data = [
 			'title' => 'Form Ubah Data Profil',
@@ -481,8 +543,6 @@ class Pages extends BaseController
 			return redirect()->to('/pages/profil/' . $id)->withInput()->with('validation', $validation);
 		}
 
-		$pass = $this->setPassword($this->request->getVar('password'));
-
 		$save = [
 			'id' => $id,
 			'nama_depan' => $this->request->getVar('nama_depan'),
@@ -492,12 +552,7 @@ class Pages extends BaseController
 			'jabatan' => $this->request->getVar('jabatan')
 		];
 
-		if($this->request->getVar('password')){
-			$save['salt'] = $pass['salt'];
-			$save['password'] = $pass['password'];
-		}
-
-		//echo "<pre>"; print_r($save); exit;
+		echo "<pre>"; print_r($save); exit;
 
 		$this->userModel->save($save);
 		

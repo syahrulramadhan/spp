@@ -96,15 +96,15 @@ class User extends BaseController
 			'password' => [
 				'rules' => 'required|min_length[10]',
 				'errors' => [
-					'required' => 'Password harus diisi.',
+					'required' => 'Kata sandi harus diisi.',
 					'min_length' => 'Kata sandi anda terlalu pendek.'
 				]
 			],
 			'repassword' => [
 				'rules' => 'required|min_length[10]|matches[password]',
 				'errors' => [
-					'required' => 'Nomor telepon harus diisi.',
-					'min_length' => 'Kata sandi anda terlalu pendek.',
+					'required' => 'Ulangi kata sandi harus diisi.',
+					'min_length' => 'Ulangi kata sandi anda terlalu pendek.',
 					'matches' => 'Kata sandi yang diulang tidak sama'
 				]
 			],
