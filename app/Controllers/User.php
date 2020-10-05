@@ -194,8 +194,6 @@ class User extends BaseController
 			return redirect()->to('/user/edit/' . $id)->withInput()->with('validation', $validation);
 		}
 
-		$pass = $this->setPassword($this->request->getVar('password'));
-
 		$update = [
 			'id' => $id,
 			'nama_depan' => $this->request->getVar('nama_depan'),
@@ -204,11 +202,6 @@ class User extends BaseController
 			'nomor_telepon' => $this->request->getVar('nomor_telepon'),
 			'jabatan' => $this->request->getVar('jabatan')
 		];
-
-		if($this->request->getVar('password')){
-			$update['salt'] = $pass['salt'];
-			$update['password'] = $pass['password'];
-		}
 
 		$this->userModel->save($update);
 		

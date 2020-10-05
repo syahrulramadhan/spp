@@ -552,7 +552,7 @@ class Pages extends BaseController
 			'jabatan' => $this->request->getVar('jabatan')
 		];
 
-		echo "<pre>"; print_r($save); exit;
+		//echo "<pre>"; print_r($save); exit;
 
 		$this->userModel->save($save);
 		
