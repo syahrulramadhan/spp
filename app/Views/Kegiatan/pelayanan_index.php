@@ -138,12 +138,16 @@
             $("#field_klpd_lainnya").hide();
             $("#field_satker").show();
 
-            var kd_satker = '<?= (old('kd_satker')) ? old('kd_satker') : $result['satuan_kerja_id'] ?>';
+            var kd_satker = '<?= old('kd_satker'); ?>';
 
             get_satuan_kerja(kd_satker);
+
+            $("#klpd_nama_lainnya").val("");
         }else{
             $("#field_klpd_lainnya").show();
             $("#field_satker").hide();
+
+            $("#kd_satker").val("");
         }
 
         // Add <select > element
@@ -155,9 +159,13 @@
                 $("#field_satker").show();
 
                 get_satuan_kerja();
+                
+                $("#klpd_nama_lainnya").val("");
             }else{
                 $("#field_klpd_lainnya").show();
                 $("#field_satker").hide();
+
+                $("#kd_satker").val("");
             }
         });
 
@@ -168,7 +176,7 @@
                 success: function(response){
                     var data = JSON.parse(response);
 
-                    onsole.log(JSON.parse(response));
+                    console.log(JSON.parse(response));
 
                     $("#kd_satker").html("<option value='' selected>--Pilih--</option>");
 

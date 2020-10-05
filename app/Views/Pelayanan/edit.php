@@ -282,9 +282,13 @@
             var kd_satker = '<?= (old('kd_satker')) ? old('kd_satker') : $result['satuan_kerja_id'] ?>';
 
             get_satuan_kerja(kd_satker);
+
+            $("#klpd_nama_lainnya").val("");
         }else{
             $("#field_klpd_lainnya").show();
             $("#field_satker").hide();
+
+            $("#kd_satker").val("");
         }
 
         // Add <select > element
@@ -296,9 +300,13 @@
                 $("#field_satker").show();
 
                 get_satuan_kerja();
+
+                $("#klpd_nama_lainnya").val("");
             }else{
                 $("#field_klpd_lainnya").show();
                 $("#field_satker").hide();
+
+                $("#kd_satker").val("");
             }
         });
 
