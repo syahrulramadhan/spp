@@ -65,6 +65,14 @@
         </div>
     </div>
     <div class="col-md-4">
+        <div class="p-3 my-1 text-center bg-white rounded">
+            <div class="pb-2">
+                <img src="<?= base_url('uploads/lkpp.png') ?>" class="img-fluid" alt="Lembaga Kebijakan Pengadaan Barang/Jasa Pemerintah">
+            </div>
+            <div class="pb-2">
+                <img src="<?= base_url('uploads/Logo D4-08.png') ?>" class="img-fluid" alt="Deputy Chairman D4">
+            </div>
+        </div>
         <div class="d-flex align-items-center p-3 my-1 text-white-50 bg-info rounded shadow-sm">
         <!--<img class="mr-3" src="../assets/brand/bootstrap-outline.svg" alt="" width="48" height="48">-->
             <div class="lh-100">
@@ -94,7 +102,7 @@
         <?php endforeach; ?>
 
         <small class="d-block text-right mt-3">
-            <a href="#">All updates</a>
+            <a href="<?= base_url('pelayanan') ?>">All updates</a>
         </small>
         </div>
 
