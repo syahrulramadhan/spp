@@ -242,7 +242,7 @@
 
         var options = {
             chart: {
-                title: 'Grafik Valuasi <?= $result['nama_klpd'] ?>',
+                title: 'Grafik Valuasi <?= $result['nama_klpd'] ?> (Rp. JUTA)',
                 subtitle: '<?= date('d-m-Y  h:i:s'); ?>'
             },
             colors: ['#FFA6CD','#FF7DC5'],

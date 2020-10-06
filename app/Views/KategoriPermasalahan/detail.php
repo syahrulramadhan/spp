@@ -119,7 +119,7 @@
 
         var options = {
             chart: {
-                title: 'Grafik Valuasi <?= $result['nama_kategori_permasalahan'] ?>',
+                title: 'Grafik Valuasi <?= $result['nama_kategori_permasalahan'] ?> (Rp. JUTA)',
                 subtitle: '<?= date('d-m-Y  h:i:s'); ?>'
             },
             colors: ['#FFA6CD','#FF7DC5'],

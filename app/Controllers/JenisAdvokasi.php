@@ -90,8 +90,8 @@ class JenisAdvokasi extends BaseController
 
 			foreach($result as $rows){
 				$grafik[$rows['bulan']][0] = $this->bulan($rows['bulan']);
-				$grafik[$rows['bulan']][1] = (double) ($rows['jumlah_valuasi']);
-				$grafik[$rows['bulan']][2] = (double) ($rows['total_valuasi']);
+				$grafik[$rows['bulan']][1] = (double) ($rows['jumlah_valuasi']/1000000);
+				$grafik[$rows['bulan']][2] = (double) ($rows['total_valuasi']/1000000);
 			}
 		}else{
 			$result = $this->grafikModel->layananByJenisAdvokasiId($jenis_klpd, $tahun, $id);

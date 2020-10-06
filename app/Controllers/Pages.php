@@ -82,8 +82,8 @@ class Pages extends BaseController
 
 			foreach($result as $rows){
 				$grafik[$rows['bulan']][0] = $this->bulan($rows['bulan']);
-				$grafik[$rows['bulan']][1] = (double) ($rows['jumlah_valuasi']);
-				$grafik[$rows['bulan']][2] = (double) ($rows['total_valuasi']);
+				$grafik[$rows['bulan']][1] = (double) ($rows['jumlah_valuasi']/1000000);
+				$grafik[$rows['bulan']][2] = (double) ($rows['total_valuasi']/1000000);
 			}
 		}else if($param == 'chart_coverage'){
 			$count = $this->klpdModel->getCountKlpd($jenis_klpd);
@@ -152,8 +152,8 @@ class Pages extends BaseController
 
 			foreach($result as $rows){
 				$grafik[$rows['bulan']][0] = $this->bulan($rows['bulan']);
-				$grafik[$rows['bulan']][1] = (double) ($rows['jumlah_valuasi']);
-				$grafik[$rows['bulan']][2] = (double) ($rows['total_valuasi']);
+				$grafik[$rows['bulan']][1] = (double) ($rows['jumlah_valuasi']/1000000);
+				$grafik[$rows['bulan']][2] = (double) ($rows['total_valuasi']/1000000);
 			}
 		}else{
 			$result = $this->grafikModel->layananByJenisPengadaanId($jenis_klpd, $tahun, $id);
@@ -198,8 +198,8 @@ class Pages extends BaseController
 
 			foreach($result as $rows){
 				$grafik[$rows['bulan']][0] = $this->bulan($rows['bulan']);
-				$grafik[$rows['bulan']][1] = (double) ($rows['jumlah_valuasi']);
-				$grafik[$rows['bulan']][2] = (double) ($rows['total_valuasi']);
+				$grafik[$rows['bulan']][1] = (double) ($rows['jumlah_valuasi']/1000000);
+				$grafik[$rows['bulan']][2] = (double) ($rows['total_valuasi']/1000000);
 			}
 		}else if($param == 'chart_kualitas'){
 			$grafik[0][0] = 'BULAN';

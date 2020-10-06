@@ -115,7 +115,7 @@
 
         var options = {
             chart: {
-                title: 'Grafik Valuasi <?= $result['nama_jenis_advokasi'] ?>',
+                title: 'Grafik Valuasi <?= $result['nama_jenis_advokasi'] ?> (Rp. JUTA)',
                 subtitle: '<?= date('d-m-Y  h:i:s'); ?>'
             },
             colors: ['#FFA6CD','#FF7DC5'],
