@@ -20,7 +20,7 @@
     </div>
 </div>
 
-<form action="/pelayanan/<?= $result['jenis_advokasi_id']; ?>/update/<?= $result['id']; ?>" method="post" enctype="multipart/form-data">
+<form action="<?= base_url('pelayanan/' . $result['jenis_advokasi_id'] . '/update/' . $result['id']); ?>" method="post" enctype="multipart/form-data">
     <div class="card mb-3">
         <div class="row">
             <div class="col-md-12">
@@ -266,6 +266,9 @@
 
 <script>
     $(document).ready(function(){
+        $('#paket_nilai_pagu').mask("#.##0", {reverse: true});
+        $('#nomor_telepon').mask('0000-0000-00000');
+
         $('.toast').toast('show');
 
         $('#klpd_id').select2();

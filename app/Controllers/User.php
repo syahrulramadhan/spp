@@ -128,19 +128,23 @@ class User extends BaseController
 
 		$pass = $this->setPassword($this->request->getVar('password'));
 
-		$this->userModel->save([
+		$save = [
 			'nama_depan' => $this->request->getVar('nama_depan'),
 			'nama_belakang' => $this->request->getVar('nama_belakang'),
 			'email' => $this->request->getVar('email'),
 			'username' => $this->request->getVar('username'),
 			'salt' => $pass['salt'],
 			'password' => $pass['password'],
-			'nomor_telepon' => $this->request->getVar('nomor_telepon'),
+			'nomor_telepon' => str_replace("-", "", $this->request->getVar('nomor_telepon')),
 			'jabatan' => $this->request->getVar('jabatan'),
 			'role' => $this->request->getVar('role'),
 			'created_by' => session('id')
-		]);
+		];
+
+		$this->userModel->save($save);
 		
+		//echo "<pre>"; print_r($save); exit;
+
 		session()->setFlashdata('pesan', 'Data berhasil ditambahkan.');
 		
 		return redirect()->to('/user');
@@ -199,7 +203,7 @@ class User extends BaseController
 			'nama_depan' => $this->request->getVar('nama_depan'),
 			'nama_belakang' => $this->request->getVar('nama_belakang'),
 			'email' => $this->request->getVar('email'),
-			'nomor_telepon' => $this->request->getVar('nomor_telepon'),
+			'nomor_telepon' => str_replace("-", "", $this->request->getVar('nomor_telepon')),
 			'jabatan' => $this->request->getVar('jabatan')
 		];
 

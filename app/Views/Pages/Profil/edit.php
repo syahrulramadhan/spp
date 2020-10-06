@@ -2,6 +2,9 @@
 
 <?= $this->section('content') ?>
 
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.mask/1.14.15/jquery.mask.min.js"></script>
+
 <nav aria-label="breadcrumb">
     <ol class="breadcrumb">
         <li class="breadcrumb-item"><a href="<?= base_url(); ?>">Dashboard</a></li>
@@ -85,5 +88,9 @@
         </div>
     </div>
 </div>
+
+<script>
+    $('#nomor_telepon').mask('0000-0000-00000');
+</script>
 
 <?= $this->endsection(); ?>

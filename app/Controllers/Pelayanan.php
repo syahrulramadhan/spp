@@ -243,6 +243,8 @@ class Pelayanan extends BaseController
 				return redirect()->to('/pelayanan/create/' . $id)->withInput()->with('validation', $validation);
 			}
 
+			$nilai_pagu = ($this->request->getVar('paket_nilai_pagu')) ? str_replace(".", "", $this->request->getVar('paket_nilai_pagu')) : 0;
+			
 			$save = [
 				'tanggal_pelaksanaan' => $this->dateOutput($this->request->getVar('tanggal_pelaksanaan')),
 				'nomor_surat_keluar' => $this->request->getVar('nomor_surat_keluar'),
@@ -251,17 +253,14 @@ class Pelayanan extends BaseController
 				'jenis_advokasi_nama' => $this->request->getVar('jenis_advokasi_nama'),
 				'nama' => $this->request->getVar('nama'),
 				'jabatan' => $this->request->getVar('jabatan'),
-				'nomor_telepon' => $this->request->getVar('nomor_telepon'),
-				//'aktifitas' => $this->request->getVar('aktifitas'),
+				'nomor_telepon' => str_replace("-", "", $this->request->getVar('nomor_telepon')),
 				'klpd_id' => $this->request->getVar('klpd_id'),
 				'satuan_kerja_id' => $this->request->getVar('kd_satker'),
 				'klpd_nama_lainnya' => $this->request->getVar('klpd_nama_lainnya'),
 				'paket_kode' => $this->request->getVar('paket_kode'),
 				'paket_nama' => $this->request->getVar('paket_nama'),
-				'paket_nilai_pagu' => $this->request->getVar('paket_nilai_pagu'),
+				'paket_nilai_pagu' => $nilai_pagu,
 				'paket_jenis_pengadaan_id' => $this->request->getVar('paket_jenis_pengadaan_id'),
-				//'paket_status' => $this->request->getVar('paket_status'),
-				//'efisiensi' => $this->request->getVar('efisiensi'),
 				'kategori_permasalahan_id' => $this->request->getVar('kategori_permasalahan_id'),
 				'keterangan' => $this->request->getVar('keterangan'),
 				'created_by' => session('id')
@@ -449,6 +448,8 @@ class Pelayanan extends BaseController
 				return redirect()->to("/pelayanan/$jenis_advokasi_id/edit/$id")->withInput()->with('validation', $validation);
 			}
 
+			$nilai_pagu = ($this->request->getVar('paket_nilai_pagu')) ? str_replace(".", "", $this->request->getVar('paket_nilai_pagu')) : 0;
+			
 			$save = [
 				'id' => $id,
 				'tanggal_pelaksanaan' => $this->dateOutput($this->request->getVar('tanggal_pelaksanaan')),
@@ -458,17 +459,14 @@ class Pelayanan extends BaseController
 				'jenis_advokasi_nama' => $this->request->getVar('jenis_advokasi_nama'),
 				'nama' => $this->request->getVar('nama'),
 				'jabatan' => $this->request->getVar('jabatan'),
-				'nomor_telepon' => $this->request->getVar('nomor_telepon'),
-				//'aktifitas' => $this->request->getVar('aktifitas'),
+				'nomor_telepon' => str_replace("-", "", $this->request->getVar('nomor_telepon')),
 				'klpd_id' => $this->request->getVar('klpd_id'),
 				'satuan_kerja_id' => $this->request->getVar('kd_satker'),
 				'klpd_nama_lainnya' => $this->request->getVar('klpd_nama_lainnya'),
 				'paket_kode' => $this->request->getVar('paket_kode'),
 				'paket_nama' => $this->request->getVar('paket_nama'),
-				'paket_nilai_pagu' => $this->request->getVar('paket_nilai_pagu'),
+				'paket_nilai_pagu' => $nilai_pagu,
 				'paket_jenis_pengadaan_id' => $this->request->getVar('paket_jenis_pengadaan_id'),
-				//'paket_status' => $this->request->getVar('paket_status'),
-				//'efisiensi' => $this->request->getVar('efisiensi'),
 				'kategori_permasalahan_id' => $this->request->getVar('kategori_permasalahan_id'),
 				'keterangan' => $this->request->getVar('keterangan')
 			];

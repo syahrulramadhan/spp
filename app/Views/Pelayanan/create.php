@@ -18,12 +18,11 @@
     </div>
 </div>
 
-<form action="/pelayanan/save/<?= $result['id']; ?>" method="post" enctype="multipart/form-data">
+<form action="<?= base_url('/pelayanan/save/' . $result['id']); ?>" method="post" enctype="multipart/form-data">
     <div class="card mb-3">
         <div class="row">
             <div class="col-md-12">
                 <div class="card-body">
-
                     <?php if(session()->getFlashdata('pesan')): ?>
                         <div class="alert alert-success" role="alert">
                         <?= session()->getFlashdata('pesan') ?>
@@ -289,7 +288,7 @@
                 </div>
             </div>
             <?php } ?>
-            <?php if(in_array($result['id'], array(1,3,4,5))){ ?>
+            <?php if(in_array($result['id'], array(1,2,3,4,5,6,7))){ ?>
             <div class="col-md-6">
                 <div class="card-body">
                     <div class="form-group row">
@@ -349,6 +348,9 @@
 
 <script>
     $(document).ready(function(){
+        $('#paket_nilai_pagu').mask("#.##0", {reverse: true});
+        $('#nomor_telepon').mask('0000-0000-00000');
+
         $('.toast').toast('show');
 
         $('#klpd_id').select2();

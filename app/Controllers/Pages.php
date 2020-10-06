@@ -548,7 +548,7 @@ class Pages extends BaseController
 			'nama_depan' => $this->request->getVar('nama_depan'),
 			'nama_belakang' => $this->request->getVar('nama_belakang'),
 			'email' => $this->request->getVar('email'),
-			'nomor_telepon' => $this->request->getVar('nomor_telepon'),
+			'nomor_telepon' => str_replace("-", "", $this->request->getVar('nomor_telepon')),
 			'jabatan' => $this->request->getVar('jabatan')
 		];
 

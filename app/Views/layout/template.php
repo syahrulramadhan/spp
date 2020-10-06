@@ -63,6 +63,7 @@
     <script src="https://code.jquery.com/jquery-1.12.4.js"></script>
     <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.3/js/select2.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.mask/1.14.15/jquery.mask.min.js"></script>
     <script>window.jQuery || document.write('<script src="<?= base_url('/assets/js/vendor/jquery.slim.min.js'); ?>"><\/script>')</script><script src="<?= base_url('/assets/dist/js/bootstrap.bundle.js'); ?>"></script>
     <script src="<?= base_url('/js/offcanvas.js') ?>"></script>
     <script>
