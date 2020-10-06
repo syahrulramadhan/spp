@@ -257,7 +257,7 @@ class Pages extends BaseController
 	public function klpd_detail($id){
 		$keyword = $this->request->getVar('q');
 
-		$jenis_klpd = $this->request->getVar('jenis_klpd');
+		//$jenis_klpd = $this->request->getVar('jenis_klpd');
 		$tahun = ($this->request->getVar('tahun')) ? $this->request->getVar('tahun') : date('Y');
 
 		$result = $this->klpdModel->getKlpd($id);
@@ -278,13 +278,13 @@ class Pages extends BaseController
 			'pager' => $result_satuan_kerja->pager,
 			'per_page' => $per_page,
 			'currentPage' => $currentPage,
-			'jenis_klpd' => $jenis_klpd,
+			//'jenis_klpd' => $jenis_klpd,
 			'tahun' => $tahun,
-			'options_jenis_klpd' => $this->options_jenis_klpd(),
+			//'options_jenis_klpd' => $this->options_jenis_klpd(),
 			'options_tahun_layanan' => $this->options_tahun_layanan(),
-			'result_chart_pelayanan' => $this->chartKlpd('chart_layanan', $jenis_klpd, $tahun, $result['klpd_id']),
-			'result_chart_valuasi' => $this->chartKlpd('chart_valuasi', $jenis_klpd, $tahun, $result['klpd_id']),
-			'result_chart_kualitas' => $this->chartKlpd('chart_kualitas', $jenis_klpd, $tahun, $result['klpd_id']),
+			'result_chart_pelayanan' => $this->chartKlpd('chart_layanan', '', $tahun, $result['klpd_id']),
+			'result_chart_valuasi' => $this->chartKlpd('chart_valuasi', '', $tahun, $result['klpd_id']),
+			'result_chart_kualitas' => $this->chartKlpd('chart_kualitas', '', $tahun, $result['klpd_id']),
 			'result_jenis_advokasi' => $this->pelayananModel->getJenisAdvokasiByKlpdId($result['klpd_id']),
 			'result_kegiatan' => $this->pelayananModel->getKegiatanByKlpdId($result['klpd_id'])
 		];

@@ -33,14 +33,16 @@
     <div class="row">
         <div class="col-md-8">
             <div class="card-body">
-                <form action="<?= base_url('jenis-advokasi/' . $result['id']) ?>" method="get" class="mt-2 form-inline">
+                <form action="<?= base_url('pages/klpd/' . $result['id']) ?>" method="get" class="mt-2 form-inline">
                     <?= csrf_field(); ?>
+                    <?php /*
                     <div class="form-group">
                         <label for="klpd" class="col-form-label">Jenis K/L/Pemda </label>
                         <div class="col">
                             <?= form_dropdown('jenis_klpd', $options_jenis_klpd, $jenis_klpd, ['class' => 'custom-select ', 'id' => 'jenis_klpd']); ?>
                         </div>
                     </div>
+                    */ ?>
                     <div class="form-group">
                         <label for="klpd" class="col-form-label">Tahun </label>
                         <div class="col">
