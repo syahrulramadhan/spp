@@ -78,7 +78,7 @@ class Pages extends BaseController
 
 			$grafik[0][0] = 'BULAN';
 			$grafik[0][1] = 'JUMLAH VALUASI';
-			$grafik[0][2] = 'TOTAL VALUASI';
+			$grafik[0][2] = 'AKUMULASI VALUASI';
 
 			foreach($result as $rows){
 				$grafik[$rows['bulan']][0] = $this->bulan($rows['bulan']);
@@ -91,7 +91,7 @@ class Pages extends BaseController
 
 			$grafik[0][0] = 'BULAN';
 			$grafik[0][1] = 'JUMLAH COVERAGE';
-			$grafik[0][2] = 'TOTAL COVERAGE';
+			$grafik[0][2] = 'AKUMULASI COVERAGE';
 
 			$total_coverage = 0;
 
@@ -108,7 +108,7 @@ class Pages extends BaseController
 			$count = $this->klpdModel->getCountKlpd($jenis_klpd);
 
 			$grafik[0][0] = 'BULAN';
-			$grafik[0][1] = 'SKOR';
+			$grafik[0][1] = 'RATA-RATA SKOR';
 
 			for($i=1;$i<=date('m');$i++){
 				$result = $this->pelayananModel->ChartPelayananKualitas($i, $jenis_klpd, $tahun);
@@ -120,7 +120,7 @@ class Pages extends BaseController
 
 			$grafik[0][0] = 'BULAN';
 			$grafik[0][1] = 'JUMLAH LAYANAN';
-			$grafik[0][2] = 'TOTAL LAYANAN';
+			$grafik[0][2] = 'AKUMULASI LAYANAN';
 
 			foreach($result as $rows){
 				$grafik[$rows['bulan']][0] = $this->bulan($rows['bulan']);
@@ -148,7 +148,7 @@ class Pages extends BaseController
 
 			$grafik[0][0] = 'BULAN';
 			$grafik[0][1] = 'JUMLAH VALUASI';
-			$grafik[0][2] = 'TOTAL VALUASI';
+			$grafik[0][2] = 'AKUMULASI VALUASI';
 
 			foreach($result as $rows){
 				$grafik[$rows['bulan']][0] = $this->bulan($rows['bulan']);
@@ -160,7 +160,7 @@ class Pages extends BaseController
 
 			$grafik[0][0] = 'BULAN';
 			$grafik[0][1] = 'JUMLAH LAYANAN';
-			$grafik[0][2] = 'TOTAL LAYANAN';
+			$grafik[0][2] = 'AKUMULASI LAYANAN';
 
 			foreach($result as $rows){
 				$grafik[$rows['bulan']][0] = $this->bulan($rows['bulan']);
@@ -194,7 +194,7 @@ class Pages extends BaseController
 
 			$grafik[0][0] = 'BULAN';
 			$grafik[0][1] = 'JUMLAH VALUASI';
-			$grafik[0][2] = 'TOTAL VALUASI';
+			$grafik[0][2] = 'AKUMULASI VALUASI';
 
 			foreach($result as $rows){
 				$grafik[$rows['bulan']][0] = $this->bulan($rows['bulan']);
@@ -204,7 +204,7 @@ class Pages extends BaseController
 		}else if($param == 'chart_kualitas'){
 			$grafik[0][0] = 'BULAN';
 			//$grafik[0][1] = 'PERTAMBAHAN SKOR';
-			$grafik[0][1] = 'SKOR';
+			$grafik[0][1] = 'RATA-RATA SKOR';
 
 			//$total_kualitas = 0;
 
@@ -224,7 +224,7 @@ class Pages extends BaseController
 
 			$grafik[0][0] = 'BULAN';
 			$grafik[0][1] = 'JUMLAH LAYANAN';
-			$grafik[0][2] = 'TOTAL LAYANAN';
+			$grafik[0][2] = 'AKUMULASI LAYANAN';
 
 			foreach($result as $rows){
 				$grafik[$rows['bulan']][0] = $this->bulan($rows['bulan']);

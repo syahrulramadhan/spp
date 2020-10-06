@@ -86,7 +86,7 @@ class JenisAdvokasi extends BaseController
 
 			$grafik[0][0] = 'BULAN';
 			$grafik[0][1] = 'JUMLAH VALUASI';
-			$grafik[0][2] = 'TOTAL VALUASI';
+			$grafik[0][2] = 'AKUMULASI VALUASI';
 
 			foreach($result as $rows){
 				$grafik[$rows['bulan']][0] = $this->bulan($rows['bulan']);
@@ -98,7 +98,7 @@ class JenisAdvokasi extends BaseController
 
 			$grafik[0][0] = 'BULAN';
 			$grafik[0][1] = 'JUMLAH LAYANAN';
-			$grafik[0][2] = 'TOTAL LAYANAN';
+			$grafik[0][2] = 'AKUMULASI LAYANAN';
 
 			foreach($result as $rows){
 				$grafik[$rows['bulan']][0] = $this->bulan($rows['bulan']);
