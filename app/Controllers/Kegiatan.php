@@ -154,24 +154,26 @@ class Kegiatan extends BaseController
 				]);
 			}
 
-			$file = $this->request->getFile('kegiatan_file');
+			if($file = $this->request->getFiles()){
+				foreach($file['kegiatan_file'] as $dok){
+					if ($dok->isValid() && ! $dok->hasMoved()){
+							
+						$name = $dok->getRandomName();
+						$type = $dok->getClientMimeType();
+						$size = $dok->getSize();
+							
+						$dok->move(ROOTPATH . 'public/uploads/kegiatan', $name);
 
-			if($file->isValid()){
-				
-				$name = $file->getRandomName();
-				$type = $file->getClientMimeType();
-				$size = $file->getSize();
-					
-				$file->move(ROOTPATH . 'public/uploads/kegiatan', $name);
-
-				$this->kegiatanMateriModel->save([
-					'kegiatan_id' => $kegiatan_id,
-					'label_materi' => $file->getName(),
-					'nama_materi' => $name,
-					'size' => $size,
-					'type' => $type,
-					'created_by' => session('id')
-				]);
+						$this->kegiatanMateriModel->save([
+							'kegiatan_id' => $kegiatan_id,
+							'label_materi' => $dok->getName(),
+							'nama_materi' => $name,
+							'size' => $size,
+							'type' => $type,
+							'created_by' => session('id')
+						]);
+					}
+				}
 			}
 		}
 		

@@ -285,24 +285,26 @@ class Pelayanan extends BaseController
 					]);
 				}
 
-				$file = $this->request->getFile('pelayanan_file');
-
-				if($file->isValid()){
-					
-					$name = $file->getRandomName();
-					$type = $file->getClientMimeType();
-					$size = $file->getSize();
-						
-					$file->move(ROOTPATH . 'public/uploads/pelayanan', $name);
-
-					$this->pelayananFileModel->save([
-						'pelayanan_id' => $pelayanan_id,
-						'label_file' => $file->getName(),
-						'nama_file' => $name,
-						'size' => $size,
-						'type' => $type,
-						'created_by' => session('id')
-					]);
+				if($file = $this->request->getFiles()){
+					foreach($file['pelayanan_file'] as $dok){
+						if ($dok->isValid() && ! $dok->hasMoved()){
+								
+							$name = $dok->getRandomName();
+							$type = $dok->getClientMimeType();
+							$size = $dok->getSize();
+								
+							$dok->move(ROOTPATH . 'public/uploads/pelayanan', $name);
+	
+							$this->pelayananFileModel->save([
+								'pelayanan_id' => $pelayanan_id,
+								'label_file' => $dok->getName(),
+								'nama_file' => $name,
+								'size' => $size,
+								'type' => $type,
+								'created_by' => session('id')
+							]);
+						}
+					}
 				}
 			}
 
