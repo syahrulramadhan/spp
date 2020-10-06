@@ -91,7 +91,7 @@
                 title: 'Grafik Layanan <?= $result['nama_jenis_pengadaan'] ?>',
                 subtitle: '<?= date('d-m-Y  h:i:s'); ?>'
             },
-            colors: ['#8bd1dc','#17a2b8'],
+            colors: ['#FFAF2E','#FF7A20'],
             legend: { position: 'none' },
             vAxis: {
                 title: 'Layanan <?= $result['nama_jenis_pengadaan'] ?>'
@@ -114,7 +114,7 @@
                 title: 'Grafik Valuasi <?= $result['nama_jenis_pengadaan'] ?>',
                 subtitle: '<?= date('d-m-Y  h:i:s'); ?>'
             },
-            colors: ['#8bd1dc','#17a2b8'],
+            colors: ['#FFA6CD','#FF7DC5'],
             legend: { position: 'none' },
             vAxis: {
                 title: 'Valuasi <?= $result['nama_jenis_pengadaan'] ?>'

@@ -54,11 +54,20 @@ class Pages extends BaseController
 	}
 
 	public function chart($param = "", $jenis_klpd, $tahun){
+		$grafik = [];
+		$grafik1 = [];
+
+		$grafik1[0][0] = "";
+		$grafik1[0][1] = "";
+
 		$grafik[0][0] = "";
 		$grafik[0][1] = "";
 		$grafik[0][2] = "";
 
 		for($i=1;$i<=12;$i++){
+			$grafik1[0][0] = $this->bulan($i);
+			$grafik1[0][1] = "";
+
 			$grafik[$i][0] = $this->bulan($i);
 			$grafik[$i][1] = 0;
 			$grafik[$i][2] = 0;
@@ -99,19 +108,12 @@ class Pages extends BaseController
 			$count = $this->klpdModel->getCountKlpd($jenis_klpd);
 
 			$grafik[0][0] = 'BULAN';
-			$grafik[0][1] = 'JUMLAH KUALITAS';
-			$grafik[0][2] = 'RATA-RATA SKOR';
-
-			$total_kualitas = 0;
+			$grafik[0][1] = 'SKOR';
 
 			for($i=1;$i<=date('m');$i++){
 				$result = $this->pelayananModel->ChartPelayananKualitas($i, $jenis_klpd, $tahun);
-				$jumlah_kualitas = $result->total_kualitas - $total_kualitas;
-				
-				$grafik[$i][1] = $jumlah_kualitas/$count;
-				$grafik[$i][2] = $result->total_kualitas/$count;
 
-				$total_kualitas = (int) $result->total_kualitas;
+				$grafik[$i][1] = $result->total_kualitas/$count;
 			}
 		}else{
 			$result = $this->pelayananModel->ChartPelayananJumlah($jenis_klpd, $tahun);
@@ -171,6 +173,12 @@ class Pages extends BaseController
 	}
 
 	public function chartKlpd($param = "", $jenis_klpd, $tahun, $id){
+		$grafik = [];
+		$grafik1 = [];
+
+		$grafik1[0][0] = "";
+		$grafik1[0][1] = "";
+
 		$grafik[0][0] = "";
 		$grafik[0][1] = "";
 		$grafik[0][2] = "";
@@ -195,19 +203,19 @@ class Pages extends BaseController
 			}
 		}else if($param == 'chart_kualitas'){
 			$grafik[0][0] = 'BULAN';
-			$grafik[0][1] = 'PERTAMBAHAN SKOR';
-			$grafik[0][2] = 'SKOR';
+			//$grafik[0][1] = 'PERTAMBAHAN SKOR';
+			$grafik[0][1] = 'SKOR';
 
-			$total_kualitas = 0;
+			//$total_kualitas = 0;
 
 			for($i=1;$i<=date('m');$i++){
 				$result = $this->grafikModel->kualitasByKlpdId($i, $jenis_klpd, $tahun, $id);
-				$jumlah_kualitas = $result->total_kualitas - $total_kualitas;
+				//$jumlah_kualitas = $result->total_kualitas - $total_kualitas;
 				
-				$grafik[$i][1] = $jumlah_kualitas;
+				//$grafik[$i][1] = $jumlah_kualitas;
 				$grafik[$i][2] = $result->total_kualitas;
 
-				$total_kualitas = $result->total_kualitas;
+				//$total_kualitas = $result->total_kualitas;
 			}
 
 			//echo "<pre>"; print_r($grafik); exit;

@@ -222,7 +222,7 @@
                 title: 'Grafik Layanan <?= $result['nama_klpd'] ?>',
                 subtitle: '<?= date('d-m-Y  h:i:s'); ?>'
             },
-            colors: ['#8bd1dc','#17a2b8'],
+            colors: ['#FFAF2E','#FF7A20'],
             legend: { position: 'none' },
             vAxis: {
                 title: 'Layanan <?= $result['nama_klpd'] ?>'
@@ -245,7 +245,7 @@
                 title: 'Grafik Valuasi <?= $result['nama_klpd'] ?>',
                 subtitle: '<?= date('d-m-Y  h:i:s'); ?>'
             },
-            colors: ['#8bd1dc','#17a2b8'],
+            colors: ['#FFA6CD','#FF7DC5'],
             legend: { position: 'none' },
             vAxis: {
                 title: 'Valuasi <?= $result['nama_klpd'] ?>'
@@ -268,7 +268,7 @@
                 title: 'Grafik Kualitas <?= $result['nama_klpd'] ?>',
                 subtitle: '<?= date('d-m-Y  h:i:s'); ?>'
             },
-            colors: ['#8bd1dc','#17a2b8'],
+            colors: ['#FA5AFF'],
             legend: { position: 'none' },
             vAxis: {
                 title: 'Kualitas <?= $result['nama_klpd'] ?>'

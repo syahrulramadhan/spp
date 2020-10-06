@@ -166,7 +166,8 @@
                 title: 'Grafik Layanan',
                 subtitle: '<?= date('d-m-Y  h:i:s'); ?>'
             },
-            colors: ['#8bd1dc','#17a2b8'],
+            //colors: ['#8bd1dc','#17a2b8'],
+            colors: ['#FFAF2E','#FF7A20'],
             legend: { position: 'none' },
             vAxis: {
                 title: 'Layanan'
@@ -189,7 +190,7 @@
                 title: 'Grafik Valuasi',
                 subtitle: '<?= date('d-m-Y  h:i:s'); ?>'
             },
-            colors: ['#8bd1dc','#17a2b8'],
+            colors: ['#FFA6CD ','#FF7DC5'],
             legend: { position: 'none' },
             vAxis: {
                 title: 'Valuasi'
@@ -212,7 +213,7 @@
                 title: 'Grafik Coverage',
                 subtitle: '<?= date('d-m-Y  h:i:s'); ?>'
             },
-            colors: ['#8bd1dc','#17a2b8'],
+            colors: ['#4DFA23','#87FA4A'],
             legend: { position: 'none' },
             vAxis: {
                 title: 'Coverage'
@@ -236,7 +237,7 @@
                 title: 'Grafik Kualitas',
                 subtitle: '<?= date('d-m-Y  h:i:s'); ?>'
             },
-            colors: ['#8bd1dc','#17a2b8'],
+            colors: ['#FA5AFF'],
             legend: { position: 'none' },
             vAxis: {
                 title: 'Kualitas'
