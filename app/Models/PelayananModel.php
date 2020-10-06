@@ -23,6 +23,7 @@ class PelayananModel extends Model
             $builder->join('klpd', 'klpd.klpd_id = p.klpd_id', 'left');
             $builder->join('satuan_kerja sk', 'sk.kd_satker = p.satuan_kerja_id', 'left');
             $builder->orderBy('p.id', 'DESC');
+            $builder->limit(10);
 
             return $builder->get()->getResultArray();
         }
