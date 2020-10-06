@@ -32,10 +32,12 @@
         }
       }
         
+      /*
       .breadcrumb  .breadcrumb-item +  .breadcrumb-item::before { 
         content: ">";
       }
-
+      */
+      
       .breadcrumb{
         margin-top: 10px;
         margin-bottom: 5px;
