@@ -18,8 +18,6 @@ class Kegiatan extends BaseController
 
 	public function __construct()
 	{
-		ini_set("display_errors", "1");
-
 		$this->kegiatanModel = new KegiatanModel();
 		$this->kegiatanMateriModel = new KegiatanMateriModel();
 		$this->kegiatanNarasumberModel = new KegiatanNarasumberModel();
@@ -27,7 +25,7 @@ class Kegiatan extends BaseController
 		$this->jenisAdvokasiModel = new JenisAdvokasiModel();
 		$this->pelayananModel = new PelayananModel();
 
-		helper('form');
+		helper(['form', 'url']);
 	}
 
 	public function index()

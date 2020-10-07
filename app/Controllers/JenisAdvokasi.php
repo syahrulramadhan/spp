@@ -19,6 +19,7 @@ class JenisAdvokasi extends BaseController
 		$this->grafikModel = new GrafikModel();
 		$this->klpdModel = new KlpdModel();
 		$this->pelayananModel = new PelayananModel();
+
 		helper(['form', 'url']);
 	}
 
@@ -147,35 +148,46 @@ class JenisAdvokasi extends BaseController
 	}
 
 	public function update($id){
-		 // get file
-		 $image = $this->request->getFile('image_jenis_advokasi');
-		 // random name file
-		 $name = $image->getRandomName();
-
-		if(!$this->validate([
-			'keterangan' => [
-				'rules' => 'min_length[20]',
-				'errors' => [
-					'min_length' => '{field} anda terlalu pendek?'
-				]
+		/*
+		$rules['keterangan'] = [
+			'rules' => 'min_length[20]',
+			'errors' => [
+				'min_length' => 'Isi keterangan anda terlalu pendek?'
 			]
-		])){
+		];
+		*/
+
+		$rules['image_jenis_advokasi'] = [
+			'rules' => 'uploaded[image_jenis_advokasi]|max_size[image_jenis_advokasi,2048]|mime_in[image_jenis_advokasi,image/png,image/jpg,image/jpeg,image/gif]',
+			'errors' => [
+				'uploaded' => 'Gambar harus diisi',
+				'max_size' => 'Maksimal upload gambar 2 MB',
+				'mime_in' => 'Upload gambar yang memiliki ekstensi .jpeg/.jpg/.png/.gif'
+			]
+		];
+
+		if(!$this->validate($rules)){
 
 			$validation = \Config\Services::validation();
-			return redirect()->to('/jenis-advokasi/edit/' . $id)->withInput()->with('validation', $validation);
+			return redirect()->to("/jenis-advokasi/edit/$id")->withInput()->with('validation', $validation);
 		}
+		
+		// get file
+		$image = $this->request->getFile('image_jenis_advokasi');
+		// random name file
+		$name = $image->getRandomName();
 
 		$image->move(ROOTPATH . 'public/uploads/jenis-advokasi', $name);
 
 		$this->jenisAdvokasiModel->save([
 			'id' => $id,
-			'keterangan' => $this->request->getVar('keterangan'),
+			//'keterangan' => $this->request->getVar('keterangan'),
 			'image_jenis_advokasi' => $name,
 			'created_by' => session('id')
 		]);
 		
 		session()->setFlashdata('pesan', 'Data berhasil ditambahkan.');
 		
-		return redirect()->to('/jenis-advokasi/edit/' . $id);
+		return redirect()->to("/jenis-advokasi/edit/$id");
 	}
 }

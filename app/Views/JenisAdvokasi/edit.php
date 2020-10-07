@@ -2,6 +2,8 @@
 
 <?= $this->section('content') ?>
 
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+
 <nav aria-label="breadcrumb">
     <ol class="breadcrumb">
         <li class="breadcrumb-item"><a href="<?= base_url(); ?>">Dashboard</a></li>
@@ -27,8 +29,10 @@
                     <?= session()->getFlashdata('pesan') ?>
                     </div>
                 <?php endif; ?>
-
-                <form action="/jenis-advokasi/update/<?= $result['id']; ?>" method="post" enctype="multipart/form-data">
+                
+                <?= $validation->listErrors(); ?>
+                
+                <form action="<?= base_url('jenis-advokasi/update/' . $result['id']); ?>" method="post" enctype="multipart/form-data">
                     <?= csrf_field(); ?>
                     <div class="form-group row">
                         <label for="nama_jenis_advokasi" class="col-sm-2 col-form-label">Nama Kategori Permasalahan</label>
@@ -36,6 +40,7 @@
                             <?= $result['nama_jenis_advokasi']; ?>
                         </div>
                     </div>
+                    <?php /*
                     <div class="form-group row">
                         <label for="keterangan" class="col-sm-2 col-form-label">Keterangan</label>
                         <div class="col-sm-10">
@@ -43,13 +48,17 @@
                             <div class="invalid-feedback"><?= $validation->getError('keterangan'); ?></div>
                         </div>
                     </div>
+                    */ ?>
                     <div class="form-group row">
                         <?php echo form_label('Gambar', 'image_jenis_advokasi', ['class' => 'col-sm-2 col-form-label']); ?>
                         <div class="col-sm-10">
                             <div class="row">
-                                <div class="col-3"><img src="<?php echo base_url('uploads/jenis-advokasi/'.$result['image_jenis_advokasi']) ?>" class="img-thumbnail"></div>
+                                <div class="col-3 my-2" id="preview"><img src="<?php echo base_url('uploads/jenis-advokasi/'.$result['image_jenis_advokasi']) ?>" class="img-thumbnail"></div>
                             </div>
-                            <?php echo form_upload('image_jenis_advokasi', ""); ?>
+                            <?php $isinvalid = ($validation->hasError('tahapan')) ? 'is-invalid' : ''; ?>
+                            <?php echo form_upload('image_jenis_advokasi', '', ['id' => 'image_jenis_advokasi', 'class' => "custom-select $isinvalid", 'onchange' => 'return validasiEkstensi()']); ?>
+                            <div><small style="color:red">*.jpeg, *.jpg, *.png, *.gif (Max 2MB)</small></div>
+                            <div class="invalid-feedback"><?= $validation->getError('image_jenis_advokasi'); ?></div>
                         </div>
                     </div>
                     <div class="form-group row">
@@ -63,5 +72,30 @@
         </div>
     </div>
 </div>
+
+<script>
+    function validasiEkstensi(){
+        var inputFile = document.getElementById('image_jenis_advokasi');
+        var pathFile = inputFile.value;
+        var ekstensiOk = /(\.jpg|\.jpeg|\.png|\.gif)$/i;
+
+        console.log(inputFile);
+
+        if(!ekstensiOk.exec(pathFile)){
+            alert('Silakan upload file yang memiliki ekstensi .jpeg/.jpg/.png/.gif');
+            inputFile.value = '';
+            return false;
+        }else{
+            // Preview gambar
+            if (inputFile.files && inputFile.files[0]) {
+                var reader = new FileReader();
+                reader.onload = function(e) {
+                    document.getElementById('preview').innerHTML = '<img src="'+e.target.result+'" style="height:300px"/>';
+                };
+                reader.readAsDataURL(inputFile.files[0]);
+            }
+        }
+    }
+</script>
 
 <?= $this->endsection(); ?>
