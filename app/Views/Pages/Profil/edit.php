@@ -48,7 +48,7 @@
                     <div class="form-group row">
                         <label for="role" class="col-sm-2 col-form-label">Username</label>
                         <div class="col-sm-10">
-                            <?= $result['username'] ?>
+                            <input type="text" class="form-control" value="<?= $result['username']; ?>" disabled>
                         </div>
                     </div>
                     <div class="form-group row">
@@ -68,7 +68,7 @@
                     <div class="form-group row">
                         <label for="role" class="col-sm-2 col-form-label">Role</label>
                         <div class="col-sm-10">
-                            <?= $result['role'] ?>
+                            <input type="text" class="form-control" value="<?= $result['role']; ?>" disabled>
                         </div>
                     </div>
                     <div class="form-group row">

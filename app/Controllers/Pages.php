@@ -533,10 +533,11 @@ class Pages extends BaseController
 				]
 			],
 			'email' => [
-				'rules' => 'required|valid_email',
+				'rules' => "required|valid_email|is_unique[user.email,id,$id]",
 				'errors' => [
 					'required' => 'Email harus diisi.',
-					'valid_email' => 'Silakan periksa format email anda.'
+					'valid_email' => 'Silakan periksa format email anda.',
+					'is_unique' => 'Email anda harus bernilai unik.'
 				]
 			],
 			'nomor_telepon' => [

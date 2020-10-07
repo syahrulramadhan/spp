@@ -80,17 +80,19 @@ class User extends BaseController
 				]
 			],
 			'email' => [
-				'rules' => 'required|valid_email',
+				'rules' => 'required|valid_email|is_unique[user.email]',
 				'errors' => [
 					'required' => 'Email harus diisi.',
-					'valid_email' => 'Silakan periksa format email anda.'
+					'valid_email' => 'Silakan periksa format email anda.',
+					'is_unique' => 'Email anda harus bernilai unik.'
 				]
 			],
 			'username' => [
-				'rules' => 'required|min_length[10]',
+				'rules' => 'required|min_length[10]|is_unique[user.username]',
 				'errors' => [
 					'required' => 'Username harus diisi.',
-					'min_length' => 'Username anda terlalu pendek.'
+					'min_length' => 'Username anda terlalu pendek.',
+					'is_unique' => 'Username anda harus bernilai unik.'
 				]
 			],
 			'password' => [
@@ -180,10 +182,11 @@ class User extends BaseController
 				]
 			],
 			'email' => [
-				'rules' => 'required|valid_email',
+				'rules' => "required|valid_email|is_unique[user.email,id,$id]",
 				'errors' => [
 					'required' => 'Email harus diisi.',
-					'valid_email' => 'Silakan periksa format email anda.'
+					'valid_email' => 'Silakan periksa format email anda.',
+					'is_unique' => 'Email anda harus bernilai unik.'
 				]
 			],
 			'nomor_telepon' => [
