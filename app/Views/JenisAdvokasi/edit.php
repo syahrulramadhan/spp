@@ -90,7 +90,7 @@
             if (inputFile.files && inputFile.files[0]) {
                 var reader = new FileReader();
                 reader.onload = function(e) {
-                    document.getElementById('preview').innerHTML = '<img src="'+e.target.result+'" style="height:300px"/>';
+                    document.getElementById('preview').innerHTML = '<img src="'+e.target.result+'" class="img-thumbnail"/>';
                 };
                 reader.readAsDataURL(inputFile.files[0]);
             }
