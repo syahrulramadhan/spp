@@ -72,21 +72,26 @@
                     </thead>
                     <tbody class="bg-white">
                     <?php
-                        $i = 1 + ($per_page * ($currentPage - 1));
+                        if($result){
+                            $i = 1 + ($per_page * ($currentPage - 1));
 
-                        foreach($result as $rows):
+                            foreach($result as $rows):
+                            ?>
+                            <tr>
+                                <th scope="row" class="text-center"><?= $i++; ?></th>
+                                <td>
+                                    <a href="jenis-advokasi/<?= $rows['id']; ?>"><?= $rows['nama_jenis_advokasi']; ?></a>
+                                </td>
+                                <td class="text-center">
+                                    <?= ($rows['jumlah_pelayanan']) ? $rows['jumlah_pelayanan'] : 0; ?>
+                                </td>
+                                <td class="text-right"><?= "Rp. ". number_format($rows['jumlah_valuasi']/pow(10,6), 2); ?></td>
+                            </tr>
+                            <?php endforeach;
+                        }else{
+                            echo '<tr class="text-center"><td colspan="4">Data tidak ditemukan</td></tr>';
+                        }
                     ?>
-                    <tr>
-                        <th scope="row" class="text-center"><?= $i++; ?></th>
-                        <td>
-                            <a href="jenis-advokasi/<?= $rows['id']; ?>"><?= $rows['nama_jenis_advokasi']; ?></a>
-                        </td>
-                        <td class="text-center">
-                            <?= ($rows['jumlah_pelayanan']) ? $rows['jumlah_pelayanan'] : 0; ?>
-                        </td>
-                        <td class="text-right"><?= "Rp. ". number_format($rows['jumlah_valuasi']/pow(10,6), 2); ?></td>
-                    </tr>
-                    <?php endforeach; ?>
                     </tbody>
                 </table>
                 <?= $pager->links('jenis_advokasi', 'bootstrap_pagination'); ?>

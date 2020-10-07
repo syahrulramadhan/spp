@@ -78,48 +78,53 @@
                     </thead>
                     <tbody>
                     <?php
+                        if($result){
                         $i = 1 + ($per_page * ($currentPage - 1));
 
-                        foreach($result as $rows):
-                    ?>
-                    <tr>
-                        <th scope="row" class="text-center"><?= $i++; ?></th>
-                        <td><?= $rows['nama_klpd']; ?></td>
-                        <td class="text-center"><?= $rows['jenis_klpd']; ?></td>
-                        <td class="text-center">
-                            <?= ($rows['jumlah_pelayanan']) ? $rows['jumlah_pelayanan'] : 0; ?>
-                        </td>
-                        <td class="text-right"><?= "Rp. ". number_format($rows['jumlah_valuasi']/pow(10,6), 2); ?></td>
-                        <td class="text-center">
-                            <?php 
-                                $badge = "danger"; $skor = 0;
-
-                                if($rows['jumlah_kualitas']){
-                                    if(($rows['jumlah_kualitas'] >= 6) && ($rows['jumlah_kualitas'] <= 9)){
-                                        $badge = "success"; $skor = 100;
-                                    }elseif ($rows['jumlah_kualitas'] >= 4 && $rows['jumlah_kualitas'] <= 5){
-                                        $badge = "primary"; $skor = 75;
-                                    }elseif ($rows['jumlah_kualitas'] >= 2 && $rows['jumlah_kualitas'] <= 3){
-                                        $badge = "warning"; $skor = 50;
-                                    }elseif ($rows['jumlah_kualitas'] == 1){
-                                        $badge = "secondary"; $skor = 25;
-                                    }else{
-                                        $badge = "danger"; $skor = 0;
-                                    }
-                                }
+                            foreach($result as $rows):
                             ?>
-                            
-                            <span class="badge badge-pill badge-<?=$badge; ?>">
-                                <small>
-                                    <?= $skor; ?>
-                                </small>
-                            </span>
-                        </td>
-                        <td class="text-center">
-                            <a href="/pages/klpd/<?= $rows['id']; ?>" class="text-decoration-none">Lihat</a>
-                        </td>
-                    </tr>
-                    <?php endforeach; ?>
+                            <tr>
+                                <th scope="row" class="text-center"><?= $i++; ?></th>
+                                <td><?= $rows['nama_klpd']; ?></td>
+                                <td class="text-center"><?= $rows['jenis_klpd']; ?></td>
+                                <td class="text-center">
+                                    <?= ($rows['jumlah_pelayanan']) ? $rows['jumlah_pelayanan'] : 0; ?>
+                                </td>
+                                <td class="text-right"><?= "Rp. ". number_format($rows['jumlah_valuasi']/pow(10,6), 2); ?></td>
+                                <td class="text-center">
+                                    <?php 
+                                        $badge = "danger"; $skor = 0;
+
+                                        if($rows['jumlah_kualitas']){
+                                            if(($rows['jumlah_kualitas'] >= 6) && ($rows['jumlah_kualitas'] <= 9)){
+                                                $badge = "success"; $skor = 100;
+                                            }elseif ($rows['jumlah_kualitas'] >= 4 && $rows['jumlah_kualitas'] <= 5){
+                                                $badge = "primary"; $skor = 75;
+                                            }elseif ($rows['jumlah_kualitas'] >= 2 && $rows['jumlah_kualitas'] <= 3){
+                                                $badge = "warning"; $skor = 50;
+                                            }elseif ($rows['jumlah_kualitas'] == 1){
+                                                $badge = "secondary"; $skor = 25;
+                                            }else{
+                                                $badge = "danger"; $skor = 0;
+                                            }
+                                        }
+                                    ?>
+                                    
+                                    <span class="badge badge-pill badge-<?=$badge; ?>">
+                                        <small>
+                                            <?= $skor; ?>
+                                        </small>
+                                    </span>
+                                </td>
+                                <td class="text-center">
+                                    <a href="/pages/klpd/<?= $rows['id']; ?>" class="text-decoration-none">Lihat</a>
+                                </td>
+                            </tr>
+                            <?php endforeach; 
+                        }else{
+                            echo '<tr class="text-center"><td colspan="7">Data tidak ditemukan</td></tr>';
+                        }
+                    ?>
                     </tbody>
                 </table>
                 <?= $pager->links('klpd', 'bootstrap_pagination'); ?>

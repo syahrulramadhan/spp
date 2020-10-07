@@ -82,29 +82,34 @@
                     </thead>
                     <tbody>
                     <?php
-                        $i = 1 + ($per_page * ($currentPage - 1));
+                        if($result){
+                            $i = 1 + ($per_page * ($currentPage - 1));
 
-                        foreach($result as $rows):
-                    ?>
-                    <tr>
-                        <th scope="row" class="text-center"><?= $i++; ?></th>
-                        <td>
-                            <div>
-                                <a href="pic/<?= $rows['id']; ?>">
-                                    <?= $rows['nama_depan'] . " " . $rows['nama_belakang']; ?>
-                                </a>
-                            </div>
-                        </td>
-                        <td>
-                            <?= $rows['email']; ?>
-                        </td>
-                        <td class="text-center">
-                            <span class="badge badge-pill <?= ($rows['status'] == 'ACTIVE') ? 'badge-success' : 'badge-danger' ?>">
-                                <small><?= ($rows['status'] == 'ACTIVE') ? 'AKTIF' : 'TIDAK AKTIF' ?></small>
-                            </span>
-                        </td>
-                    </tr>
-                    <?php endforeach; ?>
+                            foreach($result as $rows):
+                            ?>
+                            <tr>
+                                <th scope="row" class="text-center"><?= $i++; ?></th>
+                                <td>
+                                    <div>
+                                        <a href="pic/<?= $rows['id']; ?>">
+                                            <?= $rows['nama_depan'] . " " . $rows['nama_belakang']; ?>
+                                        </a>
+                                    </div>
+                                </td>
+                                <td>
+                                    <?= $rows['email']; ?>
+                                </td>
+                                <td class="text-center">
+                                    <span class="badge badge-pill <?= ($rows['status'] == 'ACTIVE') ? 'badge-success' : 'badge-danger' ?>">
+                                        <small><?= ($rows['status'] == 'ACTIVE') ? 'AKTIF' : 'TIDAK AKTIF' ?></small>
+                                    </span>
+                                </td>
+                            </tr>
+                            <?php endforeach; 
+                        }else{
+                            echo '<tr class="text-center"><td colspan="4">Data tidak ditemukan</td></tr>';
+                        }
+                        ?>
                     </tbody>
                 </table>
                 <?= $pager->links('pic', 'bootstrap_pagination'); ?>

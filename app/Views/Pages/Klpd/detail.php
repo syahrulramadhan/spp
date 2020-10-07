@@ -182,19 +182,23 @@
                     </thead>
                     <tbody>
                     <?php
-                        $i = 1 + ($per_page * ($currentPage - 1));
+                        if($result_satuan_kerja){
+                            $i = 1 + ($per_page * ($currentPage - 1));
 
-                        foreach($result_satuan_kerja as $rows):
-                    ?>
-                    <tr>
-                        <th scope="row" class="text-center"><?= $i++; ?></th>
-                        <td>
-                            <?php /* <a href="/pages/klpd/<?= $result['id']; ?>/satuan-kerja/<?= $rows['id']; ?>"> */ ?>
-                                <?= $rows['nama_satker']; ?>
-                            <?php /* </a> */ ?>
-                        </td>
-                    </tr>
-                    <?php endforeach; ?>
+                            foreach($result_satuan_kerja as $rows): ?>
+                                <tr>
+                                    <th scope="row" class="text-center"><?= $i++; ?></th>
+                                    <td>
+                                        <?php /* <a href="/pages/klpd/<?= $result['id']; ?>/satuan-kerja/<?= $rows['id']; ?>"> */ ?>
+                                            <?= $rows['nama_satker']; ?>
+                                        <?php /* </a> */ ?>
+                                    </td>
+                                </tr>
+                            <?php endforeach; 
+                        }else{
+                            echo '<tr class="text-center"><td colspan="2">Data tidak ditemukan</td></tr>';
+                        }
+                        ?>
                     </tbody>
                 </table>
                 <?= $pager->links('satuan_kerja', 'bootstrap_pagination'); ?>

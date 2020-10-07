@@ -57,29 +57,34 @@
                     </thead>
                     <tbody>
                     <?php
-                        $i = 1 + ($per_page * ($currentPage - 1));
+                        if($result){
+                            $i = 1 + ($per_page * ($currentPage - 1));
 
-                        foreach($result as $rows):
-                    ?>
-                    <tr>
-                        <th scope="row" class="text-center"><?= $i++; ?></th>
-                        <td>
-                            <div>
-                                <a href="user/<?= $rows['id']; ?>">
-                                    <?= $rows['nama_depan'] . " " . $rows['nama_belakang']; ?>
-                                </a>
-                            </div>
-                        </td>
-                        <td><?= $rows['username']; ?></td>
-                        <td><?= $rows['email']; ?></td>
-                        <td><?= $rows['nomor_telepon']; ?></td>
-                        <td>
-                            <span class="badge badge-pill badge-info">
-                                <small><?= ($rows['role'] == 'ADMIN_CONTENT') ? 'ADMIN CONTENT' : $rows['role']; ?></small>
-                            </span>
-                        <td><?= $rows['jabatan']; ?></td>
-                    </tr>
-                    <?php endforeach; ?>
+                            foreach($result as $rows):
+                            ?>
+                            <tr>
+                                <th scope="row" class="text-center"><?= $i++; ?></th>
+                                <td>
+                                    <div>
+                                        <a href="user/<?= $rows['id']; ?>">
+                                            <?= $rows['nama_depan'] . " " . $rows['nama_belakang']; ?>
+                                        </a>
+                                    </div>
+                                </td>
+                                <td><?= $rows['username']; ?></td>
+                                <td><?= $rows['email']; ?></td>
+                                <td><?= $rows['nomor_telepon']; ?></td>
+                                <td>
+                                    <span class="badge badge-pill badge-info">
+                                        <small><?= ($rows['role'] == 'ADMIN_CONTENT') ? 'ADMIN CONTENT' : $rows['role']; ?></small>
+                                    </span>
+                                <td><?= $rows['jabatan']; ?></td>
+                            </tr>
+                            <?php endforeach; 
+                        }else{
+                            echo '<tr class="text-center"><td colspan="7">Data tidak ditemukan</td></tr>';
+                        }
+                        ?>
                     </tbody>
                 </table>
             </div>

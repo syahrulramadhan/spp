@@ -55,48 +55,53 @@
                     </thead>
                     <tbody>
                     <?php
-                        $i = 1 + ($per_page * ($currentPage - 1));
+                        if($result){
+                            $i = 1 + ($per_page * ($currentPage - 1));
 
-                        foreach($result as $rows):
-                    ?>
-                    <tr>
-                        <th scope="row" class="text-center"><?= $i++; ?></th>
-                        <td><?= $rows['nama']; ?></td>
-                        <td><?= $rows['jabatan']; ?></td>
-                        <td><?= $rows['nomor_telepon']; ?></td>
-                        <td><?= $rows['paket_nama']; ?></td>
-                        <td class="text-right"><?= "Rp. ". number_format($rows['paket_nilai_pagu'], 2); ?></td>
-                        <td class="text-center"><?= $rows['jenis_advokasi_nama']; ?></td>
-                        <td class="text-center">
-                            <div class="btn-group">
-                                <a href="<?= base_url('pelayanan/' . $rows['id']); ?>" class="btn btn-sm btn-success">
-                                    <i class="fa fa-eye"></i>
-                                </a>
-                                <?php if(in_array($rows['jenis_advokasi_id'], array(1,2,3,4,5,6,7))){ ?>
-                                <a href="<?= base_url('pelayanan/' . $rows['jenis_advokasi_id'] . '/edit/' . $rows['id']); ?>" class="btn btn-sm btn-success">
-                                    <i class="fa fa-edit"></i>
-                                </a>
-                                <?php } ?>
-                                <?php /* if(in_array($rows['jenis_advokasi_id'], array(1,3,5))){ */ ?>
-                                <?php if(in_array($rows['jenis_advokasi_id'], array(1,2,3,4,5,6,7))){ ?>
-                                <a href="<?= base_url('pelayanan/' . $rows['id'] . '/file'); ?>" class="btn btn-sm btn-success">
-                                    <i class="fa fa-file"></i>
-                                </a>
-                                <?php } ?>
-                                <?php if(in_array($rows['jenis_advokasi_id'], array(3,4,5))){ ?>
-                                <a href="<?= base_url('pelayanan/' . $rows['id'] . '/peserta'); ?>" class="btn btn-sm btn-success">
-                                    <i class="fa fa-users"></i>
-                                </a>
-                                <?php } ?>
-                                <?php if(in_array($rows['jenis_advokasi_id'], array(1,2,3,4,5,6,7))){ ?>
-                                <a href="<?= base_url('pelayanan/' . $rows['id'] . '/pic'); ?>" class="btn btn-sm btn-success">
-                                    <i class="fa fa-user"></i>
-                                </a>
-                                <?php } ?>
-                            </div>
-                        </td>
-                    </tr>
-                    <?php endforeach; ?>
+                            foreach($result as $rows):
+                            ?>
+                            <tr>
+                                <th scope="row" class="text-center"><?= $i++; ?></th>
+                                <td><?= $rows['nama']; ?></td>
+                                <td><?= $rows['jabatan']; ?></td>
+                                <td><?= $rows['nomor_telepon']; ?></td>
+                                <td><?= $rows['paket_nama']; ?></td>
+                                <td class="text-right"><?= "Rp. ". number_format($rows['paket_nilai_pagu'], 2); ?></td>
+                                <td class="text-center"><?= $rows['jenis_advokasi_nama']; ?></td>
+                                <td class="text-center">
+                                    <div class="btn-group">
+                                        <a href="<?= base_url('pelayanan/' . $rows['id']); ?>" class="btn btn-sm btn-success">
+                                            <i class="fa fa-eye"></i>
+                                        </a>
+                                        <?php if(in_array($rows['jenis_advokasi_id'], array(1,2,3,4,5,6,7))){ ?>
+                                        <a href="<?= base_url('pelayanan/' . $rows['jenis_advokasi_id'] . '/edit/' . $rows['id']); ?>" class="btn btn-sm btn-success">
+                                            <i class="fa fa-edit"></i>
+                                        </a>
+                                        <?php } ?>
+                                        <?php /* if(in_array($rows['jenis_advokasi_id'], array(1,3,5))){ */ ?>
+                                        <?php if(in_array($rows['jenis_advokasi_id'], array(1,2,3,4,5,6,7))){ ?>
+                                        <a href="<?= base_url('pelayanan/' . $rows['id'] . '/file'); ?>" class="btn btn-sm btn-success">
+                                            <i class="fa fa-file"></i>
+                                        </a>
+                                        <?php } ?>
+                                        <?php if(in_array($rows['jenis_advokasi_id'], array(3,4,5))){ ?>
+                                        <a href="<?= base_url('pelayanan/' . $rows['id'] . '/peserta'); ?>" class="btn btn-sm btn-success">
+                                            <i class="fa fa-users"></i>
+                                        </a>
+                                        <?php } ?>
+                                        <?php if(in_array($rows['jenis_advokasi_id'], array(1,2,3,4,5,6,7))){ ?>
+                                        <a href="<?= base_url('pelayanan/' . $rows['id'] . '/pic'); ?>" class="btn btn-sm btn-success">
+                                            <i class="fa fa-user"></i>
+                                        </a>
+                                        <?php } ?>
+                                    </div>
+                                </td>
+                            </tr>
+                            <?php endforeach; 
+                        }else{
+                            echo '<tr class="text-center"><td colspan="8">Data tidak ditemukan</td></tr>';
+                        }  
+                        ?>
                     </tbody>
                 </table>
             </div>
