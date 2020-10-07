@@ -20,7 +20,11 @@
                 <h6 class="mb-0 text-white lh-100 text-uppercase">GRAFIK PELAYANAN <?= $title ?></h6>
             </div>
         </div>
-        <div id="donutchart_layanan" style="width: 100%; height: 500px;"></div>
+        <?php if($result_grafik_layanan){ ?>
+            <div id="donutchart_layanan" style="width: 100%; height: 500px;"></div>
+        <?php }else{ ?>
+            <div class="text-center my-2">Data tidak ditemukan</div>
+        <?php } ?>
     </div>
     <div class="col-md-6">
         <div class="d-flex align-items-center p-3 my-1 text-white-50 bg-info rounded shadow-sm">
@@ -28,7 +32,11 @@
                 <h6 class="mb-0 text-white lh-100 text-uppercase">GRAFIK VALUASI <?= $title ?></h6>
             </div>
         </div>
-        <div id="donutchart_valuasi" style="width: 100%; height: 500px;"></div>
+        <?php if($result_grafik_valuasi){ ?>
+            <div id="donutchart_valuasi" style="width: 100%; height: 500px;"></div>
+        <?php }else{ ?>
+            <div class="text-center my-2">Data tidak ditemukan</div>
+        <?php } ?>
     </div>
 </div>
 
