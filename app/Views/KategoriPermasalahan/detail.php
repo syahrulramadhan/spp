@@ -45,7 +45,7 @@
     <div class="row">
         <div class="col-md-12">
             <div class="card-body">
-                <form action="<?= base_url('jenis-advokasi/' . $result['id']) ?>" method="get" class="mt-2 form-inline">
+                <form action="<?= base_url('kategori-permasalahan/' . $result['id']) ?>" method="get" class="mt-2 form-inline">
                     <?= csrf_field(); ?>
                     <div class="form-group">
                         <label for="klpd" class="col-form-label">Jenis K/L/Pemda </label>
