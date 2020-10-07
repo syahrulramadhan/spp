@@ -167,7 +167,6 @@ class JenisAdvokasi extends BaseController
 		];
 
 		if(!$this->validate($rules)){
-
 			$validation = \Config\Services::validation();
 			return redirect()->to("/jenis-advokasi/edit/$id")->withInput()->with('validation', $validation);
 		}

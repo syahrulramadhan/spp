@@ -149,14 +149,14 @@ class KategoriPermasalahan extends BaseController
 			'nama_kategori_permasalahan' => [
 				'rules' => 'required|min_length[5]',
 				'errors' => [
-					'required' => '{field} nama kategori permasalahan harus diisi.',
-					'min_length' => '{field} anda terlalu pendek?'
+					'required' => 'Nama kategori permasalahan harus diisi.',
+					'min_length' => 'Nama kategori permasalahan anda terlalu pendek?'
 				]
 				],
 				'keterangan' => [
 					'rules' => 'min_length[20]',
 					'errors' => [
-						'min_length' => '{field} anda terlalu pendek?'
+						'min_length' => 'Keterangan anda terlalu pendek?'
 					]
 				]
 		])){
@@ -191,14 +191,14 @@ class KategoriPermasalahan extends BaseController
 			'nama_kategori_permasalahan' => [
 				'rules' => 'required|min_length[5]',
 				'errors' => [
-					'required' => '{field} nama kategori permasalahan harus diisi.',
-					'min_length' => '{field} anda terlalu pendek?'
+					'required' => 'Nama kategori permasalahan harus diisi.',
+					'min_length' => 'Nama kategori permasalahan anda terlalu pendek?'
 				]
 				],
 				'keterangan' => [
 					'rules' => 'min_length[20]',
 					'errors' => [
-						'min_length' => '{field} anda terlalu pendek?'
+						'min_length' => 'Keterangan anda terlalu pendek?'
 					]
 				]
 		])){
