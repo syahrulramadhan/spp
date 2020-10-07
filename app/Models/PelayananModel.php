@@ -51,7 +51,7 @@ class PelayananModel extends Model
         return $builder->get()->getResultArray();
     }
 
-    public function search($q){
+    public function getPaginatedPelayananData($q){
         return $this->table('pelayanan')->like('nama', $q)->orLike('paket_nama', $q);
     }
 

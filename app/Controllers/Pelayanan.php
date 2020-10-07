@@ -39,7 +39,7 @@ class Pelayanan extends BaseController
 		$keyword = $this->request->getVar('q');
 
 		if($keyword){
-			$pelayanan = $this->pelayananModel->search($keyword);
+			$pelayanan = $this->pelayananModel->getPaginatedPelayananData($keyword);
 		}else
 			$pelayanan = $this->pelayananModel;
 

@@ -35,7 +35,7 @@
                     <div class="col-3 pull-right">
                         <form action="" method="GET">
                             <div class="input-group mb-3">
-                            <input type="text" class="form-control" placeholder="Masukan kata pencarian" name="q" value="<?= $keyword ?>" autofocus>
+                            <input type="text" class="form-control" placeholder="Masukan kata nama" name="q" value="<?= $keyword ?>" autofocus>
                             <div class="input-group-append">
                                 <button class="btn btn-outline-info" type="submit"><i class="fa fa-search"></i></button>
                             </div>
