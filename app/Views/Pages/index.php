@@ -37,7 +37,11 @@
             </div>
         </div>
         <div class="mb-3 p-3 bg-white rounded shadow-sm">
-            <div id="curve_chart_pelayanan" style="width: 100%; height: 400px"></div>
+            <?php if($result_chart_pelayanan){ ?>
+                <div id="curve_chart_pelayanan" style="width: 100%; height: 400px"></div>
+            <?php }else{ ?>
+                <div class="text-center my-2">Data tidak ditemukan</div>
+            <?php } ?>
         </div>
         <div class="d-flex align-items-center p-3 my-1 text-white-50 bg-info rounded shadow-sm">
             <div class="lh-100">
@@ -45,7 +49,11 @@
             </div>
         </div>
         <div class="mb-3 p-3 bg-white rounded shadow-sm">
-            <div id="curve_chart_valuasi" style="width: 100%; height: 400px"></div>
+            <?php if($result_chart_valuasi){ ?>
+                <div id="curve_chart_valuasi" style="width: 100%; height: 400px"></div>
+            <?php }else{ ?>
+                <div class="text-center my-2">Data tidak ditemukan</div>
+            <?php } ?>
         </div>
         <div class="d-flex align-items-center p-3 my-1 text-white-50 bg-info rounded shadow-sm">
             <div class="lh-100">
@@ -53,7 +61,11 @@
             </div>
         </div>
         <div class="mb-3 p-3 bg-white rounded shadow-sm">
-            <div id="curve_chart_coverage" style="width: 100%; height: 400px"></div>
+            <?php if($result_chart_coverage){ ?>
+                <div id="curve_chart_coverage" style="width: 100%; height: 400px"></div>
+            <?php }else{ ?>
+                <div class="text-center my-2">Data tidak ditemukan</div>
+            <?php } ?>
         </div>
         <div class="d-flex align-items-center p-3 my-1 text-white-50 bg-info rounded shadow-sm">
             <div class="lh-100">
@@ -61,7 +73,11 @@
             </div>
         </div>
         <div class="mb-3 p-3 bg-white rounded shadow-sm">
-            <div id="curve_chart_kualitas" style="width: 100%; height: 400px"></div>
+            <?php if($result_chart_kualitas){ ?>
+                <div id="curve_chart_kualitas" style="width: 100%; height: 400px"></div>
+            <?php }else{ ?>
+                <div class="text-center my-2">Data tidak ditemukan</div>
+            <?php } ?>
         </div>
     </div>
     <div class="col-md-4">
@@ -83,23 +99,26 @@
         <div class="my-3 p-3 bg-white rounded shadow-sm">
         <!--<h6 class="border-bottom border-gray pb-2 mb-0">Recent updates</h6>-->
 
-        <?php
-            $i = 1;
+        <?php if($result){
+                $i = 1;
 
-            foreach($result as $rows):
-        ?>
-        <a href="pelayanan/<?= $rows['id']; ?>" class="text-decoration-none">
-        <div class="media text-muted pt-3">
-            <svg class="bd-placeholder-img mr-2 rounded" width="32" height="32" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="xMidYMid slice" focusable="false" role="img" aria-label="Placeholder: 32x32"><title>Placeholder</title><rect width="100%" height="100%" fill="#17a2b8 "/><text x="50%" y="50%" fill="#17a2b8 " dy=".3em">32x32</text></svg>
-            <p class="media-body pb-3 mb-0 small lh-125 border-bottom border-gray">
-                <strong class="d-block text-gray-dark"><?= $rows['nama_klpd']; ?></strong>
-                <?= $rows['paket_nama']; ?>
-                <span class="badge badge-pill bg-light align-text-bottom" ><?= $rows['jenis_advokasi_nama']; ?></span>
-            </p>
-        </div>
-        </a>
-        
-        <?php endforeach; ?>
+                foreach($result as $rows):
+                    ?>
+                    <a href="pelayanan/<?= $rows['id']; ?>" class="text-decoration-none">
+                    <div class="media text-muted pt-3">
+                        <svg class="bd-placeholder-img mr-2 rounded" width="32" height="32" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="xMidYMid slice" focusable="false" role="img" aria-label="Placeholder: 32x32"><title>Placeholder</title><rect width="100%" height="100%" fill="#17a2b8 "/><text x="50%" y="50%" fill="#17a2b8 " dy=".3em">32x32</text></svg>
+                        <p class="media-body pb-3 mb-0 small lh-125 border-bottom border-gray">
+                            <strong class="d-block text-gray-dark"><?= $rows['nama_klpd']; ?></strong>
+                            <?= $rows['paket_nama']; ?>
+                            <span class="badge badge-pill bg-light align-text-bottom" ><?= $rows['jenis_advokasi_nama']; ?></span>
+                        </p>
+                    </div>
+                    </a>
+                
+                <?php endforeach; 
+            }else{ ?>
+                <div class="text-center my-2">Data tidak ditemukan</div>
+        <?php } ?>
 
         <small class="d-block text-right mt-3">
             <a href="<?= base_url('pelayanan') ?>">All updates</a>

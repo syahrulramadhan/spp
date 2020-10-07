@@ -76,33 +76,41 @@ class Pages extends BaseController
 		if($param == 'chart_valuasi'){
 			$result = $this->pelayananModel->ChartPelayananValuasi($jenis_klpd, $tahun);
 
-			$grafik[0][0] = 'BULAN';
-			$grafik[0][1] = 'JUMLAH VALUASI';
-			$grafik[0][2] = 'AKUMULASI VALUASI';
+			if($result){
+				$grafik[0][0] = 'BULAN';
+				$grafik[0][1] = 'JUMLAH VALUASI';
+				$grafik[0][2] = 'AKUMULASI VALUASI';
 
-			foreach($result as $rows){
-				$grafik[$rows['bulan']][0] = $this->bulan($rows['bulan']);
-				$grafik[$rows['bulan']][1] = (double) ($rows['jumlah_valuasi']/1000000);
-				$grafik[$rows['bulan']][2] = (double) ($rows['total_valuasi']/1000000);
+				foreach($result as $rows){
+					$grafik[$rows['bulan']][0] = $this->bulan($rows['bulan']);
+					$grafik[$rows['bulan']][1] = (double) ($rows['jumlah_valuasi']/1000000);
+					$grafik[$rows['bulan']][2] = (double) ($rows['total_valuasi']/1000000);
+				}
+			}else{
+				return false;
 			}
 		}else if($param == 'chart_coverage'){
 			$count = $this->klpdModel->getCountKlpd($jenis_klpd);
 			$result = $this->pelayananModel->ChartPelayananCoverage($jenis_klpd, $tahun);
 
-			$grafik[0][0] = 'BULAN';
-			$grafik[0][1] = 'JUMLAH COVERAGE';
-			$grafik[0][2] = 'AKUMULASI COVERAGE';
+			if($result){
+				$grafik[0][0] = 'BULAN';
+				$grafik[0][1] = 'JUMLAH COVERAGE';
+				$grafik[0][2] = 'AKUMULASI COVERAGE';
 
-			$total_coverage = 0;
+				$total_coverage = 0;
 
-			foreach($result as $rows){
-				$jumlah_coverage = $rows['total_coverage'] - $total_coverage;
+				foreach($result as $rows){
+					$jumlah_coverage = $rows['total_coverage'] - $total_coverage;
 
-				$grafik[$rows['bulan']][0] = $this->bulan($rows['bulan']);
-				$grafik[$rows['bulan']][1] = ($jumlah_coverage/$count)*100;
-				$grafik[$rows['bulan']][2] = ($rows['total_coverage']/$count)*100;
+					$grafik[$rows['bulan']][0] = $this->bulan($rows['bulan']);
+					$grafik[$rows['bulan']][1] = ($jumlah_coverage/$count)*100;
+					$grafik[$rows['bulan']][2] = ($rows['total_coverage']/$count)*100;
 
-				$total_coverage = $rows['total_coverage'];
+					$total_coverage = $rows['total_coverage'];
+				}
+			}else{
+				return false;
 			}
 		}else if($param == 'chart_kualitas'){
 			$count = $this->klpdModel->getCountKlpd($jenis_klpd);
@@ -110,22 +118,35 @@ class Pages extends BaseController
 			$grafik[0][0] = 'BULAN';
 			$grafik[0][1] = 'RATA-RATA SKOR';
 
+			$total = 0;
+
 			for($i=1;$i<=date('m');$i++){
 				$result = $this->pelayananModel->ChartPelayananKualitas($i, $jenis_klpd, $tahun);
 
-				$grafik[$i][1] = $result->total_kualitas/$count;
+				if($result->total_kualitas){
+					$grafik[$i][1] = $result->total_kualitas/$count;
+
+					$total = $total + 1;
+				}
 			}
+
+			if($total < 1)
+				return false;
 		}else{
 			$result = $this->pelayananModel->ChartPelayananJumlah($jenis_klpd, $tahun);
 
-			$grafik[0][0] = 'BULAN';
-			$grafik[0][1] = 'JUMLAH LAYANAN';
-			$grafik[0][2] = 'AKUMULASI LAYANAN';
+			if($result){
+				$grafik[0][0] = 'BULAN';
+				$grafik[0][1] = 'JUMLAH LAYANAN';
+				$grafik[0][2] = 'AKUMULASI LAYANAN';
 
-			foreach($result as $rows){
-				$grafik[$rows['bulan']][0] = $this->bulan($rows['bulan']);
-				$grafik[$rows['bulan']][1] = (int) ($rows['jumlah_pelayanan']);
-				$grafik[$rows['bulan']][2] = (int) ($rows['total_pelayanan']);
+				foreach($result as $rows){
+					$grafik[$rows['bulan']][0] = $this->bulan($rows['bulan']);
+					$grafik[$rows['bulan']][1] = (int) ($rows['jumlah_pelayanan']);
+					$grafik[$rows['bulan']][2] = (int) ($rows['total_pelayanan']);
+				}
+			}else{
+				return false;
 			}
 		}
 
