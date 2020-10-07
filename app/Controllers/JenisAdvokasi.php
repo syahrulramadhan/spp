@@ -129,18 +129,37 @@ class JenisAdvokasi extends BaseController
 				$grafik[0][0] = 'NAMA';
 				$grafik[0][1] = 'JUMLAH VALUASI';
 
+				$total = 0;
+
 				foreach($result as $key => $rows){
-					$grafik[$key + 1][0] = $rows['nama_jenis_advokasi'];
-					$grafik[$key + 1][1] = (double) ($rows['jumlah_valuasi']);
+					if($rows['jumlah_valuasi']){
+
+						$grafik[$key + 1][0] = $rows['nama_jenis_advokasi'];
+						$grafik[$key + 1][1] = (double) ($rows['jumlah_valuasi']);
+
+						$total = $total + 1;
+					}
 				}
+
+				if($total < 1)
+					return false;
 			}else{
 				$grafik[0][0] = 'NAMA';
 				$grafik[0][1] = 'JUMLAH LAYANAN';
 
+				$total = 0;
+
 				foreach($result as $key => $rows){
-					$grafik[$key + 1][0] = $rows['nama_jenis_advokasi'];
-					$grafik[$key + 1][1] = (int) $rows['jumlah_pelayanan'];
+					if($rows['jumlah_pelayanan']){
+						$grafik[$key + 1][0] = $rows['nama_jenis_advokasi'];
+						$grafik[$key + 1][1] = (int) $rows['jumlah_pelayanan'];
+						
+						$total = $total + 1;
+					}
 				}
+
+				if($total < 1)
+					return false;
 			}
 
 			return json_encode($grafik, JSON_PRETTY_PRINT);
