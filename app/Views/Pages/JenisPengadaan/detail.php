@@ -59,7 +59,11 @@
                     </div>
                 </div>
                 <div class="mb-3 p-3 bg-white rounded shadow-sm">
+                    <?php if($result_chart_pelayanan){ ?>
                     <div id="curve_chart_pelayanan" style="width: 100%; height: 400px"></div>
+                    <?php }else{ ?>
+                        <div class="text-center my-2">Data tidak ditemukan</div>
+                    <?php } ?>
                 </div>
                 <div class="d-flex align-items-center p-3 my-1 text-white-50 bg-info rounded shadow-sm">
                     <div class="lh-100">
@@ -67,7 +71,11 @@
                     </div>
                 </div>
                 <div class="mb-3 p-3 bg-white rounded shadow-sm">
+                    <?php if($result_chart_valuasi){ ?>
                     <div id="curve_chart_valuasi" style="width: 100%; height: 400px"></div>
+                    <?php }else{ ?>
+                        <div class="text-center my-2">Data tidak ditemukan</div>
+                    <?php } ?>
                 </div>
             </div>
         </div>

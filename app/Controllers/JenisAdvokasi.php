@@ -85,26 +85,34 @@ class JenisAdvokasi extends BaseController
 		if($param == 'chart_valuasi'){
 			$result = $this->grafikModel->valuasiByJenisAdvokasiId($jenis_klpd, $tahun, $id);
 
-			$grafik[0][0] = 'BULAN';
-			$grafik[0][1] = 'JUMLAH VALUASI';
-			$grafik[0][2] = 'AKUMULASI VALUASI';
+			if($result){
+				$grafik[0][0] = 'BULAN';
+				$grafik[0][1] = 'JUMLAH VALUASI';
+				$grafik[0][2] = 'AKUMULASI VALUASI';
 
-			foreach($result as $rows){
-				$grafik[$rows['bulan']][0] = $this->bulan($rows['bulan']);
-				$grafik[$rows['bulan']][1] = (double) ($rows['jumlah_valuasi']/1000000);
-				$grafik[$rows['bulan']][2] = (double) ($rows['total_valuasi']/1000000);
+				foreach($result as $rows){
+					$grafik[$rows['bulan']][0] = $this->bulan($rows['bulan']);
+					$grafik[$rows['bulan']][1] = (double) ($rows['jumlah_valuasi']/1000000);
+					$grafik[$rows['bulan']][2] = (double) ($rows['total_valuasi']/1000000);
+				}
+			}else{
+				return false;
 			}
 		}else{
 			$result = $this->grafikModel->layananByJenisAdvokasiId($jenis_klpd, $tahun, $id);
 
-			$grafik[0][0] = 'BULAN';
-			$grafik[0][1] = 'JUMLAH LAYANAN';
-			$grafik[0][2] = 'AKUMULASI LAYANAN';
+			if($result){
+				$grafik[0][0] = 'BULAN';
+				$grafik[0][1] = 'JUMLAH LAYANAN';
+				$grafik[0][2] = 'AKUMULASI LAYANAN';
 
-			foreach($result as $rows){
-				$grafik[$rows['bulan']][0] = $this->bulan($rows['bulan']);
-				$grafik[$rows['bulan']][1] = (int) ($rows['jumlah_pelayanan']);
-				$grafik[$rows['bulan']][2] = (int) ($rows['total_pelayanan']);
+				foreach($result as $rows){
+					$grafik[$rows['bulan']][0] = $this->bulan($rows['bulan']);
+					$grafik[$rows['bulan']][1] = (int) ($rows['jumlah_pelayanan']);
+					$grafik[$rows['bulan']][2] = (int) ($rows['total_pelayanan']);
+				}
+			}else{
+				return false;
 			}
 		}
 
@@ -116,25 +124,29 @@ class JenisAdvokasi extends BaseController
 
 		$grafik = [];
 
-		if($param == 'grafik_valuasi'){
-			$grafik[0][0] = 'NAMA';
-			$grafik[0][1] = 'JUMLAH VALUASI';
+		if($result){
+			if($param == 'grafik_valuasi'){
+				$grafik[0][0] = 'NAMA';
+				$grafik[0][1] = 'JUMLAH VALUASI';
 
-			foreach($result as $key => $rows){
-				$grafik[$key + 1][0] = $rows['nama_jenis_advokasi'];
-				$grafik[$key + 1][1] = (double) ($rows['jumlah_valuasi']);
-			}
-		}else{
-			$grafik[0][0] = 'NAMA';
-			$grafik[0][1] = 'JUMLAH LAYANAN';
+				foreach($result as $key => $rows){
+					$grafik[$key + 1][0] = $rows['nama_jenis_advokasi'];
+					$grafik[$key + 1][1] = (double) ($rows['jumlah_valuasi']);
+				}
+			}else{
+				$grafik[0][0] = 'NAMA';
+				$grafik[0][1] = 'JUMLAH LAYANAN';
 
-			foreach($result as $key => $rows){
-				$grafik[$key + 1][0] = $rows['nama_jenis_advokasi'];
-				$grafik[$key + 1][1] = (int) $rows['jumlah_pelayanan'];
+				foreach($result as $key => $rows){
+					$grafik[$key + 1][0] = $rows['nama_jenis_advokasi'];
+					$grafik[$key + 1][1] = (int) $rows['jumlah_pelayanan'];
+				}
 			}
+
+			return json_encode($grafik, JSON_PRETTY_PRINT);
 		}
 
-		return json_encode($grafik, JSON_PRETTY_PRINT);
+		return false;
 	}
 
 	public function edit($id){
