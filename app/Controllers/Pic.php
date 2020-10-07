@@ -114,9 +114,10 @@ class Pic extends BaseController
 	public function update($id){
 		if(!$this->validate([
 			'user_id' => [
-				'rules' => 'required',
+				'rules' => "required|is_unique[pic.user_id,id,$id]",
 				'errors' => [
-					'required' => '{field} user harus diisi.'
+					'required' => 'User harus diisi.',
+					'is_unique' => 'User tidak dapat diubah jika sudah ada'
 				]
 			]
 		])){
