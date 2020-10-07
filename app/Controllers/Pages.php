@@ -222,7 +222,7 @@ class Pages extends BaseController
 			for($i=1;$i<=date('m');$i++){
 				$result = $this->grafikModel->kualitasByKlpdId($i, $jenis_klpd, $tahun, $id);
 
-				if($result){
+				if($result->total_kualitas){
 					$grafik[$i][2] = $result->total_kualitas;
 
 					$total = $total + 1;
