@@ -47,10 +47,10 @@ class PelayananPic extends BaseController
 		if(!$this->validate([
 			'pic_id' => [
 				//'rules' => 'required|is_unique[pelayanan_pic.pic_id]',
-				'rules' => 'required',
+				'rules' => 'required|is_unique_layanan_pic[pelayanan_pic.pic_id]',
 				'errors' => [
 					'required' => 'Pic harus diisi.',
-					'is_unique' => 'Pic tidak boleh sama dalam satu pelayanan'
+					'is_unique_layanan_pic' => 'Pic tidak boleh sama dalam satu pelayanan'
 				]
 			]
 		])){
