@@ -18,7 +18,7 @@
     </div>
 </div>
 
-<form action="<?= base_url('/pelayanan/save/' . $result['id']); ?>" method="post" enctype="multipart/form-data">
+<form id="form-submit" action="<?= base_url('/pelayanan/save/' . $result['id']); ?>" method="post" enctype="multipart/form-data">
     <div class="card mb-3">
         <div class="row">
             <div class="col-md-12">
@@ -318,7 +318,7 @@
                     <?php if(in_array($result['id'], array(1,2,3,4,5,6,7))){ ?>
                     <div class="form-group row">
                         <label for="keterangan" class="col-sm-2 col-form-label">Keterangan 
-                            <?php if(in_array($result['id'], array(1,2,3,4,5))){ ?>
+                            <?php if(in_array($result['id'], array(1,2,3,4,5,6))){ ?>
                                 <small>(Opsional)</small>
                             <?php } ?>
                         </label>

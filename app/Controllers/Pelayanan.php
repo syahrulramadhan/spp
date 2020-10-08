@@ -130,7 +130,9 @@ class Pelayanan extends BaseController
 						'required' => 'Nama harus diisi.'
 					]
 				];
+			}
 
+			if(in_array($id, array(7))){
 				$rules['keterangan'] = [
 					'rules' => 'required',
 					'errors' => [
@@ -393,7 +395,9 @@ class Pelayanan extends BaseController
 						'required' => 'Nama harus diisi.'
 					]
 				];
-			
+			}
+
+			if(in_array($id, array(7))){
 				$rules['keterangan'] = [
 					'rules' => 'required',
 					'errors' => [
