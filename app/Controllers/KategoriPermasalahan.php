@@ -50,8 +50,6 @@ class KategoriPermasalahan extends BaseController
 	public function grafik($param = ''){
 		$result = $this->kategoriPermasalahanModel->getKategoriPermasalahan();
 
-		
-
 		$grafik = [];
 
 		if($result){
@@ -61,16 +59,14 @@ class KategoriPermasalahan extends BaseController
 
 				$total = 0;
 				
-				foreach($result as $key => $rows){
-					if($rows['jumlah_valuasi']){
-						$grafik[$key + 1][0] = $rows['nama_kategori_permasalahan'];
-						$grafik[$key + 1][1] = (double) ($rows['jumlah_valuasi']);
+				foreach($result as $key => $rows){	
+					$grafik[$key + 1][0] = $rows['nama_kategori_permasalahan'];
+					$grafik[$key + 1][1] = (double) ($rows['jumlah_valuasi']);
 
+					if($rows['jumlah_valuasi']){
 						$total = $total + 1;
 					}
 				}
-
-				//echo "<pre>"; print_r((array) $grafik); exit;
 
 				if($total < 1)
 					return false;
@@ -81,10 +77,10 @@ class KategoriPermasalahan extends BaseController
 				$total = 0;
 
 				foreach($result as $key => $rows){
-					if($rows['jumlah_pelayanan']){
-						$grafik[$key + 1][0] = $rows['nama_kategori_permasalahan'];
-						$grafik[$key + 1][1] = (int) $rows['jumlah_pelayanan'];
+					$grafik[$key + 1][0] = $rows['nama_kategori_permasalahan'];
+					$grafik[$key + 1][1] = (int) $rows['jumlah_pelayanan'];
 					
+					if($rows['jumlah_pelayanan']){
 						$total = $total + 1;
 					}
 				}

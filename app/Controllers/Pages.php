@@ -356,10 +356,11 @@ class Pages extends BaseController
 				$total = 0;
 				
 				foreach($result as $key => $rows){
+					
+					$grafik[$key + 1][0] = $rows['nama_klpd'];
+					$grafik[$key + 1][1] = (double) ($rows['jumlah_valuasi']);
+
 					if($rows['jumlah_valuasi']){
-						$grafik[$key + 1][0] = $rows['nama_klpd'];
-						$grafik[$key + 1][1] = (double) ($rows['jumlah_valuasi']);
-						
 						$total = $total + 1;
 					}
 				}
@@ -373,10 +374,10 @@ class Pages extends BaseController
 				$total = 0;
 				
 				foreach($result as $key => $rows){
+					$grafik[$key + 1][0] = $rows['nama_klpd'];
+					$grafik[$key + 1][1] = (int) $rows['jumlah_pelayanan'];
+
 					if($rows['jumlah_valuasi']){
-						$grafik[$key + 1][0] = $rows['nama_klpd'];
-						$grafik[$key + 1][1] = (int) $rows['jumlah_pelayanan'];
-						
 						$total = $total + 1;
 					}
 				}
@@ -492,10 +493,10 @@ class Pages extends BaseController
 				$total = 0;
 				
 				foreach($result as $key => $rows){
+					$grafik[$key + 1][0] = $rows['nama_jenis_pengadaan'];
+					$grafik[$key + 1][1] = (double) ($rows['jumlah_valuasi']);
+					
 					if($rows['jumlah_valuasi']){
-						$grafik[$key + 1][0] = $rows['nama_jenis_pengadaan'];
-						$grafik[$key + 1][1] = (double) ($rows['jumlah_valuasi']);
-						
 						$total = $total + 1;
 					}
 				}
@@ -509,10 +510,10 @@ class Pages extends BaseController
 				$total = 0;
 
 				foreach($result as $key => $rows){
-					if($rows['jumlah_pelayanan']){
-						$grafik[$key + 1][0] = $rows['nama_jenis_pengadaan'];
-						$grafik[$key + 1][1] = (int) $rows['jumlah_pelayanan'];
+					$grafik[$key + 1][0] = $rows['nama_jenis_pengadaan'];
+					$grafik[$key + 1][1] = (int) $rows['jumlah_pelayanan'];
 
+					if($rows['jumlah_pelayanan']){
 						$total = $total + 1;
 					}
 				}
