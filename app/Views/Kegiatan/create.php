@@ -81,7 +81,7 @@
                 <div class="card-body">
                     <div class="form-group row">
                         <label for="keterangan" class="col-sm-4 col-form-label">
-                            Upload Dokume <small>(Opsional)</small>
+                            Upload Dokumen <small>(Opsional)</small>
                         </label>
                         <div class="col-sm-8">
                             <div><input class="form-control" style="margin-top: 0.5em;" type="file" name="kegiatan_file[]" size="20" multiple /></div>
