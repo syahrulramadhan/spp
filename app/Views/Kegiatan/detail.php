@@ -40,15 +40,14 @@
                 <p class="card-text"><?= $result['jenis_advokasi_nama'] ?></p>
                 <p class="card-text"><?= $result['tahapan'] ?></p>
                 <a href="/kegiatan/edit/<?= $result['id']; ?>" class="btn btn-info">Edit</a>
-
+                <a class="btn btn-info" href="/kegiatan">Lihat Rekap</a>
+                <a class="btn btn-info" href='<?= base_url("kegiatan/" . $result['id'] . "/" . $result['jenis_advokasi_id'] . "/pelayanan"); ?>'>Entry Peserta</a>
+                <a class="btn btn-info" href='<?= base_url("kegiatan/create/" . $result['jenis_advokasi_id']); ?>'>Entry <?= $result['jenis_advokasi_nama'] ?></a>
                 <form id="form-submit" action="/kegiatan/delete/<?= $result['id']; ?>" method="post" class="d-inline">
                     <?= csrf_field(); ?>
                     <input type="hidden" name="_method" value="DELETE">
-                    <button type="submit" class="btn btn-info" onclick="return confirm('Apakah anda yakin?');">Delete</button>
+                    <button type="submit" class="btn btn-danger" onclick="return confirm('Apakah anda yakin?');">Delete</button>
                 </form>
-                <a class="btn btn-info" href='<?= base_url("kegiatan/" . $result['id'] . "/" . $result['jenis_advokasi_id'] . "/pelayanan"); ?>'>Input Peserta</a>
-
-                <a class="btn btn-info" href="/kegiatan">Lihat Rekap</a>
             </div>
         </div>
         <div class="col-md-4">
