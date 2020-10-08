@@ -13,7 +13,7 @@
                 <h6 class="mb-0 text-white lh-100">DASHBOARD</h6>
             </div>
         </div>
-        <form action="<?= base_url('pages') ?>" method="get" class="mt-2 form-inline">
+        <form id="form-submit" action="<?= base_url('pages') ?>" method="get" class="mt-2 form-inline">
             <?= csrf_field(); ?>
 
             <div class="form-group">

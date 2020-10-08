@@ -351,4 +351,16 @@ class Kegiatan extends BaseController
 
 		return $result;
 	}
+
+	public function pelayanan_delete($kegiatan_id, $jenis_advokasi_id, $id){
+		$result = $this->pelayananModel->find($id);
+
+		if($result){
+			$this->pelayananModel->delete($id);
+
+			session()->setFlashdata('pesan', 'Data berhasil dihapus.');
+
+			return redirect()->to("/kegiatan/$kegiatan_id/$jenis_advokasi_id/pelayanan");
+		}
+	}
 }

@@ -50,6 +50,8 @@ class KategoriPermasalahan extends BaseController
 	public function grafik($param = ''){
 		$result = $this->kategoriPermasalahanModel->getKategoriPermasalahan();
 
+		
+
 		$grafik = [];
 
 		if($result){
@@ -67,6 +69,8 @@ class KategoriPermasalahan extends BaseController
 						$total = $total + 1;
 					}
 				}
+
+				//echo "<pre>"; print_r((array) $grafik); exit;
 
 				if($total < 1)
 					return false;
@@ -88,7 +92,7 @@ class KategoriPermasalahan extends BaseController
 				if($total < 1)
 					return false;
 			}
-
+			
 			return json_encode($grafik, JSON_PRETTY_PRINT);
 		}
 
@@ -249,10 +253,14 @@ class KategoriPermasalahan extends BaseController
 	}
 
 	public function delete($id){
-		$this->kategoriPermasalahanModel->delete($id);
+		$result = $this->kategoriPermasalahanModel->find($id);
 
-		session()->setFlashdata('pesan', 'Data berhasil dihapus.');
+		if($result){
+			$this->kategoriPermasalahanModel->delete($id);
 
-		return redirect()->to('/kategori-permasalahan');
+			session()->setFlashdata('pesan', 'Data berhasil dihapus.');
+
+			return redirect()->to('/kategori-permasalahan');
+		}
 	}
 }

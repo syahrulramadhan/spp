@@ -24,7 +24,7 @@
                     <?= session()->getFlashdata('pesan') ?>
                     </div>
                 <?php endif; ?>
-                <form action='<?= base_url("pelayanan/$pelayanan_id/file/save"); ?>' method="post" enctype="multipart/form-data">
+                <form id="form-submit" action='<?= base_url("pelayanan/$pelayanan_id/file/save"); ?>' method="post" enctype="multipart/form-data">
                     <?= csrf_field(); ?>
 
                     <div class="form-group row">
@@ -117,7 +117,13 @@
                             <td>
                                 <div><?= $rows['size']; ?></div>
                             </td>
-                            <td class="text-center"><a href="#" class="btn btn-danger">Hapus</a></td>
+                            <td class="text-center">
+                                <form action="<?php echo base_url("pelayanan/$pelayanan_id/file/delete/" . $rows['id']); ?>" method="post" class="d-inline">
+                                    <?= csrf_field(); ?>
+                                    <input type="hidden" name="_method" value="DELETE">
+                                    <button type="submit" class="btn btn-danger" onclick="return confirm('Apakah anda yakin?');">Delete</button>
+                                </form>
+                            </td>
                         </tr>
                         <?php endforeach; 
                     }else{ ?>

@@ -27,7 +27,7 @@
                     <?= session()->getFlashdata('pesan') ?>
                     </div>
                 <?php endif; ?>
-                <form action="/pages/profil_update/<?= $result['id']; ?>" method="post" enctype="multipart/form-data">
+                <form id="form-submit" action="/pages/profil_update/<?= $result['id']; ?>" method="post" enctype="multipart/form-data">
                     <?= csrf_field(); ?>
                     <div class="form-group row">
                         <label for="nama_depan" class="col-sm-2 col-form-label">Nama Depan</label>

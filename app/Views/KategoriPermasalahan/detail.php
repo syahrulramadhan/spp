@@ -28,14 +28,12 @@
                 <h5 class="card-title"><?= $result['nama_kategori_permasalahan'] ?></h5>
                 <p class="card-text"><?= $result['keterangan'] ?></p>
                 <a href="/kategori-permasalahan/edit/<?= $result['id']; ?>" class="btn btn-info">Edit</a>
-
-                <form action="/kategori-permasalahan/delete/<?= $result['id']; ?>" method="post" class="d-inline">
+                <a class="btn btn-info" href="/kategori-permasalahan">Lihat Rekap</a>
+                <form id="form-submit" action="/kategori-permasalahan/delete/<?= $result['id']; ?>" method="post" class="d-inline">
                     <?= csrf_field(); ?>
                     <input type="hidden" name="_method" value="DELETE">
-                    <button type="submit" class="btn btn-info" onclick="return confirm('Apakah anda yakin?');">Delete</button>
+                    <button type="submit" class="btn btn-danger" onclick="return confirm('Apakah anda yakin?');">Delete</button>
                 </form>
-
-                <a class="btn btn-info" href="/kategori-permasalahan">Lihat Rekap</a>
             </div>
         </div>
     </div>
@@ -45,7 +43,7 @@
     <div class="row">
         <div class="col-md-12">
             <div class="card-body">
-                <form action="<?= base_url('kategori-permasalahan/' . $result['id']) ?>" method="get" class="mt-2 form-inline">
+                <form id="form-submit" action="<?= base_url('kategori-permasalahan/' . $result['id']) ?>" method="get" class="mt-2 form-inline">
                     <?= csrf_field(); ?>
                     <div class="form-group">
                         <label for="klpd" class="col-form-label">Jenis K/L/Pemda </label>

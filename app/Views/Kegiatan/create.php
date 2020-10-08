@@ -18,7 +18,7 @@
         <h6 class="mb-0 text-white lh-100 text-uppercase">Form <?= $result['nama_jenis_advokasi']; ?></h6>
     </div>
 </div>
-<form action="/kegiatan/save/<?= $result['id']; ?>" method="post" enctype="multipart/form-data">
+<form id="form-submit" action="/kegiatan/save/<?= $result['id']; ?>" method="post" enctype="multipart/form-data">
     <div class="card mb-3">
         <div class="row">
             <div class="col-md-12">

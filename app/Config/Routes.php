@@ -83,17 +83,17 @@ $routes->post('/pelayanan/(:num)/update/(:num)', 'Pelayanan::update/$1/$2');
 $routes->get('/pelayanan/(:num)/pic/', 'PelayananPic::index/$1');
 $routes->get('/pelayanan/(:num)/pic/create', 'PelayananPic::create/$1');
 $routes->post('/pelayanan/(:num)/pic/save', 'PelayananPic::save/$1');
-$routes->delete('/pelayanan/(:num)/pic/delete/(num)', 'PelayananPic::delete/$1/$2');
+$routes->delete('/pelayanan/(:num)/pic/delete/(:num)', 'PelayananPic::delete/$1/$2');
 
 $routes->get('/pelayanan/(:num)/peserta/', 'PelayananPeserta::index/$1');
 $routes->get('/pelayanan/(:num)/peserta/create', 'PelayananPeserta::create/$1');
 $routes->post('/pelayanan/(:num)/peserta/save', 'PelayananPeserta::save/$1');
-$routes->delete('/pelayanan/(:num)/peserta/delete/(num)', 'PelayananPeserta::delete/$1/$2');
+$routes->delete('/pelayanan/(:num)/peserta/delete/(:num)', 'PelayananPeserta::delete/$1/$2');
 
 $routes->get('/pelayanan/(:num)/file/', 'PelayananFile::index/$1');
 $routes->get('/pelayanan/(:num)/file/create', 'PelayananFile::create/$1');
 $routes->post('/pelayanan/(:num)/file/save', 'PelayananFile::save/$1');
-$routes->delete('/pelayanan/(:num)/file/delete/(num)', 'PelayananFile::delete/$1/$2');
+$routes->delete('/pelayanan/(:num)/file/delete/(:num)', 'PelayananFile::delete/$1/$2');
 
 $routes->get('/kegiatan', 'Kegiatan::index');
 $routes->get('/kegiatan/create', 'Kegiatan::create');
@@ -103,16 +103,16 @@ $routes->get('/kegiatan/(:num)', 'Kegiatan::detail/$1');
 $routes->get('/kegiatan/(:num)/narasumber/', 'KegiatanNarasumber::index/$1');
 $routes->get('/kegiatan/(:num)/narasumber/create', 'KegiatanNarasumber::create/$1');
 $routes->post('/kegiatan/(:num)/narasumber/save', 'KegiatanNarasumber::save/$1');
-$routes->delete('/kegiatan/(:num)/narasumber/delete/(num)', 'KegiatanNarasumber::delete/$1/$2');
+$routes->delete('/kegiatan/(:num)/narasumber/delete/(:num)', 'KegiatanNarasumber::delete/$1/$2');
 
 $routes->get('/kegiatan/(:num)/materi/', 'KegiatanMateri::index/$1');
 $routes->get('/kegiatan/(:num)/materi/create', 'KegiatanMateri::create/$1');
 $routes->post('/kegiatan/(:num)/materi/save', 'KegiatanMateri::save/$1');
-$routes->delete('/kegiatan/(:num)/materi/delete/(num)', 'KegiatanMateri::delete/$1/$2');
+$routes->delete('/kegiatan/(:num)/materi/delete/(:num)', 'KegiatanMateri::delete/$1/$2');
 
 $routes->get('/kegiatan/(:num)/(:num)/pelayanan', 'Kegiatan::pelayanan/$1/$2');
 $routes->post('/kegiatan/(:num)/(:num)/pelayanan/save', 'Kegiatan::pelayanan_save/$1/$2');
-$routes->delete('/kegiatan/(:num)/(:num)/pelayanan/delete/(num)', 'Kegiatan::pelayanan_delete/$1/$2/$3');
+$routes->delete('/kegiatan/(:num)/(:num)/pelayanan/delete/(:num)', 'Kegiatan::pelayanan_delete/$1/$2/$3');
 /**
  * --------------------------------------------------------------------
  * Additional Routing

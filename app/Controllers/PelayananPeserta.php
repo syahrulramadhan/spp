@@ -52,4 +52,16 @@ class PelayananPeserta extends BaseController
 		
 		return redirect()->to("/pelayanan/$pelayanan_id/peserta");
 	}
+
+	public function delete($pelayanan_id, $id){
+		$result = $this->pelayananPesertaModel->find($id);
+
+		if($result){
+			$this->pelayananPesertaModel->delete($id);
+
+			session()->setFlashdata('pesan', 'Data berhasil dihapus.');
+
+			return redirect()->to("/pelayanan/$pelayanan_id/peserta");
+		}
+	}
 }

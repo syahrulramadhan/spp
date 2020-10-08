@@ -133,13 +133,14 @@ class JenisAdvokasi extends BaseController
 
 				foreach($result as $key => $rows){
 					if($rows['jumlah_valuasi']){
-
 						$grafik[$key + 1][0] = $rows['nama_jenis_advokasi'];
 						$grafik[$key + 1][1] = (double) ($rows['jumlah_valuasi']);
 
 						$total = $total + 1;
 					}
 				}
+
+				//echo "<pre>"; print_r($grafik); exit;
 
 				if($total < 1)
 					return false;
@@ -161,7 +162,7 @@ class JenisAdvokasi extends BaseController
 				if($total < 1)
 					return false;
 			}
-
+		
 			return json_encode($grafik, JSON_PRETTY_PRINT);
 		}
 

@@ -33,7 +33,7 @@
     <div class="row">
         <div class="col-md-8">
             <div class="card-body">
-                <form action="<?= base_url('pages/klpd/' . $result['id']) ?>" method="get" class="mt-2 form-inline">
+                <form id="form-submit" action="<?= base_url('pages/klpd/' . $result['id']) ?>" method="get" class="mt-2 form-inline">
                     <?= csrf_field(); ?>
                     <?php /*
                     <div class="form-group">
@@ -175,7 +175,7 @@
                 <div class="row">
                     <div class="col-9"></div>
                     <div class="col-3 pull-right">
-                        <form action="" method="GET">
+                        <form id="form-submit" action="" method="GET">
                             <div class="input-group mb-3">
                             <input type="text" class="form-control" placeholder="Masukan kata nama" name="q" value="<?= $keyword ?>" autofocus>
                             <div class="input-group-append">

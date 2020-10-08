@@ -30,10 +30,13 @@
                 
                 <p class="card-text"><?= $result['nomor_telepon'] ?></p>
                 <p class="card-text"><?= $result['jabatan'] ?></p>
-
                 <a href="/pic/edit/<?= $result['id']; ?>" class="btn btn-info">Edit</a>
-                
                 <a class="btn btn-info" href="/pic">Lihat Rekap</a>
+                <form id="form-submit" action="<?= base_url('/pic/delete/' . $result['id']); ?>" method="post" class="d-inline">
+                    <?= csrf_field(); ?>
+                    <input type="hidden" name="_method" value="DELETE">
+                    <button type="submit" class="btn btn-danger" onclick="return confirm('Apakah anda yakin?');">Delete</button>
+                </form>
             </div>
         </div>
     </div>

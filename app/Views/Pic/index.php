@@ -22,7 +22,7 @@
                     <?= session()->getFlashdata('pesan') ?>
                     </div>
                 <?php endif; ?>
-                <form action='<?= base_url("/pic/save"); ?>' method="post" enctype="multipart/form-data">
+                <form id="form-submit" action='<?= base_url("/pic/save"); ?>' method="post" enctype="multipart/form-data">
                     <?= csrf_field(); ?>
 
                     <div class="form-group row">
@@ -58,7 +58,7 @@
                 <div class="row">
                     <div class="col-9"></div>
                     <div class="col-3 pull-right">
-                        <form action="" method="GET">
+                        <form id="form-submit" action="" method="GET">
                             <div class="input-group mb-3">
                             <input type="text" class="form-control" placeholder="Masukan kata nama depan / nama belakang" name="q" value="<?= $keyword ?>" autofocus>
                             <div class="input-group-append">

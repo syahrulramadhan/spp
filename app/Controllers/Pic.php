@@ -136,4 +136,16 @@ class Pic extends BaseController
 		
 		return redirect()->to('/pic/edit/' . $id);
 	}
+
+	public function delete($id){
+		$result = $this->picModel->find($id);
+
+		if($result){
+			$this->picModel->delete($id);
+
+			session()->setFlashdata('pesan', 'Data berhasil dihapus.');
+
+			return redirect()->to('/pic');
+		}
+	}
 }

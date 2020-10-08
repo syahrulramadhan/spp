@@ -26,7 +26,7 @@
                     <?= session()->getFlashdata('pesan') ?>
                     </div>
                 <?php endif; ?>
-                <form action="/kategori-permasalahan/save" method="post" enctype="multipart/form-data">
+                <form id="form-submit" action="/kategori-permasalahan/save" method="post" enctype="multipart/form-data">
                     <?= csrf_field(); ?>
                     <div class="form-group row">
                         <label for="nama_kategori_permasalahan" class="col-sm-2 col-form-label">Nama Kategori Permasalahan</label>

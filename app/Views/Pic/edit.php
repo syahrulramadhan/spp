@@ -30,7 +30,7 @@
                     <?= session()->getFlashdata('pesan') ?>
                     </div>
                 <?php endif; ?>
-                <form action="/pic/update/<?= $result['id']; ?>" method="post" enctype="multipart/form-data">
+                <form id="form-submit" action="/pic/update/<?= $result['id']; ?>" method="post" enctype="multipart/form-data">
                     <?= csrf_field(); ?>
 
                     <div class="form-group row">

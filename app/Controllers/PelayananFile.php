@@ -64,4 +64,22 @@ class PelayananFIle extends BaseController
 		
 		return redirect()->to("/pelayanan/$pelayanan_id/file");
 	}
+
+	public function delete($pelayanan_id, $id){
+		$result = $this->pelayananFileModel->find($id);
+
+		if($result){
+			$this->pelayananFileModel->delete($id);
+
+			$path = getcwd() . '/uploads/pelayanan/' . $result['nama_file'];
+        
+			if (is_file($path)) {
+				unlink($path);
+			}
+			
+			session()->setFlashdata('pesan', 'Data berhasil dihapus.');
+
+			return redirect()->to("/pelayanan/$pelayanan_id/file");
+		}
+	}
 }

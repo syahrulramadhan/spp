@@ -57,7 +57,7 @@
                         </div>
                     </div>
                     <div class="col-3 pull-right">
-                        <form action="" method="GET">
+                        <form id="form-submit" action="" method="GET">
                             <div class="input-group mb-3">
                             <input type="text" class="form-control" placeholder="Masukan kata nama" name="q" value="<?= $keyword ?>" autofocus>
                             <div class="input-group-append">

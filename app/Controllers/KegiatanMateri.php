@@ -70,4 +70,22 @@ class KegiatanMateri extends BaseController
 		
 		return redirect()->to("/kegiatan/$kegiatan_id/materi");
 	}
+
+	public function delete($kegiatan_id, $id){
+		$result = $this->kegiatanMateriModel->find($id);
+
+		if($result){
+			$this->kegiatanMateriModel->delete($id);
+
+			$path = getcwd() . '/uploads/kegiatan/' . $result['nama_materi'];
+        
+			if (is_file($path)) {
+				unlink($path);
+			}
+
+			session()->setFlashdata('pesan', 'Data berhasil dihapus.');
+
+			return redirect()->to("/kegiatan/$kegiatan_id/materi");
+		}
+	}
 }

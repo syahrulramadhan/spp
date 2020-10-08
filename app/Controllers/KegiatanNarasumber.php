@@ -53,4 +53,16 @@ class KegiatanNarasumber extends BaseController
 		
 		return redirect()->to("/kegiatan/$kegiatan_id/narasumber");
 	}
+
+	public function delete($kegiatan_id, $id){
+		$result = $this->kegiatanNarasumberModel->find($id);
+
+		if($result){
+			$this->kegiatanNarasumberModel->delete($id);
+
+			session()->setFlashdata('pesan', 'Data berhasil dihapus.');
+
+			return redirect()->to("/kegiatan/$kegiatan_id/narasumber");
+		}
+	}
 }

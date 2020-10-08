@@ -28,16 +28,14 @@
                 
                 <p class="card-text"><?= $result['nomor_telepon'] ?></p>
                 <p class="card-text"><?= $result['role'] ?></p>
-                <p class="card-text"><?= $result['jabatan'] ?></p>
-                
+                <p class="card-text"><?= $result['jabatan'] ?></p> 
                 <a href="/user/edit/<?= $result['id']; ?>" class="btn btn-info">Edit</a>
-
-                <form action="/user/delete/<?= $result['id']; ?>" method="post" class="d-inline">
+                <a class="btn btn-info" href="/user">Lihat Rekap</a>
+                <form id="form-submit" action="/user/delete/<?= $result['id']; ?>" method="post" class="d-inline">
                     <?= csrf_field(); ?>
                     <input type="hidden" name="_method" value="DELETE">
-                    <button type="submit" class="btn btn-info" onclick="return confirm('Apakah anda yakin?');">Delete</button>
+                    <button type="submit" class="btn btn-danger" onclick="return confirm('Apakah anda yakin?');">Delete</button>
                 </form>
-                <a class="btn btn-info" href="/user">Lihat Rekap</a>
             </div>
         </div>
     </div>

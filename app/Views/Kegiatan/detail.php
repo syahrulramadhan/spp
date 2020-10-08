@@ -41,7 +41,7 @@
                 <p class="card-text"><?= $result['tahapan'] ?></p>
                 <a href="/kegiatan/edit/<?= $result['id']; ?>" class="btn btn-info">Edit</a>
 
-                <form action="/kegiatan/delete/<?= $result['id']; ?>" method="post" class="d-inline">
+                <form id="form-submit" action="/kegiatan/delete/<?= $result['id']; ?>" method="post" class="d-inline">
                     <?= csrf_field(); ?>
                     <input type="hidden" name="_method" value="DELETE">
                     <button type="submit" class="btn btn-info" onclick="return confirm('Apakah anda yakin?');">Delete</button>

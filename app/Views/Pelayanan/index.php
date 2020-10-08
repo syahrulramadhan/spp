@@ -24,7 +24,7 @@
                     <div class="col-9">
                     </div>
                     <div class="col-3">
-                        <form action="" method="GET">
+                        <form id="form-submit" action="" method="GET">
                             <div class="input-group mb-3">
                                 <input type="text" class="form-control" placeholder="Masukan kata nama / nama paket" name="q" value="<?= $keyword ?>" autofocus>
                                 <div class="input-group-append">

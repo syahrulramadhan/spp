@@ -74,7 +74,7 @@
             
           submit_disable();
 
-          $('form input[type=text], form input[type=password], form textarea').keyup(function() {
+          $('#form-submit input[type=text], #form-submit input[type=password], #form-submit textarea').keyup(function() {
             submit_disable();
           });
         });
@@ -84,7 +84,7 @@
 
           var jumlah = 0;
 
-          $('form input[type=text], form input[type=password], form input[type=file], form select option:selected, form textarea').each(function() {
+          $('#form-submit input[type=text], #form-submit input[type=password], #form-submit input[type=file], #form-submit select option:selected, #form-submit textarea').each(function() {
               if($(this).val() === '' || $(this).val() === 0 || $(this).val() === '0') { 
                 
               }else{
@@ -97,7 +97,7 @@
           if(jumlah > 0)
             disable = false;
 
-          $('form button[type="submit"]').prop('disabled', disable);
+          $('#form-submit button[type="submit"]').prop('disabled', disable);
         }
     </script>
   </body>

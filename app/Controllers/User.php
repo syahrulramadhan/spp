@@ -218,10 +218,14 @@ class User extends BaseController
 	}
 
 	public function delete($id){
-		$this->userModel->delete($id);
+		$result = $this->userModel->find($id);
 
-		session()->setFlashdata('pesan', 'Data berhasil dihapus.');
+		if($result){
+			$this->userModel->delete($id);
 
-		return redirect()->to('/user');
+			session()->setFlashdata('pesan', 'Data berhasil dihapus.');
+
+			return redirect()->to('/user');
+		}
 	}
 }

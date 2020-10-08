@@ -70,6 +70,18 @@ class PelayananPic extends BaseController
 		return redirect()->to("/pelayanan/$pelayanan_id/pic");
 	}
 
+	public function delete($pelayanan_id, $id){
+		$result = $this->pelayananPicModel->find($id);
+
+		if($result){
+			$this->pelayananPicModel->delete($id);
+
+			session()->setFlashdata('pesan', 'Data berhasil dihapus.');
+
+			return redirect()->to("/pelayanan/$pelayanan_id/pic");
+		}
+	}
+
 	/*
 	public function save($pelayanan_id){
 		$validation = \Config\Services::validation();
