@@ -92,7 +92,26 @@
                             <th scope="row" class="text-center"><?= $i++; ?></th>
                             <td>
                                 <div>
-                                    <a href='<?= base_url("public/uploads/kegiatan/" . $rows['nama_materi']); ?>'><?= $rows['label_materi']; ?></a>
+                                    <?php if($rows['type'] == "application/pdf" 
+                                        || $rows['type'] == "image/jpeg" 
+                                        || $rows['type'] == "image/jpg" 
+                                        || $rows['type'] == "image/png" 
+                                        || $rows['type'] == "image/gif"){ 
+                                    ?>
+                                        <a href="#" 
+                                            data-toggle="modal" 
+                                            data-target="#previewFile" 
+                                            data-nama-file="<?= $rows['nama_materi'] ?>" 
+                                            data-label-file="<?= $rows['label_materi'] ?>"
+                                            data-type-file="<?= $rows['type'] ?>"
+                                        >
+                                            <?= $rows['label_materi'] ?>
+                                        </a>
+                                    <?php } else { ?>
+                                        <a href='<?= base_url("uploads/kegiatan/" . $rows['nama_materi']); ?>'>
+                                            <?= $rows['label_materi']; ?>
+                                        </a>
+                                    <?php } ?>
                                     <br><small><?= $rows['type'] ?></small>
                                 </div>
                             </td>
@@ -113,7 +132,50 @@
     </div>
 </div>
 
+<div class="modal fade" id="previewFile" tabindex="-1" role="dialog" aria-labelledby="previewFileLabel" aria-hidden="true">
+  <div class="modal-dialog modal-lg" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="previewFileLabel">New message</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
 <script type="text/javascript">
+    $('#previewFile').on('show.bs.modal', function (event) {
+        var button = $(event.relatedTarget) // Button that triggered the modal
+        var namafile = button.data('nama-file');
+        var labelfile = button.data('label-file'); 
+        var typefile = button.data('type-file');
+
+        var modal = $(this)
+        var path = '<?= base_url("uploads/kegiatan"); ?>';
+
+        var embed = "";
+
+        if(typefile == "application/pdf")
+            embed = "<embed src='" +  path + '/' + namafile + "' type='application/pdf' width='100%' height='700px'/>";
+        else{
+            embed = "<img src='" + path + '/' + namafile + "' width='100%'/>";
+        }
+        
+        modal.find('.modal-title').text(labelfile)
+        modal.find('.modal-body').html(embed);
+    })
+
     $('#kegiatan_materi').change(function(){ submit_disable(); });
 </script>
 
