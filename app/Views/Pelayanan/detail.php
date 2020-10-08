@@ -62,9 +62,10 @@
                 <?php if(in_array($result['jenis_advokasi_id'], array(1,2,3,4,5,6,7))){ ?>
                     <a href="<?= base_url("pelayanan/" . $result['jenis_advokasi_id'] . "/edit/" . $result['id']); ?>" class="btn btn-info">Edit</a>
                 <?php } ?>
-
                 <a class="btn btn-info" href="<?= base_url("/pelayanan"); ?>">Lihat Rekap</a>
-                <a class="btn btn-info" href="<?= base_url("/pelayanan/create/" . $result['jenis_advokasi_id']); ?>">Entry <?= $result['jenis_advokasi_nama'] ?></a>
+                <?php if(in_array($result['jenis_advokasi_id'], array(1,2,3,4,5,6,7))){ ?>
+                    <a class="btn btn-info" href="<?= base_url("/pelayanan/create/" . $result['jenis_advokasi_id']); ?>">Entry <?= $result['jenis_advokasi_nama'] ?></a>
+                <?php } ?>
             </div>
         </div>
         <div class="col-md-4">
