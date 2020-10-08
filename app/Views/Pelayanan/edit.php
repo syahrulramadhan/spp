@@ -266,6 +266,10 @@
 
 <script>
     $(document).ready(function(){
+        $('#paket_jenis_pengadaan_id').change(function (){ submit_disable(); });
+        $('#kategori_permasalahan_id').change(function (){ submit_disable(); });
+        $('#kategori_permasalahan_id').change(function (){ submit_disable(); });
+
         $('#paket_nilai_pagu').mask("#.##0", {reverse: true});
         $('#nomor_telepon').mask('0000-0000-00000');
 
@@ -275,7 +279,6 @@
         $('#kd_satker').select2();
         $('#paket_jenis_pengadaan_id').select2();
         $('#kategori_permasalahan_id').select2();
-        $('#pic_id').select2();
 
         var klpd_id = $('#klpd_id').val();
 
@@ -314,7 +317,11 @@
 
                 $("#kd_satker").val("");
             }
+
+            submit_disable(); 
         });
+
+        $('#kd_satker').change(function (){ submit_disable(); });
 
         function get_satuan_kerja(kd_satker = 0){
             $.ajax({

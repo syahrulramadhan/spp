@@ -221,7 +221,8 @@
 
 
 <script type="text/javascript">
-    $('#jenis_klpd').select2();
+    $('#tahun').change(function(){ submit_disable(); });
+
     $('#tahun').select2
 
     google.charts.load('current', {'packages':['bar']});

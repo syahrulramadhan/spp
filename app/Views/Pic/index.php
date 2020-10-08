@@ -120,6 +120,7 @@
 
 <script>
 $(document).ready(function(){
+    $('#user_id').change(function(){ submit_disable(); });
     $('#user_id').select2();
 });
 </script>

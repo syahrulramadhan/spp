@@ -71,7 +71,34 @@
     <script>
         $(document).ready(function() {
           $("#tanggal_pelaksanaan").datepicker();
+            
+          submit_disable();
+
+          $('form input[type=text], form input[type=password], form textarea').keyup(function() {
+            submit_disable();
+          });
         });
+        
+        function submit_disable(){
+          var disable = true;
+
+          var jumlah = 0;
+
+          $('form input[type=text], form input[type=password], form input[type=file], form select option:selected, form textarea').each(function() {
+              if($(this).val() === '' || $(this).val() === 0 || $(this).val() === '0') { 
+                
+              }else{
+                console.log($(this).val());
+
+                jumlah = jumlah + 1;
+              }
+          });
+
+          if(jumlah > 0)
+            disable = false;
+
+          $('form button[type="submit"]').prop('disabled', disable);
+        }
     </script>
   </body>
 </html>

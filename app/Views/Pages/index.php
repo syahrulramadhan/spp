@@ -30,6 +30,7 @@
             </div> 
 
             <button type="submit" class="btn btn-info">Cari</button>
+
         </form>
         <div class="d-flex align-items-center p-3 my-1 text-white-50 bg-info rounded shadow-sm">
             <div class="lh-100">
@@ -167,6 +168,9 @@
 </div>
 
 <script type="text/javascript">
+    $('#jenis_klpd').change(function(){ submit_disable(); });
+    $('#tahun').change(function(){ submit_disable(); });
+
     $('#jenis_klpd').select2();
     $('#tahun').select2();
 

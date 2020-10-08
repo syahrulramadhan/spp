@@ -98,6 +98,7 @@
 </div>
 
 <script type="text/javascript">
+    $('#pic_id').change(function(){ submit_disable(); });
     $('#pic_id').select2();
 </script>
 

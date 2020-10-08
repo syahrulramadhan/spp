@@ -41,7 +41,7 @@
     <div class="row">
         <div class="col-md-12">
             <div class="card-body">
-                <form action="<?= base_url('jenis-advokasi/' . $result['id']) ?>" method="get" class="mt-2 form-inline">
+                <form action="<?= base_url('jenis-advokasi/' . $result['id']) ?>" method="get" class="mt-2 form-inline" id="form">
                     <?= csrf_field(); ?>
                     <div class="form-group">
                         <label for="klpd" class="col-form-label">Jenis K/L/Pemda </label>
@@ -87,6 +87,9 @@
 </div>
 
 <script type="text/javascript">
+    $('#jenis_klpd').change(function(){ submit_disable(); });
+    $('#tahun').change(function(){ submit_disable(); });
+
     $('#jenis_klpd').select2();
     $('#tahun').select2();
 

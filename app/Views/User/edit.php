@@ -71,7 +71,8 @@
                     <div class="form-group row">
                         <label for="role" class="col-sm-2 col-form-label">Role</label>
                         <div class="col-sm-10">
-                            <?= form_dropdown('role', $options_role, $result['role'], ['class' => 'custom-select ']); ?>
+                            <?php $isinvalid = ($validation->hasError('role')) ? 'is-invalid' : ''; ?>
+                            <?= form_dropdown('role', $options_role, (old('role')) ? old('role') : $result['role'], ['class' => "custom-select isinvalid", 'id' => 'role']); ?>
                             <div class="invalid-feedback"><?= $validation->getError('role'); ?></div>
                         </div>
                     </div>
@@ -94,8 +95,10 @@
     </div>
 </div>
 
-<script>
+<script type="text/javascript">
     $('#nomor_telepon').mask('0000-0000-00000');
+    $('#role').change(function(){ submit_disable(); });
+    $('#role').select2();
 </script>
 
 <?= $this->endsection(); ?>

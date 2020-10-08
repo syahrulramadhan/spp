@@ -167,7 +167,11 @@
 
                 $("#kd_satker").val("");
             }
+
+            submit_disable(); 
         });
+
+        $('#kd_satker').change(function (){ submit_disable(); });
 
         function get_satuan_kerja(){
             $.ajax({

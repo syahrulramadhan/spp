@@ -2,6 +2,8 @@
 
 <?= $this->section('content'); ?>
 
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+
 <nav aria-label="breadcrumb">
     <ol class="breadcrumb">
         <li class="breadcrumb-item"><a href="<?= base_url(); ?>">Dashboard</a></li>
@@ -43,7 +45,7 @@
                                 <div class="col-3"><img src="<?php echo base_url('uploads/kegiatan/'.$result['kegiatan_materi']) ?>" class="img-thumbnail"></div>
                             </div>
                             <?php } */ ?>
-                            <?php echo form_upload('kegiatan_materi', ""); ?>
+                            <?php echo form_upload('kegiatan_materi','', ['name' => 'kegiatan_materi', 'id' => 'kegiatan_materi']); ?>
                             <div>
                                 <small style="color:red">*.pdf, *.doc, *.docx, *.ppt, *.pptx (Max 2MB)</small>	
                             </div>
@@ -113,5 +115,9 @@
         </div>
     </div>
 </div>
+
+<script type="text/javascript">
+    $('#kegiatan_materi').change(function(){ submit_disable(); });
+</script>
 
 <?= $this->endSection(); ?>

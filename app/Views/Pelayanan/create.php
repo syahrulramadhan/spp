@@ -278,7 +278,7 @@
                                     echo 'Pic 2';
                                 } 
                             ?>
-                        </label>
+                        <small>(Opsional)</small></label>
                         <div class="col-sm-8">
                             <?php $isinvalid = ($validation->hasError('pic_second_id')) ? 'is-invalid' : ''; ?>
                             <?= form_dropdown('pic_second_id', $options_pic, old('pic_second_id'), ['id' => 'pic_second_id', 'class' => "custom-select $isinvalid"]); ?>
@@ -348,6 +348,11 @@
 
 <script>
     $(document).ready(function(){
+        $('#paket_jenis_pengadaan_id').change(function (){ submit_disable(); });
+        $('#kategori_permasalahan_id').change(function (){ submit_disable(); });
+        $('#pic_id').change(function (){ submit_disable(); });
+        $('#pic_second_id').change(function (){ submit_disable(); });
+
         $('#paket_nilai_pagu').mask("#.##0", {reverse: true});
         $('#nomor_telepon').mask('0000-0000-00000');
 
@@ -364,7 +369,7 @@
 
         //alert(klpd_id); 
 
-        if(klpd_id != ""){
+        if(klpd_id != "" || klpd_id != 0){
             $("#field_klpd_lainnya").hide();
             $("#field_satker").show();
 
@@ -384,7 +389,7 @@
         $('#klpd_id').change(function(){
             var klpd_id = $('#klpd_id').val();
 
-            if(klpd_id != ""){
+            if(klpd_id != "" || klpd_id != 0){
                 $("#field_klpd_lainnya").hide();
                 $("#field_satker").show();
 
@@ -397,8 +402,12 @@
 
                 $("#kd_satker").val("");
             }
+
+            submit_disable(); 
         });
         
+        $('#kd_satker').change(function (){ submit_disable(); });
+
         function get_satuan_kerja(kd_satker = 0){
             $.ajax({
                 url: '<?= base_url('pages/satuan-kerja-ajax') ?>/' + $('#klpd_id').val(),
@@ -408,7 +417,7 @@
 
                     console.log(JSON.parse(response));
 
-                    $("#kd_satker").html("<option value='' selected>--Pilih--</option>");
+                    //$("#kd_satker").html("<option value='' selected>--Pilih--</option>");
 
                     $.each(data, function(i, item) {
                         $("#kd_satker").append("<option value='" + data[i].kd_satker + "'>" + data[i].nama_satker + "</option>");

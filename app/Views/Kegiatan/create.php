@@ -114,6 +114,7 @@
 </form>
 
 <script type="text/javascript">
+    $('#tahapan').change(function(){ submit_disable(); });
     $('#tahapan').select2();
 
     $("#addInput").on("click",function(){

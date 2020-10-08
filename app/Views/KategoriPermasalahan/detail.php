@@ -91,6 +91,9 @@
 </div>
 
 <script type="text/javascript">
+    $('#jenis_klpd').change(function(){ submit_disable(); });
+    $('#tahun').change(function(){ submit_disable(); });
+    
     $('#jenis_klpd').select2();
     $('#tahun').select2();
 

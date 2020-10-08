@@ -73,7 +73,9 @@
     </div>
 </div>
 
-<script>
+<script type="text/javascript">
+    $('#image_jenis_advokasi').change(function(){ submit_disable(); });
+
     function validasiEkstensi(){
         var inputFile = document.getElementById('image_jenis_advokasi');
         var pathFile = inputFile.value;

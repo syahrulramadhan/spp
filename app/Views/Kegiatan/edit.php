@@ -2,11 +2,14 @@
 
 <?= $this->section('content') ?>
 
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.3/js/select2.min.js"></script>
+
 <nav aria-label="breadcrumb">
     <ol class="breadcrumb">
         <li class="breadcrumb-item"><a href="<?= base_url(); ?>">Dashboard</a></li>
         <li class="breadcrumb-item"><a href="<?= base_url('kegiatan'); ?>">Kegiatan</a></li>
-        <li class="breadcrumb-item"><a href="<?= base_url('kegiatan/' . $kegiatan_id); ?>"><?= $result['nama_kegiatan']; ?></a></li>
+        <li class="breadcrumb-item"><a href="<?= base_url('kegiatan/' . $result['id']); ?>"><?= $result['nama_kegiatan']; ?></a></li>
         <li class="breadcrumb-item active" aria-current="page"><?= $title ?></li>
     </ol>
 </nav>
@@ -44,6 +47,16 @@
                             <div class="invalid-feedback"><?= $validation->getError('tanggal_pelaksanaan'); ?></div>
                         </div>
                     </div>
+                    <?php if(in_array($result['jenis_advokasi_id'], array(8))){ ?>
+                    <div class="form-group row" id="field_satker">
+                        <label for="tahapan" class="col-sm-2 col-form-label">Tahapan </label>
+                        <div class="col-sm-10">
+                            <?php $isinvalid = ($validation->hasError('tahapan')) ? 'is-invalid' : ''; ?>
+                            <?= form_dropdown('tahapan', ['' => '--Pilih--', 'AWARENESS' => 'Awareness', 'KOMITMEN' => 'Komitmen', 'PENINGKATAN_KAPASITAS' => 'Peningkatan Kapasitas', 'MONITORING_COACHING' => 'Mentoring/Coaching'], (old('tahapan')) ? old('tahapan') : $result['tahapan'], ['class' => "custom-select $isinvalid", 'id' => 'tahapan']); ?>
+                            <div class="invalid-feedback"><?= $validation->getError('tahapan'); ?></div>
+                        </div>
+                    </div>
+                    <?php } ?>
                     <div class="form-group row">
                         <div class="col-sm-10">
                         <button type="submit" class="btn btn-info">Ubah Data</button>
@@ -55,5 +68,10 @@
         </div>
     </div>
 </div>
+
+<script type="text/javascript">
+    $('#tahapan').change(function(){ submit_disable(); });
+    $('#tahapan').select2();
+</script>
 
 <?= $this->endsection(); ?>
