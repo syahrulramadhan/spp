@@ -19,12 +19,6 @@
     <div class="row">
         <div class="col-md-12">
             <div class="card-body">
-                <?php if(session()->getFlashdata('pesan')): ?>
-                    <div class="alert alert-success" role="alert">
-                    <?= session()->getFlashdata('pesan') ?>
-                    </div>
-                <?php endif; ?>
-
                 <div class="row">
                     <div class="col-9">
                         <div class="mb-3">
@@ -43,6 +37,11 @@
                         </form>
                     </div>
                 </div>
+                <?php if(session()->getFlashdata('pesan')): ?>
+                    <div class="alert alert-success" role="alert">
+                    <?= session()->getFlashdata('pesan') ?>
+                    </div>
+                <?php endif; ?>
                 <table class="table table-sm">
                     <thead>
                     <tr>

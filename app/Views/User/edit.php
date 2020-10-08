@@ -20,18 +20,16 @@
         <h6 class="mb-0 text-white lh-100 text-uppercase"><?= $title ?></h6>
     </div>
 </div>
-
-<?php if(session()->getFlashdata('pesan')): ?>
-    <div class="alert alert-success" role="alert">
-    <?= session()->getFlashdata('pesan') ?>
-    </div>
-<?php endif; ?>
-
 <div class="card mb-3">
     <div class="row">
         <div class="col-md-12">
             <div class="card-body">
                 <?php /* $validation->listErrors() */ ?>
+                <?php if(session()->getFlashdata('pesan')): ?>
+                    <div class="alert alert-success" role="alert">
+                    <?= session()->getFlashdata('pesan') ?>
+                    </div>
+                <?php endif; ?>
                 <form action="/user/update/<?= $result['id']; ?>" method="post" enctype="multipart/form-data">
                     <?= csrf_field(); ?>
                     <div class="form-group row">

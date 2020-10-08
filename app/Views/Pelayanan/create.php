@@ -23,12 +23,6 @@
         <div class="row">
             <div class="col-md-12">
                 <div class="card-body">
-                    <?php if(session()->getFlashdata('pesan')): ?>
-                        <div class="alert alert-success" role="alert">
-                        <?= session()->getFlashdata('pesan') ?>
-                        </div>
-                    <?php endif; ?>
-
                     <?php /* $validation->listErrors() */ ?>
 
                     <?php /*
@@ -43,8 +37,12 @@
                     9	Bimbingan Teknis
                     */ ?>
 
+                    <?php if(session()->getFlashdata('pesan')): ?>
+                        <div class="alert alert-success" role="alert">
+                        <?= session()->getFlashdata('pesan') ?>
+                        </div>
+                    <?php endif; ?>
                     <?= csrf_field(); ?>
-                    
                     <?php if(in_array($result['id'], array(4,5))){ ?>
                     <div role="alert" aria-live="assertive" aria-atomic="true" class="toast" data-autohide="false">
                         <div class="toast-header bg-warning ">

@@ -24,13 +24,12 @@
     <div class="row">
         <div class="col-md-12">
             <div class="card-body">
-
+                <?php /* $validation->listErrors(); */ ?>
                 <?php if(session()->getFlashdata('pesan')): ?>
                     <div class="alert alert-success" role="alert">
                     <?= session()->getFlashdata('pesan') ?>
                     </div>
                 <?php endif; ?>
-
                 <form action="/kegiatan/update/<?= $result['id']; ?>" method="post" enctype="multipart/form-data">
                     <?= csrf_field(); ?>
                     <div class="form-group row">

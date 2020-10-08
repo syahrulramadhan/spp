@@ -12,19 +12,16 @@
     </ol>
 </nav>
 
-<?php if(session()->getFlashdata('pesan')): ?>
-    <div class="alert alert-success" role="alert">
-    <?= session()->getFlashdata('pesan') ?>
-    </div>
-<?php endif; ?>
-
 <div class="card mb-3">
     <div class="row">
         <div class="col-md-12">
             <div class="card-body">
-
                 <?php /* $validation->listErrors(); */ ?>
-
+                <?php if(session()->getFlashdata('pesan')): ?>
+                    <div class="alert alert-success" role="alert">
+                    <?= session()->getFlashdata('pesan') ?>
+                    </div>
+                <?php endif; ?>
                 <form action='<?= base_url("/pic/save"); ?>' method="post" enctype="multipart/form-data">
                     <?= csrf_field(); ?>
 

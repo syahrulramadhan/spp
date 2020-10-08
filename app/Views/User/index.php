@@ -10,12 +10,6 @@
     </ol>
 </nav>
 
-<?php if(session()->getFlashdata('pesan')): ?>
-    <div class="alert alert-success" role="alert">
-    <?= session()->getFlashdata('pesan') ?>
-    </div>
-<?php endif; ?>
-
 <div class="d-flex align-items-center p-3 my-1 text-white-50 bg-info rounded shadow-sm">
     <div class="lh-100">
         <h6 class="mb-0 text-white lh-100 text-uppercase">TABEL <?= $title ?></h6>
@@ -43,6 +37,11 @@
                         </form>
                     </div>
                 </div>
+                <?php if(session()->getFlashdata('pesan')): ?>
+                    <div class="alert alert-success" role="alert">
+                    <?= session()->getFlashdata('pesan') ?>
+                    </div>
+                <?php endif; ?>
                 <table class="table table-sm">
                     <thead>
                     <tr>

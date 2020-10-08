@@ -17,18 +17,16 @@
     </div>
 </div>
 
-<?php if(session()->getFlashdata('pesan')): ?>
-    <div class="alert alert-success" role="alert">
-    <?= session()->getFlashdata('pesan') ?>
-    </div>
-<?php endif; ?>
-
 <div class="card mb-3">
     <div class="row">
         <div class="col-md-12">
             <div class="card-body">
                 <?php /* $validation->listErrors() */ ?>
-
+                <?php if(session()->getFlashdata('pesan')): ?>
+                    <div class="alert alert-success" role="alert">
+                    <?= session()->getFlashdata('pesan') ?>
+                    </div>
+                <?php endif; ?>
                 <div class="alert alert-info" role="alert">
                 <h4 class="alert-heading"><i class="fa fa-info-circle"></i> Informasi!</h4>
                 <hr>

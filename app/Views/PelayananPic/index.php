@@ -19,15 +19,12 @@
     <div class="row">
         <div class="col-md-12">
             <div class="card-body">
-
+                <?php /* $validation->listErrors(); */ ?>
                 <?php if(session()->getFlashdata('pesan')): ?>
                     <div class="alert alert-success" role="alert">
                     <?= session()->getFlashdata('pesan') ?>
                     </div>
                 <?php endif; ?>
-
-                <?php /* $validation->listErrors() */ ?>
-
                 <form action='<?= base_url("pelayanan/$pelayanan_id/pic/save"); ?>' method="post" enctype="multipart/form-data">
                     <?= csrf_field(); ?>
                     
