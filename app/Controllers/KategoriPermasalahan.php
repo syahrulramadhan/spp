@@ -61,7 +61,7 @@ class KategoriPermasalahan extends BaseController
 				
 				foreach($result as $key => $rows){	
 					$grafik[$key + 1][0] = $rows['nama_kategori_permasalahan'];
-					$grafik[$key + 1][1] = (double) ($rows['jumlah_valuasi']);
+					$grafik[$key + 1][1] = (double) ($rows['jumlah_valuasi']/1000000);
 
 					if($rows['jumlah_valuasi']){
 						$total = $total + 1;
@@ -79,7 +79,7 @@ class KategoriPermasalahan extends BaseController
 				foreach($result as $key => $rows){
 					$grafik[$key + 1][0] = $rows['nama_kategori_permasalahan'];
 					$grafik[$key + 1][1] = (int) $rows['jumlah_pelayanan'];
-					
+
 					if($rows['jumlah_pelayanan']){
 						$total = $total + 1;
 					}

@@ -358,7 +358,7 @@ class Pages extends BaseController
 				foreach($result as $key => $rows){
 					
 					$grafik[$key + 1][0] = $rows['nama_klpd'];
-					$grafik[$key + 1][1] = (double) ($rows['jumlah_valuasi']);
+					$grafik[$key + 1][1] = (double) ($rows['jumlah_valuasi']/1000000);
 
 					if($rows['jumlah_valuasi']){
 						$total = $total + 1;
@@ -494,7 +494,7 @@ class Pages extends BaseController
 				
 				foreach($result as $key => $rows){
 					$grafik[$key + 1][0] = $rows['nama_jenis_pengadaan'];
-					$grafik[$key + 1][1] = (double) ($rows['jumlah_valuasi']);
+					$grafik[$key + 1][1] = (double) ($rows['jumlah_valuasi']/1000000);
 					
 					if($rows['jumlah_valuasi']){
 						$total = $total + 1;

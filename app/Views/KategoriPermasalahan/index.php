@@ -132,7 +132,7 @@
         var data = google.visualization.arrayToDataTable(<?= $result_grafik_valuasi; ?>);
 
         var options = {
-            title: 'JUMLAH VALUASI',
+            title: 'JUMLAH VALUASI (Rp. JUTA)',
             pieHole: 0.4,
         };
 

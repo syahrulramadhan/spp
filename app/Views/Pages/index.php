@@ -210,7 +210,7 @@
 
         var options = {
             chart: {
-                title: 'Grafik Valuasi',
+                title: 'Grafik Valuasi (Rp. JUTA)',
                 subtitle: '<?= date('d-m-Y  h:i:s'); ?>'
             },
             colors: ['#FFA6CD ','#FF7DC5'],
