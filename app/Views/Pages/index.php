@@ -38,6 +38,39 @@
             </div>
         </div>
         <div class="mb-3 p-3 bg-white rounded shadow-sm">
+            <div id="curve_chart_pelayanan" style="width: 100%; height: 400px"></div>
+        </div>
+        <div class="d-flex align-items-center p-3 my-1 text-white-50 bg-info rounded shadow-sm">
+            <div class="lh-100">
+                <h6 class="mb-0 text-white lh-100">Grafik Valuasi</h6>
+            </div>
+        </div>
+        <div class="mb-3 p-3 bg-white rounded shadow-sm">
+            <div id="curve_chart_valuasi" style="width: 100%; height: 400px"></div>
+        </div>
+        <div class="d-flex align-items-center p-3 my-1 text-white-50 bg-info rounded shadow-sm">
+            <div class="lh-100">
+                <h6 class="mb-0 text-white lh-100">Grafik Coverage</h6>
+            </div>
+        </div>
+        <div class="mb-3 p-3 bg-white rounded shadow-sm">
+            <div id="curve_chart_coverage" style="width: 100%; height: 400px"></div>
+        </div>
+        <div class="d-flex align-items-center p-3 my-1 text-white-50 bg-info rounded shadow-sm">
+            <div class="lh-100">
+                <h6 class="mb-0 text-white lh-100">Grafik Kualitas</h6>
+            </div>
+        </div>
+        <div class="mb-3 p-3 bg-white rounded shadow-sm">
+            <div id="curve_chart_kualitas" style="width: 100%; height: 400px"></div>
+        </div>
+        <?php /*
+        <div class="d-flex align-items-center p-3 my-1 text-white-50 bg-info rounded shadow-sm">
+            <div class="lh-100">
+                <h6 class="mb-0 text-white lh-100">Grafik Layanan</h6>
+            </div>
+        </div>
+        <div class="mb-3 p-3 bg-white rounded shadow-sm">
             <?php if($result_chart_pelayanan){ ?>
                 <div id="curve_chart_pelayanan" style="width: 100%; height: 400px"></div>
             <?php }else{ ?>
@@ -80,6 +113,7 @@
                 <div class="text-center my-2">Data tidak ditemukan</div>
             <?php } ?>
         </div>
+        */ ?>
     </div>
     <div class="col-md-4">
         <div class="p-3 my-1 text-center bg-white rounded">
@@ -179,10 +213,20 @@
     google.charts.setOnLoadCallback(drawChartValuasi);
     google.charts.setOnLoadCallback(drawChartCoverage);
     google.charts.setOnLoadCallback(drawChartKualitas);
-
-    function drawChartLayanan() {
     
-        var data = google.visualization.arrayToDataTable(<?= $result_chart_pelayanan; ?>);
+    function drawChartLayanan() {
+        var ajax = $.ajax({
+            url: '<?= base_url("pages/chart/chart_layanan?jenis_klpd=$jenis_klpd&tahun=$tahun"); ?>',
+            //data: {jenis_klpd: '<?= $jenis_klpd; ?>', tahun: <?= $tahun; ?>},
+            dataType: "json", // type of data we're expecting from server
+            async: false // make true to avoid waiting for the request to be complete
+        });
+
+        result = JSON.parse(ajax.responseText);
+
+        var data = google.visualization.arrayToDataTable(result);
+
+        <?php /* var data = google.visualization.arrayToDataTable(<?= $result_chart_pelayanan; ?>); */ ?>
 
         var options = {
             chart: {
@@ -206,14 +250,24 @@
     }
 
     function drawChartValuasi(){
-        var data = google.visualization.arrayToDataTable(<?= $result_chart_valuasi; ?>);
+        var ajax = $.ajax({
+            url: '<?= base_url("pages/chart/chart_valuasi?jenis_klpd=$jenis_klpd&tahun=$tahun"); ?>',
+            dataType: "json", // type of data we're expecting from server
+            async: false // make true to avoid waiting for the request to be complete
+        });
+
+        result = JSON.parse(ajax.responseText);
+
+        var data = google.visualization.arrayToDataTable(result);
+
+        <?php /* var data = google.visualization.arrayToDataTable(<?= $result_chart_valuasi; ?>); */ ?>
 
         var options = {
             chart: {
                 title: 'Grafik Valuasi (Rp. JUTA)',
                 subtitle: '<?= date('d-m-Y  h:i:s'); ?>'
             },
-            colors: ['#FFA6CD ','#FF7DC5'],
+            colors: ['#FA00B5','#FA68F8'],
             legend: { position: 'none' },
             vAxis: {
                 title: 'Valuasi'
@@ -229,14 +283,24 @@
     }
 
     function drawChartCoverage(){
-        var data = google.visualization.arrayToDataTable(<?= $result_chart_coverage; ?>);
+        var ajax = $.ajax({
+            url: '<?= base_url("pages/chart/chart_coverage?jenis_klpd=$jenis_klpd&tahun=$tahun"); ?>',
+            dataType: "json", // type of data we're expecting from server
+            async: false // make true to avoid waiting for the request to be complete
+        });
+
+        result = JSON.parse(ajax.responseText);
+
+        var data = google.visualization.arrayToDataTable(result);
+
+        <?php /* var data = google.visualization.arrayToDataTable(<?= $result_chart_coverage; ?>); */ ?>
 
         var options = {
             chart: {
                 title: 'Grafik Coverage',
                 subtitle: '<?= date('d-m-Y  h:i:s'); ?>'
             },
-            colors: ['#4DFA23','#87FA4A'],
+            colors: ['#9AE600','#DBFF0D'],
             legend: { position: 'none' },
             vAxis: {
                 title: 'Coverage'
@@ -253,14 +317,24 @@
     }
 
     function drawChartKualitas(){
-        var data = google.visualization.arrayToDataTable(<?= $result_chart_kualitas; ?>);
+        var ajax = $.ajax({
+            url: '<?= base_url("pages/chart/chart_kualitas?jenis_klpd=$jenis_klpd&tahun=$tahun"); ?>',
+            dataType: "json", // type of data we're expecting from server
+            async: false // make true to avoid waiting for the request to be complete
+        });
+
+        result = JSON.parse(ajax.responseText);
+
+        var data = google.visualization.arrayToDataTable(result);
+
+        <?php /* var data = google.visualization.arrayToDataTable(<?= $result_chart_kualitas; ?>); */ ?>
 
         var options = {
             chart: {
                 title: 'Grafik Kualitas',
                 subtitle: '<?= date('d-m-Y  h:i:s'); ?>'
             },
-            colors: ['#FA5AFF'],
+            colors: ['#FA0065'],
             legend: { position: 'none' },
             vAxis: {
                 title: 'Kualitas'
@@ -281,7 +355,7 @@
     //google.charts.setOnLoadCallback(drawChartCoverage);
     //google.charts.setOnLoadCallback(drawChartKualitas);
 
-    /*
+    <?php /*
     function drawChartPelayaan() {
         var data = google.visualization.arrayToDataTable(<?= $result_chart_pelayanan; ?>);
 
@@ -326,8 +400,7 @@
 
         chart.draw(data, options);
     }
-    */
-    /*
+
     function drawChartKualitas() {
         var data = google.visualization.arrayToDataTable(<?= $result_chart_kualitas; ?>);
 
@@ -342,6 +415,6 @@
 
         chart.draw(data, options);
     }
-    */
+    */ ?>
 </script>
 <?php $this->endSection(); ?>

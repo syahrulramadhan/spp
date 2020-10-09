@@ -44,16 +44,21 @@ class Pages extends BaseController
 			'tahun' => $tahun,
 			'options_jenis_klpd' => $this->options_jenis_klpd(),
 			'options_tahun_layanan' => $this->options_tahun_layanan(),
-			'result_chart_pelayanan' => $this->chart('chart_layanan', $jenis_klpd, $tahun),
-			'result_chart_valuasi' => $this->chart('chart_valuasi', $jenis_klpd, $tahun),
-			'result_chart_coverage' => $this->chart('chart_coverage', $jenis_klpd, $tahun),
-			'result_chart_kualitas' => $this->chart('chart_kualitas', $jenis_klpd, $tahun),
+			//'result_chart_pelayanan' => $this->chart('chart_layanan', $jenis_klpd, $tahun),
+			//'result_chart_valuasi' => $this->chart('chart_valuasi', $jenis_klpd, $tahun),
+			//'result_chart_coverage' => $this->chart('chart_coverage', $jenis_klpd, $tahun),
+			//'result_chart_kualitas' => $this->chart('chart_kualitas', $jenis_klpd, $tahun),
 		];
 
 		return view('Pages/index', $data);
 	}
 
-	public function chart($param = "", $jenis_klpd, $tahun){
+	public function chart($param = ""){
+		header('Access-Control-Allow-Origin: *');
+		
+		$jenis_klpd = ($this->request->getVar('jenis_klpd')) ? $this->request->getVar('jenis_klpd') : "";
+		$tahun = ($this->request->getVar('tahun')) ? $this->request->getVar('tahun') : date('Y');
+
 		$grafik = [];
 		$grafik1 = [];
 
@@ -150,7 +155,7 @@ class Pages extends BaseController
 			}
 		}
 
-		return json_encode($grafik, JSON_PRETTY_PRINT);
+		echo json_encode($grafik, JSON_PRETTY_PRINT);
 	}
 
 	public function chartJenisPengadaan($param = "", $jenis_klpd, $tahun, $id){
