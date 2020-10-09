@@ -41,11 +41,11 @@
             <div class="fluid text-center"><strong class="d-inline-block mb-2 text-primary"><?= $rows['jumlah_pelayanan']; ?></strong></div>
             <br/>
             <?php if(in_array($rows['id'], array(8,9))){ ?>
-                <a class="btn btn-success" href="/kegiatan/create/<?= $rows['id']; ?>">Entry</a>
-                <a class="btn btn-info" style="margin-top: 5px;" href="/kegiatan" class="stretched-link">Rekap</a>
+                <a class="btn btn-success" href="<?= base_url("kegiatan/create/" . $rows['id']); ?>">Entry</a>
+                <a class="btn btn-info" style="margin-top: 5px;" href="<?= base_url("kegiatan"); ?>" class="stretched-link">Rekap</a>
             <?php }else{ ?>
-                <a class="btn btn-success" href="/pelayanan/create/<?= $rows['id']; ?>">Entry</a>
-                <a class="btn btn-info" style="margin-top: 5px;" href="/pelayanan" class="stretched-link">Rekap</a>
+                <a class="btn btn-success" href="<?= base_url("pelayanan/create/" . $rows['id']); ?>">Entry</a>
+                <a class="btn btn-info" style="margin-top: 5px;" href="<?= base_url("pelayanan?jenis_advokasi_id=" . $rows['id']); ?>" class="stretched-link">Rekap</a>
             <?php } ?>
         </div>
     </div>

@@ -224,6 +224,18 @@ class BaseController extends Controller
 		return $result;
 	}
 
+	public function options_jenis_advokasi(){
+		$arr = $this->jenisAdvokasiModel->getJenisAdvokasi();
+
+		$result = ['0' => '--Pilih--'];
+
+		foreach ($arr as $row){
+			$result[$row['id']] = $row['nama_jenis_advokasi'];
+		}
+
+		return $result;
+	}
+
 	public function setPassword(string $pass, $salt = "")
 	{
 		if($salt){

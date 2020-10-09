@@ -37,9 +37,10 @@ class Pelayanan extends BaseController
 		//$listJenisAdvokasi = $this->jenisAdvokasiModel->getList();
 		
 		$keyword = $this->request->getVar('q');
-
-		if($keyword){
-			$pelayanan = $this->pelayananModel->getPaginatedPelayananData($keyword);
+		$jenis_advokasi_id = $this->request->getVar('jenis_advokasi_id');
+		
+		if($jenis_advokasi_id || $keyword){
+			$pelayanan = $this->pelayananModel->getPaginatedPelayananData($jenis_advokasi_id, $keyword);
 		}else
 			$pelayanan = $this->pelayananModel;
 
@@ -49,8 +50,9 @@ class Pelayanan extends BaseController
 		$data = [
             'title' => 'Pelayanan',
 			'result' => $pelayanan->paginate($per_page, 'pelayanan'),
-			//'list_jenis_advokasi' => $listJenisAdvokasi,
+			'options_jenis_advokasi' => $this->options_jenis_advokasi(),
 			'keyword' => $keyword,
+			'jenis_advokasi_id' => $jenis_advokasi_id,
 			'pager' => $this->pelayananModel->pager,
 			'per_page' => $per_page,
 			'currentPage' => $currentPage

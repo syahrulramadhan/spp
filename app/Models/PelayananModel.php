@@ -51,8 +51,8 @@ class PelayananModel extends Model
         return $builder->get()->getResultArray();
     }
 
-    public function getPaginatedPelayananData($q){
-        return $this->table('pelayanan')->like('nama', $q)->orLike('paket_nama', $q);
+    public function getPaginatedPelayananData($jenis_advokasi_id, $q){
+        return $this->table('pelayanan')->where('jenis_advokasi_id', $jenis_advokasi_id)->where("(nama LIKE '%$q%' OR paket_nama LIKE '%$q%')");
     }
 
     public function ChartPelayananJumlah($jenis_klpd, $tahun){

@@ -2,6 +2,8 @@
 
 <?= $this->section('content'); ?>
 
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+
 <nav aria-label="breadcrumb">
     <ol class="breadcrumb">
         <li class="breadcrumb-item"><a href="<?= base_url(); ?>">Dashboard</a></li>
@@ -21,11 +23,12 @@
         <div class="col-md-12">
             <div class="card-body">
                 <div class="row">
-                    <div class="col-9">
+                    <div class="col-6">
                     </div>
-                    <div class="col-3">
+                    <div class="col-6">
                         <form id="form-submit" action="" method="GET">
                             <div class="input-group mb-3">
+                                <?= form_dropdown('jenis_advokasi_id', $options_jenis_advokasi, $jenis_advokasi_id, ['id' => 'jenis_advokasi_id', 'class' => "custom-select mr-2"]); ?>
                                 <input type="text" class="form-control" placeholder="Masukan kata nama / nama paket" name="q" value="<?= $keyword ?>" autofocus>
                                 <div class="input-group-append">
                                     <button class="btn btn-outline-info" type="submit"><i class="fa fa-search"></i></button>
@@ -110,5 +113,9 @@
 </div>
 
 <?= $pager->links('pelayanan', 'bootstrap_pagination'); ?>
-
+<script>
+    $(document).ready(function(){
+        $('#jenis_advokasi_id').change(function (){ submit_disable(); });
+    })
+</script>
 <?= $this->endSection(); ?>
