@@ -328,7 +328,7 @@ class Kegiatan extends BaseController
 			'satuan_kerja_id' => $this->request->getVar('kd_satker'),
 			'klpd_nama_lainnya' => $this->request->getVar('klpd_nama_lainnya'),
 			'keterangan' => $this->request->getVar('keterangan'),
-			'user_id' => 1
+			'created_by' => session('id')
 		];
 
 		//echo "<pre>"; print_r($save); exit;
