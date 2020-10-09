@@ -318,7 +318,7 @@
                     <?php if(in_array($result['id'], array(1,2,3,4,5,6,7))){ ?>
                     <div class="form-group row">
                         <label for="keterangan" class="col-sm-2 col-form-label">Keterangan 
-                            <?php if(in_array($result['id'], array(1,2,3,4,5,6))){ ?>
+                            <?php if(in_array($result['id'], array(1,2,3,4,5))){ ?>
                                 <small>(Opsional)</small>
                             <?php } ?>
                         </label>
