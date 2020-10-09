@@ -267,7 +267,7 @@
                 title: 'Grafik Valuasi (Rp. JUTA)',
                 subtitle: '<?= date('d-m-Y  h:i:s'); ?>'
             },
-            colors: ['#FA00B5','#FA68F8'],
+            colors: ['#FA68F8','#FA00B5'],
             legend: { position: 'none' },
             vAxis: {
                 title: 'Valuasi'
@@ -300,7 +300,7 @@
                 title: 'Grafik Coverage',
                 subtitle: '<?= date('d-m-Y  h:i:s'); ?>'
             },
-            colors: ['#9AE600','#DBFF0D'],
+            colors: ['#DBFF0D','#9AE600'],
             legend: { position: 'none' },
             vAxis: {
                 title: 'Coverage'
