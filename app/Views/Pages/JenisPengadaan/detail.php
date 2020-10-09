@@ -125,7 +125,7 @@
                 title: 'Grafik Valuasi <?= $result['nama_jenis_pengadaan'] ?> (Rp. JUTA)',
                 subtitle: '<?= date('d-m-Y  h:i:s'); ?>'
             },
-            colors: ['#FFA6CD','#FF7DC5'],
+            colors: ['#FA68F8','#FA00B5'],
             legend: { position: 'none' },
             vAxis: {
                 title: 'Valuasi <?= $result['nama_jenis_pengadaan'] ?>'

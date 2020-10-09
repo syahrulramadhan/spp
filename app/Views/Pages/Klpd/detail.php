@@ -262,7 +262,7 @@
                 title: 'Grafik Valuasi <?= $result['nama_klpd'] ?> (Rp. JUTA)',
                 subtitle: '<?= date('d-m-Y  h:i:s'); ?>'
             },
-            colors: ['#FFA6CD','#FF7DC5'],
+            colors: ['#FA68F8','#FA00B5'],
             legend: { position: 'none' },
             vAxis: {
                 title: 'Valuasi <?= $result['nama_klpd'] ?>'
@@ -285,7 +285,7 @@
                 title: 'Grafik Kualitas <?= $result['nama_klpd'] ?>',
                 subtitle: '<?= date('d-m-Y  h:i:s'); ?>'
             },
-            colors: ['#FA5AFF'],
+            colors: ['#FA0065'],
             legend: { position: 'none' },
             vAxis: {
                 title: 'Kualitas <?= $result['nama_klpd'] ?>'
