@@ -72,6 +72,11 @@ class JenisAdvokasi extends BaseController
 	}
 
 	public function chart($param = "", $jenis_klpd, $tahun, $id){
+		$jenis_klpd = ($this->request->getVar('jenis_klpd')) ? $this->request->getVar('jenis_klpd') : "";
+		$tahun = ($this->request->getVar('tahun')) ? $this->request->getVar('tahun') : date('Y');
+
+		$grafik = [];
+		
 		$grafik[0][0] = "";
 		$grafik[0][1] = "";
 		$grafik[0][2] = "";
@@ -96,7 +101,7 @@ class JenisAdvokasi extends BaseController
 					$grafik[$rows['bulan']][2] = (double) ($rows['total_valuasi']/1000000);
 				}
 			}else{
-				return false;
+				echo json_encode(array('status' => false, 'data' => [])); exit;
 			}
 		}else{
 			$result = $this->grafikModel->layananByJenisAdvokasiId($jenis_klpd, $tahun, $id);
@@ -112,7 +117,7 @@ class JenisAdvokasi extends BaseController
 					$grafik[$rows['bulan']][2] = (int) ($rows['total_pelayanan']);
 				}
 			}else{
-				return false;
+				echo json_encode(array('status' => false, 'data' => [])); exit;
 			}
 		}
 

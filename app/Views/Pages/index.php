@@ -20,7 +20,7 @@
                 <div class="form-group">
                     <label for="klpd" class="col-form-label">Jenis K/L/Pemda </label>
                     <div class="col">
-                        <?= form_dropdown('jenis_klpd_layanan', $options_jenis_klpd, '', ['class' => 'custom-select ', 'id' => 'jenis_klpd_layanan']); ?>
+                        <?= form_dropdown('jenis_klpd_layanan', $options_jenis_klpd, $jenis_klpd, ['class' => 'custom-select ', 'id' => 'jenis_klpd_layanan']); ?>
                     </div>
                 </div>
                 <div class="form-group">
@@ -48,7 +48,7 @@
                 <div class="form-group">
                     <label for="klpd" class="col-form-label">Jenis K/L/Pemda </label>
                     <div class="col">
-                        <?= form_dropdown('jenis_klpd_valuasi', $options_jenis_klpd, '', ['class' => 'custom-select ', 'id' => 'jenis_klpd_valuasi']); ?>
+                        <?= form_dropdown('jenis_klpd_valuasi', $options_jenis_klpd, $jenis_klpd, ['class' => 'custom-select ', 'id' => 'jenis_klpd_valuasi']); ?>
                     </div>
                 </div>
                 <div class="form-group">
@@ -76,7 +76,7 @@
                 <div class="form-group">
                     <label for="klpd" class="col-form-label">Jenis K/L/Pemda </label>
                     <div class="col">
-                        <?= form_dropdown('jenis_klpd_coverage', $options_jenis_klpd, '', ['class' => 'custom-select ', 'id' => 'jenis_klpd_coverage']); ?>
+                        <?= form_dropdown('jenis_klpd_coverage', $options_jenis_klpd, $jenis_klpd, ['class' => 'custom-select ', 'id' => 'jenis_klpd_coverage']); ?>
                     </div>
                 </div>
                 <div class="form-group">
@@ -104,7 +104,7 @@
                 <div class="form-group">
                     <label for="klpd" class="col-form-label">Jenis K/L/Pemda </label>
                     <div class="col">
-                        <?= form_dropdown('jenis_klpd_kualitas', $options_jenis_klpd, '', ['class' => 'custom-select ', 'id' => 'jenis_klpd_kualitas']); ?>
+                        <?= form_dropdown('jenis_klpd_kualitas', $options_jenis_klpd, $jenis_klpd, ['class' => 'custom-select ', 'id' => 'jenis_klpd_kualitas']); ?>
                     </div>
                 </div>
                 <div class="form-group">
