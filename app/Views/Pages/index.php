@@ -212,7 +212,7 @@
     function drawChartLayanan() {
         var ajax = $.ajax({
             url: '<?= base_url("pages/chart/chart_layanan"); ?>',
-            data: { jenis_klpd: $("#jenis_klpd").val(), tahun: $("#tahun").val() },
+            data: { jenis_klpd: $("#jenis_klpd_layanan").val(), tahun: $("#tahun_layanan").val() },
             dataType: "json", // type of data we're expecting from server
             async: false // make true to avoid waiting for the request to be complete
         });
