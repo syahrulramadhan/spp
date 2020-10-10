@@ -36,10 +36,10 @@ class Pages extends BaseController
 		$jenis_klpd = $this->request->getVar('jenis_klpd');
 		$tahun = ($this->request->getVar('tahun')) ? $this->request->getVar('tahun') : date('Y');
 		
-        $arr = $this->pelayananModel->getPelayananJoin();
+        $result = $this->pelayananModel->getPelayananJoin();
 
 		$data = [
-			'result' => $arr,
+			'result' => $result,
 			'jenis_klpd' => $jenis_klpd,
 			'tahun' => $tahun,
 			'options_jenis_klpd' => $this->options_jenis_klpd(),
@@ -49,6 +49,8 @@ class Pages extends BaseController
 			//'result_chart_coverage' => $this->chart('chart_coverage', $jenis_klpd, $tahun),
 			//'result_chart_kualitas' => $this->chart('chart_kualitas', $jenis_klpd, $tahun),
 		];
+
+		$this->cachePage(10);
 
 		return view('Pages/index', $data);
 	}
