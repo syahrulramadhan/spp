@@ -65,8 +65,8 @@ class Pages extends BaseController
 		$grafik[0][2] = "";
 
 		for($i=1;$i<=12;$i++){
-			$grafik1[0][0] = $this->bulan($i);
-			$grafik1[0][1] = "";
+			$grafik1[$i][0] = $this->bulan($i);
+			$grafik1[$i][1] = 0;
 
 			$grafik[$i][0] = $this->bulan($i);
 			$grafik[$i][1] = 0;
@@ -87,7 +87,7 @@ class Pages extends BaseController
 					$grafik[$rows['bulan']][2] = (double) ($rows['total_valuasi']/1000000);
 				}
 			}else{
-				return false;
+				echo json_encode(array('status' => false, 'data' => [])); exit;
 			}
 		}else if($param == 'chart_coverage'){
 			$count = $this->klpdModel->getCountKlpd($jenis_klpd);
@@ -110,13 +110,13 @@ class Pages extends BaseController
 					$total_coverage = $rows['total_coverage'];
 				}
 			}else{
-				return false;
+				echo json_encode(array('status' => false, 'data' => [])); exit;
 			}
 		}else if($param == 'chart_kualitas'){
 			$count = $this->klpdModel->getCountKlpd($jenis_klpd);
 
-			$grafik[0][0] = 'BULAN';
-			$grafik[0][1] = 'RATA-RATA SKOR';
+			$grafik1[0][0] = 'BULAN';
+			$grafik1[0][1] = 'RATA-RATA SKOR';
 
 			$total = 0;
 
@@ -124,14 +124,17 @@ class Pages extends BaseController
 				$result = $this->pelayananModel->ChartPelayananKualitas($i, $jenis_klpd, $tahun);
 
 				if($result->total_kualitas){
-					$grafik[$i][1] = $result->total_kualitas/$count;
+					$grafik1[$i][1] = $result->total_kualitas/$count;
 
 					$total = $total + 1;
 				}
 			}
 
-			if($total < 1)
-				return false;
+			if($total < 1){
+				echo json_encode(array('status' => false, 'data' => [])); exit;
+			}else{
+				$grafik = $grafik1;
+			}
 		}else{
 			$result = $this->pelayananModel->ChartPelayananJumlah($jenis_klpd, $tahun);
 
@@ -146,11 +149,11 @@ class Pages extends BaseController
 					$grafik[$rows['bulan']][2] = (int) ($rows['total_pelayanan']);
 				}
 			}else{
-				return false;
+				echo json_encode(array('status' => false, 'data' => [])); exit;
 			}
 		}
 
-		echo json_encode($grafik, JSON_PRETTY_PRINT);
+		echo json_encode(array('status' => true, 'data' => $grafik, JSON_PRETTY_PRINT));
 	}
 
 	public function chartJenisPengadaan($param = "", $jenis_klpd, $tahun, $id){
