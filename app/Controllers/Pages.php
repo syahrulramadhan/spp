@@ -181,7 +181,7 @@ class Pages extends BaseController
 					$grafik[$rows['bulan']][2] = (double) ($rows['total_valuasi']/1000000);
 				}
 			}else{
-				return false;
+				echo json_encode(array('status' => false, 'data' => [])); exit;
 			}
 		}else{
 			$result = $this->grafikModel->layananByJenisPengadaanId($jenis_klpd, $tahun, $id);
@@ -197,7 +197,7 @@ class Pages extends BaseController
 					$grafik[$rows['bulan']][2] = (int) ($rows['total_pelayanan']);
 				}
 			}else{
-				return false;
+				echo json_encode(array('status' => false, 'data' => [])); exit;
 			}
 		}
 
