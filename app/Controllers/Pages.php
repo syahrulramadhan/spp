@@ -35,19 +35,12 @@ class Pages extends BaseController
 	{
 		$jenis_klpd = $this->request->getVar('jenis_klpd');
 		$tahun = ($this->request->getVar('tahun')) ? $this->request->getVar('tahun') : date('Y');
-		
-        $result = $this->pelayananModel->getPelayananJoin();
 
 		$data = [
-			'result' => $result,
 			'jenis_klpd' => $jenis_klpd,
 			'tahun' => $tahun,
 			'options_jenis_klpd' => $this->options_jenis_klpd(),
-			'options_tahun_layanan' => $this->options_tahun_layanan(),
-			//'result_chart_pelayanan' => $this->chart('chart_layanan', $jenis_klpd, $tahun),
-			//'result_chart_valuasi' => $this->chart('chart_valuasi', $jenis_klpd, $tahun),
-			//'result_chart_coverage' => $this->chart('chart_coverage', $jenis_klpd, $tahun),
-			//'result_chart_kualitas' => $this->chart('chart_kualitas', $jenis_klpd, $tahun),
+			'options_tahun_layanan' => $this->options_tahun_layanan()
 		];
 
 		$this->cachePage(10);

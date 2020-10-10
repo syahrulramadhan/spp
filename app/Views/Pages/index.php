@@ -38,7 +38,9 @@
             </div>
         </div>
         <div class="mb-3 p-3 bg-white rounded shadow-sm">
-            <div id="curve_chart_pelayanan" style="width: 100%; height: 400px"></div>
+            <div id="curve_chart_pelayanan" style="width: 100%; height: 400px">
+                <div class="text-center my-2">Data tidak ditemukan</div>
+            </div>
         </div>
         <div class="d-flex align-items-center p-3 my-1 text-white-50 bg-info rounded shadow-sm">
             <div class="lh-100">
@@ -46,7 +48,9 @@
             </div>
         </div>
         <div class="mb-3 p-3 bg-white rounded shadow-sm">
-            <div id="curve_chart_valuasi" style="width: 100%; height: 400px"></div>
+            <div id="curve_chart_valuasi" style="width: 100%; height: 400px">
+                <div class="text-center my-2">Data tidak ditemukan</div>
+            </div>
         </div>
         <div class="d-flex align-items-center p-3 my-1 text-white-50 bg-info rounded shadow-sm">
             <div class="lh-100">
@@ -54,7 +58,9 @@
             </div>
         </div>
         <div class="mb-3 p-3 bg-white rounded shadow-sm">
-            <div id="curve_chart_coverage" style="width: 100%; height: 400px"></div>
+            <div id="curve_chart_coverage" style="width: 100%; height: 400px">
+                <div class="text-center my-2">Data tidak ditemukan</div>
+            </div>
         </div>
         <div class="d-flex align-items-center p-3 my-1 text-white-50 bg-info rounded shadow-sm">
             <div class="lh-100">
@@ -62,58 +68,10 @@
             </div>
         </div>
         <div class="mb-3 p-3 bg-white rounded shadow-sm">
-            <div id="curve_chart_kualitas" style="width: 100%; height: 400px"></div>
-        </div>
-        <?php /*
-        <div class="d-flex align-items-center p-3 my-1 text-white-50 bg-info rounded shadow-sm">
-            <div class="lh-100">
-                <h6 class="mb-0 text-white lh-100">Grafik Layanan</h6>
+            <div id="curve_chart_kualitas" style="width: 100%; height: 400px">
+                <div class="text-center my-2">Data tidak ditemukan</div>
             </div>
         </div>
-        <div class="mb-3 p-3 bg-white rounded shadow-sm">
-            <?php if($result_chart_pelayanan){ ?>
-                <div id="curve_chart_pelayanan" style="width: 100%; height: 400px"></div>
-            <?php }else{ ?>
-                <div class="text-center my-2">Data tidak ditemukan</div>
-            <?php } ?>
-        </div>
-        <div class="d-flex align-items-center p-3 my-1 text-white-50 bg-info rounded shadow-sm">
-            <div class="lh-100">
-                <h6 class="mb-0 text-white lh-100">Grafik Valuasi</h6>
-            </div>
-        </div>
-        <div class="mb-3 p-3 bg-white rounded shadow-sm">
-            <?php if($result_chart_valuasi){ ?>
-                <div id="curve_chart_valuasi" style="width: 100%; height: 400px"></div>
-            <?php }else{ ?>
-                <div class="text-center my-2">Data tidak ditemukan</div>
-            <?php } ?>
-        </div>
-        <div class="d-flex align-items-center p-3 my-1 text-white-50 bg-info rounded shadow-sm">
-            <div class="lh-100">
-                <h6 class="mb-0 text-white lh-100">Grafik Coverage</h6>
-            </div>
-        </div>
-        <div class="mb-3 p-3 bg-white rounded shadow-sm">
-            <?php if($result_chart_coverage){ ?>
-                <div id="curve_chart_coverage" style="width: 100%; height: 400px"></div>
-            <?php }else{ ?>
-                <div class="text-center my-2">Data tidak ditemukan</div>
-            <?php } ?>
-        </div>
-        <div class="d-flex align-items-center p-3 my-1 text-white-50 bg-info rounded shadow-sm">
-            <div class="lh-100">
-                <h6 class="mb-0 text-white lh-100">Grafik Kualitas</h6>
-            </div>
-        </div>
-        <div class="mb-3 p-3 bg-white rounded shadow-sm">
-            <?php if($result_chart_kualitas){ ?>
-                <div id="curve_chart_kualitas" style="width: 100%; height: 400px"></div>
-            <?php }else{ ?>
-                <div class="text-center my-2">Data tidak ditemukan</div>
-            <?php } ?>
-        </div>
-        */ ?>
     </div>
     <div class="col-md-4">
         <div class="p-3 my-1 text-center bg-white rounded">
@@ -125,79 +83,18 @@
             </div>
         </div>
         <div class="d-flex align-items-center p-3 my-1 text-white-50 bg-info rounded shadow-sm">
-        <!--<img class="mr-3" src="../assets/brand/bootstrap-outline.svg" alt="" width="48" height="48">-->
             <div class="lh-100">
                 <h6 class="mb-0 text-white lh-100">Recent updates Layanan</h6>
             </div>
         </div>
 
-        <div class="my-3 p-3 bg-white rounded shadow-sm">
-        <!--<h6 class="border-bottom border-gray pb-2 mb-0">Recent updates</h6>-->
-
-        <?php if($result){
-                $i = 1;
-
-                foreach($result as $rows):
-                    ?>
-                    <a href="pelayanan/<?= $rows['id']; ?>" class="text-decoration-none">
-                    <div class="media text-muted pt-3">
-                        <svg class="bd-placeholder-img mr-2 rounded" width="32" height="32" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="xMidYMid slice" focusable="false" role="img" aria-label="Placeholder: 32x32"><title>Placeholder</title><rect width="100%" height="100%" fill="#17a2b8 "/><text x="50%" y="50%" fill="#17a2b8 " dy=".3em">32x32</text></svg>
-                        <p class="media-body pb-3 mb-0 small lh-125 border-bottom border-gray">
-                            <strong class="d-block text-gray-dark"><?= $rows['nama_klpd']; ?></strong>
-                            <?= $rows['paket_nama']; ?>
-                            <span class="badge badge-pill bg-light align-text-bottom" ><?= $rows['jenis_advokasi_nama']; ?></span>
-                        </p>
-                    </div>
-                    </a>
-                
-                <?php endforeach; 
-            }else{ ?>
-                <div class="text-center my-2">Data tidak ditemukan</div>
-        <?php } ?>
-
-        <small class="d-block text-right mt-3">
-            <a href="<?= base_url('pelayanan') ?>">All updates</a>
-        </small>
+        <div class="p-3 bg-white rounded shadow-sm">
+            <!--<h6 class="border-bottom border-gray pb-2 mb-0">Recent updates</h6>-->
+            <div id="daftarPelayanan"><div class="text-center my-2">Data tidak ditemukan</div></div>
+            <small class="d-block text-right mt-3">
+                <a href="<?= base_url('pelayanan') ?>" class="text-decoration-none">Selengkapnya</a>
+            </small>
         </div>
-
-        <!--
-        <div class="my-3 p-3 bg-white rounded shadow-sm">
-        <h6 class="border-bottom border-gray pb-2 mb-0">PIC</h6>
-        <div class="media text-muted pt-3">
-            <svg class="bd-placeholder-img mr-2 rounded" width="32" height="32" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="xMidYMid slice" focusable="false" role="img" aria-label="Placeholder: 32x32"><title>Placeholder</title><rect width="100%" height="100%" fill="#007bff"/><text x="50%" y="50%" fill="#007bff" dy=".3em">32x32</text></svg>
-            <div class="media-body pb-3 mb-0 small lh-125 border-bottom border-gray">
-            <div class="d-flex justify-content-between align-items-center w-100">
-                <strong class="text-gray-dark">Ali</strong>
-                <a href="#">Selengkapnya</a>
-            </div>
-            <span class="d-block">Konsulat Jenderal RI</span>
-            </div>
-        </div>
-        <div class="media text-muted pt-3">
-            <svg class="bd-placeholder-img mr-2 rounded" width="32" height="32" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="xMidYMid slice" focusable="false" role="img" aria-label="Placeholder: 32x32"><title>Placeholder</title><rect width="100%" height="100%" fill="#007bff"/><text x="50%" y="50%" fill="#007bff" dy=".3em">32x32</text></svg>
-            <div class="media-body pb-3 mb-0 small lh-125 border-bottom border-gray">
-            <div class="d-flex justify-content-between align-items-center w-100">
-                <strong class="text-gray-dark">Kartika</strong>
-                <a href="#">Selengkapnya</a>
-            </div>
-            <span class="d-block">Kementerian PUPR</span>
-            </div>
-        </div>
-        <div class="media text-muted pt-3">
-            <svg class="bd-placeholder-img mr-2 rounded" width="32" height="32" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="xMidYMid slice" focusable="false" role="img" aria-label="Placeholder: 32x32"><title>Placeholder</title><rect width="100%" height="100%" fill="#007bff"/><text x="50%" y="50%" fill="#007bff" dy=".3em">32x32</text></svg>
-            <div class="media-body pb-3 mb-0 small lh-125 border-bottom border-gray">
-            <div class="d-flex justify-content-between align-items-center w-100">
-                <strong class="text-gray-dark">Aisyah</strong>
-                <a href="#">Selengkapnya</a>
-            </div>
-            <span class="d-block">Kementerian Kesehatan</span>
-            </div>
-        </div>
-        <small class="d-block text-right mt-3">
-            <a href="#">All</a>
-        </small>
-        </div>
-    -->
     </div>
 </div>
 
@@ -207,6 +104,34 @@
 
     $('#jenis_klpd').select2();
     $('#tahun').select2();
+    
+    $(document).ready(function(){
+        $.ajax({  
+            url:"<?= base_url("pelayanan/list-ajax"); ?>",  
+            method:"POST",
+            success:function(response)  
+            { 
+                var data = JSON.parse(response);
+
+                console.log(data);
+                
+                $("#daftarPelayanan").html("");
+
+                $.each(data, function(i, item) {
+                    $("#daftarPelayanan").append('<a href="pelayanan/' + data[i].id + '" class="text-decoration-none">' + 
+                        '<div class="media text-muted pt-2">' +
+                            '<svg class="bd-placeholder-img mr-2 rounded" width="32" height="32" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="xMidYMid slice" focusable="false" role="img" aria-label="Placeholder: 32x32"><title>Placeholder</title><rect width="100%" height="100%" fill="#17a2b8 "/><text x="50%" y="50%" fill="#17a2b8 " dy=".3em">32x32</text></svg>' +
+                            '<p class="media-body pb-3 mb-0 small lh-125 border-bottom border-gray">' +
+                                '<strong class="d-block text-gray-dark">' + data[i].nama_klpd + '</strong>' + 
+                                data[i].paket_nama +
+                                '<span class="badge badge-pill bg-light align-text-bottom" >' + data[i].jenis_advokasi_nama + '</span>' +
+                            '</p>'+
+                        '</div>' +
+                    '</a>');
+                });
+            }  
+        });  
+    });
 
     google.charts.load('current', {'packages':['bar']});
     google.charts.setOnLoadCallback(drawChartLayanan);
@@ -348,73 +273,5 @@
 
         chart.draw(data, google.charts.Bar.convertOptions(options));
     }
-
-    //google.charts.load('current', {'packages':['corechart']});
-    //google.charts.setOnLoadCallback(drawChartPelayaan);
-    //google.charts.setOnLoadCallback(drawChartValuasi);
-    //google.charts.setOnLoadCallback(drawChartCoverage);
-    //google.charts.setOnLoadCallback(drawChartKualitas);
-
-    <?php /*
-    function drawChartPelayaan() {
-        var data = google.visualization.arrayToDataTable(<?= $result_chart_pelayanan; ?>);
-
-        var options = {
-            title: 'PELAYANAN',
-            curveType: 'function',
-            legend: { position: 'bottom' },
-            chartArea: {left:80,top:50,width:'85%',height:'75%'}
-        };
-
-        var chart = new google.visualization.LineChart(document.getElementById('curve_chart_pelayanan'));
-
-        chart.draw(data, options);
-    }
-
-    function drawChartValuasi() {
-        var data = google.visualization.arrayToDataTable(<?= $result_chart_valuasi; ?>);
-
-        var options = {
-            title: 'VALUASI',
-            curveType: 'function',
-            legend: { position: 'bottom' },
-            chartArea: {left:80,top:50,width:'85%',height:'75%'}
-        };
-
-        var chart = new google.visualization.LineChart(document.getElementById('curve_chart_valuasi'));
-
-        chart.draw(data, options);
-    }
-
-    function drawChartCoverage() {
-        var data = google.visualization.arrayToDataTable(<?= $result_chart_coverage; ?>);
-
-        var options = {
-            title: 'COVERAGE',
-            curveType: 'function',
-            legend: { position: 'bottom' },
-            chartArea: {left:80,top:50,width:'85%',height:'75%'}
-        };
-
-        var chart = new google.visualization.LineChart(document.getElementById('curve_chart_coverage'));
-
-        chart.draw(data, options);
-    }
-
-    function drawChartKualitas() {
-        var data = google.visualization.arrayToDataTable(<?= $result_chart_kualitas; ?>);
-
-        var options = {
-            title: 'KUALITAS',
-            curveType: 'function',
-            legend: { position: 'bottom' },
-            chartArea: {left:80,top:50,width:'85%',height:'75%'}
-        };
-
-        var chart = new google.visualization.LineChart(document.getElementById('curve_chart_kualitas'));
-
-        chart.draw(data, options);
-    }
-    */ ?>
 </script>
 <?php $this->endSection(); ?>

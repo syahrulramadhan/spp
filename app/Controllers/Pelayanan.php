@@ -554,4 +554,10 @@ class Pelayanan extends BaseController
 		
 		return $result;
 	}
+
+	public function list_ajax(){
+		$result = $this->pelayananModel->getPelayananJoin();
+
+		echo json_encode($result, JSON_PRETTY_PRINT);
+	}
 }

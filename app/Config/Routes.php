@@ -76,6 +76,7 @@ $routes->post('/user/save', 'User::save');
 $routes->get('/user/(:num)', 'User::detail/$1');
 
 $routes->get('/pelayanan/jenis-advokasi', 'Pelayanan::jenis_advokasi');
+$routes->post('/pelayanan/list-ajax', 'Pelayanan::list_ajax');
 $routes->get('/pelayanan/(:num)', 'Pelayanan::detail/$1');
 $routes->get('/pelayanan/(:num)/edit/(:num)', 'Pelayanan::edit/$1/$2');
 $routes->post('/pelayanan/(:num)/update/(:num)', 'Pelayanan::update/$1/$2');

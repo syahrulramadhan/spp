@@ -81,7 +81,7 @@ class Auth extends BaseController
 
 					$this->session->set($newdata);
 
-					return redirect()->to(site_url('pages'));
+					return redirect()->to(base_url('pages'));
                 }
 			}else{
 				$this->session->setFlashdata('errors', ['User Tidak Ditemukan']);
