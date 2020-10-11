@@ -105,9 +105,27 @@ class KlpdModel extends Model
     public function getCountKlpd($jenis_klpd){
         $builder = $this->db->table('klpd');
 
+        if($jenis_klpd == 'KL'){
+            $builder->Where("
+                (klpd.jenis_klpd = 'BUMN' 
+                OR klpd.jenis_klpd = 'INSTANSI' 
+                OR klpd.jenis_klpd = 'KEMENTERIAN' 
+                OR klpd.jenis_klpd = 'LEMBAGA' 
+                OR klpd.jenis_klpd = 'PTNBH' 
+                OR klpd.jenis_klpd = 'SWASTA' 
+                OR klpd.jenis_klpd = 'LAINNYA')
+            ");
+           
+        }else if($jenis_klpd == 'PEMDA'){
+            $builder->Where("
+                (klpd.jenis_klpd = 'BUMD' 
+                OR klpd.jenis_klpd = 'KABUPATEN' 
+                OR klpd.jenis_klpd = 'KOTA' 
+                OR klpd.jenis_klpd = 'PROVINSI')
+            ");
+        }
         
-        if($jenis_klpd)
-            $builder->where('jenis_klpd', $jenis_klpd);
+        //if($jenis_klpd) $builder->where('jenis_klpd', $jenis_klpd);
 
         return $builder->countAllResults();
     }

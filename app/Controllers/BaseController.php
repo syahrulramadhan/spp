@@ -200,6 +200,16 @@ class BaseController extends Controller
 		}
 	}
 
+	public function options_jenis_klpd_extra(){
+		$result = [
+			'ALL' => 'All',
+			'KL' => 'K/L',
+			'PEMDA' => 'Pemda'
+		];
+
+		return $result;
+	}
+
 	public function options_jenis_klpd(){
 		$arr = $this->klpdModel->getListJenisKlpd();
 

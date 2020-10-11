@@ -58,11 +58,24 @@ class PelayananModel extends Model
     public function ChartPelayananJumlah($jenis_klpd, $tahun){
         $x = ""; $y = "";
 
-        if($jenis_klpd)
-            $x = "AND k.jenis_klpd = klpd.jenis_klpd";
-
         if($tahun)
-            $y = "AND YEAR(p.tanggal_pelaksanaan) <= YEAR(pelayanan.tanggal_pelaksanaan)";
+            $x = "AND YEAR(p.tanggal_pelaksanaan) <= YEAR(pelayanan.tanggal_pelaksanaan)";
+
+        if($jenis_klpd == 'KL'){
+            $y = "AND (klpd.jenis_klpd = 'BUMN' 
+            OR k.jenis_klpd = 'INSTANSI' 
+            OR k.jenis_klpd = 'KEMENTERIAN' 
+            OR k.jenis_klpd = 'LEMBAGA' 
+            OR k.jenis_klpd = 'PTNBH' 
+            OR k.jenis_klpd = 'SWASTA' 
+            OR k.jenis_klpd = 'LAINNYA')";
+        }else if($jenis_klpd == 'PEMDA'){
+            $y = "AND (k.jenis_klpd = 'BUMD' 
+            OR k.jenis_klpd = 'KABUPATEN' 
+            OR k.jenis_klpd = 'KOTA' 
+            OR k.jenis_klpd = 'PROVINSI'
+            OR k.jenis_klpd IS NULL)";
+        }
 
         $builder = $this->db->table('pelayanan');
         $builder->select("
@@ -71,7 +84,7 @@ class PelayananModel extends Model
             ,(
                 SELECT COUNT(*)
                 FROM pelayanan p
-                JOIN klpd k ON k.klpd_id = p.klpd_id
+                LEFT JOIN klpd k ON k.klpd_id = p.klpd_id
                 WHERE MONTH(p.tanggal_pelaksanaan) <= MONTH(pelayanan.tanggal_pelaksanaan) $x $y
             ) total_pelayanan
         ");
@@ -79,8 +92,28 @@ class PelayananModel extends Model
         $builder->join('klpd', 'klpd.klpd_id = pelayanan.klpd_id', 'left');
         $builder->where('YEAR(pelayanan.tanggal_pelaksanaan)', $tahun);
         
-        if($jenis_klpd)
-            $builder->where('klpd.jenis_klpd', $jenis_klpd);
+        //if($jenis_klpd) $builder->where('klpd.jenis_klpd', $jenis_klpd);
+
+        if($jenis_klpd == 'KL'){
+            $builder->Where("
+                (klpd.jenis_klpd = 'BUMN' 
+                OR klpd.jenis_klpd = 'INSTANSI' 
+                OR klpd.jenis_klpd = 'KEMENTERIAN' 
+                OR klpd.jenis_klpd = 'LEMBAGA' 
+                OR klpd.jenis_klpd = 'PTNBH' 
+                OR klpd.jenis_klpd = 'SWASTA' 
+                OR klpd.jenis_klpd = 'LAINNYA')
+            ");
+           
+        }else if($jenis_klpd == 'PEMDA'){
+            $builder->Where("
+                (klpd.jenis_klpd = 'BUMD' 
+                OR klpd.jenis_klpd = 'KABUPATEN' 
+                OR klpd.jenis_klpd = 'KOTA' 
+                OR klpd.jenis_klpd = 'PROVINSI'
+                OR klpd.jenis_klpd IS NULL)
+            ");
+        }
         
         $builder->groupBy('MONTH(tanggal_pelaksanaan)');
 
@@ -90,11 +123,24 @@ class PelayananModel extends Model
     public function ChartPelayananValuasi($jenis_klpd, $tahun){
         $x = ""; $y = "";
 
-        if($jenis_klpd)
-            $x = "AND k.jenis_klpd = klpd.jenis_klpd";
-
         if($tahun)
-            $y = "AND YEAR(p.tanggal_pelaksanaan) <= YEAR(pelayanan.tanggal_pelaksanaan)";
+            $x = "AND YEAR(p.tanggal_pelaksanaan) <= YEAR(pelayanan.tanggal_pelaksanaan)";
+
+        if($jenis_klpd == 'KL'){
+            $y = "AND (klpd.jenis_klpd = 'BUMN' 
+            OR k.jenis_klpd = 'INSTANSI' 
+            OR k.jenis_klpd = 'KEMENTERIAN' 
+            OR k.jenis_klpd = 'LEMBAGA' 
+            OR k.jenis_klpd = 'PTNBH' 
+            OR k.jenis_klpd = 'SWASTA' 
+            OR k.jenis_klpd = 'LAINNYA')";
+        }else if($jenis_klpd == 'PEMDA'){
+            $y = "AND (k.jenis_klpd = 'BUMD' 
+            OR k.jenis_klpd = 'KABUPATEN' 
+            OR k.jenis_klpd = 'KOTA' 
+            OR k.jenis_klpd = 'PROVINSI'
+            OR k.jenis_klpd IS NULL)";
+        }
 
         $builder = $this->db->table('pelayanan');
         $builder->select("
@@ -103,7 +149,7 @@ class PelayananModel extends Model
             ,(
                 SELECT SUM(p.paket_nilai_pagu) total_valuasi
                 FROM pelayanan p
-                JOIN klpd k ON k.klpd_id = p.klpd_id
+                LEFT JOIN klpd k ON k.klpd_id = p.klpd_id
                 WHERE MONTH(p.tanggal_pelaksanaan) <= MONTH(pelayanan.tanggal_pelaksanaan) $x $y
             ) total_valuasi
         ");
@@ -111,9 +157,29 @@ class PelayananModel extends Model
         $builder->join('klpd', 'klpd.klpd_id = pelayanan.klpd_id', 'left');
         $builder->where('YEAR(pelayanan.tanggal_pelaksanaan)', $tahun);
 
-        if($jenis_klpd)
-            $builder->where('klpd.jenis_klpd', $jenis_klpd);
-            
+        //if($jenis_klpd) $builder->where('klpd.jenis_klpd', $jenis_klpd);
+
+        if($jenis_klpd == 'KL'){
+            $builder->Where("
+                (klpd.jenis_klpd = 'BUMN' 
+                OR klpd.jenis_klpd = 'INSTANSI' 
+                OR klpd.jenis_klpd = 'KEMENTERIAN' 
+                OR klpd.jenis_klpd = 'LEMBAGA' 
+                OR klpd.jenis_klpd = 'PTNBH' 
+                OR klpd.jenis_klpd = 'SWASTA' 
+                OR klpd.jenis_klpd = 'LAINNYA')
+            ");
+           
+        }else if($jenis_klpd == 'PEMDA'){
+            $builder->Where("
+                (klpd.jenis_klpd = 'BUMD' 
+                OR klpd.jenis_klpd = 'KABUPATEN' 
+                OR klpd.jenis_klpd = 'KOTA' 
+                OR klpd.jenis_klpd = 'PROVINSI'
+                OR klpd.jenis_klpd IS NULL)
+            ");
+        }
+
         $builder->groupBy('MONTH(tanggal_pelaksanaan)');
 
         return $builder->get()->getResultArray();
@@ -122,11 +188,24 @@ class PelayananModel extends Model
     public function ChartPelayananCoverage($jenis_klpd, $tahun){
         $x = ""; $y = "";
 
-        if($jenis_klpd)
-            $x = "AND k.jenis_klpd = klpd.jenis_klpd";
-
         if($tahun)
-            $y = "AND YEAR(p.tanggal_pelaksanaan) <= YEAR(pelayanan.tanggal_pelaksanaan)";
+            $x = "AND YEAR(p.tanggal_pelaksanaan) <= YEAR(pelayanan.tanggal_pelaksanaan)";
+
+        if($jenis_klpd == 'KL'){
+            $y = "AND (klpd.jenis_klpd = 'BUMN' 
+            OR k.jenis_klpd = 'INSTANSI' 
+            OR k.jenis_klpd = 'KEMENTERIAN' 
+            OR k.jenis_klpd = 'LEMBAGA' 
+            OR k.jenis_klpd = 'PTNBH' 
+            OR k.jenis_klpd = 'SWASTA' 
+            OR k.jenis_klpd = 'LAINNYA')";
+        }else if($jenis_klpd == 'PEMDA'){
+            $y = "AND (k.jenis_klpd = 'BUMD' 
+            OR k.jenis_klpd = 'KABUPATEN' 
+            OR k.jenis_klpd = 'KOTA' 
+            OR k.jenis_klpd = 'PROVINSI'
+            OR k.jenis_klpd IS NULL)";
+        }
 
         $builder = $this->db->table('pelayanan');
         $builder->select("
@@ -135,7 +214,7 @@ class PelayananModel extends Model
             ,(
                 SELECT COUNT(DISTINCT(p.klpd_id)) total_coverage
                 FROM pelayanan p
-                JOIN klpd k ON k.klpd_id = p.klpd_id
+                LEFT JOIN klpd k ON k.klpd_id = p.klpd_id
                 WHERE MONTH(p.tanggal_pelaksanaan) <= MONTH(pelayanan.tanggal_pelaksanaan) $x $y
             ) total_coverage
         ");
@@ -143,9 +222,29 @@ class PelayananModel extends Model
         $builder->join('klpd', 'klpd.klpd_id = pelayanan.klpd_id', 'left');
         $builder->where('YEAR(pelayanan.tanggal_pelaksanaan)', $tahun);
 
-        if($jenis_klpd)
-            $builder->where('klpd.jenis_klpd', $jenis_klpd);
-            
+        //if($jenis_klpd) $builder->where('klpd.jenis_klpd', $jenis_klpd);
+          
+        if($jenis_klpd == 'KL'){
+            $builder->Where("
+                (klpd.jenis_klpd = 'BUMN' 
+                OR klpd.jenis_klpd = 'INSTANSI' 
+                OR klpd.jenis_klpd = 'KEMENTERIAN' 
+                OR klpd.jenis_klpd = 'LEMBAGA' 
+                OR klpd.jenis_klpd = 'PTNBH' 
+                OR klpd.jenis_klpd = 'SWASTA' 
+                OR klpd.jenis_klpd = 'LAINNYA')
+            ");
+           
+        }else if($jenis_klpd == 'PEMDA'){
+            $builder->Where("
+                (klpd.jenis_klpd = 'BUMD' 
+                OR klpd.jenis_klpd = 'KABUPATEN' 
+                OR klpd.jenis_klpd = 'KOTA' 
+                OR klpd.jenis_klpd = 'PROVINSI'
+                OR klpd.jenis_klpd IS NULL)
+            ");
+        }
+        
         $builder->groupBy('MONTH(pelayanan.tanggal_pelaksanaan)');
 
         return $builder->get()->getResultArray();
@@ -154,8 +253,21 @@ class PelayananModel extends Model
     public function ChartPelayananKualitas($bulan = "", $jenis_klpd = "", $tahun){
         $x = "";
 
-        if($jenis_klpd)
-            $x = "AND k.jenis_klpd = '$jenis_klpd'";
+        if($jenis_klpd == 'KL'){
+            $y = "AND (klpd.jenis_klpd = 'BUMN' 
+            OR k.jenis_klpd = 'INSTANSI' 
+            OR k.jenis_klpd = 'KEMENTERIAN' 
+            OR k.jenis_klpd = 'LEMBAGA' 
+            OR k.jenis_klpd = 'PTNBH' 
+            OR k.jenis_klpd = 'SWASTA' 
+            OR k.jenis_klpd = 'LAINNYA')";
+        }else if($jenis_klpd == 'PEMDA'){
+            $y = "AND (k.jenis_klpd = 'BUMD' 
+            OR k.jenis_klpd = 'KABUPATEN' 
+            OR k.jenis_klpd = 'KOTA' 
+            OR k.jenis_klpd = 'PROVINSI'
+            OR k.jenis_klpd IS NULL)";
+        }
 
         $q = "
             SELECT SUM(temp.jumlah_kualitas) total_kualitas
@@ -176,38 +288,9 @@ class PelayananModel extends Model
             ) temp
         ";
 
-        //echo"<pre>"; echo $q; exit;
-
         $query = $this->db->query($q);
         
         return $query->getRow();
-    }
-
-    public function xChartPelayananKualitas(){
-        $query = $this->db->query("
-            SELECT 
-                p.jumlah_kualitas skor,
-                COUNT(p.jumlah_kualitas) as jumlah_kualitas
-            FROM (
-                SELECT 
-                klpd_id,     
-                jenis_advokasi_id,     
-                tanggal_pelaksanaan,
-                COUNT(DISTINCT(jenis_advokasi_id)) AS jumlah_layanan,     
-                (CASE 
-                    WHEN COUNT(DISTINCT(jenis_advokasi_id)) >= 6 && COUNT(DISTINCT(jenis_advokasi_id)) <= 9 THEN 100
-                    WHEN COUNT(DISTINCT(jenis_advokasi_id)) >= 4 && COUNT(DISTINCT(jenis_advokasi_id)) <= 5 THEN 75
-                    WHEN COUNT(DISTINCT(jenis_advokasi_id)) >= 2 && COUNT(DISTINCT(jenis_advokasi_id)) <= 3 THEN 50
-                    WHEN COUNT(DISTINCT(jenis_advokasi_id)) = 1 THEN 25
-                    WHEN COUNT(DISTINCT(jenis_advokasi_id)) = 0 THEN 0
-                END) AS jumlah_kualitas
-                FROM pelayanan 
-                GROUP BY klpd_id
-            ) p
-            GROUP BY P.jumlah_kualitas"
-        );
-        
-        return $query->getResultArray();
     }
 
     public function store($data = []){
