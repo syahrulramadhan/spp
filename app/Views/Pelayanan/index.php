@@ -81,6 +81,10 @@
                                 <td class="text-right"><?= $paket_nama; ?></td>
                                 <td class="text-center"><?= $jenis_advokasi_nama; ?></td>
                                 <td class="text-center">
+                                    <a href="<?= base_url('pelayanan/' . $rows['id']); ?>" class="text-decoration-none">
+                                        Lihat
+                                    </a>
+                                    <?php /*
                                     <div class="btn-group">
                                         <a href="<?= base_url('pelayanan/' . $rows['id']); ?>" class="btn btn-sm btn-success">
                                             <i class="fa fa-eye"></i>
@@ -90,7 +94,6 @@
                                             <i class="fa fa-edit"></i>
                                         </a>
                                         <?php } ?>
-                                        <?php /* if(in_array($rows['jenis_advokasi_id'], array(1,3,5))){ */ ?>
                                         <?php if(in_array($rows['jenis_advokasi_id'], array(1,2,3,4,5,6,7))){ ?>
                                         <a href="<?= base_url('pelayanan/' . $rows['id'] . '/file'); ?>" class="btn btn-sm btn-success">
                                             <i class="fa fa-file"></i>
@@ -106,6 +109,7 @@
                                             <i class="fa fa-user"></i>
                                         </a>
                                         <?php } ?>
+                                        */ ?>
                                     </div>
                                 </td>
                             </tr>

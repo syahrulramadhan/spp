@@ -65,6 +65,10 @@
                                     <td><?= $rows['tanggal_pelaksanaan']; ?></td>
                                     <td class="text-center"><?= ($rows['jumlah_pelayanan']) ? $rows['jumlah_pelayanan'] : 0; ?></td>
                                     <td class="text-center">
+                                        <a href="<?= base_url('kegiatan/' . $rows['id']); ?>" class="text-decoration-none">
+                                           Lihat
+                                        </a>
+                                        <?php /*
                                         <div class="btn-group">
                                             <a href="<?= base_url('kegiatan/' . $rows['id']); ?>" class="btn btn-sm btn-success">
                                                 <i class="fa fa-eye"></i>
@@ -79,7 +83,6 @@
                                                 <i class="fa fa-user"></i>
                                             </a>
                                         </div>
-                                        <?php /*
                                         <div class="btn-group" role="group">
                                             <button id="btnGroupDrop1" type="button" class="btn btn-primary dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                                             Pilih
@@ -103,7 +106,6 @@
                                             </div>
                                         </div>
                                         */ ?>
-                                        <!--<a class="text-decoration-none" href="kegiatan/<?= $rows['id']; ?>">Lihat</a>-->
                                     </td>
                                 </tr>
                             <?php endforeach; 
