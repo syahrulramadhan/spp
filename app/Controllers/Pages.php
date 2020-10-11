@@ -485,7 +485,7 @@ class Pages extends BaseController
 			'jenis_klpd' => $jenis_klpd,
 			'tahun' => $tahun,
 			'id' => $id,
-			'options_jenis_klpd' => $this->options_jenis_klpd(),
+			'options_jenis_klpd' => $this->options_jenis_klpd_extra(),
 			'options_tahun_layanan' => $this->options_tahun_layanan(),
 		];
 

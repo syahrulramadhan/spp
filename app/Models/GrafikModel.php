@@ -11,7 +11,7 @@ class GrafikModel extends Model
             $x = "AND YEAR(p.tanggal_pelaksanaan) <= YEAR(pelayanan.tanggal_pelaksanaan)";
 
         if($jenis_klpd == 'KL'){
-            $y = "AND (klpd.jenis_klpd = 'BUMN' 
+            $y = "AND (k.jenis_klpd = 'BUMN' 
             OR k.jenis_klpd = 'INSTANSI' 
             OR k.jenis_klpd = 'KEMENTERIAN' 
             OR k.jenis_klpd = 'LEMBAGA' 
@@ -80,7 +80,7 @@ class GrafikModel extends Model
             $x = "AND YEAR(p.tanggal_pelaksanaan) <= YEAR(pelayanan.tanggal_pelaksanaan)";
 
         if($jenis_klpd == 'KL'){
-            $y = "AND (klpd.jenis_klpd = 'BUMN' 
+            $y = "AND (k.jenis_klpd = 'BUMN' 
             OR k.jenis_klpd = 'INSTANSI' 
             OR k.jenis_klpd = 'KEMENTERIAN' 
             OR k.jenis_klpd = 'LEMBAGA' 
@@ -149,7 +149,7 @@ class GrafikModel extends Model
             $x = "AND YEAR(p.tanggal_pelaksanaan) <= YEAR(pelayanan.tanggal_pelaksanaan)";
 
         if($jenis_klpd == 'KL'){
-            $y = "AND (klpd.jenis_klpd = 'BUMN' 
+            $y = "AND (k.jenis_klpd = 'BUMN' 
             OR k.jenis_klpd = 'INSTANSI' 
             OR k.jenis_klpd = 'KEMENTERIAN' 
             OR k.jenis_klpd = 'LEMBAGA' 
@@ -218,7 +218,7 @@ class GrafikModel extends Model
             $x = "AND YEAR(p.tanggal_pelaksanaan) <= YEAR(pelayanan.tanggal_pelaksanaan)";
 
         if($jenis_klpd == 'KL'){
-            $y = "AND (klpd.jenis_klpd = 'BUMN' 
+            $y = "AND (k.jenis_klpd = 'BUMN' 
             OR k.jenis_klpd = 'INSTANSI' 
             OR k.jenis_klpd = 'KEMENTERIAN' 
             OR k.jenis_klpd = 'LEMBAGA' 
@@ -271,7 +271,7 @@ class GrafikModel extends Model
                 OR klpd.jenis_klpd IS NULL)
             ");
         }
-        
+
         if($id)
             $builder->where('pelayanan.kategori_permasalahan_id', $id);
             
@@ -370,16 +370,27 @@ class GrafikModel extends Model
     }
 
     public function layananByJenisPengadaanId($jenis_klpd, $tahun, $id){
-        $x = ""; $y = ""; $z = ""; $jy = "";
+        $x = ""; $y = ""; $z = "";
 
         if($tahun)
             $x = "AND YEAR(p.tanggal_pelaksanaan) <= YEAR(pelayanan.tanggal_pelaksanaan)";
 
-        if($jenis_klpd){
-            $y = "AND k.jenis_klpd = klpd.jenis_klpd";
-            $jy = "JOIN klpd k ON k.klpd_id = p.klpd_id";
+        if($jenis_klpd == 'KL'){
+            $y = "AND (k.jenis_klpd = 'BUMN' 
+            OR k.jenis_klpd = 'INSTANSI' 
+            OR k.jenis_klpd = 'KEMENTERIAN' 
+            OR k.jenis_klpd = 'LEMBAGA' 
+            OR k.jenis_klpd = 'PTNBH' 
+            OR k.jenis_klpd = 'SWASTA' 
+            OR k.jenis_klpd = 'LAINNYA')";
+        }else if($jenis_klpd == 'PEMDA'){
+            $y = "AND (k.jenis_klpd = 'BUMD' 
+            OR k.jenis_klpd = 'KABUPATEN' 
+            OR k.jenis_klpd = 'KOTA' 
+            OR k.jenis_klpd = 'PROVINSI'
+            OR k.jenis_klpd IS NULL)";
         }
-
+        
         if($id)
             $z = "AND p.paket_jenis_pengadaan_id = pelayanan.paket_jenis_pengadaan_id";
 
@@ -390,16 +401,33 @@ class GrafikModel extends Model
             ,(
                 SELECT COUNT(*)
                 FROM pelayanan p
-                $jy
+                LEFT JOIN klpd k ON k.klpd_id = p.klpd_id
                 WHERE MONTH(p.tanggal_pelaksanaan) <= MONTH(pelayanan.tanggal_pelaksanaan) $x $y $z
             ) total_pelayanan
         ");
 
+        $builder->join('klpd', 'klpd.klpd_id = pelayanan.klpd_id', 'left');
         $builder->where('YEAR(pelayanan.tanggal_pelaksanaan)', $tahun);
-        
-        if($jenis_klpd){
-            $builder->join('klpd', 'klpd.klpd_id = pelayanan.klpd_id', 'left');
-            $builder->where('klpd.jenis_klpd', $jenis_klpd);
+      
+        if($jenis_klpd == 'KL'){
+            $builder->Where("
+                (klpd.jenis_klpd = 'BUMN' 
+                OR klpd.jenis_klpd = 'INSTANSI' 
+                OR klpd.jenis_klpd = 'KEMENTERIAN' 
+                OR klpd.jenis_klpd = 'LEMBAGA' 
+                OR klpd.jenis_klpd = 'PTNBH' 
+                OR klpd.jenis_klpd = 'SWASTA' 
+                OR klpd.jenis_klpd = 'LAINNYA')
+            ");
+            
+        }else if($jenis_klpd == 'PEMDA'){
+            $builder->Where("
+                (klpd.jenis_klpd = 'BUMD' 
+                OR klpd.jenis_klpd = 'KABUPATEN' 
+                OR klpd.jenis_klpd = 'KOTA' 
+                OR klpd.jenis_klpd = 'PROVINSI'
+                OR klpd.jenis_klpd IS NULL)
+            ");
         }
 
         if($id)
@@ -411,14 +439,25 @@ class GrafikModel extends Model
     }   
 
     public function valuasiByJenisPengadaanId($jenis_klpd, $tahun, $id){
-        $x = ""; $y = ""; $z = ""; $jy = "";
+        $x = ""; $y = ""; $z = "";
 
         if($tahun)
             $x = "AND YEAR(p.tanggal_pelaksanaan) <= YEAR(pelayanan.tanggal_pelaksanaan)";
 
-        if($jenis_klpd){
-            $y = "AND k.jenis_klpd = klpd.jenis_klpd";
-            $jy = "JOIN klpd k ON k.klpd_id = p.klpd_id";
+        if($jenis_klpd == 'KL'){
+            $y = "AND (k.jenis_klpd = 'BUMN' 
+            OR k.jenis_klpd = 'INSTANSI' 
+            OR k.jenis_klpd = 'KEMENTERIAN' 
+            OR k.jenis_klpd = 'LEMBAGA' 
+            OR k.jenis_klpd = 'PTNBH' 
+            OR k.jenis_klpd = 'SWASTA' 
+            OR k.jenis_klpd = 'LAINNYA')";
+        }else if($jenis_klpd == 'PEMDA'){
+            $y = "AND (k.jenis_klpd = 'BUMD' 
+            OR k.jenis_klpd = 'KABUPATEN' 
+            OR k.jenis_klpd = 'KOTA' 
+            OR k.jenis_klpd = 'PROVINSI'
+            OR k.jenis_klpd IS NULL)";
         }
 
         if($id)
@@ -431,18 +470,35 @@ class GrafikModel extends Model
             ,(
                 SELECT SUM(p.paket_nilai_pagu) total_valuasi
                 FROM pelayanan p
-                $jy
+                LEFT JOIN klpd k ON k.klpd_id = p.klpd_id
                 WHERE MONTH(p.tanggal_pelaksanaan) <= MONTH(pelayanan.tanggal_pelaksanaan) $x $y $z
             ) total_valuasi
         ");
-        
-        $builder->where('YEAR(pelayanan.tanggal_pelaksanaan)', $tahun);
 
-        if($jenis_klpd){
-            $builder->join('klpd', 'klpd.klpd_id = pelayanan.klpd_id', 'left');
-            $builder->where('klpd.jenis_klpd', $jenis_klpd);
-        }
+        $builder->join('klpd', 'klpd.klpd_id = pelayanan.klpd_id', 'left');
+        $builder->where('YEAR(pelayanan.tanggal_pelaksanaan)', $tahun);
         
+        if($jenis_klpd == 'KL'){
+            $builder->Where("
+                (klpd.jenis_klpd = 'BUMN' 
+                OR klpd.jenis_klpd = 'INSTANSI' 
+                OR klpd.jenis_klpd = 'KEMENTERIAN' 
+                OR klpd.jenis_klpd = 'LEMBAGA' 
+                OR klpd.jenis_klpd = 'PTNBH' 
+                OR klpd.jenis_klpd = 'SWASTA' 
+                OR klpd.jenis_klpd = 'LAINNYA')
+            ");
+            
+        }else if($jenis_klpd == 'PEMDA'){
+            $builder->Where("
+                (klpd.jenis_klpd = 'BUMD' 
+                OR klpd.jenis_klpd = 'KABUPATEN' 
+                OR klpd.jenis_klpd = 'KOTA' 
+                OR klpd.jenis_klpd = 'PROVINSI'
+                OR klpd.jenis_klpd IS NULL)
+            ");
+        }
+
         if($id)
             $builder->where('pelayanan.paket_jenis_pengadaan_id', $id);
             
