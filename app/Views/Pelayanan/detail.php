@@ -65,6 +65,12 @@
                 <a class="btn btn-info" href="<?= base_url("/pelayanan?jenis_advokasi_id=" . $result['jenis_advokasi_id']); ?>">Lihat Rekap</a>
                 <?php if(in_array($result['jenis_advokasi_id'], array(1,2,3,4,5,6,7))){ ?>
                     <a class="btn btn-info" href="<?= base_url("/pelayanan/create/" . $result['jenis_advokasi_id']); ?>">Entry <?= $result['jenis_advokasi_nama'] ?></a>
+                    <form action="/pelayanan/delete/<?= $result['id']; ?>" method="post" class="d-inline">
+                        <?= csrf_field(); ?>
+                        <input type="hidden" name="_method" value="DELETE">
+                        <input type="hidden" name="jenis_advokasi_id" value="<?= $result['jenis_advokasi_id'] ?>">
+                        <button type="submit" class="btn btn-danger" onclick="return confirm('Apakah anda yakin?');">Delete</button>
+                    </form>
                 <?php } ?>
             </div>
         </div>

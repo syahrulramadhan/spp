@@ -506,6 +506,19 @@ class Pelayanan extends BaseController
 
 		return view('Pelayanan/detail', $data);
 	}
+
+	public function delete($id){
+		$jenis_advokasi_id = $this->request->getVar('jenis_advokasi_id');
+		$result = $this->pelayananModel->find($id);
+
+		if($result){
+			$this->pelayananModel->delete($id);
+
+			session()->setFlashdata('pesan', 'Data berhasil dihapus.');
+
+			return redirect()->to("/pelayanan?jenis_advokasi_id=$jenis_advokasi_id");
+		}
+	}
 	
 	public function options_klpd(){
 		$arr = new KlpdModel();

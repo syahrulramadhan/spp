@@ -43,7 +43,7 @@
                 <a class="btn btn-info" href="/kegiatan">Lihat Rekap</a>
                 <a class="btn btn-info" href='<?= base_url("kegiatan/" . $result['id'] . "/" . $result['jenis_advokasi_id'] . "/pelayanan"); ?>'>Entry Peserta</a>
                 <a class="btn btn-info" href='<?= base_url("kegiatan/create/" . $result['jenis_advokasi_id']); ?>'>Entry <?= $result['jenis_advokasi_nama'] ?></a>
-                <form id="form-submit" action="/kegiatan/delete/<?= $result['id']; ?>" method="post" class="d-inline">
+                <form action="/kegiatan/delete/<?= $result['id']; ?>" method="post" class="d-inline">
                     <?= csrf_field(); ?>
                     <input type="hidden" name="_method" value="DELETE">
                     <button type="submit" class="btn btn-danger" onclick="return confirm('Apakah anda yakin?');">Delete</button>
