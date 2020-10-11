@@ -51,7 +51,7 @@
                         <th>JABATAN</th>
                         <th>TELEPON</th>
                         <th>NAMA PAKET</th>
-                        <th>NILAI PAKET</th>
+                        <th>NILAI PAKET (Rp. Juta)</th>
                         <th>JENIS ADVOKASI</th>
                         <th class="text-center col-small">DETAIL</th>
                     </tr>
@@ -61,16 +61,25 @@
                         if($result){
                             $i = 1 + ($per_page * ($currentPage - 1));
 
+                            $cons_value = "<small>TIDAK ADA DATA</small>";
+
                             foreach($result as $rows):
+                                $nama = ($rows['nama']) ? $rows['nama'] : $cons_value;
+                                $jabatan = ($rows['jabatan']) ? $rows['jabatan'] : $cons_value;
+                                $nomor_telepon = ($rows['nomor_telepon']) ? $rows['nomor_telepon'] : $cons_value;
+                                $paket_nama = ($rows['paket_nama']) ? $rows['paket_nama'] : $cons_value;
+                                $jenis_advokasi_nama = ($rows['jenis_advokasi_nama']) ? $rows['jenis_advokasi_nama'] : $cons_value;
+                                $paket_nilai_pagu = ($rows['paket_nilai_pagu']) ? "Rp. ". number_format($rows['paket_nilai_pagu']/1000000, 2) : $cons_value;
+                                
                             ?>
                             <tr>
                                 <th scope="row" class="text-center"><?= $i++; ?></th>
-                                <td><?= $rows['nama']; ?></td>
-                                <td><?= $rows['jabatan']; ?></td>
-                                <td><?= $rows['nomor_telepon']; ?></td>
-                                <td><?= $rows['paket_nama']; ?></td>
-                                <td class="text-right"><?= "Rp. ". number_format($rows['paket_nilai_pagu'], 2); ?></td>
-                                <td class="text-center"><?= $rows['jenis_advokasi_nama']; ?></td>
+                                <td><?= $nama; ?></td>
+                                <td><?= $jabatan; ?></td>
+                                <td><?= $nomor_telepon; ?></td>
+                                <td><?= $paket_nama; ?></td>
+                                <td class="text-right"><?= $paket_nama; ?></td>
+                                <td class="text-center"><?= $jenis_advokasi_nama; ?></td>
                                 <td class="text-center">
                                     <div class="btn-group">
                                         <a href="<?= base_url('pelayanan/' . $rows['id']); ?>" class="btn btn-sm btn-success">
