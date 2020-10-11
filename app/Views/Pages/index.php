@@ -123,11 +123,13 @@
     </div>
     <div class="col-md-4">
         <div class="p-3 my-1 text-center bg-white rounded">
-            <div class="pb-2">
-                <img src="<?= base_url('uploads/lkpp.png') ?>" class="img-fluid" alt="Lembaga Kebijakan Pengadaan Barang/Jasa Pemerintah">
-            </div>
-            <div class="pb-2">
-                <img src="<?= base_url('uploads/Logo D4-08.png') ?>" class="img-fluid" alt="Deputy Chairman D4">
+            <div class="row">
+                <div class="pb-2 col-md-8 d-flex flex-wrap align-items-center">
+                    <img src="<?= base_url('uploads/lkpp.png') ?>" class="img-fluid" alt="Lembaga Kebijakan Pengadaan Barang/Jasa Pemerintah">
+                </div>
+                <div class="pb-2 col-md-4">
+                    <img src="<?= base_url('uploads/Logo D4-08.png') ?>" class="img-fluid" alt="Deputy Chairman D4">
+                </div>
             </div>
         </div>
         <div class="d-flex align-items-center p-3 my-1 text-white-50 bg-info rounded shadow-sm">
