@@ -336,7 +336,7 @@
 
                     console.log(JSON.parse(response));
 
-                    $("#kd_satker").html("<option value='0'>--Pilih--</option>");
+                    $("#kd_satker").html("<option value='' selected>--Pilih--</option>");
 
                     $.each(data, function(i, item) {
                         $("#kd_satker").append("<option value='" + data[i].kd_satker + "'>" + data[i].nama_satker + "</option>");
