@@ -276,7 +276,7 @@
                 colors: ['#FFAF2E','#FF7A20'],
                 legend: { position: 'none' },
                 vAxis: {
-                    title: 'Layanan <?= $result['nama_klpd'] ?>'
+                    title: 'Jumlah Layanan'
                 },
                 hAxis: {
                     title: 'Bulan',
@@ -314,7 +314,7 @@
                 colors: ['#FA68F8','#FA00B5'],
                 legend: { position: 'none' },
                 vAxis: {
-                    title: 'Valuasi <?= $result['nama_klpd'] ?>',
+                    title: 'Valuasi',
                     format: '#,###'
                 },
                 hAxis: {
@@ -353,7 +353,7 @@
                 colors: ['#FA0065'],
                 legend: { position: 'none' },
                 vAxis: {
-                    title: 'Kualitas <?= $result['nama_klpd'] ?>'
+                    title: 'Nilai Kualitas'
                 },
                 hAxis: {
                     title: 'Bulan'

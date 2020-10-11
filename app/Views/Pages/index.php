@@ -232,7 +232,7 @@
                 colors: ['#FFAF2E','#FF7A20'],
                 legend: { position: 'none' },
                 vAxis: {
-                    title: 'Layanan'
+                    title: 'Jumlah Layanan'
                 },
                 hAxis: {
                     title: 'Bulan',
@@ -307,8 +307,8 @@
                 colors: ['#DBFF0D','#9AE600'],
                 legend: { position: 'none' },
                 vAxis: {
-                    title: 'Coverage',
-                    //format: 'percent'
+                    title: 'Coverage (%)',
+                    format: '#,###.## %'
                 },
                 hAxis: {
                     title: 'Bulan'
@@ -345,7 +345,7 @@
                 colors: ['#FA0065'],
                 legend: { position: 'none' },
                 vAxis: {
-                    title: 'Kualitas',
+                    title: 'Nilai Kualitas',
                     //format: 'percent'
                 },
                 hAxis: {

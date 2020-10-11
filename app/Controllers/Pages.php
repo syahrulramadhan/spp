@@ -104,8 +104,8 @@ class Pages extends BaseController
 					$jumlah_coverage = $rows['total_coverage'] - $total_coverage;
 
 					$grafik[$rows['bulan']][0] = $this->bulan($rows['bulan']);
-					$grafik[$rows['bulan']][1] = ($jumlah_coverage/$count)*100;
-					$grafik[$rows['bulan']][2] = ($rows['total_coverage']/$count)*100;
+					$grafik[$rows['bulan']][1] = ($jumlah_coverage/$count);
+					$grafik[$rows['bulan']][2] = ($rows['total_coverage']/$count);
 
 					$total_coverage = $rows['total_coverage'];
 				}

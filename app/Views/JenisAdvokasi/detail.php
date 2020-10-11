@@ -143,7 +143,7 @@
                 colors: ['#FFAF2E','#FF7A20'],
                 legend: { position: 'none' },
                 vAxis: {
-                    title: 'Layanan <?= $result['nama_jenis_advokasi'] ?>'
+                    title: 'Jumlah Layanan'
                 },
                 hAxis: {
                     title: 'Bulan',
@@ -181,7 +181,7 @@
                 colors: ['#FA68F8','#FA00B5'],
                 legend: { position: 'none' },
                 vAxis: {
-                    title: 'Valuasi <?= $result['nama_jenis_advokasi'] ?>',
+                    title: 'Valuasi',
                     format: '#,###'
                 },
                 hAxis: {
