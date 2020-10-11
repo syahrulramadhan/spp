@@ -104,10 +104,9 @@ class KategoriPermasalahan extends BaseController
 			'result' => $this->kategoriPermasalahanModel->getKategoriPermasalahan($id),
 			'jenis_klpd' => $jenis_klpd,
 			'tahun' => $tahun,
+			'id' => $id,
 			'options_jenis_klpd' => $this->options_jenis_klpd(),
-			'options_tahun_layanan' => $this->options_tahun_layanan(),
-			'result_chart_pelayanan' => $this->chart('chart_layanan', $jenis_klpd, $tahun, $id),
-			'result_chart_valuasi' => $this->chart('chart_valuasi', $jenis_klpd, $tahun, $id)
+			'options_tahun_layanan' => $this->options_tahun_layanan()
 		];
 
 		if(empty($data['result'])){
@@ -117,7 +116,13 @@ class KategoriPermasalahan extends BaseController
 		return view('KategoriPermasalahan/detail', $data);
 	}
 
-	public function chart($param = "", $jenis_klpd, $tahun, $id){
+	public function chart($param = ""){
+		$id = ($this->request->getVar('id')) ? $this->request->getVar('id') : "";
+		$jenis_klpd = ($this->request->getVar('jenis_klpd')) ? $this->request->getVar('jenis_klpd') : "";
+		$tahun = ($this->request->getVar('tahun')) ? $this->request->getVar('tahun') : date('Y');
+
+		$grafik = [];
+		
 		$grafik[0][0] = "";
 		$grafik[0][1] = "";
 		$grafik[0][2] = "";
@@ -142,7 +147,7 @@ class KategoriPermasalahan extends BaseController
 					$grafik[$rows['bulan']][2] = (double) ($rows['total_valuasi']/1000000);
 				}
 			}else{
-				return false;
+				echo json_encode(array('status' => false, 'data' => [])); exit;
 			}
 		}else{
 			$result = $this->grafikModel->layananByKetegoriPermasalahabId($jenis_klpd, $tahun, $id);
@@ -158,11 +163,11 @@ class KategoriPermasalahan extends BaseController
 					$grafik[$rows['bulan']][2] = (int) ($rows['total_pelayanan']);
 				}
 			}else{
-				return false;
+				echo json_encode(array('status' => false, 'data' => [])); exit;
 			}
 		}
 
-		return json_encode($grafik, JSON_PRETTY_PRINT);
+		echo json_encode(array('status' => true, 'data' => $grafik, JSON_PRETTY_PRINT));
 	}
 
 	public function create(){

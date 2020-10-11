@@ -119,8 +119,8 @@
 
     function drawChartLayanan() {
         var ajax = $.ajax({
-            url: '<?= base_url("pages/chart/chart_layanan"); ?>',
-            data: { jenis_klpd: $("#jenis_klpd_layanan").val(), tahun: $("#tahun_layanan").val() },
+            url: '<?= base_url("pages/chartJenisPengadaan/chart_layanan"); ?>',
+            data: { id: <?= $id ?>, jenis_klpd: $("#jenis_klpd_layanan").val(), tahun: $("#tahun_layanan").val() },
             dataType: "json", // type of data we're expecting from server
             async: false // make true to avoid waiting for the request to be complete
         });
@@ -156,8 +156,8 @@
 
     function drawChartValuasi(){
         var ajax = $.ajax({
-            url: '<?= base_url("pages/chart/chart_valuasi"); ?>',
-            data: { jenis_klpd: $("#jenis_klpd_valuasi").val(), tahun: $("#tahun_valuasi").val() },
+            url: '<?= base_url("pages/chartJenisPengadaan/chart_valuasi"); ?>',
+            data: { id: <?= $id ?>, jenis_klpd: $("#jenis_klpd_valuasi").val(), tahun: $("#tahun_valuasi").val() },
             dataType: "json", // type of data we're expecting from server
             async: false // make true to avoid waiting for the request to be complete
         });

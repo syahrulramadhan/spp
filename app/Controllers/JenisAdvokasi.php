@@ -58,10 +58,9 @@ class JenisAdvokasi extends BaseController
 			'result' => $this->jenisAdvokasiModel->getJenisAdvokasi($id),
 			'jenis_klpd' => $jenis_klpd,
 			'tahun' => $tahun,
+			'id' => $id,
 			'options_jenis_klpd' => $this->options_jenis_klpd(),
-			'options_tahun_layanan' => $this->options_tahun_layanan(),
-			'result_chart_pelayanan' => $this->chart('chart_layanan', $jenis_klpd, $tahun, $id),
-			'result_chart_valuasi' => $this->chart('chart_valuasi', $jenis_klpd, $tahun, $id)
+			'options_tahun_layanan' => $this->options_tahun_layanan()
 		];
 
 		if(empty($data['result'])){
@@ -71,7 +70,8 @@ class JenisAdvokasi extends BaseController
 		return view('JenisAdvokasi/detail', $data);
 	}
 
-	public function chart($param = "", $jenis_klpd, $tahun, $id){
+	public function chart($param = ""){
+		$id = ($this->request->getVar('id')) ? $this->request->getVar('id') : "";
 		$jenis_klpd = ($this->request->getVar('jenis_klpd')) ? $this->request->getVar('jenis_klpd') : "";
 		$tahun = ($this->request->getVar('tahun')) ? $this->request->getVar('tahun') : date('Y');
 
@@ -121,7 +121,7 @@ class JenisAdvokasi extends BaseController
 			}
 		}
 
-		return json_encode($grafik, JSON_PRETTY_PRINT);
+		echo json_encode(array('status' => true, 'data' => $grafik, JSON_PRETTY_PRINT));
 	}
 
 	public function grafik($param = ''){

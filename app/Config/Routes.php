@@ -56,6 +56,7 @@ $routes->get('/jenis-advokasi/(:num)', 'JenisAdvokasi::detail/$1');
 $routes->get('/jenis-advokasi/edit/(:num)', 'JenisAdvokasi::edit/$1');
 $routes->post('/jenis-advokasi/update/(:num)', 'JenisAdvokasi::update/$1');
 $routes->get('/jenis-advokasi/grafik/(:any)', 'JenisAdvokasi::grafik/$1');
+$routes->get('/jenis-advokasi/chart/(:any)', 'JenisAdvokasi::chart/$1');
 
 $routes->get('/kategori-permasalahan', 'KategoriPermasalahan::index');
 $routes->get('/kategori-permasalahan/create', 'KategoriPermasalahan::create');
@@ -64,6 +65,9 @@ $routes->get('/kategori-permasalahan/edit/(:num)', 'KategoriPermasalahan::edit/$
 $routes->post('/kategori-permasalahan/update/(:num)', 'KategoriPermasalahan::update/$1');
 $routes->get('/kategori-permasalahan/(:num)', 'KategoriPermasalahan::detail/$1');
 $routes->delete('/kategori-permasalahan/delete/(:num)', 'KategoriPermasalahan::delete/$1');
+$routes->get('/kategori-permasalahan/grafik/(:any)', 'KategoriPermasalahan::chart/$1');
+$routes->get('/kategori-permasalahan/chart/(:any)', 'KategoriPermasalahan::chart/$1');
+
 
 $routes->get('/pic', 'Pic::index');
 $routes->get('/pic/create', 'Pic::create');

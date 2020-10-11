@@ -43,33 +43,31 @@
     <div class="row">
         <div class="col-md-12">
             <div class="card-body">
-                <form id="form-submit" action="<?= base_url('kategori-permasalahan/' . $result['id']) ?>" method="get" class="mt-2 form-inline">
-                    <?= csrf_field(); ?>
-                    <div class="form-group">
-                        <label for="klpd" class="col-form-label">Jenis K/L/Pemda </label>
-                        <div class="col">
-                            <?= form_dropdown('jenis_klpd', $options_jenis_klpd, $jenis_klpd, ['class' => 'custom-select ', 'id' => 'jenis_klpd']); ?>
-                        </div>
-                    </div>
-                    <div class="form-group">
-                        <label for="klpd" class="col-form-label">Tahun </label>
-                        <div class="col">
-                            <?= form_dropdown('tahun', $options_tahun_layanan, $tahun, ['class' => 'custom-select ', 'id' => 'tahun']); ?>
-                        </div>
-                    </div> 
-                    <button type="submit" class="btn btn-info">Cari</button>
-                </form>
                 <div class="d-flex align-items-center p-3 my-1 text-white-50 bg-info rounded shadow-sm">
                     <div class="lh-100">
                         <h6 class="mb-0 text-white lh-100">Grafik Layanan <?= $result['nama_kategori_permasalahan'] ?></h6>
                     </div>
                 </div>
                 <div class="mb-3 p-3 bg-white rounded shadow-sm">
-                    <?php if($result_chart_pelayanan){ ?>
-                        <div id="curve_chart_pelayanan" style="width: 100%; height: 400px;"></div>
-                    <?php }else{ ?>
-                        <div class="text-center my-2">Data tidak ditemukan</div>
-                    <?php } ?>
+                    <form id="form-submit" action="<?= base_url('jenis-advokasi/' . $result['id']) ?>" method="get" class="mt-2 form-inline">
+                        <?= csrf_field(); ?>
+                        <div class="form-group">
+                            <label for="klpd" class="col-form-label">Jenis K/L/Pemda </label>
+                            <div class="col">
+                                <?= form_dropdown('jenis_klpd_layanan', $options_jenis_klpd, $jenis_klpd, ['class' => 'custom-select ', 'id' => 'jenis_klpd_layanan']); ?>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label for="klpd" class="col-form-label">Tahun </label>
+                            <div class="col">
+                                <?= form_dropdown('tahun_layanan', $options_tahun_layanan, $tahun, ['class' => 'custom-select ', 'id' => 'tahun_layanan']); ?>
+                            </div>
+                        </div> 
+                        <button type="submit" class="btn btn-info" id="cari_chart_layanan">Cari</button>
+                    </form>
+                    <div id="curve_chart_pelayanan" style="width: 100%; height: 400px;">
+                        <div class="my-2">Data tidak ditemukan</div>
+                    </div>
                 </div>
                 <div class="d-flex align-items-center p-3 my-1 text-white-50 bg-info rounded shadow-sm">
                     <div class="lh-100">
@@ -77,11 +75,25 @@
                     </div>
                 </div>
                 <div class="mb-3 p-3 bg-white rounded shadow-sm">
-                    <?php if($result_chart_valuasi){ ?>
-                        <div id="curve_chart_valuasi" style="width: 100%; height: 400px;"></div>
-                    <?php }else{ ?>
-                        <div class="text-center my-2">Data tidak ditemukan</div>
-                    <?php } ?>
+                    <form id="form-submit" action="<?= base_url('jenis-advokasi/' . $result['id']) ?>" method="get" class="mt-2 form-inline">
+                        <?= csrf_field(); ?>
+                        <div class="form-group">
+                            <label for="klpd" class="col-form-label">Jenis K/L/Pemda </label>
+                            <div class="col">
+                                <?= form_dropdown('jenis_klpd_valuasi', $options_jenis_klpd, $jenis_klpd, ['class' => 'custom-select ', 'id' => 'jenis_klpd_valuasi']); ?>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label for="klpd" class="col-form-label">Tahun </label>
+                            <div class="col">
+                                <?= form_dropdown('tahun_valuasi', $options_tahun_layanan, $tahun, ['class' => 'custom-select ', 'id' => 'tahun_valuasi']); ?>
+                            </div>
+                        </div> 
+                        <button type="submit" class="btn btn-info" id="cari_chart_valuasi">Cari</button>
+                    </form>
+                    <div id="curve_chart_valuasi" style="width: 100%; height: 400px;">
+                        <div class="my-2">Data tidak ditemukan</div>
+                    </div>
                 </div>
             </div>
         </div>
@@ -99,51 +111,93 @@
     google.charts.setOnLoadCallback(drawChartLayanan);
     google.charts.setOnLoadCallback(drawChartValuasi);
 
+    $(document).ready(function(){
+        $('#cari_chart_layanan').click(function(e){  
+            e.preventDefault();
+            google.charts.setOnLoadCallback(drawChartLayanan);
+        });
+
+        $('#cari_chart_valuasi').click(function(e){  
+            e.preventDefault();
+            google.charts.setOnLoadCallback(drawChartValuasi);
+        });
+    });
+
     function drawChartLayanan() {
     
-        var data = google.visualization.arrayToDataTable(<?= $result_chart_pelayanan; ?>);
+        var ajax = $.ajax({
+            url: '<?= base_url("kategori-permasalahan/chart/chart_layanan"); ?>',
+            data: { id: <?= $id ?>, jenis_klpd: $("#jenis_klpd_layanan").val(), tahun: $("#tahun_layanan").val() },
+            dataType: "json", // type of data we're expecting from server
+            async: false // make true to avoid waiting for the request to be complete
+        });
 
-        var options = {
-            chart: {
-                title: 'Grafik Layanan <?= $result['nama_kategori_permasalahan'] ?>',
-                subtitle: '<?= date('d-m-Y  h:i:s'); ?>'
-            },
-            colors: ['#FFAF2E','#FF7A20'],
-            legend: { position: 'none' },
-            vAxis: {
-                title: 'Layanan <?= $result['nama_kategori_permasalahan'] ?>'
-            },
-            hAxis: {
-                title: 'Bulan',
+        var result = JSON.parse(ajax.responseText);
+        if(result.status){
+
+            //console.log(result.data);
+            var data = google.visualization.arrayToDataTable(result.data);
+
+            var options = {
+                chart: {
+                    title: 'Grafik Layanan <?= $result['nama_kategori_permasalahan'] ?>',
+                    subtitle: '<?= date('d-m-Y  h:i:s'); ?>'
+                },
+                colors: ['#FFAF2E','#FF7A20'],
+                legend: { position: 'none' },
+                vAxis: {
+                    title: 'Layanan <?= $result['nama_kategori_permasalahan'] ?>'
+                },
+                hAxis: {
+                    title: 'Bulan',
+                }
             }
+
+            var chart = new google.charts.Bar(document.getElementById('curve_chart_pelayanan'));
+
+            chart.draw(data, google.charts.Bar.convertOptions(options));
+        }else{
+            $('#curve_chart_pelayanan').html('<div class="my-2">Data tidak ditemukan</div>')
         }
-
-        var chart = new google.charts.Bar(document.getElementById('curve_chart_pelayanan'));
-
-        chart.draw(data, google.charts.Bar.convertOptions(options));
     }
 
     function drawChartValuasi(){
-        var data = google.visualization.arrayToDataTable(<?= $result_chart_valuasi; ?>);
+        var ajax = $.ajax({
+            url: '<?= base_url("kategori-permasalahan/chart/chart_valuasi"); ?>',
+            data: { id: <?= $id ?>, jenis_klpd: $("#jenis_klpd_valuasi").val(), tahun: $("#tahun_valuasi").val() },
+            dataType: "json", // type of data we're expecting from server
+            async: false // make true to avoid waiting for the request to be complete
+        });
 
-        var options = {
-            chart: {
-                title: 'Grafik Valuasi <?= $result['nama_kategori_permasalahan'] ?> (Rp. JUTA)',
-                subtitle: '<?= date('d-m-Y  h:i:s'); ?>'
-            },
-            colors: ['#FA68F8','#FA00B5'],
-            legend: { position: 'none' },
-            vAxis: {
-                title: 'Valuasi <?= $result['nama_kategori_permasalahan'] ?>'
-            },
-            hAxis: {
-                title: 'Bulan',
+        var result = JSON.parse(ajax.responseText);
+        if(result.status){
+
+            console.log(result.data);
+                
+            var data = google.visualization.arrayToDataTable(result.data);
+
+            var options = {
+                chart: {
+                    title: 'Grafik Valuasi <?= $result['nama_kategori_permasalahan'] ?> (Rp. JUTA)',
+                    subtitle: '<?= date('d-m-Y  h:i:s'); ?>'
+                },
+                colors: ['#FA68F8','#FA00B5'],
+                legend: { position: 'none' },
+                vAxis: {
+                    title: 'Valuasi <?= $result['nama_kategori_permasalahan'] ?>',
+                    format: '#,###'
+                },
+                hAxis: {
+                    title: 'Bulan',
+                }
             }
+
+            var chart = new google.charts.Bar(document.getElementById('curve_chart_valuasi'));
+
+            chart.draw(data, google.charts.Bar.convertOptions(options));
+        }else{
+            $('#curve_chart_valuasi').html('<div class="my-2">Data tidak ditemukan</div>')
         }
-
-        var chart = new google.charts.Bar(document.getElementById('curve_chart_valuasi'));
-
-        chart.draw(data, google.charts.Bar.convertOptions(options));
     }
 </script>
 

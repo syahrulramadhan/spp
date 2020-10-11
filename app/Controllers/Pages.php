@@ -156,7 +156,13 @@ class Pages extends BaseController
 		echo json_encode(array('status' => true, 'data' => $grafik, JSON_PRETTY_PRINT));
 	}
 
-	public function chartJenisPengadaan($param = "", $jenis_klpd, $tahun, $id){
+	public function chartJenisPengadaan($param = ""){
+		$id = ($this->request->getVar('id')) ? $this->request->getVar('id') : "";
+		$jenis_klpd = ($this->request->getVar('jenis_klpd')) ? $this->request->getVar('jenis_klpd') : "";
+		$tahun = ($this->request->getVar('tahun')) ? $this->request->getVar('tahun') : date('Y');
+
+		$grafik = [];
+		
 		$grafik[0][0] = "";
 		$grafik[0][1] = "";
 		$grafik[0][2] = "";
@@ -201,7 +207,7 @@ class Pages extends BaseController
 			}
 		}
 
-		return json_encode($grafik, JSON_PRETTY_PRINT);
+		echo json_encode(array('status' => true, 'data' => $grafik, JSON_PRETTY_PRINT));
 	}
 
 	public function chartKlpd($param = "", $jenis_klpd, $tahun, $id){
@@ -470,10 +476,9 @@ class Pages extends BaseController
 			'result' => $this->jenisPengadaanModel->getJenisPengadaan($id),
 			'jenis_klpd' => $jenis_klpd,
 			'tahun' => $tahun,
+			'id' => $id,
 			'options_jenis_klpd' => $this->options_jenis_klpd(),
 			'options_tahun_layanan' => $this->options_tahun_layanan(),
-			'result_chart_pelayanan' => $this->chartJenisPengadaan('chart_layanan', $jenis_klpd, $tahun, $id),
-			'result_chart_valuasi' => $this->chartJenisPengadaan('chart_valuasi', $jenis_klpd, $tahun, $id)
 		];
 
 		if(empty($data['result'])){
