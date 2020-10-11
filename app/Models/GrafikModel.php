@@ -168,19 +168,14 @@ class GrafikModel extends Model
         return $builder->get()->getResultArray();
     }
 
-    public function layananByKlpdId($jenis_klpd, $tahun, $id){
-        $x = ""; $y = ""; $z = ""; $jy = "";
+    public function layananByKlpdId($tahun, $id){
+        $x = ""; $y = "";
 
         if($tahun)
             $x = "AND YEAR(p.tanggal_pelaksanaan) <= YEAR(pelayanan.tanggal_pelaksanaan)";
 
-        if($jenis_klpd){
-            $y = "AND k.jenis_klpd = klpd.jenis_klpd";
-            $jy = "JOIN klpd k ON k.klpd_id = p.klpd_id";
-        }
-
         if($id)
-            $z = "AND p.klpd_id = pelayanan.klpd_id";
+            $y = "AND p.klpd_id = pelayanan.klpd_id";
 
         $builder = $this->db->table('pelayanan');
         $builder->select("
@@ -189,17 +184,11 @@ class GrafikModel extends Model
             ,(
                 SELECT COUNT(*)
                 FROM pelayanan p
-                $jy
-                WHERE MONTH(p.tanggal_pelaksanaan) <= MONTH(pelayanan.tanggal_pelaksanaan) $x $y $z
+                WHERE MONTH(p.tanggal_pelaksanaan) <= MONTH(pelayanan.tanggal_pelaksanaan) $x $y
             ) total_pelayanan
         ");
 
         $builder->where('YEAR(pelayanan.tanggal_pelaksanaan)', $tahun);
-        
-        if($jenis_klpd){
-            $builder->join('klpd', 'klpd.klpd_id = pelayanan.klpd_id', 'left');
-            $builder->where('klpd.jenis_klpd', $jenis_klpd);
-        }
 
         if($id)
             $builder->where('pelayanan.klpd_id', $id);
@@ -209,19 +198,14 @@ class GrafikModel extends Model
         return $builder->get()->getResultArray();
     }   
 
-    public function valuasiByKlpdId($jenis_klpd, $tahun, $id){
-        $x = ""; $y = ""; $z = ""; $jy = "";
+    public function valuasiByKlpdId($tahun, $id){
+        $x = ""; $y = "";
 
         if($tahun)
             $x = "AND YEAR(p.tanggal_pelaksanaan) <= YEAR(pelayanan.tanggal_pelaksanaan)";
 
-        if($jenis_klpd){
-            $y = "AND k.jenis_klpd = klpd.jenis_klpd";
-            $jy = "JOIN klpd k ON k.klpd_id = p.klpd_id";
-        }
-
         if($id)
-            $z = "AND p.klpd_id = pelayanan.klpd_id";
+            $y = "AND p.klpd_id = pelayanan.klpd_id";
 
         $builder = $this->db->table('pelayanan');
         $builder->select("
@@ -230,17 +214,11 @@ class GrafikModel extends Model
             ,(
                 SELECT SUM(p.paket_nilai_pagu) total_valuasi
                 FROM pelayanan p
-                $jy
-                WHERE MONTH(p.tanggal_pelaksanaan) <= MONTH(pelayanan.tanggal_pelaksanaan) $x $y $z
+                WHERE MONTH(p.tanggal_pelaksanaan) <= MONTH(pelayanan.tanggal_pelaksanaan) $x $y
             ) total_valuasi
         ");
         
         $builder->where('YEAR(pelayanan.tanggal_pelaksanaan)', $tahun);
-
-        if($jenis_klpd){
-            $builder->join('klpd', 'klpd.klpd_id = pelayanan.klpd_id', 'left');
-            $builder->where('klpd.jenis_klpd', $jenis_klpd);
-        }
         
         if($id)
             $builder->where('pelayanan.klpd_id', $id);
@@ -250,16 +228,11 @@ class GrafikModel extends Model
         return $builder->get()->getResultArray();
     }
 
-    public function kualitasByKlpdId($bulan = "", $jenis_klpd = "", $tahun, $id){
-        $x = ""; $y = ""; $jx = "";
-
-        if($jenis_klpd){
-            $x = "AND k.jenis_klpd = '$jenis_klpd'";
-            $jx = "JOIN klpd k ON k.klpd_id = p.klpd_id";
-        }
+    public function kualitasByKlpdId($bulan = "", $tahun, $id){
+        $x = "";
 
         if($id)
-            $y = "AND p.klpd_id = '$id'";
+            $x = "AND p.klpd_id = '$id'";
 
         $q = "
             SELECT SUM(temp.jumlah_kualitas) total_kualitas
@@ -274,8 +247,7 @@ class GrafikModel extends Model
                             WHEN COUNT(DISTINCT(jenis_advokasi_id)) = 0 THEN 0
                         END) jumlah_kualitas
                 FROM pelayanan p
-                $jx
-                WHERE MONTH(p.tanggal_pelaksanaan) <= '$bulan' AND YEAR(p.tanggal_pelaksanaan) <= '$tahun' $x $y
+                WHERE MONTH(p.tanggal_pelaksanaan) <= '$bulan' AND YEAR(p.tanggal_pelaksanaan) <= '$tahun' $x
                 GROUP BY p.klpd_id
             ) temp
         ";

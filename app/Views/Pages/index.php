@@ -296,7 +296,7 @@
         var result = JSON.parse(ajax.responseText);
         if(result.status){
 
-            //console.log(result.data);
+            console.log(result.data);
 
             var data = google.visualization.arrayToDataTable(result.data);
             var options = {

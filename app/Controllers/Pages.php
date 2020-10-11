@@ -210,7 +210,13 @@ class Pages extends BaseController
 		echo json_encode(array('status' => true, 'data' => $grafik, JSON_PRETTY_PRINT));
 	}
 
-	public function chartKlpd($param = "", $jenis_klpd, $tahun, $id){
+	public function chartKlpd($param = ""){
+		$id = ($this->request->getVar('id')) ? $this->request->getVar('id') : "";
+		$tahun = ($this->request->getVar('tahun')) ? $this->request->getVar('tahun') : date('Y');
+
+		$grafik = [];
+		$grafik1 = [];
+
 		$grafik = [];
 		$grafik1 = [];
 
@@ -222,13 +228,16 @@ class Pages extends BaseController
 		$grafik[0][2] = "";
 
 		for($i=1;$i<=12;$i++){
+			$grafik1[$i][0] = $this->bulan($i);
+			$grafik1[$i][1] = 0;
+
 			$grafik[$i][0] = $this->bulan($i);
 			$grafik[$i][1] = 0;
 			$grafik[$i][2] = 0;
 		}
 
 		if($param == 'chart_valuasi'){
-			$result = $this->grafikModel->valuasiByKlpdId($jenis_klpd, $tahun, $id);
+			$result = $this->grafikModel->valuasiByKlpdId($tahun, $id);
 
 			if($result){
 				$grafik[0][0] = 'BULAN';
@@ -241,28 +250,31 @@ class Pages extends BaseController
 					$grafik[$rows['bulan']][2] = (double) ($rows['total_valuasi']/1000000);
 				}
 			}else{
-				return false;
+				echo json_encode(array('status' => false, 'data' => [])); exit;
 			}
 		}else if($param == 'chart_kualitas'){
-			$grafik[0][0] = 'BULAN';
-			$grafik[0][1] = 'RATA-RATA SKOR';
+			$grafik1[0][0] = 'BULAN';
+			$grafik1[0][1] = 'RATA-RATA SKOR';
 
 			$total = 0;
 
 			for($i=1;$i<=date('m');$i++){
-				$result = $this->grafikModel->kualitasByKlpdId($i, $jenis_klpd, $tahun, $id);
+				$result = $this->grafikModel->kualitasByKlpdId($i, $tahun, $id);
 
 				if($result->total_kualitas){
-					$grafik[$i][2] = $result->total_kualitas;
+					$grafik1[$i][1] = $result->total_kualitas;
 
 					$total = $total + 1;
 				}	
 			}
 
-			if($total < 1)
-				return false;
+			if($total < 1){
+				echo json_encode(array('status' => false, 'data' => [])); exit;
+			}else{
+				$grafik = $grafik1;
+			}
 		}else{
-			$result = $this->grafikModel->layananByKlpdId($jenis_klpd, $tahun, $id);
+			$result = $this->grafikModel->layananByKlpdId($tahun, $id);
 
 			if($result){
 				$grafik[0][0] = 'BULAN';
@@ -275,11 +287,11 @@ class Pages extends BaseController
 					$grafik[$rows['bulan']][2] = (int) ($rows['total_pelayanan']);
 				}
 			}else{
-				return false;
+				echo json_encode(array('status' => false, 'data' => [])); exit;
 			}
 		}
 
-		return json_encode($grafik, JSON_PRETTY_PRINT);
+		echo json_encode(array('status' => true, 'data' => $grafik, JSON_PRETTY_PRINT));
 	}
 
 	public function klpd()
@@ -332,13 +344,9 @@ class Pages extends BaseController
 			'pager' => $result_satuan_kerja->pager,
 			'per_page' => $per_page,
 			'currentPage' => $currentPage,
-			//'jenis_klpd' => $jenis_klpd,
 			'tahun' => $tahun,
-			//'options_jenis_klpd' => $this->options_jenis_klpd(),
+			'id' => $result['klpd_id'],
 			'options_tahun_layanan' => $this->options_tahun_layanan(),
-			'result_chart_pelayanan' => $this->chartKlpd('chart_layanan', '', $tahun, $result['klpd_id']),
-			'result_chart_valuasi' => $this->chartKlpd('chart_valuasi', '', $tahun, $result['klpd_id']),
-			'result_chart_kualitas' => $this->chartKlpd('chart_kualitas', '', $tahun, $result['klpd_id']),
 			'result_jenis_advokasi' => $this->pelayananModel->getJenisAdvokasiByKlpdId($result['klpd_id']),
 			'result_kegiatan' => $this->pelayananModel->getKegiatanByKlpdId($result['klpd_id'])
 		];
