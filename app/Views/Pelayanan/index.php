@@ -78,7 +78,7 @@
                                 <td><?= $jabatan; ?></td>
                                 <td><?= $nomor_telepon; ?></td>
                                 <td><?= $paket_nama; ?></td>
-                                <td class="text-right"><?= $paket_nama; ?></td>
+                                <td class="text-right"><?= $paket_nilai_pagu; ?></td>
                                 <td class="text-center"><?= $jenis_advokasi_nama; ?></td>
                                 <td class="text-center">
                                     <a href="<?= base_url('pelayanan/' . $rows['id']); ?>" class="text-decoration-none">
