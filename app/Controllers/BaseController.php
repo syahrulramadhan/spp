@@ -215,8 +215,8 @@ class BaseController extends Controller
 
 		$result = ['0' => '--Pilih--'];
 
-		foreach ($arr as $row){
-			$result[$row['jenis_klpd']] = $row['jenis_klpd'];
+		for($i=2020; $i<=date("Y"); $i++){
+			$result[$i] = $row[$i];
 		}
 
 		return $result;

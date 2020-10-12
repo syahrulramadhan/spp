@@ -28,6 +28,7 @@
                     <div class="col-6">
                         <form id="form-submit" action="" method="GET">
                             <div class="input-group mb-3">
+                                <?= form_dropdown('tahun', $options_tahun, $tahun, ['class' => 'custom-select ', 'id' => 'tahun', 'class' => "custom-select mr-2"]); ?>
                                 <?= form_dropdown('jenis_advokasi_id', $options_jenis_advokasi, $jenis_advokasi_id, ['id' => 'jenis_advokasi_id', 'class' => "custom-select mr-2"]); ?>
                                 <input type="text" class="form-control" placeholder="Masukan kata nama / nama paket" name="q" value="<?= $keyword ?>" autofocus>
                                 <div class="input-group-append">
