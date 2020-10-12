@@ -52,7 +52,16 @@ class PelayananModel extends Model
     }
 
     public function getPaginatedPelayananData($jenis_advokasi_id, $tahun, $q){
-        return $this->table('pelayanan')->where('jenis_advokasi_id', $jenis_advokasi_id)->where('YEAR(tanggal_pelaksanaan)', $tahun)->where("(nama LIKE '%$q%' OR paket_nama LIKE '%$q%')");
+        if($jenis_advokasi_id){
+            return $this->table('pelayanan')
+                ->where('jenis_advokasi_id', $jenis_advokasi_id)
+                ->where('YEAR(tanggal_pelaksanaan)', $tahun)
+                ->where("(nama LIKE '%$q%' OR paket_nama LIKE '%$q%')");
+        }else{
+            return $this->table('pelayanan')
+                ->where('YEAR(tanggal_pelaksanaan)', $tahun)
+                ->where("(nama LIKE '%$q%' OR paket_nama LIKE '%$q%')");
+        }
     }
 
     public function ChartPelayananJumlah($jenis_klpd, $tahun){
