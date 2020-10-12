@@ -214,7 +214,7 @@
                             <?php } ?>
                         </label>
                         <div class="col-sm-8">
-                            <input type="text" class="form-control <?= ($validation->hasError('paket_nilai_pagu')) ? 'is-invalid' : ''; ?>" id="paket_nilai_pagu" name="paket_nilai_pagu" value="<?= (old('paket_nilai_pagu')) ? old('paket_nilai_pagu') : $result['paket_nilai_pagu'] ?>">
+                            <input type="text" size="20" class="form-control <?= ($validation->hasError('paket_nilai_pagu')) ? 'is-invalid' : ''; ?>" id="paket_nilai_pagu" name="paket_nilai_pagu" value="<?= (old('paket_nilai_pagu')) ? old('paket_nilai_pagu') : $result['paket_nilai_pagu'] ?>">
                             <div class="invalid-feedback"><?= $validation->getError('paket_nilai_pagu'); ?></div>
                         </div>
                     </div>
@@ -258,7 +258,7 @@
 
                     <div class="form-group row">
                         <div class="col-sm-10">
-                        <button type="submit" class="btn btn-info">Tambah Data</button>
+                        <button type="submit" class="btn btn-info">Ubah Data</button>
                         <a class="btn btn-info" href="<?= base_url('pelayanan/' . $result['id']); ?>">Lihat Rekap</a>
                         </div>
                     </div>

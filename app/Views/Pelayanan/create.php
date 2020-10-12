@@ -215,7 +215,7 @@
                             <?php } ?>
                         </label>
                         <div class="col-sm-8">
-                            <input type="text" class="form-control <?= ($validation->hasError('paket_nilai_pagu')) ? 'is-invalid' : ''; ?>" id="paket_nilai_pagu" name="paket_nilai_pagu" value="<?= old('paket_nilai_pagu'); ?>">
+                            <input type="text" size="20" class="form-control <?= ($validation->hasError('paket_nilai_pagu')) ? 'is-invalid' : ''; ?>" id="paket_nilai_pagu" name="paket_nilai_pagu" value="<?= old('paket_nilai_pagu'); ?>">
                             <div class="invalid-feedback"><?= $validation->getError('paket_nilai_pagu'); ?></div>
                         </div>
                     </div>
