@@ -139,7 +139,6 @@
         </div>
 
         <div class="p-3 bg-white rounded shadow-sm">
-            <!--<h6 class="border-bottom border-gray pb-2 mb-0">Recent updates</h6>-->
             <div id="daftarPelayanan"><div class="text-center my-2">Data tidak ditemukan</div></div>
             <small class="d-block text-right mt-3">
                 <a href="<?= base_url('pelayanan') ?>" class="text-decoration-none">Selengkapnya</a>
