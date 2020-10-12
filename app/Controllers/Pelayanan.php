@@ -49,7 +49,7 @@ class Pelayanan extends BaseController
 		$per_page = 10;
 
 		$data = [
-            'title' => 'Pelayanan',
+            'title' => 'Layanan',
 			'result' => $pelayanan->paginate($per_page, 'pelayanan'),
 			'options_jenis_advokasi' => $this->options_jenis_advokasi(),
 			'options_tahun' => $this->options_tahun_layanan(),

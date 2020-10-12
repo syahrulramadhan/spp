@@ -8,7 +8,7 @@
     <ol class="breadcrumb">
         <li class="breadcrumb-item"><a href="<?= base_url(); ?>">Dashboard</a></li>
         <li class="breadcrumb-item"><a href="<?= base_url('pelayanan/jenis-advokasi'); ?>">Layanan</a></li>
-        <li class="breadcrumb-item active" aria-current="page"><?= $title ?></li>
+        <li class="breadcrumb-item active" aria-current="page">Daftar <?= $title ?></li>
     </ol>
 </nav>
 
