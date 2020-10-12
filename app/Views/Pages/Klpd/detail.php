@@ -191,7 +191,7 @@
                         </form>
                     </div>
                 </div>
-                <table class="table table-sm">
+                <table class="table table-bordered table-sm">
                     <thead>
                     <tr>
                         <th style="width: 80px;" class="text-center">NO</th>
@@ -274,7 +274,7 @@
                     subtitle: '<?= date('d-m-Y  h:i:s'); ?>'
                 },
                 colors: ['#FFAF2E','#FF7A20'],
-                legend: { position: 'none' },
+                legend: { position: 'top' },
                 vAxis: {
                     title: 'Jumlah Layanan'
                 },
@@ -312,7 +312,7 @@
                     subtitle: '<?= date('d-m-Y  h:i:s'); ?>'
                 },
                 colors: ['#FA68F8','#FA00B5'],
-                legend: { position: 'none' },
+                legend: { position: 'top' },
                 vAxis: {
                     title: 'Valuasi',
                     format: '#,###'
@@ -351,7 +351,7 @@
                     subtitle: '<?= date('d-m-Y  h:i:s'); ?>'
                 },
                 colors: ['#FA0065'],
-                legend: { position: 'none' },
+                legend: { position: 'top' },
                 vAxis: {
                     title: 'Nilai Kualitas'
                 },

@@ -42,7 +42,7 @@
                     <?= session()->getFlashdata('pesan') ?>
                     </div>
                 <?php endif; ?>
-                <table class="table table-sm">
+                <table class="table table-bordered table-sm">
                     <thead>
                     <tr>
                         <th class="text-center col-small">NO</th>

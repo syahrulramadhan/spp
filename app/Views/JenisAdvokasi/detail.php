@@ -141,7 +141,7 @@
                     subtitle: '<?= date('d-m-Y  h:i:s'); ?>'
                 },
                 colors: ['#FFAF2E','#FF7A20'],
-                legend: { position: 'none' },
+                legend: { position: 'top' },
                 vAxis: {
                     title: 'Jumlah Layanan'
                 },
@@ -179,7 +179,7 @@
                     subtitle: '<?= date('d-m-Y  h:i:s'); ?>'
                 },
                 colors: ['#FA68F8','#FA00B5'],
-                legend: { position: 'none' },
+                legend: { position: 'top'},
                 vAxis: {
                     title: 'Valuasi',
                     format: '#,###'

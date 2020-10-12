@@ -68,7 +68,7 @@
                     <?= session()->getFlashdata('pesan') ?>
                     </div>
                 <?php endif; ?>
-                <table class="table table-sm table-responsive-sm">
+                <table class="table table-bordered table-sm table-responsive-sm">
                     <thead>
                     <tr>
                         <th style="width: 80px;" class="text-center">NO</th>

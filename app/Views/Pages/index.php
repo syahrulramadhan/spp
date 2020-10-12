@@ -230,9 +230,8 @@
                     title: 'Grafik Layanan',
                     subtitle: '<?= date('d-m-Y  h:i:s'); ?>'
                 },
-                //colors: ['#8bd1dc','#17a2b8'],
                 colors: ['#FFAF2E','#FF7A20'],
-                legend: { position: 'none' },
+                legend: { position: 'top'},
                 vAxis: {
                     title: 'Jumlah Layanan'
                 },
@@ -269,7 +268,7 @@
                     subtitle: '<?= date('d-m-Y  h:i:s'); ?>'
                 },
                 colors: ['#FA68F8','#FA00B5'],
-                legend: { position: 'none' },
+                legend: { position: 'top'},
                 vAxis: {
                     title: 'Valuasi',
                     format: '#,###'
@@ -307,7 +306,7 @@
                     subtitle: '<?= date('d-m-Y  h:i:s'); ?>'
                 },
                 colors: ['#DBFF0D','#9AE600'],
-                legend: { position: 'none' },
+                legend: { position: 'top'},
                 vAxis: {
                     title: 'Coverage (%)',
                     format: '#,###.## %'
@@ -345,7 +344,7 @@
                     subtitle: '<?= date('d-m-Y  h:i:s'); ?>'
                 },
                 colors: ['#FA0065'],
-                legend: { position: 'none' },
+                legend: { position: 'top'},
                 vAxis: {
                     title: 'Nilai Kualitas',
                     //format: 'percent'

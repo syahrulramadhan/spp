@@ -56,7 +56,7 @@
         <div class="col-md-12">
             <div class="card-body">
 
-                <table class="table table-sm">
+                <table class="table table-bordered table-sm">
                     <thead>
                     <tr>
                         <th class="text-center col-small">NO</th>
