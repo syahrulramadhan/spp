@@ -3,6 +3,7 @@
 
     use App\Models\UserModel;
     use App\Models\PelayananPicModel;
+    use App\Models\PelayananPesertaModel;
     use App\Controllers\BaseController;
 
 class CustomRules{
@@ -37,6 +38,23 @@ class CustomRules{
             $pelayanan_id = $uri->getSegment(2);
 
             $pic = $pelayananPicModel->where('pelayanan_id', $pelayanan_id)->where('pic_id', $pic_id)->first();
+
+            if($pic){
+                return false;
+            }else{
+                return true;
+            }
+        }
+
+        public function is_unique_layanan_peserta(string $nama_peserta, string &$error = null): bool
+        {
+            $pelayananPesertaModel = new PelayananPesertaModel();
+
+            $uri = new \CodeIgniter\HTTP\URI(current_url(true));
+            
+            $pelayanan_id = $uri->getSegment(2);
+
+            $pic = $pelayananPesertaModel->where('pelayanan_id', $pelayanan_id)->where('nama_peserta', $nama_peserta)->first();
 
             if($pic){
                 return false;

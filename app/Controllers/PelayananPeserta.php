@@ -30,10 +30,10 @@ class PelayananPeserta extends BaseController
     public function save($pelayanan_id){
 		if(!$this->validate([
 			'nama_peserta' => [
-				'rules' => 'required|is_unique[pelayanan_peserta.nama_peserta]',
+				'rules' => 'required|is_unique_layanan_peserta[pelayanan_peserta.nama_peserta]',
 				'errors' => [
 					'required' => 'Peserta harus diisi.',
-					'is_unique' => 'Peserta tidak boleh sama dalam satu pelayanan'
+					'is_unique_layanan_peserta' => 'Peserta tidak boleh sama dalam satu pelayanan'
 				]
 			]
 		])){
