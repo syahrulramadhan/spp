@@ -71,7 +71,8 @@
     <script>
         $(document).ready(function() {
           $("#tanggal_pelaksanaan").datepicker();
-            
+          $('#tanggal_pelaksanaan').mask('00/00/0000');
+          
           submit_disable();
 
           $('#form-submit input[type=text], #form-submit input[type=password], #form-submit textarea').keyup(function() {
