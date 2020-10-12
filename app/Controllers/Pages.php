@@ -153,6 +153,8 @@ class Pages extends BaseController
 			}
 		}
 
+		$this->cachePage(10);
+		
 		echo json_encode(array('status' => true, 'data' => $grafik, JSON_PRETTY_PRINT));
 	}
 
