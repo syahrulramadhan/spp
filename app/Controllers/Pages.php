@@ -664,6 +664,13 @@ class Pages extends BaseController
 		//echo "<pre>"; print_r($save); exit;
 
 		$this->userModel->save($save);
+
+		$newdata = [
+			'nama_lengkap'  => $save['nama_depan'] . " " . $save['nama_belakang'],
+			'email'         => $save['email']
+		];
+
+		$this->session->set($newdata);
 		
 		session()->setFlashdata('pesan', 'Data berhasil diubah.');
 		
