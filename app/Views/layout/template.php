@@ -88,7 +88,7 @@
               if($(this).val() === '' || $(this).val() === 0 || $(this).val() === '0') { 
                 
               }else{
-                console.log($(this).val());
+                //console.log($(this).val());
 
                 jumlah = jumlah + 1;
               }
