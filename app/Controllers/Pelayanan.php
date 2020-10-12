@@ -10,6 +10,7 @@ use App\Models\PelayananPesertaModel;
 use App\Models\PelayananPicModel;
 use App\Models\SatuanKerjaModel;
 use App\Models\PicModel;
+use App\Models\CommonModel;
 
 class Pelayanan extends BaseController
 {
@@ -19,6 +20,7 @@ class Pelayanan extends BaseController
 	protected $pelayananPesertaModel;
 	protected $pelayananPicModel;
 	protected $picModel;
+	protected $commonModel;
 
 	public function __construct()
 	{
@@ -27,7 +29,8 @@ class Pelayanan extends BaseController
 		$this->pelayananFileModel = new PelayananFileModel();
 		$this->pelayananPesertaModel = new PelayananPesertaModel();
 		$this->pelayananPicModel = new PelayananPicModel();
-		$this->picModel = new picModel();
+		$this->picModel = new PicModel();
+		$this->commonModel = new CommonModel();
 
 		helper('form');
 	}
@@ -514,7 +517,18 @@ class Pelayanan extends BaseController
 		$jenis_advokasi_id = $this->request->getVar('jenis_advokasi_id');
 		$result = $this->pelayananModel->find($id);
 
+		$total_file = $this->commonModel->getTotal('pelayanan_file', ['pelayanan_id' => $id]);
+		$total_peserta = $this->commonModel->getTotal('pelayanan_peserta', ['pelayanan_id' => $id]);
+		$total_pic = $this->commonModel->getTotal('pelayanan_pic', ['pelayanan_id' => $id]);
+
 		if($result){
+			if($total_file)
+				$this->pelayananFileModel->where('pelayanan_id', $id)->delete();
+			if($total_peserta)
+				$this->pelayananPesertaModel->where('pelayanan_id', $id)->delete();
+			if($total_pic)
+				$this->pelayananPicModel->where('pelayanan_id', $id)->delete();
+
 			$this->pelayananModel->delete($id);
 
 			session()->setFlashdata('pesan', 'Data berhasil dihapus.');
