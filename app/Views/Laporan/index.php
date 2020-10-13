@@ -37,7 +37,7 @@
                 <?php if($jenis_laporan == "laporan-valuasi"){ ?>
                     <?= $this->include('Laporan/ekspor_tabel_valuasi'); ?>
                 <?php }else{ ?>
-                    <?= $this->include('Laporan/ekspor_tabel_laporan'); ?>
+                    <?= $this->include('Laporan/ekspor_tabel_layanan'); ?>
                 <?php } ?>
                 
             </div>
