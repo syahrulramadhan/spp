@@ -66,6 +66,9 @@
             <div id="curve_chart_pelayanan" style="width: 100%; height: 400px">
                 <div class="my-2">Data tidak ditemukan</div>
             </div>
+            <div id="tabel_pelayanan" class="table-responsive mt-2" style="width: 100%;">
+                <div class="my-2">Data tidak ditemukan</div>
+            </div>
         </div>
         <div class="d-flex align-items-center p-3 my-1 text-white-50 bg-info rounded shadow-sm">
             <div class="lh-100">
@@ -92,6 +95,9 @@
                 <button type="submit" class="btn btn-info" id="cari_chart_valuasi">Cari</button>
             </form>
             <div id="curve_chart_valuasi" style="width: 100%; height: 400px">
+                <div class="my-2">Data tidak ditemukan</div>
+            </div>
+            <div id="tabel_valuasi" class="table-responsive mt-2" style="width: 100%;">
                 <div class="my-2">Data tidak ditemukan</div>
             </div>
         </div>
@@ -122,6 +128,9 @@
             <div id="curve_chart_coverage" style="width: 100%; height: 400px">
                 <div class="my-2">Data tidak ditemukan</div>
             </div>
+            <div id="tabel_coverage" class="table-responsive mt-2" style="width: 100%;">
+                <div class="my-2">Data tidak ditemukan</div>
+            </div>
         </div>
         <div class="d-flex align-items-center p-3 my-1 text-white-50 bg-info rounded shadow-sm">
             <div class="lh-100">
@@ -148,6 +157,9 @@
                 <button type="submit" class="btn btn-info" id="cari_chart_kualitas">Cari</button>
             </form>
             <div id="curve_chart_kualitas" style="width: 100%; height: 400px">
+                <div class="my-2">Data tidak ditemukan</div>
+            </div>
+            <div id="tabel_kualitas" class="table-responsive mt-2" style="width: 100%;">
                 <div class="my-2">Data tidak ditemukan</div>
             </div>
         </div>
@@ -254,6 +266,31 @@
 
             //console.log(result.data);
 
+            var html = "<table class='table table-bordered table-sm'>";
+            html += "<tr>";
+
+            $.each(result.data, function(i, item) {
+                if(i == 0)
+                    html += "<td >" + item[0] + "</td>";
+                else
+                    html += "<td style='text-align: center;'>" + item[0] + "</td>";
+            });
+
+            html += "</tr>";
+            html += "<tr>";
+
+            $.each(result.data, function(i, item) {
+                if(i == 0)
+                    html += "<td >" + item[2] + "</td>";
+                else
+                    html += "<td style='text-align: center;'>" + item[2] + "</td>";
+            });
+
+            html += "</tr>";
+            html += "</table>";
+
+            $("#tabel_pelayanan").html(html);
+
             var data = google.visualization.arrayToDataTable(result.data);
             var options = {
                 chart: {
@@ -290,6 +327,31 @@
         if(result.status){
 
             //console.log(result.data);
+
+            var html = "<table class='table table-bordered table-sm'>";
+            html += "<tr>";
+
+            $.each(result.data, function(i, item) {
+                if(i == 0)
+                    html += "<td >" + item[0] + "</td>";
+                else
+                    html += "<td style='text-align: center;'>" + item[0] + "</td>";
+            });
+
+            html += "</tr>";
+            html += "<tr>";
+
+            $.each(result.data, function(i, item) {
+                if(i == 0)
+                    html += "<td >" + item[2] + "</td>";
+                else
+                    html += "<td style='text-align: center;'>" + item[2] + "</td>";
+            });
+
+            html += "</tr>";
+            html += "</table>";
+
+            $("#tabel_valuasi").html(html);
 
             var data = google.visualization.arrayToDataTable(result.data);
             var options = {
@@ -329,6 +391,31 @@
 
             //console.log(result.data);
 
+            var html = "<table class='table table-bordered table-sm'>";
+            html += "<tr>";
+
+            $.each(result.data, function(i, item) {
+                if(i == 0)
+                    html += "<td >" + item[0] + "</td>";
+                else
+                    html += "<td style='text-align: center;'>" + item[0] + "</td>";
+            });
+
+            html += "</tr>";
+            html += "<tr>";
+
+            $.each(result.data, function(i, item) {
+                if(i == 0)
+                    html += "<td >" + item[2] + "</td>";
+                else
+                    html += "<td style='text-align: center;'>" + item[2] + "</td>";
+            });
+
+            html += "</tr>";
+            html += "</table>";
+
+            $("#tabel_coverage").html(html);
+
             var data = google.visualization.arrayToDataTable(result.data);
             var options = {
                 chart: {
@@ -366,6 +453,31 @@
         if(result.status){
 
             //console.log(result.data);
+
+            var html = "<table class='table table-bordered table-sm'>";
+            html += "<tr>";
+
+            $.each(result.data, function(i, item) {
+                if(i == 0)
+                    html += "<td >" + item[0] + "</td>";
+                else
+                    html += "<td style='text-align: center;'>" + item[0] + "</td>";
+            });
+
+            html += "</tr>";
+            html += "<tr>";
+
+            $.each(result.data, function(i, item) {
+                if(i == 0)
+                    html += "<td >" + item[1] + "</td>";
+                else
+                    html += "<td style='text-align: center;'>" + item[1] + "</td>";
+            });
+
+            html += "</tr>";
+            html += "</table>";
+
+            $("#tabel_kualitas").html(html);
 
             var data = google.visualization.arrayToDataTable(result.data);
             var options = {
