@@ -118,6 +118,9 @@ $routes->delete('/kegiatan/(:num)/materi/delete/(:num)', 'KegiatanMateri::delete
 $routes->get('/kegiatan/(:num)/(:num)/pelayanan', 'Kegiatan::pelayanan/$1/$2');
 $routes->post('/kegiatan/(:num)/(:num)/pelayanan/save', 'Kegiatan::pelayanan_save/$1/$2');
 $routes->delete('/kegiatan/(:num)/(:num)/pelayanan/delete/(:num)', 'Kegiatan::pelayanan_delete/$1/$2/$3');
+
+$routes->get('/laporan/(:any)', 'Laporan::index/$1');
+$routes->get('/laporan/(:any)', 'Laporan::index/$1');
 /**
  * --------------------------------------------------------------------
  * Additional Routing

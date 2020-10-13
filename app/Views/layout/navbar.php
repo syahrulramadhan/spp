@@ -27,6 +27,13 @@
       <li class="nav-item">
         <a class="nav-link" href="/pelayanan/jenis-advokasi">Layanan</a>
       </li>
+      <li class="nav-item dropdown">
+        <a class="nav-link dropdown-toggle" href="#" id="dropdown01" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Laporan</a>
+        <div class="dropdown-menu" aria-labelledby="dropdown01">
+          <a class="dropdown-item" href="<?= base_url('laporan/laporan-pelayanan') ?>">Laporan Layanan</a>  
+          <a class="dropdown-item" href="<?= base_url('laporan/laporan-valuasi') ?>">Laporan Valuasi</a>
+        </div>
+      </li>
       <?php } ?>
     </ul>
   

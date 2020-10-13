@@ -314,6 +314,13 @@ class Pelayanan extends BaseController
 						}
 					}
 				}
+
+				$jenis_advokasi_id = $this->request->getVar('jenis_advokasi_id');
+
+				if($jenis_advokasi_id){
+					$this->commonModel->perhitunganLaporanLayanan($jenis_advokasi_id);
+					$this->commonModel->perhitunganLaporanValuasi($jenis_advokasi_id);
+				}
 			}
 
 			session()->setFlashdata('pesan', 'Data berhasil ditambahkan.');
