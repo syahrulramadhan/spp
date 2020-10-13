@@ -42,8 +42,11 @@ class Laporan extends BaseController
 
             header("Content-type: application/vnd-ms-excel");
             header("Content-Disposition: attachment; filename=Data Laporan Layanan " . $date . ".xls");
-    
-            return view('Laporan/ekspor_tabel', $data);
+            
+            if($jenis_laporan == "laporan-valuasi")
+                return view('Laporan/ekspor_tabel_valuasi', $data);
+            else
+                return view('Laporan/ekspor_tabel_layanan', $data);
         }else{
             return view('Laporan/index', $data);
         }
