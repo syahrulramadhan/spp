@@ -10,6 +10,37 @@
     <div class="col-md-8">
         <div class="d-flex align-items-center p-3 my-1 text-white-50 bg-info rounded shadow-sm">
             <div class="lh-100">
+                <h6 class="mb-0 text-white lh-100">Overview</h6>
+            </div>
+        </div>
+        <div class="card-deck text-center">
+            <div class="card box-shadow">
+                <div class="card-header bg-info text-white">
+                    <h4 class="my-0 font-weight-normal">Jumlah<br/>Layanan</h4>
+                </div>
+                <div class="card-body align-self-center">
+                    <h1 class="card-title pricing-card-title"><?= $result->overview_layanan; ?></h1>
+                </div>
+            </div>
+            <div class="card box-shadow">
+                <div class="card-header bg-info text-white">
+                    <h4 class="my-0 font-weight-normal">Nilai Valuasi<br/>(Rp. Juta)</h4>
+                </div>
+                <div class="card-body align-self-center">
+                    <h1 class="card-title pricing-card-title">Rp. <?= NUMBER_FORMAT($result->overview_valuasi/1000000); ?></h1>
+                </div>
+            </div>
+            <div class="card box-shadow">
+                <div class="card-header bg-info text-white">
+                    <h4 class="my-0 font-weight-normal">Coverage<br/>(%)</h4>
+                </div>
+                <div class="card-body align-self-center">
+                    <h1 class="card-title pricing-card-title"><?= $result->overview_coverage; ?></h1>
+                </div>
+            </div>
+        </div>
+        <div class="d-flex align-items-center p-3 my-1 text-white-50 bg-info rounded shadow-sm">
+            <div class="lh-100">
                 <h6 class="mb-0 text-white lh-100">Grafik Layanan</h6>
             </div>
         </div>

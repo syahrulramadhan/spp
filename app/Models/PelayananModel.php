@@ -302,6 +302,27 @@ class PelayananModel extends Model
         return $query->getRow();
     }
 
+    public function overviewLayanan(){
+        $q = "SELECT 
+            (
+                SELECT COUNT(*) 
+                FROM pelayanan
+            ) overview_layanan,
+            (
+                SELECT SUM(pelayanan.paket_nilai_pagu) 
+                FROM pelayanan
+            ) overview_valuasi,   
+            (
+                SELECT COUNT(DISTINCT(pelayanan.klpd_id))
+                FROM pelayanan
+            ) overview_coverage
+        ";
+
+        $query = $this->db->query($q);
+                
+        return $query->getRow();
+    }
+
     public function store($data = []){
         $this->db->table($this->table)->insert($data);
 

@@ -36,11 +36,14 @@ class Pages extends BaseController
 		$jenis_klpd = $this->request->getVar('jenis_klpd');
 		$tahun = ($this->request->getVar('tahun')) ? $this->request->getVar('tahun') : date('Y');
 
+		$result = $this->pelayananModel->overviewLayanan();
+		
 		$data = [
 			'jenis_klpd' => $jenis_klpd,
 			'tahun' => $tahun,
 			'options_jenis_klpd' => $this->options_jenis_klpd_extra(),
-			'options_tahun_layanan' => $this->options_tahun_layanan()
+			'options_tahun_layanan' => $this->options_tahun_layanan(),
+			'result' => $result
 		];
 
 		$this->cachePage(10);
