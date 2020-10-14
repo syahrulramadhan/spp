@@ -283,7 +283,7 @@
                 if(i == 0)
                     html += "<td >" + item[2] + "</td>";
                 else
-                    html += "<td style='text-align: center;'>" + item[2] + "</td>";
+                    html += "<td style='text-align: center;'>" + number_format(item[2],0,'.',',') + "</td>";
             });
 
             html += "</tr>";
@@ -345,7 +345,7 @@
                 if(i == 0)
                     html += "<td >" + item[2] + "</td>";
                 else
-                    html += "<td style='text-align: center;'>" + item[2] + "</td>";
+                    html += "<td style='text-align: center;'>" + number_format(item[2],0,'.',',') + "</td>";
             });
 
             html += "</tr>";
@@ -408,7 +408,7 @@
                 if(i == 0)
                     html += "<td >" + item[2] + "</td>";
                 else
-                    html += "<td style='text-align: center;'>" + item[2] + "</td>";
+                    html += "<td style='text-align: center;'>" + number_format((item[2]*100),2,'.',',') + "</td>";
             });
 
             html += "</tr>";
@@ -471,7 +471,7 @@
                 if(i == 0)
                     html += "<td >" + item[1] + "</td>";
                 else
-                    html += "<td style='text-align: center;'>" + item[1] + "</td>";
+                    html += "<td style='text-align: center;'>" + number_format(item[1],2,'.',',') + "</td>";
             });
 
             html += "</tr>";
