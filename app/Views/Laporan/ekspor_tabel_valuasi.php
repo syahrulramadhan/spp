@@ -1,10 +1,30 @@
+
+<?php if($format == 'xlsx'){ ?>
+<style type="text/css">
+	table{
+		margin: 20px auto;
+		border-collapse: collapse;
+	}
+	table th,
+	table td{
+		border: 1px solid #3c3c3c;
+		padding: 3px 8px;
+
+	}
+    table th.text-center,
+	table td.text-center{
+        text-align: center;
+	}
+</style>
+<?php } ?>
+
 <table class="table table-bordered table-sm">
     <thead>
     <tr>
         <th class="text-center col-small">NO</th>
         <th>KL/Pemda</th>
         <?php if($result_jenis_advokasi){ foreach($result_jenis_advokasi as $rows): ?>
-        <th class="text-center"><?= $rows['nama_jenis_advokasi'] ?></th>
+        <th><?= $rows['nama_jenis_advokasi'] ?></th>
         <?php endforeach; } ?>
     </tr>
     </thead>
@@ -25,21 +45,21 @@
                 $field9 = ($rows['field9']) ? $rows['field9']/1000000 : 0;
             ?>
             <tr>
-                <th scope="row" class="text-center"><?= $i++; ?></th>
+                <th scope="row"><?= $i++; ?></th>
                 <td><?= $rows['nama_klpd']; ?></td>
-                <td class="text-center">Rp. <?= NUMBER_FORMAT($field1); ?></td>
-                <td class="text-center">Rp. <?= NUMBER_FORMAT($field2); ?></td>
-                <td class="text-center">Rp. <?= NUMBER_FORMAT($field3); ?></td>
-                <td class="text-center">Rp. <?= NUMBER_FORMAT($field4); ?></td>
-                <td class="text-center">Rp. <?= NUMBER_FORMAT($field5); ?></td>
-                <td class="text-center">Rp. <?= NUMBER_FORMAT($field6); ?></td>
-                <td class="text-center">Rp. <?= NUMBER_FORMAT($field7); ?></td>
-                <td class="text-center">Rp. <?= NUMBER_FORMAT($field8); ?></td>
-                <td class="text-center">Rp. <?= NUMBER_FORMAT($field9); ?></td>
+                <td>Rp. <?= NUMBER_FORMAT($field1); ?></td>
+                <td>Rp. <?= NUMBER_FORMAT($field2); ?></td>
+                <td>Rp. <?= NUMBER_FORMAT($field3); ?></td>
+                <td>Rp. <?= NUMBER_FORMAT($field4); ?></td>
+                <td>Rp. <?= NUMBER_FORMAT($field5); ?></td>
+                <td>Rp. <?= NUMBER_FORMAT($field6); ?></td>
+                <td>Rp. <?= NUMBER_FORMAT($field7); ?></td>
+                <td>Rp. <?= NUMBER_FORMAT($field8); ?></td>
+                <td>Rp. <?= NUMBER_FORMAT($field9); ?></td>
             </tr>
             <?php endforeach; 
         }else{
-            echo '<tr class="text-center"><td colspan="11">Data tidak ditemukan</td></tr>';
+            echo '<tr><td colspan="11">Data tidak ditemukan</td></tr>';
         }
         ?>
     </tbody>

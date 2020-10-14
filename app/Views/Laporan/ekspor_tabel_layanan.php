@@ -1,3 +1,22 @@
+<?php if($format == 'xlsx'){ ?>
+<style type="text/css">
+	table{
+		margin: 20px auto;
+		border-collapse: collapse;
+	}
+	table th,
+	table td{
+		border: 1px solid #3c3c3c;
+		padding: 3px 8px;
+
+	}
+    table th.text-center,
+	table td.text-center{
+        text-align: center;
+	}
+</style>
+<?php } ?>
+    
 <table class="table table-bordered table-sm">
     <thead>
     <tr>

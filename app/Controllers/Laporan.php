@@ -32,6 +32,7 @@ class Laporan extends BaseController
 
         $data = [
             'title' => $title,
+            'format' => $format,
 			'result' => $result,
 			'jenis_laporan' => $jenis_laporan,
 			'result_jenis_advokasi' => $result_jenis_advokasi
