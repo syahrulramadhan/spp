@@ -24,10 +24,10 @@
             </div>
             <div class="card box-shadow">
                 <div class="card-header bg-info text-white">
-                    <h4 class="my-0 font-weight-normal">Nilai Valuasi<br/>(Rp. Juta)</h4>
+                    <h4 class="my-0 font-weight-normal">Nilai Valuasi<br/>(Rp)</h4>
                 </div>
                 <div class="card-body align-self-center">
-                    <h1 class="card-title pricing-card-title">Rp. <?= NUMBER_FORMAT($result->overview_valuasi/1000000); ?></h1>
+                    <h1 class="card-title pricing-card-title"><?= $result->overview_valuasi; ?></h1>
                 </div>
             </div>
             <div class="card box-shadow">
