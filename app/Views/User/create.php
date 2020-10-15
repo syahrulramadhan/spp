@@ -67,23 +67,25 @@
                         </div>
                     </div>
                     <div class="form-group row">
-                        <label for="password" class="col-sm-2 col-form-label">Password</label>
+                        <label for="password" class="col-sm-2 col-form-label">Kata Sandi</label>
                         <div class="col-sm-10">
                             <input type="password" class="form-control <?= ($validation->hasError('password')) ? 'is-invalid' : ''; ?>" id="password" name="password" value="<?= old('password'); ?>">
                             <small id="passwordHelpInline" class="text-muted">
                                 Minimal panjang 10 karakter
                             </small>
                             <div class="invalid-feedback"><?= $validation->getError('password'); ?></div>
+                            <div><input type="checkbox" onclick="show_password()" class="mt-2"> Tampilkan Kata Sandi</div>
                         </div>
                     </div>
                     <div class="form-group row">
-                        <label for="repassword" class="col-sm-2 col-form-label">Ulangi Password</label>
+                        <label for="repassword" class="col-sm-2 col-form-label">Ulangi Kata Sandi</label>
                         <div class="col-sm-10">
                             <input type="password" class="form-control <?= ($validation->hasError('repassword')) ? 'is-invalid' : ''; ?>" id="repassword" name="repassword" value="<?= old('repassword'); ?>">
                             <small id="passwordHelpInline" class="text-muted">
                                 Minimal panjang 10 karakter
                             </small>
                             <div class="invalid-feedback"><?= $validation->getError('repassword'); ?></div>
+                            <div><input type="checkbox" onclick="show_repassword()" class="mt-2"> Tampilkan Ulangi Kata Sandi</div>
                         </div>
                     </div>
                     <div class="form-group row">
@@ -120,7 +122,23 @@
     </div>
 </div>
 
-<script>
+<script type="text/javascript">
+    function show_password() {
+        if ($("#password").attr('type') === "password") {
+            $("#password").attr('type', "text")
+        } else {
+            $("#password").attr('type', "password")
+        }  
+    }
+
+    function show_repassword(){
+        if ($("#repassword").attr('type') === "password") {
+            $("#repassword").attr('type', "text")
+        } else {
+            $("#repassword").attr('type', "password")
+        }
+    }
+
     $('#nomor_telepon').mask('0000-0000-00000');
     $('#role').change(function(){ submit_disable(); });
     $('#role').select2();

@@ -7,7 +7,7 @@
     $errors = $session->getFlashdata('errors');
     
     $hassErrorUsername = $validation->hasError('username') ? 'is-invalid' : '';
-    $hassErrorPassword = ($validation->hasError('password') || session()->getFlashdata('error')) ? 'is-invalid' : '';
+    $hassErrorPassword = ($validation->hasError('password') || $errors) ? 'is-invalid' : '';
 
 	$username = [
 		'name' => 'username',

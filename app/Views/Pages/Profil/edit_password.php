@@ -44,36 +44,40 @@
                     <?= csrf_field(); ?>
                     
                     <div class="form-group row">
-                        <label for="password_lama" class="col-sm-2 col-form-label">Password Lama</label>
+                        <label for="password_lama" class="col-sm-2 col-form-label">Kata Sandi Lama</label>
                         <div class="col-sm-10">
                             <input type="password" class="form-control <?= ($validation->hasError('password_lama')) ? 'is-invalid' : ''; ?>" id="password_lama" name="password_lama" value="<?= old('password_lama'); ?>">
                             <div class="invalid-feedback"><?= $validation->getError('password_lama'); ?></div>
+                            <div><input type="checkbox" onclick="show_password_lama()" class="mt-2"> Tampilkan Kata Sandi Lama</div>
                         </div>
                     </div>
 
                     <div class="form-group row">
-                        <label for="repassword_lama" class="col-sm-2 col-form-label">Ulangi Password Lama</label>
+                        <label for="repassword_lama" class="col-sm-2 col-form-label">Ulangi Kata Sandi Lama</label>
                         <div class="col-sm-10">
                             <input type="password" class="form-control <?= ($validation->hasError('repassword_lama')) ? 'is-invalid' : ''; ?>" id="repassword_lama" name="repassword_lama" value="<?= old('repassword_lama'); ?>">
                             <div class="invalid-feedback"><?= $validation->getError('repassword_lama'); ?></div>
+                            <div><input type="checkbox" onclick="show_repassword_lama()" class="mt-2"> Tampilkan Ulangi Kata Sandi Lama</div>
                         </div>
                     </div>
 
                     <hr>
 
                     <div class="form-group row">
-                        <label for="password" class="col-sm-2 col-form-label">Password Baru</label>
+                        <label for="password" class="col-sm-2 col-form-label">Kata Sandi Baru</label>
                         <div class="col-sm-10">
                             <input type="password" class="form-control <?= ($validation->hasError('password')) ? 'is-invalid' : ''; ?>" id="password" name="password" value="<?= old('password'); ?>">
                             <div class="invalid-feedback"><?= $validation->getError('password'); ?></div>
+                            <div><input type="checkbox" onclick="show_password()" class="mt-2"> Tampilkan Kata Sandi Baru</div>
                         </div>
                     </div>
 
                     <div class="form-group row">
-                        <label for="repassword" class="col-sm-2 col-form-label">Ulangi Password Baru</label>
+                        <label for="repassword" class="col-sm-2 col-form-label">Ulangi Kata Sandi Baru</label>
                         <div class="col-sm-10">
                             <input type="password" class="form-control <?= ($validation->hasError('repassword')) ? 'is-invalid' : ''; ?>" id="repassword" name="repassword" value="<?= old('repassword'); ?>">
                             <div class="invalid-feedback"><?= $validation->getError('repassword'); ?></div>
+                            <div><input type="checkbox" onclick="show_repassword()" class="mt-2"> Tampilkan Ulangi Kata Sandi Baru</div>
                         </div>
                     </div>
                     
@@ -87,5 +91,39 @@
         </div>
     </div>
 </div>
+
+<script type="text/javascript">
+    function show_password() {
+        if ($("#password").attr('type') === "password") {
+            $("#password").attr('type', "text")
+        } else {
+            $("#password").attr('type', "password")
+        }  
+    }
+
+    function show_repassword(){
+        if ($("#repassword").attr('type') === "password") {
+            $("#repassword").attr('type', "text")
+        } else {
+            $("#repassword").attr('type', "password")
+        }
+    }
+
+    function show_password_lama() {
+        if ($("#password_lama").attr('type') === "password") {
+            $("#password_lama").attr('type', "text")
+        } else {
+            $("#password_lama").attr('type', "password")
+        }  
+    }
+
+    function show_repassword_lama(){
+        if ($("#repassword_lama").attr('type') === "password") {
+            $("#repassword_lama").attr('type', "text")
+        } else {
+            $("#repassword_lama").attr('type', "password")
+        }
+    }
+</script>
 
 <?= $this->endsection(); ?>
