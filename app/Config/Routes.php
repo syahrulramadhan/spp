@@ -48,8 +48,8 @@ $routes->get('/pages/klpd-ajax/(:any)', 'Pages::klpd_ajax/$1');
 
 $routes->get('/pages/profil/(:num)', 'Pages::profil/$1');
 $routes->post('/pages/profil-update/(:num)', 'Pages::profil_update/$1');
-$routes->get('/pages/ubah-password/(:num)', 'Pages::ubah_password/$1');
-$routes->post('/pages/ubah-password-update/(:num)', 'Pages::ubah_password_update/$1');
+$routes->get('/pages/ubah-kata-sandi/(:num)', 'Pages::ubah_password/$1');
+$routes->post('/pages/ubah-kata-sandi-update/(:num)', 'Pages::ubah_password_update/$1');
 
 $routes->get('/jenis-advokasi', 'JenisAdvokasi::index');
 $routes->get('/jenis-advokasi/(:num)', 'JenisAdvokasi::detail/$1');

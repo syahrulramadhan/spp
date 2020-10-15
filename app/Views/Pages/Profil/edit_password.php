@@ -40,7 +40,7 @@
                 </p>
                 </div>
 
-                <form id="form-submit" action="/pages/ubah-password-update/<?= $result['id']; ?>" method="post" enctype="multipart/form-data">
+                <form id="form-submit" action="/pages/ubah-kata-sandi-update/<?= $result['id']; ?>" method="post" enctype="multipart/form-data">
                     <?= csrf_field(); ?>
                     
                     <div class="form-group row">
