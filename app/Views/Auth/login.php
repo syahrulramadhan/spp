@@ -3,22 +3,24 @@
 <?= $this->section('content'); ?>
 
 <?php
+    $session = session();
+    $errors = $session->getFlashdata('errors');
+    
+    $hassErrorUsername = $validation->hasError('username') ? 'is-invalid' : '';
+    $hassErrorPassword = $validation->hasError('password') ? 'is-invalid' : '';
+
 	$username = [
 		'name' => 'username',
 		'id' => 'username',
-		'value' => null,
-		'class' => 'form-control'
+		'value' =>  old('username'),
+		'class' => "form-control $hassErrorUsername"
 	];
 
 		$password = [
 		'name' => 'password',
 		'id' => 'password',
-		'class' => 'form-control'
+		'class' => "form-control $hassErrorPassword"
 	];
-
-	$session = session();
-	$errors = $session->getFlashdata('errors');
-
 ?>
 
 <div class="card mb-3 mt-2">
@@ -47,10 +49,12 @@
                     <div class="form-group">
                         <?= form_label("Username/Email", "username") ?>
                         <?= form_input($username) ?>
+                        <div class="invalid-feedback"><?= $validation->getError('username'); ?></div>
                     </div>
                     <div class="form-group">
                         <?= form_label("Password", "password") ?>
                         <?= form_password($password) ?>
+                        <div class="invalid-feedback"><?= $validation->getError('password'); ?></div>
                     </div>
                     <div class="text-right">
                         <?= form_submit('submit', 'Submit',['class'=>'btn btn-info']) ?>

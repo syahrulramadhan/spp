@@ -10,47 +10,41 @@ class Auth extends BaseController
         $this->session = session();
 	}
 
-	public function register(){
+	public function login(){
+		$data = [
+			'title' => 'Form Login',
+			'validation' => \Config\Services::validation()
+		];
 
 		if($this->request->getPost())
 		{
-			//lakukan validasi untuk data yang di post
-			$data = $this->request->getPost();
-			$validate = $this->validation->run($data, 'register');
-			$errors = $this->validation->getErrors();
-
-			//jika tidak ada errors jalanakan
-			if(!$errors){
-				$userModel = new \App\Models\UserModel();
-
-				$user = new \App\Entities\User();
-
-				$user->username = $this->request->getPost('email');
-				$user->password = $this->request->getPost('password');
-
-				$user->created_at = date("Y-m-d H:i:s");
-
-				$userModel->save($user);
-
-				return view('Auth/login');
+			$rules['username'] = [
+				'rules' => 'required',
+				'errors' => [
+					'required' => 'Username/Email harus diisi.'
+				]
+			];
+	
+			$rules['password'] = [
+				'rules' => 'required',
+				'errors' => [
+					'required' => 'Password harus diisi.'
+				]
+			];
+			
+			if(!$this->validate($rules)){
+	
+				$validation = \Config\Services::validation();
+				return redirect()->to("login")->withInput()->with('validation', $validation);
 			}
 
-			$this->session->setFlashdata('errors', $errors);
-		}
-
-		return view('register');
-	}
-
-	public function login(){
-		if($this->request->getPost())
-		{
 			//lakukan validasi untuk data yang di post
 			$data = $this->request->getPost();
 			$validate = $this->validation->run($data, 'login');
 			$errors = $this->validation->getErrors();
 
 			if($errors){
-				return view('Auth/login');
+				return view('Auth/login', $data);
 			}
 
 			$userModel = new \App\Models\UserModel();
@@ -87,7 +81,8 @@ class Auth extends BaseController
 				$this->session->setFlashdata('errors', ['User Tidak Ditemukan']);
 			}
 		}
-		return view('Auth/login');
+
+		return view('Auth/login', $data);
 	}
 
 	public function logout()
