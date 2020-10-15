@@ -1,16 +1,19 @@
 <?php namespace App\Controllers;
 
 use App\Models\PelayananPicModel;
+use App\Models\commonModel;
 use App\Models\PicModel;
 
 class PelayananPic extends BaseController
 {
 	protected $pelayananPicModel;
+	protected $commonModel;
 	protected $picModel;
 
 	public function __construct()
 	{
 		$this->pelayananPicModel = new PelayananPicModel();
+		$this->commonModel = new CommonModel();
 		$this->picModel = new PicModel();
 		helper('form');
 	}
@@ -73,12 +76,20 @@ class PelayananPic extends BaseController
 	public function delete($pelayanan_id, $id){
 		$result = $this->pelayananPicModel->find($id);
 
+		$total_pic = $this->commonModel->getTotal('pelayanan_pic', ['pelayanan_id' => $pelayanan_id]);
+
 		if($result){
-			$this->pelayananPicModel->delete($id);
+			if($total_pic > 1){
+				$this->pelayananPicModel->delete($id);
 
-			session()->setFlashdata('pesan', 'Data berhasil dihapus.');
+				session()->setFlashdata('pesan', 'Data berhasil dihapus.');
 
-			return redirect()->to("/pelayanan/$pelayanan_id/pic");
+				return redirect()->to("/pelayanan/$pelayanan_id/pic");
+			}else{
+				session()->setFlashdata('warning', 'Data Drafter/Pic terakhir tidak dapat dihapus');
+	
+				return redirect()->to("/pelayanan/$pelayanan_id/pic");
+			}
 		}else{
 			session()->setFlashdata('warning', 'Data tidak berhasil ditemukan');
 
