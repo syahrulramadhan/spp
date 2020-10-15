@@ -262,6 +262,10 @@ class KategoriPermasalahan extends BaseController
 			session()->setFlashdata('pesan', 'Data berhasil dihapus.');
 
 			return redirect()->to('/kategori-permasalahan');
+		}else{
+			session()->setFlashdata('warning', 'Data tidak berhasil ditemukan');
+
+			return redirect()->to('/kategori-permasalahan');
 		}
 	}
 }

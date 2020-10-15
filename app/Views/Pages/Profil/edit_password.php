@@ -27,6 +27,11 @@
                     <?= session()->getFlashdata('pesan') ?>
                     </div>
                 <?php endif; ?>
+                <?php if(session()->getFlashdata('warning')): ?>
+                    <div class="alert alert-warning" role="alert">
+                    <?= session()->getFlashdata('warning') ?>
+                    </div>
+                <?php endif; ?>
                 <div class="alert alert-info" role="alert">
                 <h4 class="alert-heading"><i class="fa fa-info-circle"></i> Informasi!</h4>
                 <hr>

@@ -79,43 +79,10 @@ class PelayananPic extends BaseController
 			session()->setFlashdata('pesan', 'Data berhasil dihapus.');
 
 			return redirect()->to("/pelayanan/$pelayanan_id/pic");
-		}
-	}
-
-	/*
-	public function save($pelayanan_id){
-		$validation = \Config\Services::validation();
-
-		$data = [
-			'pelayanan_id' => $this->request->getVar('pelayanan_id'),
-			'pic_id' => $this->request->getVar('pic_id')
-		];
-
-		$validation->setRules([
-			'pelayanan_id' => [
-				'rules' => 'required',
-				'errors' => [
-					'required' => '{field} pelayanan harus diisi.'
-				]
-			],
-			'pic_id' => [
-				'rules' => 'required|is_unique[pelayanan_pic.pic_id]',
-				'errors' => [
-					'required' => '{field} pic harus diisi.'
-				]
-			]
-		]);
-
-		if($validation->run() == FALSE){
-			session()->setFlashdata('errors', $validation->getErrors());
-            return redirect()->to(base_url("/pelayanan/$pelayanan_id/pic"));
 		}else{
-			$this->pelayananPicModel->save($data);
+			session()->setFlashdata('warning', 'Data tidak berhasil ditemukan');
 
-			session()->setFlashdata('pesan', 'Data berhasil ditambahkan.');
-			
 			return redirect()->to("/pelayanan/$pelayanan_id/pic");
 		}
 	}
-	*/
 }

@@ -23,6 +23,11 @@
                     <?= session()->getFlashdata('pesan') ?>
                     </div>
                 <?php endif; ?>
+                <?php if(session()->getFlashdata('warning')): ?>
+                    <div class="alert alert-warning" role="alert">
+                    <?= session()->getFlashdata('warning') ?>
+                    </div>
+                <?php endif; ?>
 
                 <?php /* $validation->listErrors(); */ ?>
 

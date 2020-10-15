@@ -24,6 +24,11 @@
                     <?= session()->getFlashdata('pesan') ?>
                     </div>
                 <?php endif; ?>
+                <?php if(session()->getFlashdata('warning')): ?>
+                    <div class="alert alert-warning" role="alert">
+                    <?= session()->getFlashdata('warning') ?>
+                    </div>
+                <?php endif; ?>
                 <form id="form-submit" action='<?= base_url("pelayanan/$pelayanan_id/file/save"); ?>' method="post" enctype="multipart/form-data">
                     <?= csrf_field(); ?>
 

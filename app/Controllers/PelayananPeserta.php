@@ -62,6 +62,10 @@ class PelayananPeserta extends BaseController
 			session()->setFlashdata('pesan', 'Data berhasil dihapus.');
 
 			return redirect()->to("/pelayanan/$pelayanan_id/peserta");
+		}else{
+			session()->setFlashdata('warning', 'Data tidak berhasil ditemukan');
+
+			return redirect()->to("/pelayanan/$pelayanan_id/peserta");
 		}
 	}
 }

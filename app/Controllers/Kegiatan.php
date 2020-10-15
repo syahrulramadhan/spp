@@ -254,6 +254,10 @@ class Kegiatan extends BaseController
 			session()->setFlashdata('pesan', 'Data berhasil dihapus.');
 
 			return redirect()->to('/kegiatan');
+		}else{
+			session()->setFlashdata('warning', 'Data tidak berhasil ditemukan');
+
+			return redirect()->to('/kegiatan');
 		}
 	}
 
@@ -363,6 +367,10 @@ class Kegiatan extends BaseController
 			$this->pelayananModel->delete($id);
 
 			session()->setFlashdata('pesan', 'Data berhasil dihapus.');
+
+			return redirect()->to("/kegiatan/$kegiatan_id/$jenis_advokasi_id/pelayanan");
+		}else{
+			session()->setFlashdata('warning', 'Data tidak berhasil ditemukan');
 
 			return redirect()->to("/kegiatan/$kegiatan_id/$jenis_advokasi_id/pelayanan");
 		}

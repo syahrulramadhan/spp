@@ -226,6 +226,10 @@ class User extends BaseController
 			session()->setFlashdata('pesan', 'Data berhasil dihapus.');
 
 			return redirect()->to('/user');
+		}else{
+			session()->setFlashdata('warning', 'Data tidak berhasil ditemukan');
+
+			return redirect()->to("/user");
 		}
 	}
 }

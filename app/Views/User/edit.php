@@ -30,6 +30,11 @@
                     <?= session()->getFlashdata('pesan') ?>
                     </div>
                 <?php endif; ?>
+                <?php if(session()->getFlashdata('warning')): ?>
+                    <div class="alert alert-warning" role="alert">
+                    <?= session()->getFlashdata('warning') ?>
+                    </div>
+                <?php endif; ?>
                 <form id="form-submit" action="/user/update/<?= $result['id']; ?>" method="post" enctype="multipart/form-data">
                     <?= csrf_field(); ?>
                     <div class="form-group row">

@@ -541,6 +541,10 @@ class Pelayanan extends BaseController
 			session()->setFlashdata('pesan', 'Data berhasil dihapus.');
 
 			return redirect()->to("/pelayanan?jenis_advokasi_id=$jenis_advokasi_id");
+		}else{
+			session()->setFlashdata('warning', 'Data tidak berhasil ditemukan');
+
+			return redirect()->to("/pelayanan?jenis_advokasi_id=$jenis_advokasi_id");
 		}
 	}
 	

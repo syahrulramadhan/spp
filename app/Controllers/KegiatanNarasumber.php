@@ -63,6 +63,10 @@ class KegiatanNarasumber extends BaseController
 			session()->setFlashdata('pesan', 'Data berhasil dihapus.');
 
 			return redirect()->to("/kegiatan/$kegiatan_id/narasumber");
+		}else{
+			session()->setFlashdata('warning', 'Data tidak berhasil ditemukan');
+
+			return redirect()->to("/kegiatan/$kegiatan_id/narasumber");
 		}
 	}
 }
