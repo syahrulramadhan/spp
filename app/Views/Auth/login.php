@@ -7,7 +7,7 @@
     $errors = $session->getFlashdata('errors');
     
     $hassErrorUsername = $validation->hasError('username') ? 'is-invalid' : '';
-    $hassErrorPassword = $validation->hasError('password') ? 'is-invalid' : '';
+    $hassErrorPassword = ($validation->hasError('password') || session()->getFlashdata('error')) ? 'is-invalid' : '';
 
 	$username = [
 		'name' => 'username',
@@ -23,6 +23,7 @@
 	];
 ?>
 
+
 <div class="card mb-3 mt-2">
     <div class="row">
         <div class="col-md-4">
@@ -32,19 +33,6 @@
                         <h6 class="mb-0 text-white lh-100">Login Form</h6>
                     </div>
                 </div>
-                <?php if($errors != null): ?>
-                    <div class="alert alert-danger" role="alert">
-                        <h4 class="alert-heading">Terjadi Kesalahan</h4>
-                        <hr>
-                        <p class="mb-0">
-                            <?php
-                                foreach($errors as $err){
-                                    echo $err.'<br>';
-                                }
-                            ?>
-                        </p>
-                    </div>
-                <?php endif ?>
                 <?= form_open('Auth/login') ?>
                     <div class="form-group">
                         <?= form_label("Username/Email", "username") ?>
@@ -55,6 +43,8 @@
                         <?= form_label("Password", "password") ?>
                         <?= form_password($password) ?>
                         <div class="invalid-feedback"><?= $validation->getError('password'); ?></div>
+                        <div class="invalid-feedback"><?= session()->getFlashdata('error'); ?></div>
+                        <input type="checkbox" onclick="show_password()" class="mt-2"> Tampilkan Kata Sandi
                     </div>
                     <div class="text-right">
                         <?= form_submit('submit', 'Submit',['class'=>'btn btn-info']) ?>
@@ -75,5 +65,17 @@
         </div>
     </div>
 </div>
+
+<script type="text/javascript">
+    function show_password() {
+        var password = $("#password").val();
+
+        if ($("#password").attr('type') === "password") {
+            $("#password").attr('type', "text")
+        } else {
+            $("#password").attr('type', "password")
+        }
+    }
+</script>
 
 <?= $this->endSection() ?>

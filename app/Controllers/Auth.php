@@ -19,9 +19,10 @@ class Auth extends BaseController
 		if($this->request->getPost())
 		{
 			$rules['username'] = [
-				'rules' => 'required',
+				'rules' => 'required|exist_username_user',
 				'errors' => [
-					'required' => 'Username/Email harus diisi.'
+					'required' => 'Username/Email harus diisi.',
+					'exist_username_user' => 'Username/Email tidak ditemukan'
 				]
 			];
 	
@@ -38,15 +39,6 @@ class Auth extends BaseController
 				return redirect()->to("login")->withInput()->with('validation', $validation);
 			}
 
-			//lakukan validasi untuk data yang di post
-			$data = $this->request->getPost();
-			$validate = $this->validation->run($data, 'login');
-			$errors = $this->validation->getErrors();
-
-			if($errors){
-				return view('Auth/login', $data);
-			}
-
 			$userModel = new \App\Models\UserModel();
 
 			$username = $this->request->getPost('username');
@@ -54,15 +46,12 @@ class Auth extends BaseController
 
 			$user = $userModel->where('username', $username)->orwhere('email', $username)->first();
 
-            //echo "<pre>"; print_r($user); exit;
-
-            if($user)
-			{
+            if($user){
 				$salt = $user['salt'];
 				$pass = $this->setPassword($password, $salt);
 				
 				if($user['password'] !== $pass['password']){
-					$this->session->setFlashdata('errors', ['Password Salah']);
+					$this->session->setFlashdata('error', 'Kata sandi anda salah');
 				}else{
                     $newdata = [
                         'nama_lengkap'  => $user['nama_depan'] . " " . $user['nama_belakang'],
@@ -78,7 +67,7 @@ class Auth extends BaseController
 					return redirect()->to(base_url('pages'));
                 }
 			}else{
-				$this->session->setFlashdata('errors', ['User Tidak Ditemukan']);
+				$this->session->setFlashdata('error', 'Username/Email tidak ditemukan');
 			}
 		}
 

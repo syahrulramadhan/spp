@@ -62,5 +62,18 @@ class CustomRules{
                 return true;
             }
         }
+
+        public function exist_username_user(string $username, string &$error = null): bool
+        {
+            $userModel = new UserModel();
+
+            $result = $userModel->where('username', $username)->orwhere('email', $username)->first();
+
+            if($result){
+                return true;
+            }else{
+                return false;
+            }
+        }
     }
 ?>
