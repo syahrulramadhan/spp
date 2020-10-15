@@ -43,7 +43,7 @@
                     <div class="form-group row">
                         <label for="tanggal_pelaksanaan" class="col-sm-2 col-form-label">Tanggal Pelaksanaan</label>
                         <div class="col-sm-10">
-                            <input type="text" class="form-control <?= ($validation->hasError('tanggal_pelaksanaan')) ? 'is-invalid' : ''; ?>" id="tanggal_pelaksanaan" name="tanggal_pelaksanaan" value="<?= old('tanggal_pelaksanaan'); ?>">
+                            <input type="text" class="form-control <?= ($validation->hasError('tanggal_pelaksanaan')) ? 'is-invalid' : ''; ?>" id="tanggal_pelaksanaan" name="tanggal_pelaksanaan" placeholder="MM/DD/YYYY" value="<?= old('tanggal_pelaksanaan'); ?>">
                             <div class="invalid-feedback"><?= $validation->getError('tanggal_pelaksanaan'); ?></div>
                         </div>
                     </div>
