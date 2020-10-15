@@ -1,16 +1,22 @@
 <?php namespace App\Controllers;
 
 use App\Models\KlpdModel;
+use App\Models\LaporanPelayananModel;
+use App\Models\LaporanValuasiModel;
 use App\Models\SatuanKerjaModel;
 
 class Command extends BaseController
 {
 	protected $klpdModel;
+	protected $laporanPelayananModel;
+	protected $laporanValuasiModel;
 	protected $satuanKerjaModel;
 
 	public function __construct()
 	{
 		$this->klpdModel = new KlpdModel();
+		$this->laporanPelayananModel = new LaporanPelayananModel();
+		$this->laporanValuasiModel = new LaporanValuasiModel();
 		$this->satuanKerjaModel = new SatuanKerjaModel();
         helper(['form', 'url']);
         
@@ -81,6 +87,17 @@ class Command extends BaseController
                 //echo "<pre>"; print_r($data); exit; 
 
                 $this->klpdModel->save($data);
+
+                $data1 = [
+					'klpd_id' => $row->id
+                ];
+
+                $data2 = [
+					'klpd_id' => $row->id
+                ];
+
+                $this->laporanPelayananModel->save($data1);
+                $this->laporanValuasiModel->save($data2);
 
 				echo $number . ". " . $row->nama . " Berhasil dimasukkan";
 				echo "\n";
