@@ -40,7 +40,7 @@ class KegiatanModel extends Model
         return $this->db->insertID();
     }
 
-    public function getPaginatedKegiatanData(string $keyword = ''){
+    public function getPaginatedKegiatanData($jenis_advokasi_id = 0, $tahun = '', $keyword = ''){
         $select = '
             kegiatan.id
             , kegiatan.nama_kegiatan
@@ -56,11 +56,21 @@ class KegiatanModel extends Model
             ) jumlah_pelayanan
         ';
 
-        if($keyword){
-            return $this->select($select)
-                ->like('kegiatan.nama_kegiatan', $keyword);
+        $builder = $this->table('kegiatan');
+        $builder->select($select);
+
+        if($jenis_advokasi_id){
+            $builder->where('jenis_advokasi_id', $jenis_advokasi_id);
         }
 
-        return $this->select($select);
+        if($tahun){
+            $builder->where('YEAR(tanggal_pelaksanaan)', $tahun);
+        }
+
+        if($keyword){
+            $builder->like('kegiatan.nama_kegiatan', $keyword);
+        }
+
+        return $builder;
     }
 }

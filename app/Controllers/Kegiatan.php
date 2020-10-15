@@ -31,9 +31,11 @@ class Kegiatan extends BaseController
 	public function index()
 	{
 		$keyword = $this->request->getVar('q');
+		$jenis_advokasi_id = $this->request->getVar('jenis_advokasi_id');
+		$tahun = ($this->request->getVar('tahun')) ? $this->request->getVar('tahun') : date('Y');
 		
-		if($keyword){
-			$result = $this->kegiatanModel->getPaginatedKegiatanData($keyword);
+		if($jenis_advokasi_id || $tahun || $keyword){
+			$result = $this->kegiatanModel->getPaginatedKegiatanData($jenis_advokasi_id, $tahun, $keyword);
 		}else
 			$result = $this->kegiatanModel->getPaginatedKegiatanData();
 
@@ -42,8 +44,11 @@ class Kegiatan extends BaseController
 
 		$data = [
             'title' => 'Kegiatan',
-            'result' => $result->paginate($per_page, 'kegiatan'),
+			'result' => $result->paginate($per_page, 'kegiatan'),
+			'options_tahun' => $this->options_tahun_layanan(),
 			'keyword' => $keyword,
+			'jenis_advokasi_id' => $jenis_advokasi_id,
+			'tahun' => $tahun,
 			'pager' => $result->pager,
 			'per_page' => $per_page,
 			'currentPage' => $currentPage

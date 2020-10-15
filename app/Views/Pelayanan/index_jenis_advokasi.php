@@ -42,7 +42,7 @@
             <br/>
             <?php if(in_array($rows['id'], array(8,9))){ ?>
                 <a class="btn btn-success" href="<?= base_url("kegiatan/create/" . $rows['id']); ?>">Entry</a>
-                <a class="btn btn-info" style="margin-top: 5px;" href="<?= base_url("kegiatan"); ?>" class="stretched-link">Rekap</a>
+                <a class="btn btn-info" style="margin-top: 5px;" href="<?= base_url("kegiatan?jenis_advokasi_id=" . $rows['id']); ?>" class="stretched-link">Rekap</a>
             <?php }else{ ?>
                 <a class="btn btn-success" href="<?= base_url("pelayanan/create/" . $rows['id']); ?>">Entry</a>
                 <a class="btn btn-info" style="margin-top: 5px;" href="<?= base_url("pelayanan?jenis_advokasi_id=" . $rows['id']); ?>" class="stretched-link">Rekap</a>

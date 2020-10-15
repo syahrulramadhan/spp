@@ -51,17 +51,22 @@ class PelayananModel extends Model
         return $builder->get()->getResultArray();
     }
 
-    public function getPaginatedPelayananData($jenis_advokasi_id, $tahun, $q){
+    public function getPaginatedPelayananData($jenis_advokasi_id = 0, $tahun = '', $keyword = ''){
+        $builder = $this->table('pelayanan');
+
         if($jenis_advokasi_id){
-            return $this->table('pelayanan')
-                ->where('jenis_advokasi_id', $jenis_advokasi_id)
-                ->where('YEAR(tanggal_pelaksanaan)', $tahun)
-                ->where("(nama LIKE '%$q%' OR paket_nama LIKE '%$q%')");
-        }else{
-            return $this->table('pelayanan')
-                ->where('YEAR(tanggal_pelaksanaan)', $tahun)
-                ->where("(nama LIKE '%$q%' OR paket_nama LIKE '%$q%')");
+            $builder->where('jenis_advokasi_id', $jenis_advokasi_id);
         }
+
+        if($tahun){
+            $builder->where('YEAR(tanggal_pelaksanaan)', $tahun);
+        }
+
+        if($keyword){
+            $builder->where("(nama LIKE '%$keyword%' OR paket_nama LIKE '%$keyword%')");
+        }
+        
+        return $builder;
     }
 
     public function ChartPelayananJumlah($jenis_klpd, $tahun){

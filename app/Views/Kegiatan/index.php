@@ -20,15 +20,13 @@
         <div class="col-md-12">
             <div class="card-body">
                 <div class="row">
-                    <div class="col-9">
-                        <div class="mb-3">
-                            <a href="/kegiatan/create/8" class="btn btn-info">Clearing House</a>
-                            <a href="/kegiatan/create/9" class="btn btn-info">Bimbingan Teknis</a>
-                        </div>
+                    <div class="col-6">
                     </div>
-                    <div class="col-3 pull-right">
+                    <div class="col-6 pull-right">
                         <form id="form-submit" action="" method="GET">
                             <div class="input-group mb-3">
+                            <?= form_dropdown('tahun', $options_tahun, $tahun, ['class' => 'custom-select ', 'id' => 'tahun', 'class' => "custom-select mr-2"]); ?>
+                            <?= form_dropdown('jenis_advokasi_id', ['' => '--Pilih--', '8' => 'Clearing House', '9' => 'Bimbingan Teknis'], $jenis_advokasi_id, ['id' => 'jenis_advokasi_id', 'class' => "custom-select mr-2"]); ?>
                             <input type="text" class="form-control" placeholder="Masukan kata nama" name="q" value="<?= $keyword ?>" autofocus>
                             <div class="input-group-append">
                                 <button class="btn btn-outline-info" type="submit"><i class="fa fa-search"></i></button>
@@ -53,6 +51,7 @@
                         <th class="text-center col-small">#</th>
                         <th>NAMA KEGIATAN</th>
                         <th>TANGGAL PELAKSANAAN</th>
+                        <th>JENIS ADVOKASI</th>
                         <th style="width: 200px;" class="text-center col-small">JUMLAH PESERTA</th>
                         <th class="text-center col-small">DETAIL</th>
                     </tr>
@@ -68,6 +67,7 @@
                                     <th scope="row" class="text-center"><?= $i++; ?></th>
                                     <td><?= $rows['nama_kegiatan']; ?></td>
                                     <td><?= $rows['tanggal_pelaksanaan']; ?></td>
+                                    <td class="text-center"><?= $rows['jenis_advokasi_nama']; ?></td>
                                     <td class="text-center"><?= ($rows['jumlah_pelayanan']) ? $rows['jumlah_pelayanan'] : 0; ?></td>
                                     <td class="text-center">
                                         <a href="<?= base_url('kegiatan/' . $rows['id']); ?>" class="text-decoration-none">

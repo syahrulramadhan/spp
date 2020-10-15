@@ -43,10 +43,10 @@ class Pelayanan extends BaseController
 		$jenis_advokasi_id = $this->request->getVar('jenis_advokasi_id');
 		$tahun = ($this->request->getVar('tahun')) ? $this->request->getVar('tahun') : date('Y');
 		
-		if($jenis_advokasi_id || $keyword){
+		if($jenis_advokasi_id || $tahun || $keyword){
 			$pelayanan = $this->pelayananModel->getPaginatedPelayananData($jenis_advokasi_id, $tahun, $keyword);
 		}else
-			$pelayanan = $this->pelayananModel;
+			$pelayanan = $this->pelayananModel->getPaginatedPelayananData();
 
 		$currentPage = ($this->request->getVar('page_pelayanan')) ? $this->request->getVar('page_pelayanan') : 1;
 		$per_page = 10;
