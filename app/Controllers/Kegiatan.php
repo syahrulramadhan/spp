@@ -278,7 +278,7 @@ class Kegiatan extends BaseController
 			'options_klpd' => $this->options_klpd(),
 			'validation' => \Config\Services::validation(),
 			'result' => $result,
-			'kegiatan_id' => $result_kegiatan['id'],
+			'result_kegiatan' => $result_kegiatan,
 			'jenis_advokasi_id' => $result_jenis_advokasi['id'],
 			'nama_jenis_advokasi' => $result_jenis_advokasi['nama_jenis_advokasi'],
 		];

@@ -8,11 +8,12 @@
     <ol class="breadcrumb">
         <li class="breadcrumb-item"><a href="<?= base_url(); ?>">Dashboard</a></li>
         <li class="breadcrumb-item"><a href="<?= base_url('kegiatan'); ?>">Kegiatan</a></li>
-        <li class="breadcrumb-item"><a href="<?= base_url('kegiatan/' . $kegiatan_id); ?>">Detail Kegiatan</a></li>
+        <li class="breadcrumb-item"><a href="<?= base_url('kegiatan/' . $result_kegiatan['id']); ?>">Detail Kegiatan</a></li>
         <li class="breadcrumb-item active" aria-current="page"><?= $title ?></li>
     </ol>
 </nav>
 
+<?php if(session('id') === $result_kegiatan['created_by'] || permission(['ADMINISTRATOR'])){ ?>
 <div class="card mb-3">
     <div class="row">
         <div class="col-md-12">
@@ -31,7 +32,7 @@
 
                 <?php /* $validation->listErrors(); */ ?>
 
-                <form id="form-submit" action='<?= base_url("kegiatan/$kegiatan_id/$jenis_advokasi_id/pelayanan/save"); ?>' method="post" enctype="multipart/form-data">
+                <form id="form-submit" action='<?= base_url("kegiatan/" . $result_kegiatan['id'] . "/$jenis_advokasi_id/pelayanan/save"); ?>' method="post" enctype="multipart/form-data">
                     <?= csrf_field(); ?>
 
                     <input type="hidden" name="jenis_advokasi_id" value="<?= $jenis_advokasi_id; ?>">   
@@ -71,7 +72,7 @@
                     <div class="form-group row">
                         <div class="col-sm-10">
                         <button type="submit" class="btn btn-info">Tambah Data</button>
-                        <a href="<?= base_url('kegiatan/' . $kegiatan_id); ?>" class="btn btn-info">Lihat Rekap</a>
+                        <a href="<?= base_url('kegiatan/' . $result_kegiatan['id']); ?>" class="btn btn-info">Lihat Rekap</a>
                         </div>
                     </div>
                 </form>
@@ -79,6 +80,7 @@
         </div>
     </div>
 </div>
+<?php } ?>
 
 <div class="d-flex align-items-center p-3 my-1 text-white-50 bg-info rounded shadow-sm">
     <div class="lh-100">
@@ -96,7 +98,9 @@
                         <th class="text-center col-small">#</th>
                         <th>K/L/Pemda</th>
                         <th>SATUAN KERJA</th>
+                        <?php if(session('id') === $result_kegiatan['created_by'] || permission(['ADMINISTRATOR'])){ ?>
                         <th class="text-center col-small">PILIHAN</th>
+                        <?php } ?>
                     </tr>
                     </thead>
                     <tbody>
@@ -115,13 +119,15 @@
                             <td>
                                 <div><?= $rows['satuan_kerja_nama']; ?></div>
                             </td>
+                            <?php if(session('id') === $result_kegiatan['created_by'] || permission(['ADMINISTRATOR'])){ ?>
                             <td class="text-center">
-                                <form action="<?= base_url("kegiatan/$kegiatan_id/$jenis_advokasi_id/pelayanan/delete/" . $rows['id']); ?>" method="post" class="d-inline">
+                                <form action="<?= base_url("kegiatan/" . $result_kegiatan['id'] . "/$jenis_advokasi_id/pelayanan/delete/" . $rows['id']); ?>" method="post" class="d-inline">
                                     <?= csrf_field(); ?>
                                     <input type="hidden" name="_method" value="DELETE">
                                     <button type="submit" class="btn btn-danger" onclick="return confirm('Apakah anda yakin?');">Delete</button>
                                 </form>
                             </td>
+                            <?php } ?>
                         </tr>
                         <?php endforeach; 
                     }else{ ?>
