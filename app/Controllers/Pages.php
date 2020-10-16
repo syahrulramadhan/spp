@@ -109,8 +109,8 @@ class Pages extends BaseController
 					$jumlah_coverage = $rows['total_coverage'] - $total_coverage;
 
 					$grafik[$rows['bulan']][0] = $this->bulan($rows['bulan']);
-					$grafik[$rows['bulan']][1] = ($jumlah_coverage/$count);
-					$grafik[$rows['bulan']][2] = ($rows['total_coverage']/$count);
+					$grafik[$rows['bulan']][1] = round($jumlah_coverage/$count, 4);
+					$grafik[$rows['bulan']][2] = round($rows['total_coverage']/$count, 4);
 
 					$total_coverage = $rows['total_coverage'];
 				}
@@ -152,7 +152,7 @@ class Pages extends BaseController
 
 				foreach($result as $rows){
 					$grafik1[$rows['bulan']][0] = $this->bulan($rows['bulan']);
-					$grafik1[$rows['bulan']][1] = $rows['nilai_kualitas']/$count;
+					$grafik1[$rows['bulan']][1] = round($rows['nilai_kualitas']/$count, 4);
 				}
 
 				$grafik = $grafik1;
