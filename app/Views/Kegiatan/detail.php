@@ -39,15 +39,21 @@
                 <p class="card-text"><?= $result['tanggal_pelaksanaan'] ?></p>
                 <p class="card-text"><?= $result['jenis_advokasi_nama'] ?></p>
                 <p class="card-text"><?= $result['tahapan'] ?></p>
+                <?php if(session('id') === $result['created_by'] || permission(['ADMINISTRATOR'])){ ?>
                 <a href="/kegiatan/edit/<?= $result['id']; ?>" class="btn btn-info">Edit</a>
+                <?php } ?>
                 <a class="btn btn-info" href="<?= base_url("/kegiatan?jenis_advokasi_id=" . $result['jenis_advokasi_id']); ?>">Lihat Rekap</a>
+                <?php if(session('id') === $result['created_by'] || permission(['ADMINISTRATOR'])){ ?>
                 <a class="btn btn-info" href='<?= base_url("kegiatan/" . $result['id'] . "/" . $result['jenis_advokasi_id'] . "/pelayanan"); ?>'>Entry Peserta</a>
+                <?php } ?>
                 <a class="btn btn-info" href='<?= base_url("kegiatan/create/" . $result['jenis_advokasi_id']); ?>'>Entry <?= $result['jenis_advokasi_nama'] ?></a>
+                <?php if(session('id') === $result['created_by'] || permission(['ADMINISTRATOR'])){ ?>
                 <form action="/kegiatan/delete/<?= $result['id']; ?>" method="post" class="d-inline">
                     <?= csrf_field(); ?>
                     <input type="hidden" name="_method" value="DELETE">
                     <button type="submit" class="btn btn-danger" onclick="return confirm('Apakah anda yakin?');">Delete</button>
                 </form>
+                <?php } ?>
             </div>
         </div>
         <div class="col-md-4">
@@ -103,10 +109,11 @@
                         </div>
                     <?php }
                 ?>
-
+                <?php if(session('id') === $result['created_by'] || permission(['ADMINISTRATOR'])){ ?>
                 <small class="d-block text-right mt-3">
                     <a href="<?= base_url('kegiatan/' . $result['id'] . '/materi') ;?>">Entry</a>
                 </small>
+                <?php } ?>
             </div>
             <div class="d-flex align-items-center p-3 my-1 text-white-50 bg-info rounded shadow-sm">
             <!--<img class="mr-3" src="../assets/brand/bootstrap-outline.svg" alt="" width="48" height="48">-->
@@ -138,10 +145,11 @@
                         </div>
                     <?php }
                 ?>
-
+                <?php if(session('id') === $result['created_by'] || permission(['ADMINISTRATOR'])){ ?>
                 <small class="d-block text-right mt-3">
                     <a href="<?= base_url('kegiatan/' . $result['id'] . '/narasumber') ;?>">Entry</a>
                 </small>
+                <?php } ?>
             </div>
         </div>
     </div>

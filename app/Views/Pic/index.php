@@ -12,6 +12,7 @@
     </ol>
 </nav>
 
+<?php if(permission(['ADMINISTRATOR'])){ ?>
 <div class="card mb-3">
     <div class="row">
         <div class="col-md-12">
@@ -49,6 +50,7 @@
         </div>
     </div>
 </div>
+<?php } ?>
 
 <div class="d-flex align-items-center p-3 my-1 text-white-50 bg-info rounded shadow-sm">
     <div class="lh-100">

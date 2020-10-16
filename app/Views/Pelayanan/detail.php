@@ -50,18 +50,22 @@
                 <p class="card-text"><?= $result['nama_kategori_permasalahan'] ?></p>
                 <p class="card-text"><?= $result['keterangan'] ?></p>
                 
+                <?php if(session('id') === $result['created_by'] || permission(['ADMINISTRATOR'])){ ?>
                 <?php if(in_array($result['jenis_advokasi_id'], array(1,2,3,4,5,6,7))){ ?>
                     <a href="<?= base_url("pelayanan/" . $result['jenis_advokasi_id'] . "/edit/" . $result['id']); ?>" class="btn btn-info">Edit</a>
+                <?php } ?>
                 <?php } ?>
                 <a class="btn btn-info" href="<?= base_url("/pelayanan?jenis_advokasi_id=" . $result['jenis_advokasi_id']); ?>">Lihat Rekap</a>
                 <?php if(in_array($result['jenis_advokasi_id'], array(1,2,3,4,5,6,7))){ ?>
                     <a class="btn btn-info" href="<?= base_url("/pelayanan/create/" . $result['jenis_advokasi_id']); ?>">Entry <?= $result['jenis_advokasi_nama'] ?></a>
-                    <form action="/pelayanan/delete/<?= $result['id']; ?>" method="post" class="d-inline">
+                    <?php if(session('id') === $result['created_by'] || permission(['ADMINISTRATOR'])){ ?>
+                        <form action="/pelayanan/delete/<?= $result['id']; ?>" method="post" class="d-inline">
                         <?= csrf_field(); ?>
                         <input type="hidden" name="_method" value="DELETE">
                         <input type="hidden" name="jenis_advokasi_id" value="<?= $result['jenis_advokasi_id'] ?>">
                         <button type="submit" class="btn btn-danger" onclick="return confirm('Apakah anda yakin?');">Delete</button>
                     </form>
+                    <?php } ?>
                 <?php } ?>
             </div>
         </div>
@@ -120,9 +124,11 @@
                         <?php }
                     ?>
 
+                    <?php if(session('id') === $result['created_by'] || permission(['ADMINISTRATOR'])){ ?>
                     <small class="d-block text-right mt-3">
                         <a href="<?= base_url('pelayanan/' . $result['id'] . '/file') ;?>">Entry</a>
                     </small>
+                    <?php } ?>
                 </div>
             <?php } ?>
             <?php if(in_array($result['jenis_advokasi_id'], array(3,4,5))){ ?>
@@ -156,10 +162,11 @@
                             </div>
                         <?php }
                     ?>
-
+                    <?php if(session('id') === $result['created_by'] || permission(['ADMINISTRATOR'])){ ?>
                     <small class="d-block text-right mt-3">
                         <a href="<?= base_url('pelayanan/' . $result['id'] . '/peserta') ;?>">Entry</a>
                     </small>
+                    <?php } ?>
                 </div>
             <?php } ?>
             <?php if(in_array($result['jenis_advokasi_id'], array(1,2,3,4,5,6,7))){ ?>
@@ -194,9 +201,11 @@
                         <?php }
                     ?>
 
+                    <?php if(session('id') === $result['created_by'] || permission(['ADMINISTRATOR'])){ ?>
                     <small class="d-block text-right mt-3">
                         <a href="<?= base_url('pelayanan/' . $result['id'] . '/pic') ;?>">Entry</a>
                     </small>
+                    <?php } ?>
                 </div>
             <?php } ?>
         </div>

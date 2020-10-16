@@ -48,7 +48,7 @@
                 <table class="table table-bordered table-sm">
                     <thead>
                     <tr>
-                        <th class="text-center col-small">#</th>
+                        <th class="text-center col-small">NO</th>
                         <th>NAMA KEGIATAN</th>
                         <th>TANGGAL PELAKSANAAN</th>
                         <th>JENIS ADVOKASI</th>

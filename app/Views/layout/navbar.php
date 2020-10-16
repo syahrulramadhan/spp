@@ -11,7 +11,7 @@
       <li class="nav-item active">
         <a class="nav-link" href="<?= base_url(); ?>">Dashboard <span class="sr-only">(current)</span></a>
       </li>
-      <?php if(session('role') == 'ADMINISTRATOR'){ ?>
+      <?php if(permission(['ADMINISTRATOR','ADMIN_CONTENT'])){ ?>
       <li class="nav-item dropdown">
         <a class="nav-link dropdown-toggle" href="#" id="dropdown01" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Data</a>
         <div class="dropdown-menu" aria-labelledby="dropdown01">
@@ -20,7 +20,9 @@
           <a class="dropdown-item" href="/kategori-permasalahan">Kategori Permasalahan</a>
           <a class="dropdown-item" href="/pages/klpd">K/L/Pemda</a>
           <a class="dropdown-item" href="/pic">PIC</a>
+          <?php if(permission(['ADMINISTRATOR'])){ ?>
           <a class="dropdown-item" href="/user">User</a>
+          <?php } ?>
         </div>
       </li>
       <?php } ?>
@@ -44,7 +46,7 @@
       </li>
     </ul>
     
-    <?php if(session()->has('logged_in')){ ?>
+    <?php if(permission(['ADMINISTRATOR','ADMIN_CONTENT'])){ ?>
     <ul class="navbar-nav justify-content-end">
       <li class="nav-item dropdown">
         <a class="nav-link dropdown-toggle" href="#" id="dropdown01" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><?= session('nama_lengkap') ?></strong></a>

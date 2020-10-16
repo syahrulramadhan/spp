@@ -1,27 +1,30 @@
 <?php namespace App\Controllers;
 
 use App\Models\KegiatanMateriModel;
+use App\Models\KegiatanModel;
 
 class KegiatanMateri extends BaseController
 {
 	protected $kegiatanMateriModel;
+	protected $kegiatanModel;
 
 	public function __construct()
 	{
-        ini_set("display_errors", "1");
-
 		$this->kegiatanMateriModel = new KegiatanMateriModel();
+		$this->kegiatanModel = new KegiatanModel();
 		helper('form');
 	}
 
 	public function index($id)
 	{
 
-        $arr = $this->kegiatanMateriModel->getMateriByKegiatanId($id);
- 
+        $result = $this->kegiatanMateriModel->getMateriByKegiatanId($id);
+		$result_kegiatan = $this->kegiatanModel->getKegiatan($id);
+
 		$data = [
             'title' => 'Dokumen',
-            'result' => $arr,
+			'result' => $result,
+			'result_kegiatan' => $result_kegiatan,
 			'kegiatan_id' => $id,
             'validation' => \Config\Services::validation()
 		];

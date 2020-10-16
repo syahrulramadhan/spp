@@ -12,6 +12,7 @@
     </ol>
 </nav>
 
+<?php if(session('id') === $result_pelayanan['created_by'] || permission(['ADMINISTRATOR'])){ ?>
 <div class="card mb-3">
     <div class="row">
         <div class="col-md-12">
@@ -49,6 +50,7 @@
         </div>
     </div>
 </div>
+<?php } ?>
 
 <div class="d-flex align-items-center p-3 my-1 text-white-50 bg-info rounded shadow-sm">
     <div class="lh-100">
@@ -66,7 +68,9 @@
                     <tr>
                         <th class="text-center col-small">NO</th>
                         <th>NAMA LENGKAP</th>
+                        <?php if(session('id') === $result_pelayanan['created_by'] || permission(['ADMINISTRATOR'])){ ?>
                         <th class="text-center col-small">PILIHAN</th>
+                        <?php } ?>
                     </tr>
                     </thead>
                     <tbody>
@@ -82,6 +86,7 @@
                             <td>
                                 <div><?= $rows['nama_peserta']; ?></div>
                             </td>
+                            <?php if(session('id') === $result_pelayanan['created_by'] || permission(['ADMINISTRATOR'])){ ?>
                             <td class="text-center">
                                 <form action="<?php echo base_url("pelayanan/$pelayanan_id/peserta/delete/" . $rows['id']); ?>" method="post" class="d-inline">
                                     <?= csrf_field(); ?>
@@ -89,6 +94,7 @@
                                     <button type="submit" class="btn btn-danger" onclick="return confirm('Apakah anda yakin?');">Delete</button>
                                 </form>
                             </td>
+                            <?php } ?>
                         </tr>
                         <?php endforeach; 
                     }else{ ?>

@@ -1,26 +1,29 @@
 <?php namespace App\Controllers;
 
 use App\Models\KegiatanNarasumberModel;
+use App\Models\KegiatanModel;
 
 class KegiatanNarasumber extends BaseController
 {
 	protected $kegiatanNarasumberModel;
+	protected $kegiatanModel;
 
 	public function __construct()
 	{
 		$this->kegiatanNarasumberModel = new KegiatanNarasumberModel();
+		$this->kegiatanModel = new KegiatanModel();
 		helper('form');
 	}
 
 	public function index($id)
 	{
-		ini_set("display_errors", "1");
+        $result = $this->kegiatanNarasumberModel->getNarasumberByKegiatanId($id);
+		$result_kegiatan = $this->kegiatanModel->getKegiatan($id);
 
-        $arr = $this->kegiatanNarasumberModel->getNarasumberByKegiatanId($id);
- 
 		$data = [
             'title' => 'Kegiatan Narasumber',
-            'result' => $arr,
+			'result' => $result,
+			'result_kegiatan' => $result_kegiatan,
 			'kegiatan_id' => $id,
 			'validation' => \Config\Services::validation()
 		];

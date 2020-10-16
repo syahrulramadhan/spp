@@ -1,17 +1,20 @@
 <?php namespace App\Controllers;
 
+use App\Models\PelayananModel;
 use App\Models\PelayananPicModel;
 use App\Models\commonModel;
 use App\Models\PicModel;
 
 class PelayananPic extends BaseController
 {
+	protected $pelayananModel;
 	protected $pelayananPicModel;
 	protected $commonModel;
 	protected $picModel;
 
 	public function __construct()
 	{
+		$this->pelayananModel = new PelayananModel();
 		$this->pelayananPicModel = new PelayananPicModel();
 		$this->commonModel = new CommonModel();
 		$this->picModel = new PicModel();
@@ -21,11 +24,13 @@ class PelayananPic extends BaseController
 	public function index($id)
 	{
 
-        $arr = $this->pelayananPicModel->getPicByPelayananId($id);
- 
+        $result = $this->pelayananPicModel->getPicByPelayananId($id);
+		$result_pelayanan = $this->pelayananModel->getPelayananJoin($id);
+
 		$data = [
             'title' => 'Pelayanan PIC',
-            'result' => $arr,
+            'result' => $result,
+			'result_pelayanan' => $result_pelayanan,
 			'pelayanan_id' => $id,
 			'options_pic' => $this->options_pic(),
             'validation' => \Config\Services::validation()

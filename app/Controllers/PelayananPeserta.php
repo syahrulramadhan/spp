@@ -1,13 +1,16 @@
 <?php namespace App\Controllers;
 
+use App\Models\PelayananModel;
 use App\Models\PelayananPesertaModel;
 
 class PelayananPeserta extends BaseController
 {
+	protected $pelayananModel;
 	protected $pelayananPesertaModel;
 
 	public function __construct()
 	{
+		$this->pelayananModel = new PelayananModel();
 		$this->pelayananPesertaModel = new PelayananPesertaModel();
 		helper('form');
 	}
@@ -15,11 +18,13 @@ class PelayananPeserta extends BaseController
 	public function index($id)
 	{
 
-        $arr = $this->pelayananPesertaModel->getPesertaByPelayananId($id);
- 
+        $result = $this->pelayananPesertaModel->getPesertaByPelayananId($id);
+		$result_pelayanan = $this->pelayananModel->getPelayananJoin($id);
+
 		$data = [
             'title' => 'Pelayanan Peserta',
-            'result' => $arr,
+            'result' => $result,
+			'result_pelayanan' => $result_pelayanan,
 			'pelayanan_id' => $id,
 			'validation' => \Config\Services::validation()
 		];

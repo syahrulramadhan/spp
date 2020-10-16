@@ -1,13 +1,16 @@
 <?php namespace App\Controllers;
 
+use App\Models\PelayananModel;
 use App\Models\PelayananFileModel;
 
 class PelayananFIle extends BaseController
 {
+	protected $pelayananModel;
 	protected $pelayananFileModel;
 
 	public function __construct()
 	{
+		$this->pelayananModel = new PelayananModel();
 		$this->pelayananFileModel = new PelayananFileModel();
 		helper('form');
 	}
@@ -15,11 +18,13 @@ class PelayananFIle extends BaseController
 	public function index($id)
 	{
 
-        $arr = $this->pelayananFileModel->getFileByPelayananId($id);
- 
+        $result = $this->pelayananFileModel->getFileByPelayananId($id);
+		$result_pelayanan = $this->pelayananModel->getPelayananJoin($id);
+
 		$data = [
             'title' => 'Pelayanan File',
-            'result' => $arr,
+            'result' => $result,
+            'result_pelayanan' => $result_pelayanan,
 			'pelayanan_id' => $id,
             'validation' => \Config\Services::validation()
 		];

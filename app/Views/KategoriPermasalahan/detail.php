@@ -27,13 +27,17 @@
             <div class="card-body">
                 <h5 class="card-title"><?= $result['nama_kategori_permasalahan'] ?></h5>
                 <p class="card-text"><?= $result['keterangan'] ?></p>
+                <?php if(permission(['ADMINISTRATOR'])){ ?>
                 <a href="/kategori-permasalahan/edit/<?= $result['id']; ?>" class="btn btn-info">Edit</a>
+                <?php } ?>
                 <a class="btn btn-info" href="/kategori-permasalahan">Lihat Rekap</a>
+                <?php if(permission(['ADMINISTRATOR'])){ ?>
                 <form id="form-submit" action="/kategori-permasalahan/delete/<?= $result['id']; ?>" method="post" class="d-inline">
                     <?= csrf_field(); ?>
                     <input type="hidden" name="_method" value="DELETE">
                     <button type="submit" class="btn btn-danger" onclick="return confirm('Apakah anda yakin?');">Delete</button>
                 </form>
+                <?php } ?>
             </div>
         </div>
     </div>

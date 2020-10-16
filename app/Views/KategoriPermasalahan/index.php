@@ -52,9 +52,11 @@
             <div class="card-body">                
                 <div class="row">
                     <div class="col-9">
+                        <?php if(permission(['ADMINISTRATOR'])){ ?>
                         <div class="mb-2">
                             <a href="/kategori-permasalahan/create" class="btn btn-info">Tambah Data</a>
                         </div>
+                        <?php } ?>
                     </div>
                     <div class="col-3 pull-right">
                         <form id="form-submit" action="" method="GET">
