@@ -29,16 +29,16 @@ class CommonModel extends Model
         if($field){
             $q = "
                 UPDATE
-                laporan_pelayanan
+                laporan_layanan
                 ,(
-                    SELECT pelayanan.klpd_id, COUNT(*) jumlah_layanan
+                    SELECT pelayanan.klpd_id, COUNT(*) AS jumlah_layanan
                     FROM pelayanan    
                     JOIN jenis_advokasi ON jenis_advokasi.id = pelayanan.jenis_advokasi_id
                     WHERE jenis_advokasi.id = ?
                     GROUP BY pelayanan.klpd_id
                 ) temp
                 SET $field = temp.jumlah_layanan
-                WHERE laporan_pelayanan.klpd_id = temp.klpd_id
+                WHERE laporan_layanan.klpd_id = temp.klpd_id
             ";
 
             
@@ -69,13 +69,13 @@ class CommonModel extends Model
                 UPDATE
                 laporan_valuasi
                 ,(
-                    SELECT pelayanan.klpd_id, SUM(pelayanan.paket_nilai_pagu)
+                    SELECT pelayanan.klpd_id, SUM(pelayanan.paket_nilai_pagu) jumlah_valuasi
                     FROM pelayanan    
                     JOIN jenis_advokasi ON jenis_advokasi.id = pelayanan.jenis_advokasi_id
                     WHERE jenis_advokasi.id = ?
                     GROUP BY pelayanan.klpd_id
                 ) temp
-                SET $field = temp.jumlah_layanan
+                SET $field = temp.jumlah_valuasi
                 WHERE laporan_valuasi.klpd_id = temp.klpd_id
             ";
 
