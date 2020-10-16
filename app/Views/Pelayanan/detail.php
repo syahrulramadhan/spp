@@ -28,7 +28,7 @@
                 <?php } ?>
 
                 <?php if(in_array($result['id'], array(1))){ ?>
-                <p class="card-text"><?= $result['nomot_surat_keluar'] ?></p>
+                <p class="card-text"><?= $result['nomor_surat_keluar'] ?></p>
                 <?php } ?>
 
                 <?php if(in_array($result['id'], array(3))){ ?>
@@ -39,21 +39,12 @@
                 <p class="card-text"><?= $result['jabatan'] ?></p>
                 <?php } ?>
 
-                <?php if(in_array($result['id'], array(3))){ ?>
-                <p class="card-text"><?= $result['aktifitas'] ?></p>
-                <?php } ?>
-
                 <p class="card-text"><?= $result['nama_klpd'] ?></p>
                 <p class="card-text"><?= $result['nama_satker'] ?></p>
                 <p class="card-text"><?= $result['paket_kode'] ?></p>
                 <p class="card-text"><?= $result['paket_nama'] ?></p>
                 <p class="card-text">Rp. <?= number_format($result['paket_nilai_pagu'], 2) ?></p>
                 <p class="card-text"><?= $result['nama_jenis_pengadaan'] ?></p>
-                <p class="card-text"><?= $result['paket_status'] ?></p>
-
-                <?php if(in_array($result['id'], array(4))){ ?>
-                    <p class="card-text"><?= $result['efisiensi'] ?></p>
-                <?php } ?>
 
                 <p class="card-text"><?= $result['jenis_advokasi_nama'] ?></p>
                 <p class="card-text"><?= $result['nama_kategori_permasalahan'] ?></p>
