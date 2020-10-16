@@ -117,9 +117,10 @@ class Pages extends BaseController
 			}else{
 				echo json_encode(array('status' => false, 'data' => [])); exit;
 			}
+		/*
 		}else if($param == 'chart_kualitas'){
 			$count = $this->klpdModel->getCountKlpd($jenis_klpd);
-
+			
 			$grafik1[0][0] = 'BULAN';
 			$grafik1[0][1] = 'RATA-RATA SKOR';
 
@@ -140,6 +141,24 @@ class Pages extends BaseController
 			}else{
 				$grafik = $grafik1;
 			}
+		*/
+		}else if($param == 'chart_kualitas'){
+			$count = $this->klpdModel->getCountKlpd($jenis_klpd);
+			$result = $this->pelayananModel->ChartPelayananKualitas($jenis_klpd, $tahun);
+
+			if($result){
+				$grafik1[0][0] = 'BULAN';
+				$grafik1[0][1] = 'RATA-RATA SKOR';
+
+				foreach($result as $rows){
+					$grafik1[$rows['bulan']][0] = $this->bulan($rows['bulan']);
+					$grafik1[$rows['bulan']][1] = $rows['nilai_kualitas']/$count;
+				}
+
+				$grafik = $grafik1;
+			}else{
+				echo json_encode(array('status' => false, 'data' => [])); exit;
+			}
 		}else{
 			$result = $this->pelayananModel->ChartPelayananJumlah($jenis_klpd, $tahun);
 
@@ -158,7 +177,7 @@ class Pages extends BaseController
 			}
 		}
 
-		$this->cachePage(10);
+		//$this->cachePage(10);
 		
 		echo json_encode(array('status' => true, 'data' => $grafik, JSON_PRETTY_PRINT));
 	}

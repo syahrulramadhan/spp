@@ -76,7 +76,7 @@ class PelayananModel extends Model
             $x = "AND YEAR(p.tanggal_pelaksanaan) <= YEAR(pelayanan.tanggal_pelaksanaan)";
 
         if($jenis_klpd == 'KL'){
-            $y = "AND (klpd.jenis_klpd = 'BUMN' 
+            $y = "AND (k.jenis_klpd = 'BUMN' 
             OR k.jenis_klpd = 'INSTANSI' 
             OR k.jenis_klpd = 'KEMENTERIAN' 
             OR k.jenis_klpd = 'LEMBAGA' 
@@ -141,7 +141,7 @@ class PelayananModel extends Model
             $x = "AND YEAR(p.tanggal_pelaksanaan) <= YEAR(pelayanan.tanggal_pelaksanaan)";
 
         if($jenis_klpd == 'KL'){
-            $y = "AND (klpd.jenis_klpd = 'BUMN' 
+            $y = "AND (k.jenis_klpd = 'BUMN' 
             OR k.jenis_klpd = 'INSTANSI' 
             OR k.jenis_klpd = 'KEMENTERIAN' 
             OR k.jenis_klpd = 'LEMBAGA' 
@@ -206,7 +206,7 @@ class PelayananModel extends Model
             $x = "AND YEAR(p.tanggal_pelaksanaan) <= YEAR(pelayanan.tanggal_pelaksanaan)";
 
         if($jenis_klpd == 'KL'){
-            $y = "AND (klpd.jenis_klpd = 'BUMN' 
+            $y = "AND (k.jenis_klpd = 'BUMN' 
             OR k.jenis_klpd = 'INSTANSI' 
             OR k.jenis_klpd = 'KEMENTERIAN' 
             OR k.jenis_klpd = 'LEMBAGA' 
@@ -264,6 +264,32 @@ class PelayananModel extends Model
         return $builder->get()->getResultArray();
     }
 
+    public function ChartPelayananKualitas($jenis_klpd, $tahun){
+        $sql = "
+            SELECT MONTH(pelayanan.tanggal_pelaksanaan) bulan, NILAI_KUALITAS(MONTH(pelayanan.tanggal_pelaksanaan), $tahun) nilai_kualitas
+            FROM pelayanan
+            GROUP BY MONTH(pelayanan.tanggal_pelaksanaan);
+        ";
+        
+        if($jenis_klpd == 'KL'){
+            $sql = "
+                SELECT MONTH(pelayanan.tanggal_pelaksanaan) bulan, NILAI_KUALITAS_KL(MONTH(pelayanan.tanggal_pelaksanaan), $tahun) nilai_kualitas
+                FROM pelayanan
+                GROUP BY MONTH(pelayanan.tanggal_pelaksanaan);
+            ";
+        }else if($jenis_klpd == 'PEMDA'){
+            $sql = "
+                SELECT MONTH(pelayanan.tanggal_pelaksanaan) bulan, NILAI_KUALITAS_PEMDA(MONTH(pelayanan.tanggal_pelaksanaan), $tahun) nilai_kualitas
+                FROM pelayanan
+                GROUP BY MONTH(pelayanan.tanggal_pelaksanaan);
+            ";
+        }
+        $query = $this->db->query($sql);
+        
+        return $query->getResultArray();
+    }
+
+    /*
     public function ChartPelayananKualitas($bulan = "", $jenis_klpd = "", $tahun){
         $x = "";
 
@@ -306,6 +332,7 @@ class PelayananModel extends Model
         
         return $query->getRow();
     }
+    */
 
     public function overviewLayanan(){
         $q = "SELECT 
