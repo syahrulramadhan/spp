@@ -111,7 +111,7 @@
                                             </a>
                                         <?php } ?>
                                     </strong>
-                                    <span class="badge badge-pill bg-light align-text-bottom" ><?= $file['size']; ?></span>
+                                    <span class="badge badge-pill bg-light align-text-bottom" ><?= calculate_file_size($file['size']); ?></span>
                                 </p>
                             </div>
                             <?php endforeach;

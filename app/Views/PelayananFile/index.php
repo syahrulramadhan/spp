@@ -124,7 +124,7 @@
                                 </div>
                             </td>
                             <td>
-                                <div><?= $rows['size']; ?></div>
+                                <div><?= calculate_file_size($rows['size']); ?></div>
                             </td>
                             <?php if(session('id') === $result_pelayanan['created_by'] || permission(['ADMINISTRATOR'])){ ?>
                             <td class="text-center">

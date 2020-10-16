@@ -96,7 +96,7 @@
                                         </a>
                                     <?php } ?>
                                 </strong>
-                                <span class="badge badge-pill bg-light align-text-bottom" ><?= $materi['size']; ?></span>
+                                <span class="badge badge-pill bg-light align-text-bottom" ><?= calculate_file_size($materi['size']); ?></span>
                             </p>
                         </div>
                         
