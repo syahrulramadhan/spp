@@ -48,6 +48,8 @@ class KegiatanModel extends Model
             , kegiatan.jenis_advokasi_id
             , kegiatan.jenis_advokasi_nama
             , kegiatan.tahapan
+            , user.nama_depan
+            , user.nama_belakang
             , (
                 SELECT COUNT(*)
                 FROM pelayanan
@@ -58,6 +60,7 @@ class KegiatanModel extends Model
 
         $builder = $this->table('kegiatan');
         $builder->select($select);
+        $builder->join('user', 'user.id = kegiatan.created_by', 'left');
 
         if($jenis_advokasi_id){
             $builder->where('jenis_advokasi_id', $jenis_advokasi_id);

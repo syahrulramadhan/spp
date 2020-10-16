@@ -52,7 +52,15 @@ class PelayananModel extends Model
     }
 
     public function getPaginatedPelayananData($jenis_advokasi_id = 0, $tahun = '', $keyword = ''){
+        $select = '
+            pelayanan.*
+            , user.nama_depan
+            , user.nama_belakang
+        ';
+
         $builder = $this->table('pelayanan');
+        $builder->select($select);
+        $builder->join('user', 'user.id = pelayanan.created_by', 'left');
 
         if($jenis_advokasi_id){
             $builder->where('jenis_advokasi_id', $jenis_advokasi_id);

@@ -53,6 +53,7 @@
                         <th>TANGGAL PELAKSANAAN</th>
                         <th>JENIS ADVOKASI</th>
                         <th style="width: 200px;" class="text-center col-small">JUMLAH PESERTA</th>
+                        <th>DIBUAT OLEH</th>
                         <th class="text-center col-small">DETAIL</th>
                     </tr>
                     </thead>
@@ -69,6 +70,7 @@
                                     <td><?= $rows['tanggal_pelaksanaan']; ?></td>
                                     <td class="text-center"><?= $rows['jenis_advokasi_nama']; ?></td>
                                     <td class="text-center"><?= ($rows['jumlah_pelayanan']) ? $rows['jumlah_pelayanan'] : 0; ?></td>
+                                    <td><?= $rows['nama_depan'] . " " . $rows['nama_belakang']; ?></td>
                                     <td class="text-center">
                                         <a href="<?= base_url('kegiatan/' . $rows['id']); ?>" class="text-decoration-none">
                                            Lihat

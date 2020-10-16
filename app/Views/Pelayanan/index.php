@@ -59,6 +59,7 @@
                         <th>NAMA PAKET</th>
                         <th>NILAI PAKET (Rp. Juta)</th>
                         <th>JENIS ADVOKASI</th>
+                        <th>DIBUAT OLEH</th>
                         <th class="text-center col-small">DETAIL</th>
                     </tr>
                     </thead>
@@ -86,6 +87,7 @@
                                 <td><?= $paket_nama; ?></td>
                                 <td class="text-right"><?= $paket_nilai_pagu; ?></td>
                                 <td class="text-center"><?= $jenis_advokasi_nama; ?></td>
+                                <td><?= $rows['nama_depan'] . " " . $rows['nama_belakang']; ?></td>
                                 <td class="text-center">
                                     <a href="<?= base_url('pelayanan/' . $rows['id']); ?>" class="text-decoration-none">
                                         Lihat
