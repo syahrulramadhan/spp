@@ -27,8 +27,6 @@ class Pages extends BaseController
 
 		$this->session = session();
 		helper('form');
-
-		ini_set("display_errors", "1");
 	}
 
 	public function index()
