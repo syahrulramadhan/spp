@@ -12,7 +12,7 @@ class PelayananFIle extends BaseController
 	{
 		$this->pelayananModel = new PelayananModel();
 		$this->pelayananFileModel = new PelayananFileModel();
-		helper('form');
+		helper(['form', 'url']);
 	}
 
 	public function index($id)
@@ -33,14 +33,23 @@ class PelayananFIle extends BaseController
 	}
     
     public function save($pelayanan_id){
-        if(!$this->validate([
-			'label_file' => [
-				'rules' => 'required',
-				'errors' => [
-					'required' => 'Label file harus diisi.'
-				]
-            ]
-		])){
+		$rules['label_file'] = [
+			'rules' => 'required',
+			'errors' => [
+				'required' => 'Label file harus diisi.'
+			]
+		];
+
+		$rules['pelayanan_file'] = [
+			'rules' => 'uploaded[pelayanan_file]|max_size[pelayanan_file,2048]|mime_in[pelayanan_file,image/png,image/jpg,image/jpeg,application/pdf,application/msword,application/vnd.openxmlformats-officedocument.wordprocessingml.document,application/vnd.ms-powerpoint,application/vnd.openxmlformats-officedocument.presentationml.presentation]',
+			'errors' => [
+				'uploaded' => 'Gambar harus diisi',
+				'max_size' => 'Maksimal upload gambar 2 MB',
+				'mime_in' => 'Upload gambar yang memiliki ekstensi .jpeg/.jpg/.png/.gif'
+			]
+		];
+
+        if(!$this->validate($rules)){
 
 			$validation = \Config\Services::validation();
 			return redirect()->to("/pelayanan/$pelayanan_id/file")->withInput()->with('validation', $validation);

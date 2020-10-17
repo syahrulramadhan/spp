@@ -43,15 +43,15 @@
                     <div class="form-group row">
                         <?php echo form_label('File', 'kegiatan_materi', ['class' => 'col-sm-2 col-form-label']); ?>
                         <div class="col-sm-10">
-                            <?php /* if($result['kegiatan_materi']){ ?>
                             <div class="row">
-                                <div class="col-3"><img src="<?php echo base_url('uploads/kegiatan/'.$result['kegiatan_materi']) ?>" class="img-thumbnail"></div>
+                                <div class="col-3 my-2" id="preview"></div>
                             </div>
-                            <?php } */ ?>
-                            <?php echo form_upload('kegiatan_materi','', ['name' => 'kegiatan_materi', 'id' => 'kegiatan_materi']); ?>
+                            <?php $isinvalid = ($validation->hasError('kegiatan_materi')) ? 'is-invalid' : ''; ?>
+                            <?php echo form_upload('kegiatan_materi','', ['name' => 'kegiatan_materi', 'id' => 'kegiatan_materi', 'class' => "custom-select $isinvalid", 'onchange' => 'return validasiEkstensi()']); ?>
                             <div>
-                                <small style="color:red">*.pdf, *.doc, *.docx, *.ppt, *.pptx (Max 2MB)</small>	
+                                <small style="color:red">*.jpeg, *.jpg, *.png, *.pdf, *.doc, *.docx, *.ppt, *.pptx (Max 2MB)</small>	
                             </div>
+                            <div class="invalid-feedback"><?= $validation->getError('kegiatan_materi'); ?></div>
                         </div>
                     </div>
 
@@ -172,6 +172,35 @@
 <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
 <script type="text/javascript">
+    $('#kegiatan_materi').change(function(){ submit_disable(); });
+
+    function validasiEkstensi(){
+        var inputFile = document.getElementById('kegiatan_materi');
+        var pathFile = inputFile.value;
+        var ekstensiOk = /(\.jpg|\.jpeg|\.png|\.pdf|\.doc|\.docx|\.ppt|\.pptx)$/i;
+
+        console.log(inputFile);
+
+        if(!ekstensiOk.exec(pathFile)){
+            alert('Silakan upload file yang memiliki ekstensi .jpeg/.jpg/.png/.pdf/.doc/.docx/.ppt/.pptx');
+            inputFile.value = '';
+            return false;
+        }else{
+            // Preview gambar
+            if (inputFile.files && inputFile.files[0]) {
+                if(/(\.jpg|\.jpeg|\.png)$/i.exec(pathFile)){
+                    var reader = new FileReader();
+                    reader.onload = function(e) {
+                        document.getElementById('preview').innerHTML = '<img src="'+e.target.result+'" class="img-thumbnail"/>';
+                    };
+                    reader.readAsDataURL(inputFile.files[0]);
+                }
+
+                document.getElementById('preview').innerHTML = '';
+            }
+        }
+    }
+
     $('#previewFile').on('show.bs.modal', function (event) {
         var button = $(event.relatedTarget) // Button that triggered the modal
         var namafile = button.data('nama-file');
@@ -192,8 +221,6 @@
         modal.find('.modal-title').text(labelfile)
         modal.find('.modal-body').html(embed);
     })
-
-    $('#kegiatan_materi').change(function(){ submit_disable(); });
 </script>
 
 <?= $this->endSection(); ?>

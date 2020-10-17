@@ -12,7 +12,7 @@ class KegiatanMateri extends BaseController
 	{
 		$this->kegiatanMateriModel = new KegiatanMateriModel();
 		$this->kegiatanModel = new KegiatanModel();
-		helper('form');
+		helper(['form', 'url']);
 	}
 
 	public function index($id)
@@ -33,14 +33,23 @@ class KegiatanMateri extends BaseController
 	}
     
     public function save($kegiatan_id){
-        if(!$this->validate([
-			'label_materi' => [
-				'rules' => 'required',
-				'errors' => [
-					'required' => 'Label materi harus diisi.'
-				]
-            ]
-		])){
+		$rules['label_materi'] = [
+			'rules' => 'required',
+			'errors' => [
+				'required' => 'Label materi harus diisi.'
+			]
+		];
+
+		$rules['kegiatan_materi'] = [
+			'rules' => 'uploaded[kegiatan_materi]|max_size[kegiatan_materi,2048]|mime_in[kegiatan_materi,image/png,image/jpg,image/jpeg,application/pdf,application/msword,application/vnd.openxmlformats-officedocument.wordprocessingml.document,application/vnd.ms-powerpoint,application/vnd.openxmlformats-officedocument.presentationml.presentation]',
+			'errors' => [
+				'uploaded' => 'Gambar harus diisi',
+				'max_size' => 'Maksimal upload gambar 2 MB',
+				'mime_in' => 'Upload gambar yang memiliki ekstensi .jpeg/.jpg/.png/.gif'
+			]
+		];
+
+        if(!$this->validate($rules)){
 
 			$validation = \Config\Services::validation();
 			return redirect()->to("/kegiatan/$kegiatan_id/materi")->withInput()->with('validation', $validation);
