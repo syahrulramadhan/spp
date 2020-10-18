@@ -195,15 +195,13 @@
     $('#tahun').change(function(){ submit_disable(); });
 
     $('#jenis_klpd').select2(); $('#tahun').select2();
-    
-    google.charts.load('current', {'packages':['bar']});
 
-    google.charts.setOnLoadCallback(drawChartLayanan);
-    google.charts.setOnLoadCallback(drawChartValuasi);
-    google.charts.setOnLoadCallback(drawChartCoverage);
-    google.charts.setOnLoadCallback(drawChartKualitas);
-    
     $(document).ready(function(){
+        var delay = 1000;
+
+        google.charts.load('current', {'packages':['bar']});
+        google.charts.setOnLoadCallback(drawChartLayanan);
+
         $.ajax({  
             url:"<?= base_url("pelayanan/list-ajax"); ?>",  
             method:"POST",
@@ -211,8 +209,6 @@
             { 
                 var data = JSON.parse(response);
 
-                //console.log(data);
-                
                 $("#daftarPelayanan").html("");
 
                 $.each(data, function(i, item) {
@@ -230,7 +226,19 @@
                     '</a>');
                 });
             }  
-        });  
+        });
+
+        setTimeout(function(){
+            google.charts.setOnLoadCallback(drawChartValuasi);
+        }, delay * 1);
+
+        setTimeout(function(){
+            google.charts.setOnLoadCallback(drawChartCoverage);
+        }, delay * 2);
+
+        setTimeout(function(){
+            google.charts.setOnLoadCallback(drawChartKualitas);
+        }, delay * 3);
 
         $('#cari_chart_layanan').click(function(e){  
             e.preventDefault();
