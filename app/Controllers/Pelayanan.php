@@ -73,9 +73,13 @@ class Pelayanan extends BaseController
 
 	public function jenis_advokasi()
 	{
+		$tahun = ($this->request->getVar('tahun')) ? $this->request->getVar('tahun') : '';
+
 		$data = [
-            'title' => 'Layanan',
-            'jenis_advokasi_all' => $this->jenisAdvokasiModel->getJenisAdvokasi()
+			'title' => 'Layanan',
+			'options_tahun' => $this->options_tahun_layanan(),
+			'tahun' => $tahun,
+            'jenis_advokasi_all' => $this->jenisAdvokasiModel->getPaginatedJenisAdvokasiData($tahun)->get()->getResultArray()
         ];
 
 		return view('Pelayanan/index_jenis_advokasi', $data);

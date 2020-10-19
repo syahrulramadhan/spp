@@ -29,7 +29,7 @@ class JenisAdvokasi extends BaseController
 		$per_page = ($this->request->getVar('per_page')) ? $this->request->getVar('per_page') : 10;
 
 		if($keyword){
-			$result = $this->jenisAdvokasiModel->getPaginatedJenisAdvokasiData($keyword);
+			$result = $this->jenisAdvokasiModel->getPaginatedJenisAdvokasiData('', $keyword);
 		}else
 			$result = $this->jenisAdvokasiModel->getPaginatedJenisAdvokasiData();
 

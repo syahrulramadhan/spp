@@ -2,6 +2,8 @@
 
 <?= $this->section('content'); ?>
 
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+
 <nav aria-label="breadcrumb">
     <ol class="breadcrumb">
         <li class="breadcrumb-item"><a href="<?= base_url(); ?>">Dashboard</a></li>
@@ -16,6 +18,16 @@
     </div>
 </div>
 
+<form id="form-header" action="" method="GET">
+    <div class="row mt-2">
+        <div class="col-10"></div>
+        <div class="col-2">
+            <div class="input-group mb-3">
+                <?= form_dropdown('tahun', $options_tahun, $tahun, ['class' => 'custom-select', 'id' => 'tahun']); ?>
+            </div>
+        </div>    
+    </div>
+</form>
 
 <?php
     $i = 1; $jumlah = 3;
@@ -37,7 +49,7 @@
                 <img src="<?php echo base_url('uploads/jenis-advokasi/'.$rows['image_jenis_advokasi']) ?>" class="rounded-circle img-thumbnail" style="width: 200px;">
             </center>
             <?php } ?>
-            <div style="height: 60px;"><h3 class="mb-0"><?= $rows['nama_jenis_advokasi']; ?></h3></div>
+            <div style="height: 60px;" class="mb-2"><h3><?= $rows['nama_jenis_advokasi']; ?></h3></div>
             <div class="fluid text-center"><strong class="d-inline-block mb-2 text-primary"><?= $rows['jumlah_pelayanan']; ?></strong></div>
             <br/>
             <?php if(in_array($rows['id'], array(8,9))){ ?>
@@ -60,6 +72,14 @@
 
     $i++;
 ?>
+
+<script>
+    $(document).ready(function(){
+        $('#tahun').change(function (){
+            $('#form-header').delay(200).submit();
+        });
+    });
+</script>
 
 <?php endforeach; ?>
 
