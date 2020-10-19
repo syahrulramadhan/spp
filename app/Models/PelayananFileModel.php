@@ -18,4 +18,28 @@ class PelayananFileModel extends Model
 
         return $builder->get()->getResultArray(); 
     }
+
+    public function getPaginatedPelayananFileData($pelayanan_id, string $keyword = ''){
+        $select = 'pelayanan_file.id
+            , pelayanan_file.pelayanan_id
+            , pelayanan_file.label_file
+            , pelayanan_file.nama_file
+            , pelayanan_file.size
+            , pelayanan_file.type
+            , pelayanan_file.created_by
+        ';
+
+        $builder = $this->table('pelayanan_file');
+        $builder->select($select);
+
+        if($pelayanan_id){
+            $builder->where('pelayanan_file.pelayanan_id', $pelayanan_id);
+        }
+
+        if($keyword){
+            $builder->like('pelayanan_file.label_file', $keyword);
+        }
+
+        return $builder;
+    }
 }

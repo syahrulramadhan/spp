@@ -321,6 +321,7 @@ class Pages extends BaseController
 	public function klpd()
 	{
 		$keyword = $this->request->getVar('q');
+		$per_page = ($this->request->getVar('per_page')) ? $this->request->getVar('per_page') : 10;
 
 		if($keyword){
 			$result = $this->klpdModel->getPaginatedKlpdData($keyword);
@@ -328,13 +329,13 @@ class Pages extends BaseController
 			$result = $this->klpdModel->getPaginatedKlpdData();
 
 		$currentPage = ($this->request->getVar('page_klpd')) ? $this->request->getVar('page_klpd') : 1;
-		$per_page = 10;
 
 		$data = [
             'title' => 'K/L/Pemda',
 			//'result_grafik_layanan' => $this->klpd_grafik(),
 			//'result_grafik_valuasi' => $this->klpd_grafik('grafik_valuasi'),
 			'result' => $result->paginate($per_page, 'klpd'),
+			'options_per_page' => $this->options_per_page(),
 			'keyword' => $keyword,
 			'pager' => $result->pager,
 			'per_page' => $per_page,
@@ -346,9 +347,8 @@ class Pages extends BaseController
 
 	public function klpd_detail($id){
 		$keyword = $this->request->getVar('q');
-
-		//$jenis_klpd = $this->request->getVar('jenis_klpd');
 		$tahun = ($this->request->getVar('tahun')) ? $this->request->getVar('tahun') : date('Y');
+		$per_page = ($this->request->getVar('per_page')) ? $this->request->getVar('per_page') : 10;
 
 		$result = $this->klpdModel->getKlpd($id);
 
@@ -358,12 +358,12 @@ class Pages extends BaseController
 			$result_satuan_kerja = $this->satuanKerjaModel->getPaginatedSatuanKerjaData($result['klpd_id']);;
 
 		$currentPage = ($this->request->getVar('page_satuan_kerja')) ? $this->request->getVar('page_satuan_kerja') : 1;
-		$per_page = 10;
 		
 		$data = [
 			'title' => 'Detail K/L/Pemda',
 			'result' => $result,
 			'result_satuan_kerja' => $result_satuan_kerja->paginate($per_page, 'satuan_kerja'),
+			'options_per_page' => $this->options_per_page(),
 			'keyword' => $keyword,
 			'pager' => $result_satuan_kerja->pager,
 			'per_page' => $per_page,
@@ -476,6 +476,7 @@ class Pages extends BaseController
 	public function jenis_pengadaan()
 	{
 		$keyword = $this->request->getVar('q');
+		$per_page = ($this->request->getVar('per_page')) ? $this->request->getVar('per_page') : 10;
 
 		if($keyword){
 			$result = $this->jenisPengadaanModel->getPaginatedJenisPengadaanData($keyword);
@@ -483,13 +484,13 @@ class Pages extends BaseController
 			$result = $this->jenisPengadaanModel->getPaginatedJenisPengadaanData();
 
 		$currentPage = ($this->request->getVar('page_jenis_pengadaan')) ? $this->request->getVar('page_jenis_pengadaan') : 1;
-		$per_page = 10;
 
 		$data = [
             'title' => 'Jenis Barang/Jasa',
 			'result_grafik_layanan' => $this->jenis_pengadaan_grafik(),
 			'result_grafik_valuasi' => $this->jenis_pengadaan_grafik('grafik_valuasi'),
 			'result' => $result->paginate($per_page, 'jenis_pengadaan'),
+			'options_per_page' => $this->options_per_page(),
 			'keyword' => $keyword,
 			'pager' => $result->pager,
 			'per_page' => $per_page,

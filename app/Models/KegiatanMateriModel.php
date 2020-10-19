@@ -18,4 +18,28 @@ class KegiatanMateriModel extends Model
 
         return $builder->get()->getResultArray(); 
     }
+
+    public function getPaginatedKegiatanMateriData($kegiatan_id, string $keyword = ''){
+        $select = 'kegiatan_materi.id
+            , kegiatan_materi.kegiatan_id
+            , kegiatan_materi.label_materi
+            , kegiatan_materi.nama_materi
+            , kegiatan_materi.size
+            , kegiatan_materi.type
+            , kegiatan_materi.created_by
+        ';
+
+        $builder = $this->table('kegiatan_materi');
+        $builder->select($select);
+
+        if($kegiatan_id){
+            $builder->where('kegiatan_materi.kegiatan_id', $kegiatan_id);
+        }
+
+        if($keyword){
+            $builder->like('kegiatan_materi.label_materi', $keyword);
+        }
+
+        return $builder;
+    }
 }

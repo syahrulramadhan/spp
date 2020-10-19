@@ -210,6 +210,18 @@ class BaseController extends Controller
 		return $result;
 	}
 
+	public function options_per_page(){
+		$result = [
+			'5' => '5',
+			'10' => '10',
+			'25' => '25',
+			'50' => '50',
+			'100' => '100'
+		];
+
+		return $result;
+	}
+
 	public function options_jenis_klpd(){
 		$arr = $this->klpdModel->getListJenisKlpd();
 

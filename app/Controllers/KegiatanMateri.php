@@ -16,17 +16,30 @@ class KegiatanMateri extends BaseController
 	}
 
 	public function index($id)
-	{
+	{	
+		$keyword = $this->request->getVar('q');
+		$per_page = ($this->request->getVar('per_page')) ? $this->request->getVar('per_page') : 10;
 
-        $result = $this->kegiatanMateriModel->getMateriByKegiatanId($id);
+		if($keyword){
+			$result = $this->kegiatanMateriModel->getPaginatedKegiatanMateriData($id, $keyword);
+		}else
+			$result = $this->kegiatanMateriModel->getPaginatedKegiatanMateriData($id);
+
+		$currentPage = ($this->request->getVar('page')) ? $this->request->getVar('page') : 1;
+	
 		$result_kegiatan = $this->kegiatanModel->getKegiatan($id);
 
 		$data = [
             'title' => 'Dokumen',
-			'result' => $result,
+			'result' => $result->paginate($per_page, 'kegiatan_materi'),
 			'result_kegiatan' => $result_kegiatan,
+			'options_per_page' => $this->options_per_page(),
 			'kegiatan_id' => $id,
-            'validation' => \Config\Services::validation()
+			'validation' => \Config\Services::validation(),
+			'keyword' => $keyword,
+			'pager' => $result->pager,
+			'per_page' => $per_page,
+			'currentPage' => $currentPage
 		];
 
         return view('KegiatanMateri/index', $data);

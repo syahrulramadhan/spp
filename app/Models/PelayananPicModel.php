@@ -26,4 +26,30 @@ class PelayananPicModel extends Model
 
         return $builder->get()->getResultArray();
     }
+
+    public function getPaginatedPelayananPicData($pelayanan_id, string $keyword = ''){
+        $select = 'pelayanan_pic.id
+            , pelayanan_pic.pelayanan_id
+            , pelayanan_pic.pic_id
+            , pelayanan_pic.created_by
+            , pic.status
+            , user.nama_depan
+            , user.nama_belakang
+        ';
+
+        $builder = $this->table('pelayanan_pic');
+        $builder->select($select);
+        $builder->join('pic', 'pic.id = pelayanan_pic.pic_id', 'left');
+        $builder->join('user', 'user.id = pic.user_id', 'left');
+
+        if($pelayanan_id){
+            $builder->where('pelayanan_pic.pelayanan_id', $pelayanan_id);
+        }
+
+        if($keyword){
+            $builder->like('user.nama_depan', $keyword)->orLike('user.nama_belakang', $keyword);
+        }
+
+        return $builder;
+    }
 }

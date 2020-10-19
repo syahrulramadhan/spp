@@ -42,6 +42,11 @@
         margin-top: 10px;
         margin-bottom: 5px;
       }
+
+      #per_page{
+        width: 65px;
+        text-align: center;
+      }
     </style>
     <!-- Custom styles for this template -->
     <link href="<?= base_url('/css/offcanvas.css') ?>" rel="stylesheet">

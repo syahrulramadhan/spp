@@ -42,6 +42,7 @@ class Pelayanan extends BaseController
 		$keyword = $this->request->getVar('q');
 		$jenis_advokasi_id = $this->request->getVar('jenis_advokasi_id');
 		$tahun = ($this->request->getVar('tahun')) ? $this->request->getVar('tahun') : date('Y');
+		$per_page = ($this->request->getVar('per_page')) ? $this->request->getVar('per_page') : 10;
 		
 		if($jenis_advokasi_id || $tahun || $keyword){
 			$pelayanan = $this->pelayananModel->getPaginatedPelayananData($jenis_advokasi_id, $tahun, $keyword);
@@ -49,13 +50,13 @@ class Pelayanan extends BaseController
 			$pelayanan = $this->pelayananModel->getPaginatedPelayananData();
 
 		$currentPage = ($this->request->getVar('page_pelayanan')) ? $this->request->getVar('page_pelayanan') : 1;
-		$per_page = 10;
 
 		$data = [
             'title' => 'Layanan',
 			'result' => $pelayanan->paginate($per_page, 'pelayanan'),
 			'options_jenis_advokasi' => $this->options_jenis_advokasi(),
 			'options_tahun' => $this->options_tahun_layanan(),
+			'options_per_page' => $this->options_per_page(),
 			'keyword' => $keyword,
 			'jenis_advokasi_id' => $jenis_advokasi_id,
 			'tahun' => $tahun,

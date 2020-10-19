@@ -33,19 +33,20 @@ class Kegiatan extends BaseController
 		$keyword = $this->request->getVar('q');
 		$jenis_advokasi_id = $this->request->getVar('jenis_advokasi_id');
 		$tahun = ($this->request->getVar('tahun')) ? $this->request->getVar('tahun') : date('Y');
-		
+		$per_page = ($this->request->getVar('per_page')) ? $this->request->getVar('per_page') : 10;
+
 		if($jenis_advokasi_id || $tahun || $keyword){
 			$result = $this->kegiatanModel->getPaginatedKegiatanData($jenis_advokasi_id, $tahun, $keyword);
 		}else
 			$result = $this->kegiatanModel->getPaginatedKegiatanData();
 
 		$currentPage = ($this->request->getVar('page_kegiatan')) ? $this->request->getVar('page_kegiatan') : 1;
-		$per_page = 10;
 
 		$data = [
             'title' => 'Kegiatan',
 			'result' => $result->paginate($per_page, 'kegiatan'),
 			'options_tahun' => $this->options_tahun_layanan(),
+			'options_per_page' => $this->options_per_page(),
 			'keyword' => $keyword,
 			'jenis_advokasi_id' => $jenis_advokasi_id,
 			'tahun' => $tahun,

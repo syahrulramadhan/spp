@@ -15,6 +15,7 @@ class Pic extends BaseController
 	public function index()
 	{
 		$keyword = $this->request->getVar('q');
+		$per_page = ($this->request->getVar('per_page')) ? $this->request->getVar('per_page') : 10;
 
 		if($keyword){
 			$result = $this->picModel->getPaginatedPicData($keyword);
@@ -22,12 +23,12 @@ class Pic extends BaseController
 			$result = $this->picModel->getPaginatedPicData();
 
 		$currentPage = ($this->request->getVar('page_pic')) ? $this->request->getVar('page_pic') : 1;
-		$per_page = 10;
 
 		$data = [
             'title' => 'PIC',
 			'result' => $result->paginate($per_page, 'pic'),
 			'options_user' => $this->options_user(),
+			'options_per_page' => $this->options_per_page(),
 			'validation' => \Config\Services::validation(),
 			'keyword' => $keyword,
 			'pager' => $result->pager,

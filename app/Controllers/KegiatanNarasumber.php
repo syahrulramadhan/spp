@@ -17,15 +17,31 @@ class KegiatanNarasumber extends BaseController
 
 	public function index($id)
 	{
-        $result = $this->kegiatanNarasumberModel->getNarasumberByKegiatanId($id);
+		$keyword = $this->request->getVar('q');
+		$per_page = ($this->request->getVar('per_page')) ? $this->request->getVar('per_page') : 10;
+
+		$result = $this->kegiatanNarasumberModel->getNarasumberByKegiatanId($id);
+		
+		if($keyword){
+			$result = $this->kegiatanNarasumberModel->getPaginatedKegiatanNarasumberData($id, $keyword);
+		}else
+			$result = $this->kegiatanNarasumberModel->getPaginatedKegiatanNarasumberData($id);
+
+		$currentPage = ($this->request->getVar('page')) ? $this->request->getVar('page') : 1;
+
 		$result_kegiatan = $this->kegiatanModel->getKegiatan($id);
 
 		$data = [
             'title' => 'Kegiatan Narasumber',
-			'result' => $result,
+			'result' => $result->paginate($per_page, 'kegiatan_narasumber'),
 			'result_kegiatan' => $result_kegiatan,
+			'options_per_page' => $this->options_per_page(),
 			'kegiatan_id' => $id,
-			'validation' => \Config\Services::validation()
+			'validation' => \Config\Services::validation(),
+			'keyword' => $keyword,
+			'pager' => $result->pager,
+			'per_page' => $per_page,
+			'currentPage' => $currentPage
 		];
     
         return view('KegiatanNarasumber/index', $data);

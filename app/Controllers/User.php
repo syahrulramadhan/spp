@@ -17,6 +17,7 @@ class User extends BaseController
 	public function index()
 	{
 		$keyword = $this->request->getVar('q');
+		$per_page = ($this->request->getVar('per_page')) ? $this->request->getVar('per_page') : 10;
 
 		if($keyword)
 			$user = $this->userModel->getPaginatedUserData($keyword);
@@ -24,11 +25,11 @@ class User extends BaseController
 			$user = $this->userModel;
 
 		$currentPage = ($this->request->getVar('page_user')) ? $this->request->getVar('page_user') : 1;
-		$per_page = 10;
 
 		$data = [
             'title' => 'User',
 			'result' => $user->paginate($per_page, 'user'),
+			'options_per_page' => $this->options_per_page(),
 			'keyword' => $keyword,
 			'pager' => $this->userModel->pager,
 			'per_page' => $per_page,

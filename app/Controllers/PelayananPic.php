@@ -23,17 +23,31 @@ class PelayananPic extends BaseController
 
 	public function index($id)
 	{
+		$keyword = $this->request->getVar('q');
+		$per_page = ($this->request->getVar('per_page')) ? $this->request->getVar('per_page') : 10;
 
-        $result = $this->pelayananPicModel->getPicByPelayananId($id);
+		if($keyword){
+			$result = $this->pelayananPicModel->getPaginatedPelayananPicData($id, $keyword);
+		}else
+			$result = $this->pelayananPicModel->getPaginatedPelayananPicData($id);
+
+		$currentPage = ($this->request->getVar('page')) ? $this->request->getVar('page') : 1;
+
 		$result_pelayanan = $this->pelayananModel->getPelayananJoin($id);
 
 		$data = [
             'title' => 'Pelayanan PIC',
-            'result' => $result,
+            'result' => $result->paginate($per_page, 'pelayanan_pic'),
 			'result_pelayanan' => $result_pelayanan,
-			'pelayanan_id' => $id,
 			'options_pic' => $this->options_pic(),
-            'validation' => \Config\Services::validation()
+			'options_per_page' => $this->options_per_page(),
+			'pelayanan_id' => $id,
+			'validation' => \Config\Services::validation(),
+			'options_per_page' => $this->options_per_page(),
+			'keyword' => $keyword,
+			'pager' => $result->pager,
+			'per_page' => $per_page,
+			'currentPage' => $currentPage
 		];
 
         return view('PelayananPic/index', $data);

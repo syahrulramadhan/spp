@@ -24,6 +24,7 @@ class KategoriPermasalahan extends BaseController
 	public function index()
 	{
 		$keyword = $this->request->getVar('q');
+		$per_page = ($this->request->getVar('per_page')) ? $this->request->getVar('per_page') : 10;
 
 		if($keyword){
 			$result = $this->kategoriPermasalahanModel->getPaginatedKategoriPermasalahanData($keyword);
@@ -31,13 +32,13 @@ class KategoriPermasalahan extends BaseController
 			$result = $this->kategoriPermasalahanModel->getPaginatedKategoriPermasalahanData();
 
 		$currentPage = ($this->request->getVar('page_kategori_permasalahan')) ? $this->request->getVar('page_kategori_permasalahan') : 1;
-		$per_page = 10;
-
+	
 		$data = [
             'title' => 'Kategori Permasalahan',
 			'result_grafik_layanan' => $this->grafik(),
 			'result_grafik_valuasi' => $this->grafik('grafik_valuasi'),
 			'result' => $result->paginate($per_page, 'kategori_permasalahan'),
+			'options_per_page' => $this->options_per_page(),
 			'keyword' => $keyword,
 			'pager' => $result->pager,
 			'per_page' => $per_page,

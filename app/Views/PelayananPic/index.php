@@ -66,6 +66,21 @@
     <div class="row">
         <div class="col-md-12">
             <div class="card-body">
+                <form id="form-submit" action="" method="GET">   
+                    <div class="row">
+                        <div class="col-9">
+                            Tampilkan <?= form_dropdown('per_page', $options_per_page, $per_page, ['class' => 'custom-select ', 'id' => 'per_page', 'class' => "custom-select col-sm-3 mr-2"]); ?>
+                        </div>
+                        <div class="col-3 pull-right">
+                            <div class="input-group mb-3">
+                                <input type="text" class="form-control" placeholder="Masukan kata nama" name="q" value="<?= $keyword ?>" autofocus>
+                                <div class="input-group-append">
+                                    <button class="btn btn-outline-info" type="submit"><i class="fa fa-search"></i></button>
+                                </div>
+                            </div>  
+                        </div>
+                    </div>
+                </form>
                 <table class="table table-bordered table-sm">
                     <thead>
                     <tr>
@@ -106,6 +121,7 @@
                     ?>
                     </tbody>
                 </table>
+                <?= $pager->links('pelayanan_pic', 'bootstrap_pagination'); ?>
             </div>
         </div>
     </div>

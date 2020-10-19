@@ -19,22 +19,23 @@
     <div class="row">
         <div class="col-md-12">
             <div class="card-body">
-                <div class="row">
-                    <div class="col-6">
-                    </div>
-                    <div class="col-6 pull-right">
-                        <form id="form-submit" action="" method="GET">
+                <form id="form-submit" action="" method="GET">
+                    <div class="row">
+                        <div class="col-6">
+                        Tampilkan <?= form_dropdown('per_page', $options_per_page, $per_page, ['class' => 'custom-select ', 'id' => 'per_page', 'class' => "custom-select col-sm-3 mr-2"]); ?>
+                        </div>
+                        <div class="col-6 pull-right">
                             <div class="input-group mb-3">
-                            <?= form_dropdown('tahun', $options_tahun, $tahun, ['class' => 'custom-select ', 'id' => 'tahun', 'class' => "custom-select mr-2"]); ?>
-                            <?= form_dropdown('jenis_advokasi_id', ['' => '--Pilih--', '8' => 'Clearing House', '9' => 'Bimbingan Teknis'], $jenis_advokasi_id, ['id' => 'jenis_advokasi_id', 'class' => "custom-select mr-2"]); ?>
-                            <input type="text" class="form-control" placeholder="Masukan kata nama" name="q" value="<?= $keyword ?>" autofocus>
-                            <div class="input-group-append">
-                                <button class="btn btn-outline-info" type="submit"><i class="fa fa-search"></i></button>
-                            </div>
-                            </div>
-                        </form>
+                                <?= form_dropdown('tahun', $options_tahun, $tahun, ['class' => 'custom-select ', 'id' => 'tahun', 'class' => "custom-select mr-2"]); ?>
+                                <?= form_dropdown('jenis_advokasi_id', ['' => '--Pilih--', '8' => 'Clearing House', '9' => 'Bimbingan Teknis'], $jenis_advokasi_id, ['id' => 'jenis_advokasi_id', 'class' => "custom-select mr-2"]); ?>
+                                <input type="text" class="form-control" placeholder="Masukan kata nama" name="q" value="<?= $keyword ?>" autofocus>
+                                <div class="input-group-append">
+                                    <button class="btn btn-outline-info" type="submit"><i class="fa fa-search"></i></button>
+                                </div>
+                            </div>  
+                        </div>
                     </div>
-                </div>
+                </form>
                 <?php if(session()->getFlashdata('pesan')): ?>
                     <div class="alert alert-success" role="alert">
                     <?= session()->getFlashdata('pesan') ?>

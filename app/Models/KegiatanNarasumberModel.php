@@ -18,4 +18,25 @@ class KegiatanNarasumberModel extends Model
 
         return $builder->get()->getResultArray(); 
     }
+
+    public function getPaginatedKegiatanNarasumberData($kegiatan_id, string $keyword = ''){
+        $select = 'kegiatan_narasumber.id
+            , kegiatan_narasumber.kegiatan_id
+            , kegiatan_narasumber.nama_narasumber
+            , kegiatan_narasumber.created_by
+        ';
+
+        $builder = $this->table('kegiatan_narasumber');
+        $builder->select($select);
+
+        if($kegiatan_id){
+            $builder->where('kegiatan_narasumber.kegiatan_id', $kegiatan_id);
+        }
+
+        if($keyword){
+            $builder->like('kegiatan_narasumber.nama_narasumber', $keyword);
+        }
+
+        return $builder;
+    }
 }
