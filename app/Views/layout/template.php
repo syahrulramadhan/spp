@@ -47,6 +47,10 @@
         width: 65px;
         text-align: center;
       }
+
+      .table thead th {
+        vertical-align: middle;
+      }
     </style>
     <!-- Custom styles for this template -->
     <link href="<?= base_url('/css/offcanvas.css') ?>" rel="stylesheet">

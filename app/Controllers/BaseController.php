@@ -222,6 +222,18 @@ class BaseController extends Controller
 		return $result;
 	}
 
+	public function options_sort(){
+		$result = [
+			'' => '--Pilih--',
+			'TglBaru' => 'Tanggal Terbaru',
+			'TglLama' => 'Tanggal Terlama',
+			'NilPaTinggi' => 'Nilai Paket Tertinggi',
+			'NilPaRendah' => 'Nilai Paket Terendah'
+		];
+
+		return $result;
+	}
+
 	public function options_jenis_klpd(){
 		$arr = $this->klpdModel->getListJenisKlpd();
 

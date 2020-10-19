@@ -51,7 +51,7 @@ class PelayananModel extends Model
         return $builder->get()->getResultArray();
     }
 
-    public function getPaginatedPelayananData($jenis_advokasi_id = 0, $tahun = '', $keyword = ''){
+    public function getPaginatedPelayananData($jenis_advokasi_id = 0, $tahun = '', $sort = '', $keyword = ''){
         $select = '
             pelayanan.*
             , user.nama_depan
@@ -68,6 +68,17 @@ class PelayananModel extends Model
 
         if($tahun){
             $builder->where('YEAR(tanggal_pelaksanaan)', $tahun);
+        }
+
+        if($sort){
+            if($sort == 'TglBaru')
+                $builder->orderBy('pelayanan.tanggal_pelaksanaan', 'DESC');
+            else if($sort == 'TglLama')
+                $builder->orderBy('pelayanan.tanggal_pelaksanaan', 'ASC');
+            else if($sort == 'NilPaTinggi')
+                $builder->orderBy('pelayanan.paket_nilai_pagu', 'DESC');
+            else if($sort == 'NilPaRendah')
+                $builder->orderBy('pelayanan.paket_nilai_pagu', 'ASC');
         }
 
         if($keyword){
