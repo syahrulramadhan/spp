@@ -9,7 +9,7 @@
             </a>
         </li>
         <li class="page-item">
-            <a href="<?= $pager->getPrevious() ?>" aria-label="<?= lang('Pager.previous') ?>" class="page-link">
+            <a href="<?= $pager->getPreviousPage() ?>" aria-label="<?= lang('Pager.previous') ?>" class="page-link">
                 <span aria-hidden="true"><?= lang('Pager.previous') ?></span>
             </a>
         </li>
@@ -25,7 +25,7 @@
 
     <?php if ($pager->hasNext()) : ?>
         <li class="page-item">
-            <a href="<?= $pager->getNext() ?>" aria-label="<?= lang('Pager.next') ?>" class="page-link">
+            <a href="<?= $pager->getNextPage() ?>" aria-label="<?= lang('Pager.next') ?>" class="page-link">
                 <span aria-hidden="true"><?= lang('Pager.next') ?></span>
             </a>
         </li>
