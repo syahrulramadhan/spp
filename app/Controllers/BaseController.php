@@ -247,8 +247,6 @@ class BaseController extends Controller
 	}
 
 	public function options_tahun_layanan(){
-		$arr = $this->pelayananModel->getTahunLayanan();
-
 		$result = ['0' => '--Pilih--'];
 
 		for($i=2020; $i<=date("Y"); $i++){

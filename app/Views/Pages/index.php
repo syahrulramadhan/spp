@@ -199,34 +199,12 @@
     $(document).ready(function(){
         var delay = 1000;
 
+        load_layanan_list();
         google.charts.load('current', {'packages':['bar']});
-        google.charts.setOnLoadCallback(drawChartLayanan);
 
-        $.ajax({  
-            url:"<?= base_url("pelayanan/list-ajax"); ?>",  
-            method:"POST",
-            success:function(response)  
-            { 
-                var data = JSON.parse(response);
-
-                $("#daftarPelayanan").html("");
-
-                $.each(data, function(i, item) {
-                    var nama_instansi = (data[i].nama_klpd) ? data[i].nama_klpd : data[i].klpd_nama_lainnya;
-
-                    $("#daftarPelayanan").append('<a href="pelayanan/' + data[i].id + '" class="text-decoration-none">' + 
-                        '<div class="media text-muted pt-2">' +
-                            '<svg class="bd-placeholder-img mr-2 rounded" width="32" height="32" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="xMidYMid slice" focusable="false" role="img" aria-label="Placeholder: 32x32"><title>Placeholder</title><rect width="100%" height="100%" fill="#17a2b8 "/><text x="50%" y="50%" fill="#17a2b8 " dy=".3em">32x32</text></svg>' +
-                            '<p class="media-body pb-3 mb-0 small lh-125 border-bottom border-gray">' +
-                                '<strong class="d-block text-gray-dark">' + nama_instansi + '</strong>' + 
-                                data[i].paket_nama +
-                                '<span class="badge badge-pill bg-light align-text-bottom" >' + data[i].jenis_advokasi_nama + '</span>' +
-                            '</p>'+
-                        '</div>' +
-                    '</a>');
-                });
-            }  
-        });
+        setTimeout(function(){
+            google.charts.setOnLoadCallback(drawChartLayanan);
+        }, delay * 0.5)
 
         setTimeout(function(){
             google.charts.setOnLoadCallback(drawChartValuasi);
@@ -260,6 +238,34 @@
             google.charts.setOnLoadCallback(drawChartKualitas);
         });
     });
+
+    function load_layanan_list(){
+        $.ajax({  
+            url:"<?= base_url("pelayanan/list-ajax"); ?>",  
+            method:"POST",
+            success:function(response)  
+            { 
+                var data = JSON.parse(response);
+
+                $("#daftarPelayanan").html("");
+
+                $.each(data, function(i, item) {
+                    var nama_instansi = (data[i].nama_klpd) ? data[i].nama_klpd : data[i].klpd_nama_lainnya;
+
+                    $("#daftarPelayanan").append('<a href="pelayanan/' + data[i].id + '" class="text-decoration-none">' + 
+                        '<div class="media text-muted pt-2">' +
+                            '<svg class="bd-placeholder-img mr-2 rounded" width="32" height="32" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="xMidYMid slice" focusable="false" role="img" aria-label="Placeholder: 32x32"><title>Placeholder</title><rect width="100%" height="100%" fill="#17a2b8 "/><text x="50%" y="50%" fill="#17a2b8 " dy=".3em">32x32</text></svg>' +
+                            '<p class="media-body pb-3 mb-0 small lh-125 border-bottom border-gray">' +
+                                '<strong class="d-block text-gray-dark">' + nama_instansi + '</strong>' + 
+                                data[i].paket_nama +
+                                '<span class="badge badge-pill bg-light align-text-bottom" >' + data[i].jenis_advokasi_nama + '</span>' +
+                            '</p>'+
+                        '</div>' +
+                    '</a>');
+                });
+            }  
+        });
+    }
 
     function drawChartLayanan() {
         var ajax = $.ajax({

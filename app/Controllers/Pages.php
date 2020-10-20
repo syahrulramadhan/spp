@@ -35,7 +35,6 @@ class Pages extends BaseController
 		$tahun = ($this->request->getVar('tahun')) ? $this->request->getVar('tahun') : date('Y');
 
 		$result = $this->pelayananModel->overviewLayanan();
-
 		$result->overview_valuasi = $this->singkatan_mata_uang($result->overview_valuasi, 0);
 
 		$data = [
