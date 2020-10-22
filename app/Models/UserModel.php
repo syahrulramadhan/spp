@@ -6,10 +6,9 @@ class UserModel extends Model
 {
     protected $table            = 'user';
     protected $primaryKey       = 'id';
-    protected $userTimestamps   = true;
+    protected $useTimestamps    = true;
     protected $allowedFields    = ['nama_depan', 'nama_belakang', 'email', 'username', 'password', 'salt', 'nomor_telepon', 'role', 'jabatan', 'created_by'];
 	//protected $returnType       = 'App\Entities\User';
-    protected $useTimestamps    = false;
     
     public function getUser($user_id = false){
         if($user_id == false){

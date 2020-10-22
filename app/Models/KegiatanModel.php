@@ -5,7 +5,7 @@ use CodeIgniter\Model;
 class KegiatanModel extends Model
 {
     protected $table            = 'kegiatan';
-    protected $userTimestamps   = true;
+    protected $useTimestamps   = true;
     protected $allowedFields    = ['nama_kegiatan', 'tanggal_pelaksanaan', 'jenis_advokasi_id', 'jenis_advokasi_nama', 'tahapan', 'jumlah_layanan', 'created_by'];
 
     public function getKegiatan($kegiatan_id = false){
@@ -35,6 +35,9 @@ class KegiatanModel extends Model
     }
 
     public function store($data = []){
+        $data['created_at'] = date('Y-m-d H:i:s');
+        $data['updated_at'] = date('Y-m-d H:i:s');
+        
         $this->db->table($this->table)->insert($data);
 
         return $this->db->insertID();

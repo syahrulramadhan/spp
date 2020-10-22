@@ -5,7 +5,7 @@ use CodeIgniter\Model;
 class KegiatanNarasumberModel extends Model
 {
     protected $table            = 'kegiatan_narasumber';
-    protected $userTimestamps   = true;
+    protected $useTimestamps   = true;
     protected $allowedFields    = ['kegiatan_id', 'nama_narasumber', 'created_by'];
 
     public function getKegiatanNarasumber(){

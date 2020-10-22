@@ -5,7 +5,7 @@ use CodeIgniter\Model;
 class PicModel extends Model
 {
     protected $table            = 'pic';
-    protected $userTimestamps   = true;
+    protected $useTimestamps   = true;
     protected $allowedFields    = ['user_id','status', 'created_by'];
 
     public function getPic($pic_id = false){

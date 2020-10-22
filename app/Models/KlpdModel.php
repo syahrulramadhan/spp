@@ -5,7 +5,7 @@ use CodeIgniter\Model;
 class KlpdModel extends Model
 {
     protected $table            = 'klpd';
-    protected $userTimestamps   = true;
+    protected $useTimestamps   = true;
     protected $allowedFields    = ['klpd_id','nama_klpd','jenis_klpd','alamat_klpd','website','kd_propinsi','kd_kabupaten','is_not_rekap_display','is2014','is2015','i2016','is2017','is2018','is2019','is2020','created_at','updated_at', 'created_by'];
 
     public function getKlpd($klpd_id = false){

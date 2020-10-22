@@ -5,7 +5,7 @@ use CodeIgniter\Model;
 class JenisAdvokasiModel extends Model
 {
     protected $table            = 'jenis_advokasi';
-    protected $userTimestamps   = true;
+    protected $useTimestamps   = true;
     protected $allowedFields    = ['nama_jenis_advokasi', 'keterangan', 'image_jenis_advokasi', 'jumlah', 'created_by'];
 
     public function getJenisAdvokasi($jenis_advokasi_id = false){

@@ -5,7 +5,7 @@ use CodeIgniter\Model;
 class PelayananPicModel extends Model
 {
     protected $table            = 'pelayanan_pic';
-    protected $userTimestamps   = true;
+    protected $useTimestamps   = true;
     protected $allowedFields    = ['pelayanan_id', 'pic_id', 'created_by'];
 
     public function getPelayananPic(){

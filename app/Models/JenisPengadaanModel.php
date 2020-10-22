@@ -5,7 +5,7 @@ use CodeIgniter\Model;
 class JenisPengadaanModel extends Model
 {
     protected $table            = 'jenis_pengadaan';
-    protected $userTimestamps   = true;
+    protected $useTimestamps   = true;
     protected $allowedFields    = ['nama_jenis_pengadaan', 'keterangan', 'created_by'];
 
     public function getJenisPengadaan($jenis_pengadaan_id = false){

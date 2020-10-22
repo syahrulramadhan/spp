@@ -5,7 +5,7 @@ use CodeIgniter\Model;
 class PelayananModel extends Model
 {
     protected $table            = 'pelayanan';
-    protected $userTimestamps   = true;
+    protected $useTimestamps   = true;
     protected $allowedFields    = ['kegiatan_id', 'tanggal_pelaksanaan', 'nomor_surat_keluar', 'nomor_undangan', 'nama', 'jabatan', 'nomor_telepon', 'aktifitas', 'klpd_id', 'klpd_nama', 'satuan_kerja_id', 'satuan_kerja_nama', 'klpd_id_lainnya', 'klpd_nama_lainnya', 'paket_kode', 'paket_nama', 'paket_nilai_pagu', 'paket_jenis_pengadaan_id', 'paket_jenis_pengadaan_nama', 'paket_status', 'efisiensi', 'jenis_advokasi_id', 'jenis_advokasi_nama', 'kategori_permasalahan_id', 'kategori_permasalahan_nama', 'keterangan', 'created_by'];
 
     public function getPelayanan($pelayanan_id = false){
@@ -375,6 +375,9 @@ class PelayananModel extends Model
     }
 
     public function store($data = []){
+        $data['created_at'] = date('Y-m-d H:i:s');
+		$data['updated_at'] = date('Y-m-d H:i:s');
+
         $this->db->table($this->table)->insert($data);
 
         return $this->db->insertID();

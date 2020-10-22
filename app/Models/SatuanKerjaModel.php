@@ -5,7 +5,7 @@ use CodeIgniter\Model;
 class SatuanKerjaModel extends Model
 {
     protected $table            = 'satuan_kerja';
-    protected $userTimestamps   = true;
+    protected $useTimestamps   = true;
     protected $allowedFields    = ['kd_satker','kd_satker', 'kd_satker_str', 'kd_klpd', 'nama_satker', 'id_deleted', 'audit_update', 'tahun_aktif', 'updated_at', 'created_at', 'created_by'];
 
     public function getSatuanKerja($satuan_kerja_id = false){

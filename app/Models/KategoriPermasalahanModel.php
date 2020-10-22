@@ -5,7 +5,7 @@ use CodeIgniter\Model;
 class KategoriPermasalahanModel extends Model
 {
     protected $table            = 'kategori_permasalahan';
-    protected $userTimestamps   = true;
+    protected $useTimestamps   = true;
     protected $allowedFields    = ['nama_kategori_permasalahan', 'keterangan', 'created_by'];
 
     public function getKategoriPermasalahan($kategori_permasalahan_id = false){

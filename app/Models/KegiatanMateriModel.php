@@ -5,7 +5,7 @@ use CodeIgniter\Model;
 class KegiatanMateriModel extends Model
 {
     protected $table            = 'kegiatan_materi';
-    protected $userTimestamps   = true;
+    protected $useTimestamps   = true;
     protected $allowedFields    = ['kegiatan_id', 'label_materi', 'nama_materi', 'size', 'type', 'user_id', 'created_by'];
 
     public function getKegiatanMateri(){

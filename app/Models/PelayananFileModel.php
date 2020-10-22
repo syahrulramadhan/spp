@@ -5,7 +5,7 @@ use CodeIgniter\Model;
 class PelayananFileModel extends Model
 {
     protected $table            = 'pelayanan_file';
-    protected $userTimestamps   = true;
+    protected $useTimestamps   = true;
     protected $allowedFields    = ['pelayanan_id', 'label_file', 'nama_file', 'size', 'type', 'created_by'];
 
     public function getPelayananFile(){

@@ -5,7 +5,7 @@ use CodeIgniter\Model;
 class PelayananPesertaModel extends Model
 {
     protected $table            = 'pelayanan_peserta';
-    protected $userTimestamps   = true;
+    protected $useTimestamps   = true;
     protected $allowedFields    = ['pelayanan_id', 'nama_peserta', 'created_by'];
 
     public function getPelayananPeserta(){

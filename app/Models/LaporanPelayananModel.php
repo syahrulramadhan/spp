@@ -5,7 +5,7 @@ use CodeIgniter\Model;
 class LaporanPelayananModel extends Model
 {
     protected $table            = 'laporan_layanan';
-    protected $userTimestamps   = true;
+    protected $useTimestamps   = true;
     protected $allowedFields    = ['klpd_id','field1','field2','field3','field4','field5','field6','field7','field8','field9','created_at','updated_at', 'created_by'];
 
     public function getLaporanPelayanan($klpd_id = false){
