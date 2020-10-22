@@ -81,6 +81,7 @@
                         </div>
                     </div>
                 </form>
+                <div class="table-responsive">
                 <table class="table table-bordered table-sm">
                     <thead>
                     <tr>
@@ -121,6 +122,7 @@
                     ?>
                     </tbody>
                 </table>
+                    </div>
                 <?= $pager->links('pelayanan_pic', 'bootstrap_pagination'); ?>
             </div>
         </div>

@@ -80,6 +80,7 @@
                     <?= session()->getFlashdata('warning') ?>
                     </div>
                 <?php endif; ?>
+                <div class="table-responsive">
                 <table class="table table-bordered table-sm">
                     <thead>
                     <tr>
@@ -113,6 +114,7 @@
                     ?>
                     </tbody>
                 </table>
+                </div>
                 <?= $pager->links('kategori_permasalahan', 'bootstrap_pagination'); ?>
             </div>
         </div>

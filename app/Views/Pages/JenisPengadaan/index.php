@@ -74,7 +74,7 @@
                         </div>
                     </div>
                 </form>
-
+                <div class="table-responsive">
                 <table class="table table-bordered table-sm">
                     <thead>
                     <tr>
@@ -108,6 +108,7 @@
                     ?>
                     </tbody>
                 </table>
+                    </div>
                 <?= $pager->links('jenis_pengadaan', 'bootstrap_pagination'); ?>
             </div>
         </div>
