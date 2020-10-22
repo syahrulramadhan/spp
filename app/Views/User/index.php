@@ -23,8 +23,8 @@
                 <form id="form-submit" action="" method="GET">        
                     <div class="row">
                         <div class="col-9">
-                            Tampilkan <?= form_dropdown('per_page', $options_per_page, $per_page, ['class' => 'custom-select ', 'id' => 'per_page', 'class' => "custom-select col-sm-3 mr-2"]); ?>    
                             <div class="mb-3">
+                                Tampilkan <?= form_dropdown('per_page', $options_per_page, $per_page, ['class' => 'custom-select ', 'id' => 'per_page', 'class' => "custom-select col-sm-3 mr-2"]); ?>    
                                 <a href="/user/create" class="btn btn-info">Tambah Data</a>
                             </div>
                         </div>
