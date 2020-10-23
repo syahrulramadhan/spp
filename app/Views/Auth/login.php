@@ -34,6 +34,7 @@
                     </div>
                 </div>
                 <?= form_open('Auth/login') ?>
+                    <?= csrf_field(); ?>
                     <div class="form-group">
                         <?= form_label("Username/Email", "username") ?>
                         <?= form_input($username) ?>
