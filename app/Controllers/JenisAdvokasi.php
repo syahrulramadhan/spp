@@ -92,9 +92,9 @@ class JenisAdvokasi extends BaseController
 			$result = $this->grafikModel->valuasiByJenisAdvokasiId($jenis_klpd, $tahun, $id);
 
 			if($result){
-				$grafik[0][0] = 'BULAN';
-				$grafik[0][1] = 'JUMLAH VALUASI';
-				$grafik[0][2] = 'AKUMULASI VALUASI';
+				$grafik[0][0] = 'Bulan';
+				$grafik[0][1] = 'Jumlah Valuasi';
+				$grafik[0][2] = 'Akumulasi Valuasi';
 
 				foreach($result as $rows){
 					$grafik[$rows['bulan']][0] = $this->bulan($rows['bulan']);
@@ -108,9 +108,9 @@ class JenisAdvokasi extends BaseController
 			$result = $this->grafikModel->layananByJenisAdvokasiId($jenis_klpd, $tahun, $id);
 
 			if($result){
-				$grafik[0][0] = 'BULAN';
-				$grafik[0][1] = 'JUMLAH LAYANAN';
-				$grafik[0][2] = 'AKUMULASI LAYANAN';
+				$grafik[0][0] = 'Bulan';
+				$grafik[0][1] = 'Jumlah Layanan';
+				$grafik[0][2] = 'Akumulasi Layanan';
 
 				foreach($result as $rows){
 					$grafik[$rows['bulan']][0] = $this->bulan($rows['bulan']);
@@ -132,8 +132,8 @@ class JenisAdvokasi extends BaseController
 
 		if($result){
 			if($param == 'grafik_valuasi'){
-				$grafik[0][0] = 'NAMA';
-				$grafik[0][1] = 'JUMLAH VALUASI';
+				$grafik[0][0] = 'Nama';
+				$grafik[0][1] = 'Jumlah Valuasi';
 
 				$total = 0;
 
@@ -149,8 +149,8 @@ class JenisAdvokasi extends BaseController
 				if($total < 1)
 					return false;
 			}else{
-				$grafik[0][0] = 'NAMA';
-				$grafik[0][1] = 'JUMLAH LAYANAN';
+				$grafik[0][0] = 'Nama';
+				$grafik[0][1] = 'Jumlah Layanan';
 
 				$total = 0;
 

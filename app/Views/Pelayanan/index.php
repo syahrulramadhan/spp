@@ -72,7 +72,7 @@
                         if($result){
                             $i = 1 + ($per_page * ($currentPage - 1));
 
-                            $cons_value = "<small>TIDAK ADA DATA</small>";
+                            $cons_value = "<small>Tidak Ada Data</small>";
 
                             foreach($result as $rows):
                                 $nama = ($rows['nama']) ? $rows['nama'] : $cons_value;
