@@ -34,14 +34,14 @@
                 <form id="form-submit" action="/kategori-permasalahan/save" method="post" enctype="multipart/form-data">
                     <?= csrf_field(); ?>
                     <div class="form-group row">
-                        <label for="nama_kategori_permasalahan" class="col-sm-2 col-form-label">Nama Kategori Permasalahan</label>
+                        <label for="nama_kategori_permasalahan" class="col-sm-2 col-form-label">Nama Kategori Permasalahan <span class="text-danger font-weight-bold">*</span></label>
                         <div class="col-sm-10">
                             <input type="text" class="form-control <?= ($validation->hasError('nama_kategori_permasalahan')) ? 'is-invalid' : ''; ?>" id="nama_kategori_permasalahan" name="nama_kategori_permasalahan" autofocus value="<?= old('nama_kategori_permasalahan'); ?>">
                             <div class="invalid-feedback"><?= $validation->getError('nama_kategori_permasalahan'); ?></div>
                         </div>
                     </div>
                     <div class="form-group row">
-                        <label for="keterangan" class="col-sm-2 col-form-label">Keterangan</label>
+                        <label for="keterangan" class="col-sm-2 col-form-label">Keterangan <span class="text-danger font-weight-bold">*</span></label>
                         <div class="col-sm-10">
                             <textarea class="form-control <?= ($validation->hasError('keterangan')) ? 'is-invalid' : ''; ?>" id="keterangan" rows="3" name="keterangan"><?= old('keterangan') ?></textarea>
                             <div class="invalid-feedback"><?= $validation->getError('keterangan'); ?></div>

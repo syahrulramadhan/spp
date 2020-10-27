@@ -34,14 +34,14 @@
                     <input type="hidden" name="jenis_advokasi_nama" value="<?= $result['nama_jenis_advokasi']; ?>">  
 
                     <div class="form-group row">
-                        <label for="nama_kegiatan" class="col-sm-2 col-form-label">Nama Kegiatan</label>
+                        <label for="nama_kegiatan" class="col-sm-2 col-form-label">Nama Kegiatan <span class="text-danger font-weight-bold">*</span></label>
                         <div class="col-sm-10">
                             <input type="text" class="form-control <?= ($validation->hasError('nama_kegiatan')) ? 'is-invalid' : ''; ?>" id="nama_kegiatan" name="nama_kegiatan" autofocus value="<?= old('nama_kegiatan'); ?>">
                             <div class="invalid-feedback"><?= $validation->getError('nama_kegiatan'); ?></div>
                         </div>
                     </div>
                     <div class="form-group row">
-                        <label for="tanggal_pelaksanaan" class="col-sm-2 col-form-label">Tanggal Pelaksanaan</label>
+                        <label for="tanggal_pelaksanaan" class="col-sm-2 col-form-label">Tanggal Pelaksanaan <span class="text-danger font-weight-bold">*</span></label>
                         <div class="col-sm-10">
                             <input type="text" class="form-control <?= ($validation->hasError('tanggal_pelaksanaan')) ? 'is-invalid' : ''; ?>" id="tanggal_pelaksanaan" name="tanggal_pelaksanaan" placeholder="MM/DD/YYYY" value="<?= old('tanggal_pelaksanaan'); ?>">
                             <div class="invalid-feedback"><?= $validation->getError('tanggal_pelaksanaan'); ?></div>
@@ -49,7 +49,7 @@
                     </div>
                     <?php if(in_array($result['id'], array(8))){ ?>
                     <div class="form-group row" id="field_satker">
-                        <label for="tahapan" class="col-sm-2 col-form-label">Tahapan </label>
+                        <label for="tahapan" class="col-sm-2 col-form-label">Tahapan <span class="text-danger font-weight-bold">*</span></label>
                         <div class="col-sm-10">
                             <?php $isinvalid = ($validation->hasError('tahapan')) ? 'is-invalid' : ''; ?>
                             <?= form_dropdown('tahapan', ['' => '--Pilih--', 'AWARENESS' => 'Awareness', 'KOMITMEN' => 'Komitmen', 'PENINGKATAN_KAPASITAS' => 'Peningkatan Kapasitas', 'MONITORING_COACHING' => 'Mentoring/Coaching'], old('tahapan'), ['class' => "custom-select $isinvalid", 'id' => 'tahapan']); ?>
@@ -62,14 +62,14 @@
             <div class="col-md-6">
                 <div class="card-body">
                     <div class="form-group row">
-                        <label for="nama_narasumber" class="col-sm-4 col-form-label">Narasumber 1</label>
+                        <label for="nama_narasumber" class="col-sm-4 col-form-label">Narasumber 1 <span class="text-danger font-weight-bold">*</span></label>
                         <div class="col-sm-8">
                             <input type="text" class="form-control <?= ($validation->hasError('nama_narasumber')) ? 'is-invalid' : ''; ?>" id="nama_narasumber" name="nama_narasumber" value="<?= old('nama_narasumber'); ?>">
                             <div class="invalid-feedback"><?= $validation->getError('nama_narasumber'); ?></div>
                         </div>
                     </div>
                     <div class="form-group row">
-                        <label for="nama_narasumber_second" class="col-sm-4 col-form-label">Narasumber 2 <small>(Opsional)</small></label>
+                        <label for="nama_narasumber_second" class="col-sm-4 col-form-label">Narasumber 2 <?php /*<small>(Opsional)</small>*/ ?></label>
                         <div class="col-sm-8">
                             <input type="text" class="form-control <?= ($validation->hasError('nama_narasumber_second')) ? 'is-invalid' : ''; ?>" id="nama_narasumber_second" name="nama_narasumber_second" value="<?= old('nama_narasumber_second'); ?>">
                             <div class="invalid-feedback"><?= $validation->getError('nama_narasumber_second'); ?></div>
@@ -81,7 +81,7 @@
                 <div class="card-body">
                     <div class="form-group row">
                         <label for="keterangan" class="col-sm-4 col-form-label">
-                            Upload Dokumen <small>(Opsional)</small>
+                            Upload Dokumen <?php /*<small>(Opsional)</small>*/ ?>
                         </label>
                         <div class="col-sm-8">
                             <div><input class="form-control" style="margin-top: 0.5em;" type="file" name="kegiatan_file[]" size="20" multiple /></div>

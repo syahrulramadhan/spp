@@ -31,7 +31,7 @@
                     <?= csrf_field(); ?>
 
                     <div class="form-group row">
-                        <label for="nama_narasumber" class="col-sm-2 col-form-label">Nama Lengkap</label>
+                        <label for="nama_narasumber" class="col-sm-2 col-form-label">Nama Lengkap <span class="text-danger font-weight-bold">*</span></label>
                         <div class="col-sm-10">
                             <input type="text" class="form-control <?= ($validation->hasError('nama_narasumber')) ? 'is-invalid' : ''; ?>" id="nama_narasumber" name="nama_narasumber" value="<?= old('nama_narasumber'); ?>">
                             <div class="invalid-feedback"><?= $validation->getError('nama_narasumber'); ?></div>

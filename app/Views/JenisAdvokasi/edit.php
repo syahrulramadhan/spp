@@ -38,7 +38,7 @@
                 <form id="form-submit" action="<?= base_url('jenis-advokasi/update/' . $result['id']); ?>" method="post" enctype="multipart/form-data">
                     <?= csrf_field(); ?>
                     <div class="form-group row">
-                        <label for="nama_jenis_advokasi" class="col-sm-2 col-form-label">Nama Kategori Permasalahan</label>
+                        <label for="nama_jenis_advokasi" class="col-sm-2 col-form-label">Nama Kategori Permasalahan <span class="text-danger font-weight-bold">*</span></label>
                         <div class="col-sm-10">
                             <?= $result['nama_jenis_advokasi']; ?>
                         </div>
@@ -53,7 +53,7 @@
                     </div>
                     */ ?>
                     <div class="form-group row">
-                        <?php echo form_label('Gambar', 'image_jenis_advokasi', ['class' => 'col-sm-2 col-form-label']); ?>
+                        <?php echo form_label('Gambar <span class="text-danger font-weight-bold">*</span>', 'image_jenis_advokasi', ['class' => 'col-sm-2 col-form-label']); ?>
                         <div class="col-sm-10">
                             <div class="row">
                                 <div class="col-3 my-2" id="preview"><img src="<?php echo base_url('uploads/jenis-advokasi/'.$result['image_jenis_advokasi']) ?>" class="img-thumbnail"></div>

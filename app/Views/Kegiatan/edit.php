@@ -38,14 +38,14 @@
                 <form id="form-submit" action="/kegiatan/update/<?= $result['id']; ?>" method="post" enctype="multipart/form-data">
                     <?= csrf_field(); ?>
                     <div class="form-group row">
-                        <label for="nama_kegiatan" class="col-sm-2 col-form-label">Nama Kegiatan</label>
+                        <label for="nama_kegiatan" class="col-sm-2 col-form-label">Nama Kegiatan <span class="text-danger font-weight-bold">*</span></label>
                         <div class="col-sm-10">
                             <input type="text" class="form-control <?= ($validation->hasError('nama_kegiatan')) ? 'is-invalid' : ''; ?>" id="nama_kegiatan" name="nama_kegiatan" autofocus value="<?= (old('nama_kegiatan')) ? old('nama_kegiatan') : $result['nama_kegiatan']; ?>">
                             <div class="invalid-feedback"><?= $validation->getError('nama_kegiatan'); ?></div>
                         </div>
                     </div>
                     <div class="form-group row">
-                        <label for="tanggal_pelaksanaan" class="col-sm-2 col-form-label">Tanggal Pelaksanaan</label>
+                        <label for="tanggal_pelaksanaan" class="col-sm-2 col-form-label">Tanggal Pelaksanaan <span class="text-danger font-weight-bold">*</span></label>
                         <div class="col-sm-10">
                         <input type="text" class="form-control <?= ($validation->hasError('tanggal_pelaksanaan')) ? 'is-invalid' : ''; ?>" id="tanggal_pelaksanaan" name="tanggal_pelaksanaan" placeholder="MM/DD/YYYY" autofocus value="<?= (old('tanggal_pelaksanaan')) ? old('tanggal_pelaksanaan') : $result['tanggal_pelaksanaan']; ?>">
                             <div class="invalid-feedback"><?= $validation->getError('tanggal_pelaksanaan'); ?></div>
@@ -53,7 +53,7 @@
                     </div>
                     <?php if(in_array($result['jenis_advokasi_id'], array(8))){ ?>
                     <div class="form-group row" id="field_satker">
-                        <label for="tahapan" class="col-sm-2 col-form-label">Tahapan </label>
+                        <label for="tahapan" class="col-sm-2 col-form-label">Tahapan <span class="text-danger font-weight-bold">*</span></label>
                         <div class="col-sm-10">
                             <?php $isinvalid = ($validation->hasError('tahapan')) ? 'is-invalid' : ''; ?>
                             <?= form_dropdown('tahapan', ['' => '--Pilih--', 'AWARENESS' => 'Awareness', 'KOMITMEN' => 'Komitmen', 'PENINGKATAN_KAPASITAS' => 'Peningkatan Kapasitas', 'MONITORING_COACHING' => 'Mentoring/Coaching'], (old('tahapan')) ? old('tahapan') : $result['tahapan'], ['class' => "custom-select $isinvalid", 'id' => 'tahapan']); ?>

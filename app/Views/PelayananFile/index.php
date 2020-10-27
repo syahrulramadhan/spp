@@ -34,7 +34,7 @@
                     <?= csrf_field(); ?>
 
                     <div class="form-group row">
-                        <label for="label_file" class="col-sm-2 col-form-label">Nama File</label>
+                        <label for="label_file" class="col-sm-2 col-form-label">Nama File <span class="text-danger font-weight-bold">*</span></label>
                         <div class="col-sm-10">
                             <input type="text" class="form-control <?= ($validation->hasError('label_file')) ? 'is-invalid' : ''; ?>" id="label_file" name="label_file" value="<?= old('label_file'); ?>">
                             <div class="invalid-feedback"><?= $validation->getError('label_file'); ?></div>
@@ -42,7 +42,7 @@
                     </div>
 
                     <div class="form-group row">
-                        <?php echo form_label('File', 'pelayanan_file', ['class' => 'col-sm-2 col-form-label']); ?>
+                        <?php echo form_label('File <span class="text-danger font-weight-bold">*</span>', 'pelayanan_file', ['class' => 'col-sm-2 col-form-label']); ?>
                         <div class="col-sm-10">
                             <div class="row">
                                 <div class="col-3 my-2" id="preview"></div>

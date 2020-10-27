@@ -32,7 +32,7 @@
                     <?= csrf_field(); ?>
 
                     <div class="form-group row">
-                        <label for="nama_peserta" class="col-sm-2 col-form-label">Nama Lengkap</label>
+                        <label for="nama_peserta" class="col-sm-2 col-form-label">Nama Lengkap <span class="text-danger font-weight-bold">*</span></label>
                         <div class="col-sm-10">
                             <input type="text" class="form-control <?= ($validation->hasError('nama_peserta')) ? 'is-invalid' : ''; ?>" id="nama_peserta" name="nama_peserta" value="<?= old('nama_peserta'); ?>">
                             <div class="invalid-feedback"><?= $validation->getError('nama_peserta'); ?></div>

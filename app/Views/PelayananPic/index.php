@@ -35,7 +35,7 @@
                     <?= csrf_field(); ?>
                     
                     <div class="form-group row">
-                        <label for="pic_id" class="col-sm-2 col-form-label">Nama Lengkap </label>
+                        <label for="pic_id" class="col-sm-2 col-form-label">Nama Lengkap <span class="text-danger font-weight-bold">*</span></label>
                         <div class="col-sm-10">
                             <?php $isinvalid = ($validation->hasError('pic_id')) ? 'is-invalid' : ''; ?>
                             <?= form_dropdown('pic_id', $options_pic, '', ['id' => 'pic_id', 'class' => "custom-select $isinvalid"]); ?>

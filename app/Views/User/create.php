@@ -38,14 +38,14 @@
                 <form id="form-submit" action="/user/save" method="post" enctype="multipart/form-data">
                     <?= csrf_field(); ?>
                     <div class="form-group row">
-                        <label for="nama_depan" class="col-sm-2 col-form-label">Nama Depan</label>
+                        <label for="nama_depan" class="col-sm-2 col-form-label">Nama Depan <span class="text-danger font-weight-bold">*</span></label>
                         <div class="col-sm-10">
                             <input type="text" class="form-control <?= ($validation->hasError('nama_depan')) ? 'is-invalid' : ''; ?>" id="nama_depan" name="nama_depan" autofocus value="<?= old('nama_depan'); ?>">
                             <div class="invalid-feedback"><?= $validation->getError('nama_depan'); ?></div>
                         </div>
                     </div>
                     <div class="form-group row">
-                        <label for="nama_belakang" class="col-sm-2 col-form-label">Nama Belakang</label>
+                        <label for="nama_belakang" class="col-sm-2 col-form-label">Nama Belakang <span class="text-danger font-weight-bold">*</span></label>
                         <div class="col-sm-10">
                             <input type="text" class="form-control <?= ($validation->hasError('nama_belakang')) ? 'is-invalid' : ''; ?>" id="nama_belakang" name="nama_belakang" value="<?= old('nama_belakang'); ?>">
                             <div class="invalid-feedback"><?= $validation->getError('nama_belakang'); ?></div>
@@ -53,21 +53,21 @@
                     </div>
 
                     <div class="form-group row">
-                        <label for="username" class="col-sm-2 col-form-label">Username</label>
+                        <label for="username" class="col-sm-2 col-form-label">Username <span class="text-danger font-weight-bold">*</span></label>
                         <div class="col-sm-10">
                             <input type="username" class="form-control <?= ($validation->hasError('username')) ? 'is-invalid' : ''; ?>" id="username" name="username" value="<?= old('username'); ?>">
                             <div class="invalid-feedback"><?= $validation->getError('username'); ?></div>
                         </div>
                     </div>
                     <div class="form-group row">
-                        <label for="email" class="col-sm-2 col-form-label">Email</label>
+                        <label for="email" class="col-sm-2 col-form-label">Email <span class="text-danger font-weight-bold">*</span></label>
                         <div class="col-sm-10">
                             <input type="text" class="form-control <?= ($validation->hasError('email')) ? 'is-invalid' : ''; ?>" id="email" name="email" value="<?= old('email'); ?>">
                             <div class="invalid-feedback"><?= $validation->getError('email'); ?></div>
                         </div>
                     </div>
                     <div class="form-group row">
-                        <label for="password" class="col-sm-2 col-form-label">Kata Sandi</label>
+                        <label for="password" class="col-sm-2 col-form-label">Kata Sandi <span class="text-danger font-weight-bold">*</span></label>
                         <div class="col-sm-10">
                             <input type="password" class="form-control <?= ($validation->hasError('password')) ? 'is-invalid' : ''; ?>" id="password" name="password" value="<?= old('password'); ?>">
                             <small id="passwordHelpInline" class="text-muted">
@@ -78,7 +78,7 @@
                         </div>
                     </div>
                     <div class="form-group row">
-                        <label for="repassword" class="col-sm-2 col-form-label">Ulangi Kata Sandi</label>
+                        <label for="repassword" class="col-sm-2 col-form-label">Ulangi Kata Sandi <span class="text-danger font-weight-bold">*</span></label>
                         <div class="col-sm-10">
                             <input type="password" class="form-control <?= ($validation->hasError('repassword')) ? 'is-invalid' : ''; ?>" id="repassword" name="repassword" value="<?= old('repassword'); ?>">
                             <small id="passwordHelpInline" class="text-muted">
@@ -89,14 +89,14 @@
                         </div>
                     </div>
                     <div class="form-group row">
-                        <label for="nomor_telepon" class="col-sm-2 col-form-label">Nomor Telepon</label>
+                        <label for="nomor_telepon" class="col-sm-2 col-form-label">Nomor Telepon <span class="text-danger font-weight-bold">*</span></label>
                         <div class="col-sm-10">
                             <input type="text" class="form-control <?= ($validation->hasError('nomor_telepon')) ? 'is-invalid' : ''; ?>" id="nomor_telepon" name="nomor_telepon" value="<?= old('nomor_telepon'); ?>">
                             <div class="invalid-feedback"><?= $validation->getError('nomor_telepon'); ?></div>
                         </div>
                     </div>
                     <div class="form-group row">
-                        <label for="role" class="col-sm-2 col-form-label">Role</label>
+                        <label for="role" class="col-sm-2 col-form-label">Role <span class="text-danger font-weight-bold">*</span></label>
                         <div class="col-sm-10">
                             <?php $isinvalid = ($validation->hasError('role')) ? 'is-invalid' : ''; ?>
                             <?= form_dropdown('role', $options_role, old('role'), ['class' => "custom-select $isinvalid", 'id' => 'role']); ?>
@@ -104,7 +104,7 @@
                         </div>
                     </div>
                     <div class="form-group row">
-                        <label for="jabatan" class="col-sm-2 col-form-label">Jabatan  <small>(Opsional)</small></label>
+                        <label for="jabatan" class="col-sm-2 col-form-label">Jabatan <?php /*<small>(Opsional)</small>*/ ?></label>
                         <div class="col-sm-10">
                             <input type="text" class="form-control <?= ($validation->hasError('jabatan')) ? 'is-invalid' : ''; ?>" id="jabatan" name="jabatan" value="<?= old('jabatan'); ?>">
                             <div class="invalid-feedback"><?= $validation->getError('jabatan'); ?></div>

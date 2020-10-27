@@ -39,7 +39,7 @@
                     <input type="hidden" name="jenis_advokasi_nama" value="<?= $nama_jenis_advokasi; ?>">  
 
                     <div class="form-group row">
-                        <label for="klpd" class="col-sm-2 col-form-label">K/L/Pemda </label>
+                        <label for="klpd" class="col-sm-2 col-form-label">K/L/Pemda  <span id="field_required_klpd" class="text-danger font-weight-bold">*</span></label>
                         <div class="col-sm-10">
                             <?php $isinvalid = ($validation->hasError('klpd_id')) ? 'is-invalid' : ''; ?>
                             <?= form_dropdown('klpd_id', $options_klpd, old('klpd_id'), ['class' => 'custom-select ', 'id' => 'klpd_id', 'class' => "custom-select  $isinvalid"]); ?>
@@ -47,7 +47,7 @@
                         </div>
                     </div>
                     <div class="form-group row" id="field_satker">
-                        <label for="kd_satker" class="col-sm-2 col-form-label">Satuan Kerja </label>
+                        <label for="kd_satker" class="col-sm-2 col-form-label">Satuan Kerja <span class="text-danger font-weight-bold">*</span></label>
                         <div class="col-sm-10">
                             <?php $isinvalid = ($validation->hasError('kd_satker')) ? 'is-invalid' : ''; ?>
                             <?= form_dropdown('kd_satker', '', old('kd_satker'), ['class' => 'custom-select', 'id' => 'kd_satker', 'class' => "custom-select  $isinvalid"]); ?>
@@ -55,14 +55,14 @@
                         </div>
                     </div>
                     <div class="form-group row" id="field_klpd_lainnya">
-                        <label for="klpd_nama_lainnya" class="col-sm-2 col-form-label">K/L/Pemda Lainya</label>
+                        <label for="klpd_nama_lainnya" class="col-sm-2 col-form-label">K/L/Pemda Lainya <span class="text-danger font-weight-bold">*</span></label>
                         <div class="col-sm-10">
                             <input type="text" class="form-control <?= ($validation->hasError('klpd_nama_lainnya')) ? 'is-invalid' : ''; ?>" id="klpd_nama_lainnya" name="klpd_nama_lainnya" value="<?= old('klpd_nama_lainnya'); ?>">
                             <div class="invalid-feedback"><?= $validation->getError('klpd_nama_lainnya'); ?></div>
                         </div>
                     </div>
                     <div class="form-group row">
-                        <label for="keterangan" class="col-sm-2 col-form-label">Keterangan <small>(Opsional)</small></label>
+                        <label for="keterangan" class="col-sm-2 col-form-label">Keterangan <?php /*<small>(Opsional)</small>*/ ?></label>
                         <div class="col-sm-10">
                             <textarea class="form-control <?= ($validation->hasError('keterangan')) ? 'is-invalid' : ''; ?>" id="keterangan" rows="3" name="keterangan"><?= old('keterangan') ?></textarea>
                             <div class="invalid-feedback"><?= $validation->getError('keterangan'); ?></div>
@@ -156,6 +156,7 @@
         if(klpd_id != ""){
             $("#field_klpd_lainnya").hide();
             $("#field_satker").show();
+            $("#field_required_klpd").show();
 
             var kd_satker = '<?= old('kd_satker'); ?>';
 
@@ -165,6 +166,7 @@
         }else{
             $("#field_klpd_lainnya").show();
             $("#field_satker").hide();
+            $("#field_required_klpd").hide();
 
             $("#kd_satker").val("");
         }
@@ -176,6 +178,7 @@
             if(klpd_id != ""){
                 $("#field_klpd_lainnya").hide();
                 $("#field_satker").show();
+                $("#field_required_klpd").show();
 
                 get_satuan_kerja();
                 
@@ -183,6 +186,7 @@
             }else{
                 $("#field_klpd_lainnya").show();
                 $("#field_satker").hide();
+                $("#field_required_klpd").hide();
 
                 $("#kd_satker").val("");
             }

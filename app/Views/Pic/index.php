@@ -32,7 +32,7 @@
                     <?= csrf_field(); ?>
 
                     <div class="form-group row">
-                        <label for="keterangan" class="col-sm-2 col-form-label">Nama Lengkap </label>
+                        <label for="keterangan" class="col-sm-2 col-form-label">Nama Lengkap <span class="text-danger font-weight-bold">*</span></label>
                         <div class="col-sm-10">
                             <?php $isinvalid = ($validation->hasError('user_id')) ? 'is-invalid' : ''; ?>
                             <?= form_dropdown('user_id', $options_user, '', ['id' => 'user_id','class' => "custom-select $isinvalid"]); ?>

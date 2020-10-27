@@ -81,7 +81,7 @@
                                 }else{
                                     echo 'Tanggal Kirim ';
                                 }
-                            ?>
+                            ?> <span class="text-danger font-weight-bold">*</span>
                         </label>
                         <div class="col-sm-4">
                             <input type="text" class="form-control <?= ($validation->hasError('tanggal_pelaksanaan')) ? 'is-invalid' : ''; ?>" id="tanggal_pelaksanaan" name="tanggal_pelaksanaan" placeholder="MM/DD/YYYY" autofocus value="<?= old('tanggal_pelaksanaan'); ?>">
@@ -91,7 +91,7 @@
                     
                     <?php if(in_array($result['id'], array(1))){ ?>
                     <div class="form-group row">
-                        <label for="nomor_surat_keluar" class="col-sm-2 col-form-label">Nomor Surat Keluar</label>
+                        <label for="nomor_surat_keluar" class="col-sm-2 col-form-label">Nomor Surat Keluar <span class="text-danger font-weight-bold">*</span></label>
                         <div class="col-sm-4">
                             <input type="text" class="form-control <?= ($validation->hasError('nomor_surat_keluar')) ? 'is-invalid' : ''; ?>" id="nomor_surat_keluar" name="nomor_surat_keluar" value="<?= old('nomor_surat_keluar'); ?>">
                             <div class="invalid-feedback"><?= $validation->getError('nomor_surat_keluar'); ?></div>
@@ -100,7 +100,7 @@
                     <?php } ?>
                     <?php if(in_array($result['id'], array(3))){ ?>
                     <div class="form-group row">
-                        <label for="nomor_undangan" class="col-sm-2 col-form-label">Nomor Undangan <small>(Opsional)</small></label>
+                        <label for="nomor_undangan" class="col-sm-2 col-form-label">Nomor Undangan <?php /*<small>(Opsional)</small>*/ ?></label>
                         <div class="col-sm-4">
                             <input type="text" class="form-control <?= ($validation->hasError('nomor_undangan')) ? 'is-invalid' : ''; ?>" id="nomor_undangan" name="nomor_undangan" value="<?= old('nomor_undangan'); ?>">
                             <div class="invalid-feedback"><?= $validation->getError('nomor_undangan'); ?></div>
@@ -124,7 +124,9 @@
                                 }
                             ?>
                             <?php if(in_array($result['id'], array(1,2,3,4,5))){ ?>
-                            <small>(Opsional)</small>
+                            <?php /*<small>(Opsional)</small>*/ ?>
+                            <?php }else{ ?>
+                                <span class="text-danger font-weight-bold">*</span>
                             <?php } ?>
                         </label>
                         <div class="col-sm-8">
@@ -135,7 +137,7 @@
                     <?php } ?>
                     <?php if(in_array($result['id'], array(1,2,6,7))){ ?>
                     <div class="form-group row">
-                        <label for="jabatan" class="col-sm-4 col-form-label">Jabatan</label>
+                        <label for="jabatan" class="col-sm-4 col-form-label">Jabatan <span class="text-danger font-weight-bold">*</span></label>
                         <div class="col-sm-8">
                             <input type="text" class="form-control <?= ($validation->hasError('jabatan')) ? 'is-invalid' : ''; ?>" id="jabatan" name="jabatan" value="<?= old('jabatan'); ?>">
                             <div class="invalid-feedback"><?= $validation->getError('jabatan'); ?></div>
@@ -144,7 +146,7 @@
                     <?php } ?>
                     <?php if(in_array($result['id'], array(1,2,6,7))){ ?>
                     <div class="form-group row">
-                        <label for="nomor_telepon" class="col-sm-4 col-form-label">Nomor Telepon <small>(Opsional)</small></label>
+                        <label for="nomor_telepon" class="col-sm-4 col-form-label">Nomor Telepon <?php /*<small>(Opsional)</small>*/ ?></label>
                         <div class="col-sm-8">
                             <input type="text" class="form-control <?= ($validation->hasError('nomor_telepon')) ? 'is-invalid' : ''; ?>" id="nomor_telepon" name="nomor_telepon" value="<?= old('nomor_telepon'); ?>">
                             <div class="invalid-feedback"><?= $validation->getError('nomor_telepon'); ?></div>
@@ -153,7 +155,7 @@
                     <?php } ?>
                     <?php if(in_array($result['id'], array(1,2,3,4,5,6,7))){ ?>
                     <div class="form-group row">
-                        <label for="klpd" class="col-sm-4 col-form-label">K/L/Pemda </label>
+                        <label for="klpd" class="col-sm-4 col-form-label">K/L/Pemda <span id="field_required_klpd" class="text-danger font-weight-bold">*</span></label>
                         <div class="col-sm-8">
                             <?php $isinvalid = ($validation->hasError('klpd_id')) ? 'is-invalid' : ''; ?>
                             <?= form_dropdown('klpd_id', $options_klpd, old('klpd_id'), ['class' => 'custom-select ', 'id' => 'klpd_id', 'class' => "custom-select  $isinvalid"]); ?>
@@ -163,7 +165,7 @@
                     <?php } ?>
                     <?php if(in_array($result['id'], array(1,2,3,4,5,6,7))){ ?>
                     <div class="form-group row" id="field_satker">
-                        <label for="kd_satker" class="col-sm-4 col-form-label">Satuan Kerja </label>
+                        <label for="kd_satker" class="col-sm-4 col-form-label">Satuan Kerja <span class="text-danger font-weight-bold">*</span></label>
                         <div class="col-sm-8">
                             <?php $isinvalid = ($validation->hasError('kd_satker')) ? 'is-invalid' : ''; ?>
                             <?= form_dropdown('kd_satker', '', old('kd_satker'), ['class' => 'custom-select', 'id' => 'kd_satker', 'class' => "custom-select  $isinvalid"]); ?>
@@ -173,7 +175,7 @@
                     <?php } ?>
                     <?php if(in_array($result['id'], array(1,2,3,4,5,6,7))){ ?>
                     <div class="form-group row" id="field_klpd_lainnya">
-                        <label for="klpd_nama_lainnya" class="col-sm-4 col-form-label">Instansi Lainnya</label>
+                        <label for="klpd_nama_lainnya" class="col-sm-4 col-form-label">Instansi Lainnya <span class="text-danger font-weight-bold">*</span></label>
                         <div class="col-sm-8">
                             <input type="text" class="form-control <?= ($validation->hasError('klpd_nama_lainnya')) ? 'is-invalid' : ''; ?>" id="klpd_nama_lainnya" name="klpd_nama_lainnya" value="<?= old('klpd_nama_lainnya'); ?>">
                             <div class="invalid-feedback"><?= $validation->getError('klpd_nama_lainnya'); ?></div>
@@ -186,9 +188,14 @@
                 <div class="card-body">
                     <?php if(in_array($result['id'], array(1,2,3,4,5,6,7))){ ?>
                     <div class="form-group row">
-                        <label for="paket_kode" class="col-sm-4 col-form-label">Kode Paket <small>(Opsional)</small></label>
+                        <label for="paket_kode" class="col-sm-4 col-form-label">Kode Paket <?php /*<small>(Opsional)</small>*/ ?></label>
                         <div class="col-sm-8">
-                            <input type="text" class="form-control <?= ($validation->hasError('paket_kode')) ? 'is-invalid' : ''; ?>" id="paket_kode" name="paket_kode" value="<?= old('paket_kode'); ?>">
+                            <div class="input-group mb-3">
+                                <input type="text" class="form-control <?= ($validation->hasError('paket_kode')) ? 'is-invalid' : ''; ?>" id="paket_kode" name="paket_kode" placeholder="Masukan kode paket" value="<?= old('paket_kode'); ?>">
+                                <?php /*<div class="input-group-append">
+                                    <button class="btn btn-outline-info" id="paket_search" type="submit"><i class="fa fa-search"></i></button>
+                                </div>*/ ?>
+                            </div>
                             <div class="invalid-feedback"><?= $validation->getError('paket_kode'); ?></div>
                         </div>
                     </div>
@@ -198,7 +205,9 @@
                         <label for="paket_nama" class="col-sm-4 col-form-label">
                             Nama Paket 
                             <?php if(in_array($result['id'], array(1,2,3,6,7))){ ?>
-                            <small>(Opsional)</small>
+                            <?php /*<small>(Opsional)</small>*/ ?>
+                            <?php }else{ ?>
+                            <span class="text-danger font-weight-bold">*</span>
                             <?php } ?>
                         </label>
                         <div class="col-sm-8">
@@ -211,7 +220,9 @@
                     <div class="form-group row">
                         <label for="paket_nilai_pagu" class="col-sm-4 col-form-label">Nilai Paket (Rp.) 
                             <?php if(in_array($result['id'], array(1,2,3,6,7))){ ?>
-                            <small>(Opsional)</small>
+                            <?php /*<small>(Opsional)</small>*/ ?>
+                            <?php }else{ ?>
+                            <span class="text-danger font-weight-bold">*</span>
                             <?php } ?>
                         </label>
                         <div class="col-sm-8">
@@ -222,7 +233,7 @@
                     <?php } ?>
                     <?php if(in_array($result['id'], array(1,2,3,4,5,6,7))){ ?>
                     <div class="form-group row">
-                        <label for="paket_jenis_pengadaan_id" class="col-sm-4 col-form-label">Jenis Barang/Jasa </label>
+                        <label for="paket_jenis_pengadaan_id" class="col-sm-4 col-form-label">Jenis Barang/Jasa <span class="text-danger font-weight-bold">*</span></label>
                         <div class="col-sm-8">
                             <?php $isinvalid = ($validation->hasError('paket_jenis_pengadaan_id')) ? 'is-invalid' : ''; ?>
                             <?= form_dropdown('paket_jenis_pengadaan_id', $options_jenis_pengadaan, old('paket_jenis_pengadaan_id'), ['id'=>'paket_jenis_pengadaan_id', 'class' => "custom-select  $isinvalid"]); ?>
@@ -238,7 +249,7 @@
                     <?php } ?>
                     <?php if(in_array($result['id'], array(1,2,3,4,5,6,7))){ ?>
                     <div class="form-group row">
-                        <label for="kategori_permasalahan_id" class="col-sm-2 col-form-label">Kategori Permasalahan </label>
+                        <label for="kategori_permasalahan_id" class="col-sm-2 col-form-label">Kategori Permasalahan <span class="text-danger font-weight-bold">*</span></label>
                         <div class="col-sm-4">
                             <?php $isinvalid = ($validation->hasError('kategori_permasalahan_id')) ? 'is-invalid' : ''; ?>
                             <?= form_dropdown('kategori_permasalahan_id', $options_kategori_permasalahan, old('kategori_permasalahan_id'), ['id' => 'kategori_permasalahan_id', 'class' => "custom-select $isinvalid"]); ?>
@@ -260,6 +271,7 @@
                                     echo 'Pic 1';
                                 } 
                             ?>
+                            <span class="text-danger font-weight-bold">*</span>
                         </label>
                         <div class="col-sm-8">
                             <?php $isinvalid = ($validation->hasError('pic_id')) ? 'is-invalid' : ''; ?>
@@ -276,7 +288,8 @@
                                     echo 'Pic 2';
                                 } 
                             ?>
-                        <small>(Opsional)</small></label>
+                            <?php /*<small>(Opsional)</small>*/ ?>
+                        </label>
                         <div class="col-sm-8">
                             <?php $isinvalid = ($validation->hasError('pic_second_id')) ? 'is-invalid' : ''; ?>
                             <?= form_dropdown('pic_second_id', $options_pic, old('pic_second_id'), ['id' => 'pic_second_id', 'class' => "custom-select $isinvalid"]); ?>
@@ -298,7 +311,8 @@
                                     echo 'Upload Dokumen';
                                 } 
                             ?>
-                        <small>(Opsional)</small></label>
+                            <?php /*<small>(Opsional)</small>*/ ?>
+                        </label>
                         <div class="col-sm-8">
                             <div><input class="form-control" style="margin-top: 0.5em;" type="file" name="pelayanan_file[]" size="20" multiple/></div>
                             <div id="inputForm"></div>
@@ -319,7 +333,7 @@
                     <div class="form-group row">
                         <label for="keterangan" class="col-sm-2 col-form-label">Keterangan 
                             <?php if(in_array($result['id'], array(1,2,3,4,5))){ ?>
-                                <small>(Opsional)</small>
+                                <?php /*<small>(Opsional)</small>*/ ?>
                             <?php } ?>
                         </label>
                         <div class="col-sm-10">
@@ -370,6 +384,7 @@
         if(klpd_id != "" || klpd_id != 0){
             $("#field_klpd_lainnya").hide();
             $("#field_satker").show();
+            $("#field_required_klpd").show();
 
             var kd_satker = '<?= old('kd_satker'); ?>';
 
@@ -379,6 +394,7 @@
         }else{
             $("#field_klpd_lainnya").show();
             $("#field_satker").hide();
+            $("#field_required_klpd").hide();
 
             $("#kd_satker").val("");
         }
@@ -390,6 +406,7 @@
             if(klpd_id != "" || klpd_id != 0){
                 $("#field_klpd_lainnya").hide();
                 $("#field_satker").show();
+                $("#field_required_klpd").show();
 
                 get_satuan_kerja();
 
@@ -397,6 +414,7 @@
             }else{
                 $("#field_klpd_lainnya").show();
                 $("#field_satker").hide();
+                $("#field_required_klpd").hide();
 
                 $("#kd_satker").val("");
             }
@@ -406,6 +424,50 @@
         
         $('#kd_satker').change(function (){ submit_disable(); });
 
+        $('#paket_search').click(function (e){
+            e.preventDefault();
+
+            var paket_kode = $('#paket_kode').val();
+
+            $.ajax({
+                url: 'https://inaproc.lkpp.go.id/isb/api/818d2bea-046a-4366-a2f7-77cdb25b8c9a/json/184672282/TenderSelesaiDetailSPSEbyKdTender/tipe/4/parameter/' + paket_kode,
+                type: "get",
+                //dataType : 'json',
+                success: function(response){
+                    var data = JSON.parse(response);
+
+                    console.log(data);
+
+                    //$('#paket_nama').val();
+                    $('#klpd_id').val(data[0].kd_klpd);
+                    $('#klpd_id').trigger('change.select2'); 
+                    $('#paket_nama').val(data[0].nama_paket);
+                    $('#paket_nilai_pagu').val(data[0].pagu);
+
+                    var klpd_id = $('#klpd_id').val();
+
+                    if(klpd_id != "" || klpd_id != 0){
+                        $("#field_klpd_lainnya").hide();
+                        $("#field_satker").show();
+                        $("#field_required_klpd").show();
+
+                        get_satuan_kerja(data[0].kd_satker);
+
+                        $('#kd_satker').trigger('change.select2'); 
+                        $("#klpd_nama_lainnya").val("");
+                    }else{
+                        $("#field_klpd_lainnya").show();
+                        $("#field_satker").hide();
+                        $("#field_required_klpd").hide();
+
+                        $("#kd_satker").val("");
+                    }
+
+                    submit_disable(); 
+                }
+            });
+        });
+        
         function get_satuan_kerja(kd_satker = 0){
             $.ajax({
                 url: '<?= base_url('pages/satuan-kerja-ajax') ?>/' + $('#klpd_id').val(),
