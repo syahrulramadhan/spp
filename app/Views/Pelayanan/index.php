@@ -57,6 +57,19 @@
                     <thead>
                     <tr>
                         <th class="text-center col-small">NO</th>
+                        <th>
+                        <?php 
+                            if(in_array($jenis_advokasi_id, array(1))){
+                                echo 'TANGGAL SURAT KELUAR';
+                            }else if(in_array($jenis_advokasi_id, array(3))){
+                                echo 'TANGGAL PERTEMUAN';
+                            }else if(in_array($jenis_advokasi_id, array(4,5))){
+                                echo 'TANGGAL PELAKSANAAN';
+                            }else{
+                                echo 'TANGGAL KIRIM';
+                            }
+                        ?>
+                        </th>
                         <th>NAMA LENGKAP</th>
                         <th>JABATAN</th>
                         <th>TELEPON</th>
@@ -75,16 +88,17 @@
                             $cons_value = "<small>Tidak Ada Data</small>";
 
                             foreach($result as $rows):
+                                $tanggal_pelaksanaan = ($rows['tanggal_pelaksanaan']) ? $rows['tanggal_pelaksanaan'] : $cons_value;
                                 $nama = ($rows['nama']) ? $rows['nama'] : $cons_value;
                                 $jabatan = ($rows['jabatan']) ? $rows['jabatan'] : $cons_value;
                                 $nomor_telepon = ($rows['nomor_telepon']) ? $rows['nomor_telepon'] : $cons_value;
                                 $paket_nama = ($rows['paket_nama']) ? $rows['paket_nama'] : $cons_value;
                                 $jenis_advokasi_nama = ($rows['jenis_advokasi_nama']) ? $rows['jenis_advokasi_nama'] : $cons_value;
                                 $paket_nilai_pagu = ($rows['paket_nilai_pagu']) ? "Rp. ". number_format($rows['paket_nilai_pagu']/1000000, 2) : $cons_value;
-                                
                             ?>
                             <tr>
                                 <th scope="row" class="text-center"><?= $i++; ?></th>
+                                <td><?= tanggalid($tanggal_pelaksanaan); ?></td>
                                 <td><?= $nama; ?></td>
                                 <td><?= $jabatan; ?></td>
                                 <td><?= $nomor_telepon; ?></td>

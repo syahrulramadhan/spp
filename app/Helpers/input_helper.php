@@ -114,7 +114,7 @@ if ( ! function_exists('word_limit')){
 
 if ( ! function_exists('tanggalid')){
 	function tanggalid($tgl){
-		if(tanggalid($tgl)){
+		if($tgl){
 			$ubah = gmdate($tgl, time()+60*60*8);
 			$pecah = explode("-",$ubah);
 			$tanggal = $pecah[2];
