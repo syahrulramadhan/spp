@@ -6,8 +6,7 @@
     <meta name="description" content="">
     <meta name="author" content="Mark Otto, Jacob Thornton, and Bootstrap contributors">
     <meta name="generator" content="Jekyll v4.0.1">
-    <title><?php /* $title */  ?></title>
-
+    <title>LKPP | KEDEPUTIAN 4</title>
     <link rel="canonical" href="https://getbootstrap.com/docs/4.5/examples/offcanvas/">
 
     <!-- Bootstrap core CSS -->
@@ -81,7 +80,7 @@
         $(document).ready(function() {
           $("#tanggal_pelaksanaan").datepicker();
           $('#tanggal_pelaksanaan').mask('00/00/0000');
-          
+ 
           submit_disable();
 
           $('#form-submit input[type=text], #form-submit input[type=password], #form-submit textarea').keyup(function() {
