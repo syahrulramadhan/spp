@@ -10,7 +10,7 @@
     <div class="col-md-8">
         <div class="d-flex align-items-center p-3 my-1 text-white-50 bg-info rounded shadow-sm">
             <div class="lh-100">
-                <h6 class="mb-0 text-white lh-100">Overview</h6>
+                <h6 class="mb-0 text-white lh-100">Dashboard</h6>
             </div>
         </div>
         <div class="card-deck text-center">
@@ -204,19 +204,19 @@
 
         setTimeout(function(){
             google.charts.setOnLoadCallback(drawChartLayanan);
-        }, delay * 0.5)
+        }, delay * 1)
 
         setTimeout(function(){
             google.charts.setOnLoadCallback(drawChartValuasi);
-        }, delay * 1);
-
-        setTimeout(function(){
-            google.charts.setOnLoadCallback(drawChartCoverage);
         }, delay * 2);
 
         setTimeout(function(){
-            google.charts.setOnLoadCallback(drawChartKualitas);
+            google.charts.setOnLoadCallback(drawChartCoverage);
         }, delay * 3);
+
+        setTimeout(function(){
+            google.charts.setOnLoadCallback(drawChartKualitas);
+        }, delay * 4);
 
         $('#cari_chart_layanan').click(function(e){  
             e.preventDefault();
@@ -312,7 +312,7 @@
                     subtitle: '<?= date('d-m-Y  h:i:s'); ?>'
                 },
                 colors: ['#FFAF2E','#FF7A20'],
-                legend: { position: 'top'},
+                legend: 'top',
                 vAxis: {
                     title: 'Jumlah Layanan'
                 },
