@@ -41,9 +41,9 @@ class Pelayanan extends BaseController
 		
 		$keyword = $this->request->getVar('q');
 		$jenis_advokasi_id = $this->request->getVar('jenis_advokasi_id');
-		$tahun = $this->request->getVar('tahun');
+		$tahun = ($this->request->getVar('tahun')) ? $this->request->getVar('tahun') : date('Y');
 		$per_page = ($this->request->getVar('per_page')) ? $this->request->getVar('per_page') : 10;
-		$sort = $this->request->getVar('sort');
+		$sort = ($this->request->getVar('sort')) ? $this->request->getVar('sort') : 'TglBaru';
 		
 		if($jenis_advokasi_id || $tahun || $sort || $keyword){
 			$pelayanan = $this->pelayananModel->getPaginatedPelayananData($jenis_advokasi_id, $tahun, $sort, $keyword);
