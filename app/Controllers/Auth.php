@@ -76,7 +76,10 @@ class Auth extends BaseController
 
 	public function logout()
 	{
+		$array_items = ['nama_lengkap', 'username', 'email', 'id', 'role', 'logged_in'];
+		$this->session->remove($array_items);
 		$this->session->destroy();
+
 		return redirect()->to(base_url('auth/login'));
 	}
 }
