@@ -236,9 +236,10 @@ class Pelayanan extends BaseController
 				}
 
 				$rules['tanggal_pelaksanaan'] = [
-					'rules' => 'required',
+					'rules' => 'required|valid_date',
 					'errors' => [
-						'required' => $label_tanggal . ' harus diisi.'
+						'required' => $label_tanggal . ' harus diisi.',
+						'valid_date' => $label_tanggal . 'harus diisi dengan format yang benar'
 					]
 				];
 
@@ -460,9 +461,10 @@ class Pelayanan extends BaseController
 				}
 			
 				$rules['tanggal_pelaksanaan'] = [
-					'rules' => 'required',
+					'rules' => 'required|valid_date',
 					'errors' => [
-						'required' => $label_tanggal . ' harus diisi.'
+						'required' => $label_tanggal . ' harus diisi.',
+						'valid_date' => $label_tanggal . 'harus diisi dengan format yang benar'
 					]
 				];
 			}

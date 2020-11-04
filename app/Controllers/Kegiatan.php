@@ -94,9 +94,10 @@ class Kegiatan extends BaseController
 		];
 
 		$rules['tanggal_pelaksanaan'] = [
-			'rules' => 'required',
+			'rules' => 'required|valid_date',
 			'errors' => [
-				'required' => 'Tanggal pelaksanaan kegiatan harus diisi.'
+				'required' => 'Tanggal pelaksanaan kegiatan harus diisi.',
+				'valid_date' => 'Tanggal pelaksanaan harus diisi dengan format yang benar'
 			]
 		];
 
@@ -229,9 +230,10 @@ class Kegiatan extends BaseController
 				]
 			],
 			'tanggal_pelaksanaan' => [
-				'rules' => 'required',
+				'rules' => 'required|valid_date',
 				'errors' => [
-					'required' => 'Tanggal pelaksanaan kegiatan harus diisi.'
+					'required' => 'Tanggal pelaksanaan kegiatan harus diisi.',
+					'valid_date' => 'Tanggal pelaksanaan harus diisi dengan format yang benar'
 				]
 			]
 		])){
