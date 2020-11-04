@@ -14,6 +14,9 @@
 
     <link rel="stylesheet" href="<?= base_url('css/jquery-ui.css'); ?>">
     <link rel="stylesheet" href="<?= base_url('fontawesome-5.15.1/css/fontawesome.min.css');?>">
+    <link href="<?= base_url('fontawesome-5.15.1/css/brands.css'); ?>" rel="stylesheet">
+    <link href="<?= base_url('fontawesome-5.15.1/css/solid.css'); ?>" rel="stylesheet">
+
     <link href="<?= base_url('css/select2.min.css'); ?>" rel="stylesheet" />
     <style>
       .bd-placeholder-img {
@@ -71,6 +74,7 @@
 
     <!--<script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>-->
     <script src="<?= base_url('js/jquery-1.12.4.js'); ?>"></script>
+    <script src="<?= base_url('js/jquery-ui.js'); ?>"></script>
     <script src="<?= base_url('js/select2.min.js'); ?>"></script>
     <script src="<?= base_url('js/jquery.mask.min.js'); ?>"></script>
     <script>window.jQuery || document.write('<script src="<?= base_url('/assets/js/vendor/jquery.slim.min.js'); ?>"><\/script>')</script>
