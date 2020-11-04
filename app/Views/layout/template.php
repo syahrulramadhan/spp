@@ -13,7 +13,7 @@
     <link href="<?= base_url('/assets/dist/css/bootstrap.css'); ?>" rel="stylesheet">
 
     <link rel="stylesheet" href="<?= base_url('css/jquery-ui.css'); ?>">
-    <link rel="stylesheet" href="<?= base_url('fontawesome-5.15.1/css/font-awesome.min.css');?>">
+    <link rel="stylesheet" href="<?= base_url('fontawesome-5.15.1/css/fontawesome.min.css');?>">
     <link href="<?= base_url('css/select2.min.css'); ?>" rel="stylesheet" />
     <style>
       .bd-placeholder-img {
