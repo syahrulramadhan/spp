@@ -581,53 +581,73 @@ class Pages extends BaseController
 	}
 
 	public function ubah_password_update($id){
-		if(!$this->validate([
-			'password_lama' => [
+		if(permission(['ADMINISTRATOR'])){
+			$rules['username'] = [
+				'rules' => 'required|exist_username_user',
+				'errors' => [
+					'required' => 'Username harus diisi.',
+					'exist_username_user' => 'Username/Email tidak ditemukan'
+				]
+			];
+		}
+
+		if(permission(['ADMIN_CONTENT'])){
+			$rules['password_lama'] = [
 				'rules' => 'required|valid_password',
 				'errors' => [
 					'required' => 'Kata sandi lama harus diisi.',
 					'valid_password' => 'Kata sandi tidak ditemukan.'
 				]
-			],
-			'repassword_lama' => [
+			];
+
+			$rules['repassword_lama'] = [
 				'rules' => 'required|matches[password_lama]',
 				'errors' => [
 					'required' => 'Ulangi kata sandi lama harus diisi.',
 					'matches' => 'Kata sandi lama yang diulang tidak sama'
 				]
-			],
-			'password' => [
-				'rules' => 'required|min_length[10]',
-				'errors' => [
-					'required' => 'Kata sandi harus diisi.',
-					'min_length' => 'Kata sandi anda terlalu pendek.'
-				]
-			],
-			'repassword' => [
-				'rules' => 'required|min_length[10]|matches[password]',
-				'errors' => [
-					'required' => 'Ulangi kata sandi harus diisi.',
-					'min_length' => 'Ulangi kata sandi anda terlalu pendek.',
-					'matches' => 'Kata sandi yang diulang tidak sama'
-				]
+			];
+		}
+
+		$rules['password'] = [
+			'rules' => 'required|min_length[10]',
+			'errors' => [
+				'required' => 'Kata sandi harus diisi.',
+				'min_length' => 'Kata sandi anda terlalu pendek.'
 			]
-		])){
+		];
+
+		$rules['repassword'] = [
+			'rules' => 'required|min_length[10]|matches[password]',
+			'errors' => [
+				'required' => 'Ulangi kata sandi harus diisi.',
+				'min_length' => 'Ulangi kata sandi anda terlalu pendek.',
+				'matches' => 'Kata sandi yang diulang tidak sama'
+			]
+		];
+
+		if(!$this->validate($rules)){
 
 			$validation = \Config\Services::validation();
-			return redirect()->to('/pages/ubah-password/' . $id)->withInput()->with('validation', $validation);
+			return redirect()->to('/pages/ubah-kata-sandi/' . $id)->withInput()->with('validation', $validation);
 		}
 
 		$pass = $this->setPassword($this->request->getVar('password'));
 
+		if(permission(['ADMINISTRATOR'])){
+			$result = $this->userModel->getUserByUsername($this->request->getVar('username'));
+			$user_id = $result['id'];
+		}
+
 		$this->userModel->save([
-			'id' => $id,
+			'id' => (permission(['ADMINISTRATOR'])) ? $user_id : $id,
 			'salt' => $pass['salt'],
 			'password' => $pass['password'],
 		]);
 		
-		session()->setFlashdata('pesan', 'Data berhasil ditambahkan.');
+		session()->setFlashdata('pesan', 'Data berhasil diubah.');
 		
-		return redirect()->to('/pages/ubah-password/' . $id);
+		return redirect()->to('/pages/ubah-kata-sandi/' . $id);
 	}
 
 	public function profil($id){

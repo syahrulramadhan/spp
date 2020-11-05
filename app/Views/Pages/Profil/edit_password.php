@@ -42,7 +42,16 @@
 
                 <form id="form-submit" action="/pages/ubah-kata-sandi-update/<?= $result['id']; ?>" method="post" enctype="multipart/form-data">
                     <?= csrf_field(); ?>
-                    
+                    <?php if(permission(['ADMINISTRATOR'])){ ?>
+                    <div class="form-group row">
+                        <label for="username" class="col-sm-2 col-form-label">Username</label>
+                        <div class="col-sm-10">
+                            <input type="text" class="form-control <?= ($validation->hasError('username')) ? 'is-invalid' : ''; ?>" id="username" name="username" value="<?= old('username'); ?>">
+                            <div class="invalid-feedback"><?= $validation->getError('username'); ?></div>
+                        </div>
+                    </div>
+                    <?php } ?>
+                    <?php if(permission(['ADMIN_CONTENT'])){ ?>
                     <div class="form-group row">
                         <label for="password_lama" class="col-sm-2 col-form-label">Kata Sandi Lama</label>
                         <div class="col-sm-10">
@@ -62,7 +71,7 @@
                     </div>
 
                     <hr>
-
+                    <?php } ?>
                     <div class="form-group row">
                         <label for="password" class="col-sm-2 col-form-label">Kata Sandi Baru</label>
                         <div class="col-sm-10">

@@ -18,6 +18,10 @@ class UserModel extends Model
         return $this->where(['id' => $user_id])->first();
     }
 
+    public function getUserByUsername($username = ''){
+        return $this->where('username', $username)->orwhere('email', $username)->first();
+    }
+
     public function getPaginatedUserData(string $keyword = ''){
         return $this->table('user')->like('nama_depan', $keyword)->orLike('nama_belakang', $keyword);
     }
