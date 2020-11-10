@@ -139,6 +139,31 @@ class Pelayanan extends BaseController
 				];
 			}
 
+			if(in_array($id, array(3))){
+				$rules['nomor_undangan'] = [
+					'rules' => 'required',
+					'errors' => [
+						'required' => 'Nomor undangan harus diisi.'
+					]
+				];
+			}
+
+			if(in_array($jenis_advokasi_id, array(4,5))){
+				$rules['paket_nama'] = [
+					'rules' => 'required',
+					'errors' => [
+						'required' => 'Nama paket harus diisi.'
+					]
+				];
+
+				$rules['paket_nilai_pagu'] = [
+					'rules' => 'required',
+					'errors' => [
+						'required' => 'Nama harus diisi.'
+					]
+				];
+			}
+
 			if(in_array($id, array(6,7))){
 				$rules['nama'] = [
 					'rules' => 'required',
@@ -160,22 +185,6 @@ class Pelayanan extends BaseController
 					'rules' => 'required',
 					'errors' => [
 						'required' => 'Jabatan harus diisi.'
-					]
-				];
-			}
-			
-			if(in_array($id, array(4,5))){
-				$rules['paket_nama'] = [
-					'rules' => 'required',
-					'errors' => [
-						'required' => 'Nama paket harus diisi.'
-					]
-				];
-
-				$rules['paket_nilai_pagu'] = [
-					'rules' => 'required',
-					'errors' => [
-						'required' => 'Nilai paket harus diisi.'
 					]
 				];
 			}
@@ -410,7 +419,7 @@ class Pelayanan extends BaseController
 				];
 			}
 
-			if(in_array($id, array(6,7))){
+			if(in_array($jenis_advokasi_id, array(6,7))){
 				$rules['nama'] = [
 					'rules' => 'required',
 					'errors' => [
@@ -426,7 +435,7 @@ class Pelayanan extends BaseController
 				];
 			}
 			
-			if(in_array($id, array(1,2,6,7))){
+			if(in_array($jenis_advokasi_id, array(1,2,6,7))){
 				$rules['jabatan'] = [
 					'rules' => 'required',
 					'errors' => [
@@ -435,7 +444,30 @@ class Pelayanan extends BaseController
 				];
 			}
 
-			if(in_array($id, array(1,2,3,4,5,6,7))){
+			if(! $this->request->getVar('klpd_id')){
+				$rules['klpd_nama_lainnya'] = [
+					'rules' => 'required',
+					'errors' => [
+						'required' => "Instansi lainnya harus diisi"
+					]
+				];
+			}else{
+				$rules['klpd_id'] = [
+					'rules' => 'required',
+					'errors' => [
+						'required' => 'K/L/Pemda harus diisi.'
+					]
+				];
+
+				$rules['kd_satker'] = [
+					'rules' => 'required',
+					'errors' => [
+						'required' => 'Satuan kerja harus diisi.'
+					]
+				];
+			}
+
+			if(in_array($jenis_advokasi_id, array(1,2,3,4,5,6,7))){
 				$rules['paket_jenis_pengadaan_id'] = [
 					'rules' => 'required',
 					'errors' => [
@@ -450,11 +482,11 @@ class Pelayanan extends BaseController
 					]
 				];
 			
-				if(in_array($id, array(1))){
+				if(in_array($jenis_advokasi_id, array(1))){
 					$label_tanggal = 'Tanggal Surat Keluar';
-				}else if(in_array($id, array(3))){
+				}else if(in_array($jenis_advokasi_id, array(3))){
 					$label_tanggal = 'Tanggal Pertemuan ';
-				}else if(in_array($id, array(4,5))){
+				}else if(in_array($jenis_advokasi_id, array(4,5))){
 					$label_tanggal = 'Tanggal Pelaksanaan';
 				}else{
 					$label_tanggal = 'Tanggal Kirim ';
