@@ -148,7 +148,7 @@ class Pelayanan extends BaseController
 				];
 			}
 
-			if(in_array($jenis_advokasi_id, array(4,5))){
+			if(in_array($id, array(4,5))){
 				$rules['paket_nama'] = [
 					'rules' => 'required',
 					'errors' => [
@@ -248,7 +248,7 @@ class Pelayanan extends BaseController
 					'rules' => 'required|valid_date',
 					'errors' => [
 						'required' => $label_tanggal . ' harus diisi.',
-						'valid_date' => $label_tanggal . 'harus diisi dengan format yang benar'
+						'valid_date' => $label_tanggal . ' harus diisi dengan format yang benar'
 					]
 				];
 
@@ -496,7 +496,7 @@ class Pelayanan extends BaseController
 					'rules' => 'required|valid_date',
 					'errors' => [
 						'required' => $label_tanggal . ' harus diisi.',
-						'valid_date' => $label_tanggal . 'harus diisi dengan format yang benar'
+						'valid_date' => $label_tanggal . ' harus diisi dengan format yang benar'
 					]
 				];
 			}
