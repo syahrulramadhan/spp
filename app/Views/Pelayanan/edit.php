@@ -31,7 +31,7 @@
                         </div>
                     <?php endif; ?>
 
-                    <?= $validation->listErrors(); ?>
+                    <?php /*$validation->listErrors();*/ ?>
 
                     <?php /*
                     1	Surat
@@ -59,9 +59,9 @@
                             </div>
                             <div class="toast-body">
                                 <?php 
-                                    if(in_array($result['id'], array(4))){
+                                    if(in_array($result['jenis_advokasi_id'], array(4))){
                                         echo 'Diisi berdasarkan Paket Konsolidasi bukan setiap Kegiatan.';
-                                    }else if(in_array($result['id'], array(5))){
+                                    }else if(in_array($result['jenis_advokasi_id'], array(5))){
                                         echo 'Diisi berdasarkan Paket Pendampingan/Probity Advice bukan setiap Kegiatan';
                                     }
                                 ?>
@@ -75,11 +75,11 @@
                     <div class="form-group row">
                         <label for="tanggal_pelaksanaan" class="col-sm-2 col-form-label">
                         <?php 
-                                if(in_array($result['id'], array(1))){
+                                if(in_array($result['jenis_advokasi_id'], array(1))){
                                     echo 'Tanggal Surat Keluar';
-                                }else if(in_array($result['id'], array(3))){
+                                }else if(in_array($result['jenis_advokasi_id'], array(3))){
                                     echo 'Tanggal Pertemuan ';
-                                }else if(in_array($result['id'], array(4,5))){
+                                }else if(in_array($result['jenis_advokasi_id'], array(4,5))){
                                     echo 'Tanggal Pelaksanaan';
                                 }else{
                                     echo 'Tanggal Kirim ';
@@ -119,15 +119,15 @@
                     <div class="form-group row">
                         <label for="nama" class="col-sm-4 col-form-label">
                             <?php 
-                                if(in_array($result['id'], array(6))){
+                                if(in_array($result['jenis_advokasi_id'], array(6))){
                                     echo 'Nama Tamu';
-                                }else if(in_array($result['id'], array(7))){
+                                }else if(in_array($result['jenis_advokasi_id'], array(7))){
                                     echo 'Nama Penanya';
                                 }else{
                                     echo 'Nama Penerima  ';
                                 }
                             ?>
-                            <?php if(in_array($result['id'], array(1,2,3,4,5))){ ?>
+                            <?php if(in_array($result['jenis_advokasi_id'], array(1,2))){ ?>
                             <?php /*<small>(Opsional)</small>*/ ?>
                             <?php }else{ ?>
                             <span class="text-danger font-weight-bold">*</span>
@@ -161,7 +161,9 @@
                     <div class="form-group row">
                         <label for="klpd_id" class="col-sm-4 col-form-label">K/L/Pemda <span id="field_required_klpd" class="text-danger font-weight-bold">*</span></label>
                         <div class="col-sm-8">
-                            <?= form_dropdown('klpd_id', $options_klpd, (old('klpd_id')) ? old('klpd_id') : $result['klpd_id'], ['class' => 'custom-select ', 'id' => 'klpd_id']); ?>
+                            <?php $isinvalid = ($validation->hasError('klpd_id')) ? 'is-invalid' : ''; ?>
+                            <?= form_dropdown('klpd_id', $options_klpd, (old('klpd_id')) ? old('klpd_id') : $result['klpd_id'], ['class' => "custom-select $isinvalid", 'id' => 'klpd_id']); ?>
+                            <div class="invalid-feedback"><?= $validation->getError('klpd_id'); ?></div>
                         </div>
                     </div>
                     <?php } ?>
@@ -169,7 +171,9 @@
                     <div class="form-group row" id="field_satker">
                         <label for="kd_satker" class="col-sm-4 col-form-label">Satuan Kerja <span class="text-danger font-weight-bold">*</span></label>
                         <div class="col-sm-8">
-                            <?= form_dropdown('kd_satker', '', (old('kd_satker')) ? old('kd_satker') : $result['satuan_kerja_id'], ['class' => 'custom-select', 'id' => 'kd_satker']); ?>
+                            <?php $isinvalid = ($validation->hasError('kd_satker')) ? 'is-invalid' : ''; ?>
+                            <?= form_dropdown('kd_satker', '', (old('kd_satker')) ? old('kd_satker') : $result['satuan_kerja_id'], ['class' => "custom-select $isinvalid", 'id' => 'kd_satker']); ?>
+                            <div class="invalid-feedback"><?= $validation->getError('kd_satker'); ?></div>
                         </div>
                     </div>
                     <?php } ?>
@@ -204,7 +208,7 @@
                     <div class="form-group row">
                         <label for="paket_nama" class="col-sm-4 col-form-label">
                             Nama Paket 
-                            <?php if(in_array($result['id'], array(1,2,3,6,7))){ ?>
+                            <?php if(in_array($result['jenis_advokasi_id'], array(1,2,3,6,7))){ ?>
                             <?php /*<small>(Opsional)</small>*/ ?>
                             <?php }else{?>
                             <span class="text-danger font-weight-bold">*</span>
@@ -219,7 +223,7 @@
                     <?php if(in_array($result['jenis_advokasi_id'], array(1,2,3,4,5,6,7))){ ?>
                     <div class="form-group row">
                         <label for="paket_nilai_pagu" class="col-sm-4 col-form-label">Nilai Paket (Rp.) 
-                            <?php if(in_array($result['id'], array(1,2,3,6,7))){ ?>
+                            <?php if(in_array($result['jenis_advokasi_id'], array(1,2,3,6,7))){ ?>
                             <?php /*<small>(Opsional)</small>*/ ?>
                             <?php }else{ ?>
                             <span class="text-danger font-weight-bold">*</span>

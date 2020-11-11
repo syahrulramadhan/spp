@@ -123,7 +123,7 @@
                                     echo 'Nama Penerima  ';
                                 }
                             ?>
-                            <?php if(in_array($result['id'], array(1,2,3,4,5))){ ?>
+                            <?php if(in_array($result['id'], array(1,2))){ ?>
                             <?php /*<small>(Opsional)</small>*/ ?>
                             <?php }else{ ?>
                                 <span class="text-danger font-weight-bold">*</span>
@@ -334,6 +334,8 @@
                         <label for="keterangan" class="col-sm-2 col-form-label">Keterangan 
                             <?php if(in_array($result['id'], array(1,2,3,4,5))){ ?>
                                 <?php /*<small>(Opsional)</small>*/ ?>
+                            <?php }else{ ?>
+                                <span class="text-danger font-weight-bold">*</span>
                             <?php } ?>
                         </label>
                         <div class="col-sm-10">
