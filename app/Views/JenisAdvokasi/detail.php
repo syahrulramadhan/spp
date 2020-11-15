@@ -29,7 +29,7 @@
                 <div class="row">
                     <div class="col-3"><img src="<?php echo base_url('uploads/jenis-advokasi/'.$result['image_jenis_advokasi']) ?>" class="img-thumbnail"></div>
                 </div>
-                <p class="card-text"><?= $result['keterangan'] ?></p>
+                <?php /*<p class="card-text"><?= $result['keterangan'] ?></p>*/ ?>
                 <?php if(permission(['ADMINISTRATOR'])){ ?>
                 <a href="/jenis-advokasi/edit/<?= $result['id']; ?>" class="btn btn-info">Edit</a>
                 <?php } ?>
