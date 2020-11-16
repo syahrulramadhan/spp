@@ -111,7 +111,7 @@
     $('#jenis_klpd').select2();
     $('#tahun').select2();
 
-    google.charts.load('current', {'packages':['bar']});
+    google.charts.load('current', {'packages':['corechart']});
     google.charts.setOnLoadCallback(drawChartLayanan);
     google.charts.setOnLoadCallback(drawChartValuasi);
 
@@ -157,9 +157,9 @@
                 }
             }
 
-            var chart = new google.charts.Bar(document.getElementById('curve_chart_pelayanan'));
+            var chart = new google.visualization.ColumnChart(document.getElementById('curve_chart_pelayanan'));
 
-            chart.draw(data, google.charts.Bar.convertOptions(options));
+            chart.draw(data, options);
         }else{
             $('#curve_chart_pelayanan').html('<div class="my-2">Data tidak ditemukan</div>')
         }
@@ -196,9 +196,9 @@
                 }
             }
 
-            var chart = new google.charts.Bar(document.getElementById('curve_chart_valuasi'));
+            var chart = new google.visualization.ColumnChart(document.getElementById('curve_chart_valuasi'));
 
-            chart.draw(data, google.charts.Bar.convertOptions(options));
+            chart.draw(data, options);
         }else{
             $('#curve_chart_valuasi').html('<div class="my-2">Data tidak ditemukan</div>')
         }

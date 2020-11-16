@@ -285,7 +285,7 @@ class Pages extends BaseController
 				$result = $this->grafikModel->kualitasByKlpdId($i, $tahun, $id);
 
 				if($result->total_kualitas){
-					$grafik1[$i][1] = $result->total_kualitas;
+					$grafik1[$i][1] = (int) $result->total_kualitas;
 
 					$total = $total + 1;
 				}	

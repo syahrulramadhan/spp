@@ -200,7 +200,7 @@
         var delay = 1000;
 
         load_layanan_list();
-        google.charts.load('current', {'packages':['bar']});
+        google.charts.load('current', {'packages':['corechart']});
 
         setTimeout(function(){
             google.charts.setOnLoadCallback(drawChartLayanan);
@@ -307,10 +307,13 @@
 
             var data = google.visualization.arrayToDataTable(result.data);
             var options = {
+                title: 'Grafik Layanan - <?= date('d-m-Y  h:i:s'); ?>',
+                /*
                 chart: {
                     title: 'Grafik Layanan',
                     subtitle: '<?= date('d-m-Y  h:i:s'); ?>'
                 },
+                */
                 colors: ['#FFAF2E','#FF7A20'],
                 legend: 'top',
                 vAxis: {
@@ -321,9 +324,15 @@
                 }
             }
 
+            var chart = new google.visualization.ColumnChart(document.getElementById('curve_chart_pelayanan'));
+
+            chart.draw(data, options);
+
+            /*
             var chart = new google.charts.Bar(document.getElementById('curve_chart_pelayanan'));
 
             chart.draw(data, google.charts.Bar.convertOptions(options));
+            */
         }else{
             $('#curve_chart_pelayanan').html('<div class="my-2">Data tidak ditemukan</div>')
         }
@@ -369,10 +378,13 @@
 
             var data = google.visualization.arrayToDataTable(result.data);
             var options = {
+                title: 'Grafik Valuasi (Rp. JUTA) - <?= date('d-m-Y  h:i:s'); ?>',
+                /*
                 chart: {
                     title: 'Grafik Valuasi (Rp. JUTA)',
                     subtitle: '<?= date('d-m-Y  h:i:s'); ?>'
                 },
+                */
                 colors: ['#FA68F8','#FA00B5'],
                 legend: { position: 'top'},
                 vAxis: {
@@ -384,9 +396,15 @@
                 }
             }
 
+            var chart = new google.visualization.ColumnChart(document.getElementById('curve_chart_valuasi'));
+
+            chart.draw(data, options);
+
+            /*
             var chart = new google.charts.Bar(document.getElementById('curve_chart_valuasi'));
 
             chart.draw(data, google.charts.Bar.convertOptions(options));
+            */
         }else{
             $('#curve_chart_valuasi').html('<div class="my-2">Data tidak ditemukan</div>')
         }
@@ -432,10 +450,13 @@
 
             var data = google.visualization.arrayToDataTable(result.data);
             var options = {
+                title: 'Grafik Coverage - <?= date('d-m-Y  h:i:s'); ?>',
+                /*
                 chart: {
                     title: 'Grafik Coverage',
                     subtitle: '<?= date('d-m-Y  h:i:s'); ?>'
                 },
+                */
                 colors: ['#DBFF0D','#9AE600'],
                 legend: { position: 'top'},
                 vAxis: {
@@ -447,9 +468,15 @@
                 }
             }
 
+            var chart = new google.visualization.ColumnChart(document.getElementById('curve_chart_coverage'));
+
+            chart.draw(data, options);
+
+            /*
             var chart = new google.charts.Bar(document.getElementById('curve_chart_coverage'));
 
             chart.draw(data, google.charts.Bar.convertOptions(options));
+            */
         }else{
             $('#curve_chart_coverage').html('<div class="my-2">Data tidak ditemukan</div>')
         }
@@ -495,10 +522,13 @@
 
             var data = google.visualization.arrayToDataTable(result.data);
             var options = {
+                title: 'Grafik Kualitas - <?= date('d-m-Y  h:i:s'); ?>',
+                /*
                 chart: {
                     title: 'Grafik Kualitas',
                     subtitle: '<?= date('d-m-Y  h:i:s'); ?>'
                 },
+                */
                 colors: ['#FA0065'],
                 legend: { position: 'top'},
                 vAxis: {
@@ -510,9 +540,15 @@
                 }
             }
 
+            var chart = new google.visualization.ColumnChart(document.getElementById('curve_chart_kualitas'));
+
+            chart.draw(data, options);
+
+            /*
             var chart = new google.charts.Bar(document.getElementById('curve_chart_kualitas'));
 
             chart.draw(data, google.charts.Bar.convertOptions(options));
+            */
         }else{
             $('#curve_chart_kualitas').html('<div class="my-2">Data tidak ditemukan</div>')
         }
