@@ -104,7 +104,7 @@
                     <?php } ?>
                     <?php if(in_array($result['jenis_advokasi_id'], array(3))){ ?>
                     <div class="form-group row">
-                        <label for="nomor_undangan" class="col-sm-2 col-form-label">Nomor Undangan <span class="text-danger font-weight-bold">*</span></label>
+                        <label for="nomor_undangan" class="col-sm-2 col-form-label">Nomor Undangan <?php /*<small>(Opsional)</small>*/ ?></label>
                         <div class="col-sm-4">
                             <input type="text" class="form-control <?= ($validation->hasError('nomor_undangan')) ? 'is-invalid' : ''; ?>" id="nomor_undangan" name="nomor_undangan" value="<?= (old('nomor_undangan')) ? old('nomor_undangan') : $result['nomor_undangan'] ?>">
                             <div class="invalid-feedback"><?= $validation->getError('nomor_undangan'); ?></div>

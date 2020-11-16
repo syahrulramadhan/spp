@@ -139,6 +139,7 @@ class Pelayanan extends BaseController
 				];
 			}
 
+			/*
 			if(in_array($id, array(3))){
 				$rules['nomor_undangan'] = [
 					'rules' => 'required',
@@ -147,6 +148,7 @@ class Pelayanan extends BaseController
 					]
 				];
 			}
+			*/
 
 			if(in_array($id, array(4,5))){
 				$rules['paket_nama'] = [
@@ -394,6 +396,7 @@ class Pelayanan extends BaseController
 				];
 			}
 
+			/*
 			if(in_array($jenis_advokasi_id, array(3))){
 				$rules['nomor_undangan'] = [
 					'rules' => 'required',
@@ -402,6 +405,7 @@ class Pelayanan extends BaseController
 					]
 				];
 			}
+			*/
 
 			if(in_array($jenis_advokasi_id, array(4,5))){
 				$rules['paket_nama'] = [
