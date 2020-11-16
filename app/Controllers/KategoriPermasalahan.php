@@ -168,6 +168,8 @@ class KategoriPermasalahan extends BaseController
 			}
 		}
 
+		$this->cachePage(5);
+		
 		echo json_encode(array('status' => true, 'data' => $grafik, JSON_PRETTY_PRINT));
 	}
 
