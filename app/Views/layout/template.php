@@ -18,6 +18,16 @@
     <link href="<?= base_url('fontawesome-5.15.1/css/solid.css'); ?>" rel="stylesheet">
 
     <link href="<?= base_url('css/select2.min.css'); ?>" rel="stylesheet" />
+
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    
+    <script src="<?= base_url('js/jquery-ui.js'); ?>"></script>
+    <script src="<?= base_url('js/select2.min.js'); ?>"></script>
+    <script src="<?= base_url('js/jquery.mask.min.js'); ?>"></script>
+    <script src="<?= base_url('/assets/dist/js/bootstrap.bundle.js'); ?>"></script>
+    <script src="<?= base_url('/js/offcanvas.js') ?>"></script>
+
+    <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
     <style>
       .bd-placeholder-img {
         font-size: 1.125rem;
@@ -71,15 +81,6 @@
         </div>
       </div>
     </div>
-
-    <!--<script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>-->
-    <script src="<?= base_url('js/jquery-1.12.4.js'); ?>"></script>
-    <script src="<?= base_url('js/jquery-ui.js'); ?>"></script>
-    <script src="<?= base_url('js/select2.min.js'); ?>"></script>
-    <script src="<?= base_url('js/jquery.mask.min.js'); ?>"></script>
-    <script>window.jQuery || document.write('<script src="<?= base_url('/assets/js/vendor/jquery.slim.min.js'); ?>"><\/script>')</script>
-    <script src="<?= base_url('/assets/dist/js/bootstrap.bundle.js'); ?>"></script>
-    <script src="<?= base_url('/js/offcanvas.js') ?>"></script>
     <script>
         $(document).ready(function() {
           $("#tanggal_pelaksanaan").datepicker();

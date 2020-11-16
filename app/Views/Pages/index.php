@@ -2,10 +2,6 @@
 
 <?php $this->section('content'); ?>
 
-<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
-<script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.3/js/select2.min.js"></script>
-
 <div class="row">
     <div class="col-md-8">
         <div class="d-flex align-items-center p-3 my-1 text-white-50 bg-info rounded shadow-sm">
@@ -194,8 +190,9 @@
     $('#jenis_klpd').change(function(){ submit_disable(); });
     $('#tahun').change(function(){ submit_disable(); });
 
-    $('#jenis_klpd').select2(); $('#tahun').select2();
-
+    $('#jenis_klpd').select2();
+    $('#tahun').select2();
+    
     $(document).ready(function(){
         var delay = 1000;
 

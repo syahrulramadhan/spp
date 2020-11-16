@@ -2,9 +2,6 @@
 
 <?= $this->section('content'); ?>
 
-<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
-<script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
-
 <nav aria-label="breadcrumb">
     <ol class="breadcrumb">
         <li class="breadcrumb-item"><a href="<?= base_url(); ?>">Dashboard</a></li>
