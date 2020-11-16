@@ -174,6 +174,8 @@ class JenisAdvokasi extends BaseController
 	}
 
 	public function edit($id){
+		permission_redirect(['ADMINISTRATOR']);
+
 		$data = [
 			'title' => 'Form Edit Data Jenis Advokasi',
 			'validation' => \Config\Services::validation(),
@@ -184,6 +186,8 @@ class JenisAdvokasi extends BaseController
 	}
 
 	public function update($id){
+		permission_redirect(['ADMINISTRATOR']);
+		
 		/*
 		$rules['keterangan'] = [
 			'rules' => 'min_length[20]',

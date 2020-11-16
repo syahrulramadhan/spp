@@ -27,6 +27,21 @@ if(!function_exists('permission')){
 	}
 }
 
+if(!function_exists('permission_redirect')){
+	function permission_redirect($param){
+		if($param){
+			$result = in_array(session('role'), $param);
+			if($result === false){
+				header("Location: " . base_url('pages'));
+				die();
+			}
+		}else{
+			header("Location: " . base_url('pages'));
+			die();
+		}
+	}
+}
+
 if ( ! function_exists('flagOptions')){
 	function flagOptions($q = ''){
 		if($q == 'label'){

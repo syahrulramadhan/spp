@@ -172,6 +172,8 @@ class KategoriPermasalahan extends BaseController
 	}
 
 	public function create(){
+		permission_redirect(['ADMINISTRATOR']);
+
 		$data = [
 			'title' => 'Form Tambah Data Kategori Permasalahan',
 			'validation' => \Config\Services::validation()
@@ -181,6 +183,8 @@ class KategoriPermasalahan extends BaseController
 	}
 
 	public function save(){
+		permission_redirect(['ADMINISTRATOR']);
+
 		if(!$this->validate([
 			'nama_kategori_permasalahan' => [
 				'rules' => 'required|min_length[5]',
@@ -213,6 +217,8 @@ class KategoriPermasalahan extends BaseController
 	}
 
 	public function edit($id){
+		permission_redirect(['ADMINISTRATOR']);
+
 		$data = [
 			'title' => 'Form Edit Data Kategori Permasalahan',
 			'validation' => \Config\Services::validation(),
@@ -223,6 +229,8 @@ class KategoriPermasalahan extends BaseController
 	}
 
 	public function update($id){
+		permission_redirect(['ADMINISTRATOR']);
+
 		if(!$this->validate([
 			'nama_kategori_permasalahan' => [
 				'rules' => 'required|min_length[5]',
@@ -255,6 +263,8 @@ class KategoriPermasalahan extends BaseController
 	}
 
 	public function delete($id){
+		permission_redirect(['ADMINISTRATOR']);
+		
 		$result = $this->kategoriPermasalahanModel->find($id);
 
 		if($result){

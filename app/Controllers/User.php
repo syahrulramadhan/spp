@@ -16,6 +16,8 @@ class User extends BaseController
 
 	public function index()
 	{
+		permission_redirect(['ADMINISTRATOR']);
+
 		$keyword = $this->request->getVar('q');
 		$per_page = ($this->request->getVar('per_page')) ? $this->request->getVar('per_page') : 10;
 
@@ -40,6 +42,8 @@ class User extends BaseController
 	}
 	
 	public function detail($id){
+		permission_redirect(['ADMINISTRATOR']);
+
 		$data = [
 			'title' => 'Detail User',
 			'result' => $this->userModel->getUser($id)
@@ -53,6 +57,8 @@ class User extends BaseController
 	}
 
 	public function create(){
+		permission_redirect(['ADMINISTRATOR']);
+
 		$data = [
 			'title' => 'Form Tambah Data User',
 			'options_role' => [
@@ -67,6 +73,8 @@ class User extends BaseController
 	}
 
 	public function save(){
+		permission_redirect(['ADMINISTRATOR']);
+
 		if(!$this->validate([
 			'nama_depan' => [
 				'rules' => 'required',
@@ -154,6 +162,8 @@ class User extends BaseController
 	}
 
 	public function edit($id){
+		permission_redirect(['ADMINISTRATOR']);
+
 		$data = [
 			'title' => 'Form Ubah Data User',
 			'options_role' => [
@@ -169,6 +179,8 @@ class User extends BaseController
 	}
 
 	public function update($id){
+		permission_redirect(['ADMINISTRATOR']);
+
 		if(!$this->validate([
 			'nama_depan' => [
 				'rules' => 'required',
@@ -219,6 +231,8 @@ class User extends BaseController
 	}
 
 	public function delete($id){
+		permission_redirect(['ADMINISTRATOR']);
+
 		$result = $this->userModel->find($id);
 
 		if($result){

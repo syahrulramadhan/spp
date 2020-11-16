@@ -69,6 +69,8 @@ class Pic extends BaseController
 	}
 
 	public function save(){
+		permission_redirect(['ADMINISTRATOR']);
+
 		if(!$this->validate([
 			'user_id' => [
 				'rules' => 'required|is_unique[pic.user_id]',
@@ -95,6 +97,8 @@ class Pic extends BaseController
 	}
 
 	public function edit($id){
+		permission_redirect(['ADMINISTRATOR']);
+
 		$res = $this->picModel->getPic($id);
 
 		$data = [
@@ -113,6 +117,8 @@ class Pic extends BaseController
 	}
 
 	public function update($id){
+		permission_redirect(['ADMINISTRATOR']);
+
 		if(!$this->validate([
 			'user_id' => [
 				'rules' => "required|is_unique[pic.user_id,id,$id]",
@@ -139,6 +145,8 @@ class Pic extends BaseController
 	}
 
 	public function delete($id){
+		permission_redirect(['ADMINISTRATOR']);
+		
 		$result = $this->picModel->find($id);
 
 		if($result){
