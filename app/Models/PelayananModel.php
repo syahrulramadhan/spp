@@ -19,7 +19,38 @@ class PelayananModel extends Model
     public function getPelayananJoin($pelayanan_id = false){
         if($pelayanan_id == false){
             $builder = $this->db->table('pelayanan p');
-            $builder->select('p.*, klpd.nama_klpd, sk.nama_satker');
+            $builder->select('
+                p.kegiatan_id
+                , p.tanggal_pelaksanaan
+                , p.nomor_surat_keluar
+                , p.nomor_undangan
+                , p.nama
+                , p.jabatan
+                , p.nomor_telepon
+                , p.aktifitas
+                , p.klpd_id
+                , p.klpd_nama
+                , p.satuan_kerja_id
+                , p.satuan_kerja_nama
+                , p.klpd_id_lainnya
+                , p.klpd_nama_lainnya
+                , p.paket_kode
+                , p.paket_nama
+                , p.paket_nilai_pagu
+                , p.paket_jenis_pengadaan_id
+                , p.paket_jenis_pengadaan_nama
+                , p.paket_status
+                , p.efisiensi
+                , p.jenis_advokasi_id
+                , p.jenis_advokasi_nama
+                , p.kategori_permasalahan_id
+                , p.kategori_permasalahan_nama
+                , p.keterangan
+                , p.created_by
+                , klpd.nama_klpd
+                , sk.nama_satker
+            ');
+            
             $builder->join('klpd', 'klpd.klpd_id = p.klpd_id', 'left');
             $builder->join('satuan_kerja sk', 'sk.kd_satker = p.satuan_kerja_id', 'left');
             $builder->orderBy('p.id', 'DESC');
@@ -29,7 +60,42 @@ class PelayananModel extends Model
         }
 
         $builder = $this->db->table('pelayanan p');
-        $builder->select('p.*, klpd.nama_klpd, sk.nama_satker, jp.nama_jenis_pengadaan, kp.nama_kategori_permasalahan');
+        $builder->select('
+            p.kegiatan_id
+            , p.tanggal_pelaksanaan
+            , p.nomor_surat_keluar
+            , p.nomor_undangan
+            , p.nama
+            , p.jabatan
+            , p.nomor_telepon
+            , p.aktifitas
+            , p.klpd_id
+            , p.klpd_nama
+            , p.satuan_kerja_id
+            , p.satuan_kerja_nama
+            , p.klpd_id_lainnya
+            , p.klpd_nama_lainnya
+            , p.paket_kode
+            , p.paket_nama
+            , p.paket_nilai_pagu
+            , p.paket_jenis_pengadaan_id
+            , p.paket_jenis_pengadaan_nama
+            , p.paket_status
+            , p.efisiensi
+            , p.jenis_advokasi_id
+            , p.jenis_advokasi_nama
+            , p.kategori_permasalahan_id
+            , p.kategori_permasalahan_nama
+            , p.keterangan
+            , p.created_by
+            , klpd.nama_klpd
+            , sk.nama_satker
+            , klpd.nama_klpd
+            , sk.nama_satker
+            , jp.nama_jenis_pengadaan
+            , kp.nama_kategori_permasalahan
+        ');
+        
         $builder->join('klpd', 'klpd.klpd_id = p.klpd_id', 'left');
         $builder->join('satuan_kerja sk', 'sk.kd_satker = p.satuan_kerja_id', 'left');
         $builder->join('jenis_pengadaan jp', 'jp.id = p.paket_jenis_pengadaan_id', 'left');
@@ -53,7 +119,35 @@ class PelayananModel extends Model
 
     public function getPaginatedPelayananData($jenis_advokasi_id = 0, $tahun = '', $sort = '', $keyword = ''){
         $select = '
-            pelayanan.*
+            pelayanan.kegiatan_id
+            , pelayanan.tanggal_pelaksanaan
+            , pelayanan.nomor_surat_keluar
+            , pelayanan.nomor_undangan
+            , pelayanan.nama
+            , pelayanan.jabatan
+            , pelayanan.nomor_telepon
+            , pelayanan.aktifitas
+            , pelayanan.klpd_id
+            , pelayanan.klpd_nama
+            , pelayanan.satuan_kerja_id
+            , pelayanan.satuan_kerja_nama
+            , pelayanan.klpd_id_lainnya
+            , pelayanan.klpd_nama_lainnya
+            , pelayanan.paket_kode
+            , pelayanan.paket_nama
+            , pelayanan.paket_nilai_pagu
+            , pelayanan.paket_jenis_pengadaan_id
+            , pelayanan.paket_jenis_pengadaan_nama
+            , pelayanan.paket_status
+            , pelayanan.efisiensi
+            , pelayanan.jenis_advokasi_id
+            , pelayanan.jenis_advokasi_nama
+            , pelayanan.kategori_permasalahan_id
+            , pelayanan.kategori_permasalahan_nama
+            , pelayanan.keterangan
+            , pelayanan.created_by
+            , klpd.nama_klpd
+            , sk.nama_satker
             , user.nama_depan
             , user.nama_belakang
         ';
