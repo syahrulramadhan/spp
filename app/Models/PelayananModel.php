@@ -90,8 +90,6 @@ class PelayananModel extends Model
             , p.created_by
             , klpd.nama_klpd
             , sk.nama_satker
-            , klpd.nama_klpd
-            , sk.nama_satker
             , jp.nama_jenis_pengadaan
             , kp.nama_kategori_permasalahan
         ');
