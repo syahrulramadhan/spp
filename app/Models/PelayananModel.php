@@ -62,7 +62,8 @@ class PelayananModel extends Model
 
         $builder = $this->db->table('pelayanan p');
         $builder->select('
-            p.kegiatan_id
+            p.id,
+            , p.kegiatan_id
             , p.tanggal_pelaksanaan
             , p.nomor_surat_keluar
             , p.nomor_undangan
