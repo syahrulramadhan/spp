@@ -119,7 +119,8 @@ class PelayananModel extends Model
 
     public function getPaginatedPelayananData($jenis_advokasi_id = 0, $tahun = '', $sort = '', $keyword = ''){
         $select = '
-            pelayanan.kegiatan_id
+            pelayanan.id
+            , pelayanan.kegiatan_id
             , pelayanan.tanggal_pelaksanaan
             , pelayanan.nomor_surat_keluar
             , pelayanan.nomor_undangan
