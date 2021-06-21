@@ -20,7 +20,8 @@ class PelayananModel extends Model
         if($pelayanan_id == false){
             $builder = $this->db->table('pelayanan p');
             $builder->select('
-                p.kegiatan_id
+                p.id
+                , p.kegiatan_id
                 , p.tanggal_pelaksanaan
                 , p.nomor_surat_keluar
                 , p.nomor_undangan
