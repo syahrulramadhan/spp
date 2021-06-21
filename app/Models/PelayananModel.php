@@ -146,8 +146,6 @@ class PelayananModel extends Model
             , pelayanan.kategori_permasalahan_nama
             , pelayanan.keterangan
             , pelayanan.created_by
-            , klpd.nama_klpd
-            , sk.nama_satker
             , user.nama_depan
             , user.nama_belakang
         ';
