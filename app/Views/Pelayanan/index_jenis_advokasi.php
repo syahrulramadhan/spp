@@ -48,15 +48,22 @@
             </center>
             <?php } ?>
             <div style="height: 60px;" class="mb-2"><h3><?= $rows['nama_jenis_advokasi']; ?></h3></div>
-            <div class="fluid text-center"><strong class="d-inline-block mb-2 text-primary"><?= $rows['jumlah_pelayanan']; ?></strong></div>
+            <div class="fluid text-center"><strong class="d-inline-block mb-2 text-primary"><?php echo ($rows['jumlah_pelayanan']) ? $rows['jumlah_pelayanan'] : 0; ?></strong></div>
             <br/>
+
+            <?php
+                $url = ($tahun) ? "tahun=" .$tahun . "&jenis_advokasi_id=" . $rows['id'] : "jenis_advokasi_id=" . $rows['id'];
+            ?>
+
             <?php if(in_array($rows['id'], array(8,9))){ ?>
                 <a class="btn btn-success" href="<?= base_url("kegiatan/create/" . $rows['id']); ?>">Entry</a>
-                <a class="btn btn-info" style="margin-top: 5px;" href="<?= base_url("kegiatan?jenis_advokasi_id=" . $rows['id']); ?>" class="stretched-link">Rekap</a>
+                <?php /* <a class="btn btn-info" style="margin-top: 5px;" href="<?= base_url("kegiatan?" . $url); ?>" class="stretched-link">Rekap</a> */ ?>
             <?php }else{ ?>
                 <a class="btn btn-success" href="<?= base_url("pelayanan/create/" . $rows['id']); ?>">Entry</a>
-                <a class="btn btn-info" style="margin-top: 5px;" href="<?= base_url("pelayanan?jenis_advokasi_id=" . $rows['id']); ?>" class="stretched-link">Rekap</a>
+                <?php /* <a class="btn btn-info" style="margin-top: 5px;" href="<?= base_url("pelayanan?" . $url); ?>" class="stretched-link">Rekap</a> */ ?>
             <?php } ?>
+
+            <a class="btn btn-info" style="margin-top: 5px;" href="<?= base_url("pelayanan?" . $url); ?>" class="stretched-link">Rekap</a>
         </div>
     </div>
 </div>

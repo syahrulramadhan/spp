@@ -41,7 +41,7 @@ class Pelayanan extends BaseController
 		
 		$keyword = $this->request->getVar('q');
 		$jenis_advokasi_id = $this->request->getVar('jenis_advokasi_id');
-		$tahun = ($this->request->getVar('tahun')) ? $this->request->getVar('tahun') : date('Y');
+		$tahun = ($this->request->getVar('tahun')) ? $this->request->getVar('tahun') : ''; //date('Y');
 		$per_page = ($this->request->getVar('per_page')) ? $this->request->getVar('per_page') : 10;
 		$sort = ($this->request->getVar('sort')) ? $this->request->getVar('sort') : 'TglBaru';
 		
@@ -67,6 +67,8 @@ class Pelayanan extends BaseController
 			'per_page' => $per_page,
 			'currentPage' => $currentPage
 		];
+
+		//echo "<pre>"; print_r($data['result']); exit;
 
 		return view('Pelayanan/index', $data);
 	}
@@ -645,7 +647,7 @@ class Pelayanan extends BaseController
 	public function list_ajax(){
 		$result = $this->pelayananModel->getPelayananJoin();
 
-		$this->cachePage(10);
+		//$this->cachePage(10);
 		
 		echo json_encode($result, JSON_PRETTY_PRINT);
 	}
