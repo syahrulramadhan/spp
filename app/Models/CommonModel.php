@@ -85,4 +85,10 @@ class CommonModel extends Model
             return $query;
         }
     }
+
+    public function updateByKey($table, $data, $id, $value)
+    {
+        $query = $this->db->table($table)->update($data, array($id => $value));
+        return $query;
+    }
 }

@@ -53,6 +53,7 @@
         <div class="dropdown-menu" aria-labelledby="dropdown01">
           <a class="dropdown-item" href="<?= base_url('logout') ?>">Log Out</a>
           <a class="dropdown-item" href="<?= base_url('/pages/ubah-kata-sandi/' . session('id')); ?>">Kata Sandi</a>
+          <a class="dropdown-item" href="<?= base_url('/pengaturan'); ?>">Pengaturan</a>
           <a class="dropdown-item" href="<?= base_url('/pages/profil/' . session('id')); ?>">Profile</a>
         </div>
       </li>

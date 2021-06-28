@@ -68,6 +68,8 @@ $routes->delete('/kategori-permasalahan/delete/(:num)', 'KategoriPermasalahan::d
 $routes->get('/kategori-permasalahan/grafik/(:any)', 'KategoriPermasalahan::chart/$1');
 $routes->get('/kategori-permasalahan/chart/(:any)', 'KategoriPermasalahan::chart/$1');
 
+$routes->get('/pengaturan', 'Pengaturan::index');
+$routes->post('/pengaturan/save', 'Pengaturan::save');
 
 $routes->get('/pic', 'Pic::index');
 $routes->get('/pic/create', 'Pic::create');
