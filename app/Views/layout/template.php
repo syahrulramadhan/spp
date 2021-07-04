@@ -10,7 +10,7 @@
     <link rel="canonical" href="https://getbootstrap.com/docs/4.5/examples/offcanvas/">
 
     <!-- Bootstrap core CSS -->
-    <link href="<?= base_url('/assets/dist/css/bootstrap.css'); ?>" rel="stylesheet">
+    <link href="<?= base_url('assets/dist/css/bootstrap.css'); ?>" rel="stylesheet">
 
     <link rel="stylesheet" href="<?= base_url('css/jquery-ui.css'); ?>">
     <link rel="stylesheet" href="<?= base_url('fontawesome-5.15.1/css/fontawesome.min.css');?>">
@@ -19,13 +19,12 @@
 
     <link href="<?= base_url('css/select2.min.css'); ?>" rel="stylesheet" />
 
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
-    
+    <script src="<?= base_url('js/jquery-3.5.1.min.js'); ?>"></script>
     <script src="<?= base_url('js/jquery-ui.js'); ?>"></script>
     <script src="<?= base_url('js/select2.min.js'); ?>"></script>
     <script src="<?= base_url('js/jquery.mask.min.js'); ?>"></script>
-    <script src="<?= base_url('/assets/dist/js/bootstrap.bundle.js'); ?>"></script>
-    <script src="<?= base_url('/js/offcanvas.js') ?>"></script>
+    <script src="<?= base_url('assets/dist/js/bootstrap.bundle.js'); ?>"></script>
+    <script src="<?= base_url('js/offcanvas.js') ?>"></script>
 
     <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
     <style>
