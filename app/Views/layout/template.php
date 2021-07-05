@@ -18,7 +18,6 @@
     <link href="<?= base_url('fontawesome-5.15.1/css/solid.css'); ?>" rel="stylesheet">
 
     <link href="<?= base_url('css/select2.min.css'); ?>" rel="stylesheet" />
-
     <script src="<?= base_url('js/jquery-3.5.1.min.js'); ?>"></script>
     <script src="<?= base_url('js/jquery-ui.js'); ?>"></script>
     <script src="<?= base_url('js/select2.min.js'); ?>"></script>
