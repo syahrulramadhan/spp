@@ -60,8 +60,11 @@
                         <h6 class="mb-0 text-white lh-100">Tentang Kami</h6>
                     </div>
                 </div>
-
-                <p>There are many variations of passages of Lorem Ipsum available, but the majority have suffered alteration in some form, by injected humour, or randomised words which don't look even slightly believable.</p>
+                <div class="p-2 my-1">
+                    <h4><?= WEBSITE_NAMA; ?></h4>
+                    <pre><?= WEBISTE_VERSI; ?></pre>
+                    <p><?= WEBSITE_DESKRIPSI; ?></p>
+                </div>
             </div>
         </div>
     </div>

@@ -298,3 +298,28 @@ if ( ! function_exists('alert')){
 		return $alert;
 	}
 }
+
+if ( ! function_exists('constant_website')){
+	function constant_website() {
+		$db =  \Config\Database::connect();
+		
+		$builder = $db->table('pengaturan');
+		$builder->select('id, field, label, deskripsi, created_by, tipe, foto, grup, created_at, updated_at');
+
+
+		if ($builder->countAllResults()> 0) {
+            foreach ($builder->get()->getResultArray()  as $row)
+            {
+				defined($row['field']) || define($row['field'], $row['deskripsi']);
+
+                $data[$row['field']] = $row['deskripsi'];
+			}
+
+			return (object) $data;
+		}
+
+		return false;
+	}
+}
+
+constant_website();

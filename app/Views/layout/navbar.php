@@ -42,7 +42,7 @@
 
     <ul class="nav navbar-nav justify-content-end">
       <li class="nav-item">
-        <span class="nav-link text-white"><strong>DASHBOARD KEDEPUTIAN 4</strong></span>
+        <span class="nav-link text-white"><strong><?= WEBSITE_NAMA; ?></strong></span>
       </li>
     </ul>
     
@@ -51,10 +51,11 @@
       <li class="nav-item dropdown">
         <a class="nav-link dropdown-toggle" href="#" id="dropdown01" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><?= session('nama_lengkap') ?></strong></a>
         <div class="dropdown-menu" aria-labelledby="dropdown01">
-          <a class="dropdown-item" href="<?= base_url('logout') ?>">Log Out</a>
           <a class="dropdown-item" href="<?= base_url('/pages/ubah-kata-sandi/' . session('id')); ?>">Kata Sandi</a>
           <a class="dropdown-item" href="<?= base_url('/pengaturan'); ?>">Pengaturan</a>
           <a class="dropdown-item" href="<?= base_url('/pages/profil/' . session('id')); ?>">Profile</a>
+          <div class="dropdown-divider"></div>
+          <a class="dropdown-item" href="<?= base_url('logout') ?>">Log Out</a>
         </div>
       </li>
     </ul>
