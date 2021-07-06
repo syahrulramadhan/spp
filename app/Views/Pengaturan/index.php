@@ -19,7 +19,9 @@
     <div class="row">
         <div class="col-md-12">
             <div class="card-body">
-                <form id="form-submit" action="/pengaturan/save" method="post">
+                <?= $validation->listErrors() ?>    
+                <form id="form-submit" action="/pengaturan/save" method="post" enctype="multipart/form-data">
+                <?= csrf_field(); ?>
                 <?php if(session()->getFlashdata('pesan')): ?>
                     <div class="alert alert-success" role="alert">
                     <?= session()->getFlashdata('pesan') ?>
@@ -30,6 +32,7 @@
                     <?= session()->getFlashdata('warning') ?>
                     </div>
                 <?php endif; ?>
+               
                 <div class="table-responsive">
                     <?php if($result){ ?>
                         <?php foreach($result as $rows): ?>

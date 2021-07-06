@@ -27,21 +27,85 @@ class Pengaturan extends BaseController
 
         return view('Pengaturan/index', $data);
     }
-
+    
     public function save(){
-		if(!$this->validate([
-            'WEBSITE_NAMA' => [
-                'rules' => 'required|min_length[5]',
-                'errors' => [
-                    'required' => 'Nama website harus diisi.',
-                    'min_length' => 'Nama website anda terlalu pendek?'
-                ]
-            ]
-		])){
+        $image = $this->request->getFile('WEBSITE_ICON');
+        $image1 = $this->request->getFile('WEBSITE_ICON_LKPP');
 
+        $rules['WEBSITE_NAMA'] = [
+			'rules' => 'required|min_length[5]',
+            'errors' => [
+                'required' => 'Nama website harus diisi.',
+                'min_length' => 'Nama website anda terlalu pendek?'
+            ]
+		];
+
+        if($this->request->getFile('WEBSITE_ICON')){
+            $rules['WEBSITE_ICON'] = [
+                'rules' => 'uploaded[WEBSITE_ICON]|max_size[WEBSITE_ICON,2048]|mime_in[WEBSITE_ICON,image/png,image/jpg,image/jpeg]',
+                'errors' => [
+                    'uploaded' => 'Gambar harus diisi',
+                    'max_size' => 'Maksimal upload gambar 2 MB',
+                    'mime_in' => 'Upload gambar yang memiliki ekstensi .jpeg/.jpg/.png'
+                ]
+            ];
+        }
+
+        if($this->request->getFile('WEBSITE_ICON_LKPP')){
+            $rules['WEBSITE_ICON_LKPP'] = [
+                'rules' => 'uploaded[WEBSITE_ICON_LKPP]|max_size[WEBSITE_ICON_LKPP,2048]|mime_in[WEBSITE_ICON_LKPP,image/png,image/jpg,image/jpeg]',
+                'errors' => [
+                    'uploaded' => 'Gambar harus diisi',
+                    'max_size' => 'Maksimal upload gambar 2 MB',
+                    'mime_in' => 'Upload gambar yang memiliki ekstensi .jpeg/.jpg/.png'
+                ]
+            ];
+        }
+
+		if(!$this->validate($rules)){
 			$validation = \Config\Services::validation();
 			return redirect()->to("/pengaturan")->withInput()->with('validation', $validation);
 		}
+
+        if($this->request->getFile('WEBSITE_ICON')){
+            $image = $this->request->getFile('WEBSITE_ICON');
+
+            $name = $image->getRandomName();
+            $type = $image->getClientMimeType();
+            $size = $image->getSize();
+            
+            $image->move(ROOTPATH . 'public/uploads/ikon', $name);
+
+            $this->commonModel->updateByKey(
+                'pengaturan'
+                ,[
+                    'deskripsi' => $name
+                    ,'created_by' => session('id')
+                ]
+                ,'field'
+                ,'WEBSITE_ICON'
+            );
+        }
+
+        if($this->request->getFile('WEBSITE_ICON_LKPP')){
+            $image1 = $this->request->getFile('WEBSITE_ICON_LKPP');
+
+            $name1 = $image1->getRandomName();
+            $type1 = $image1->getClientMimeType();
+            $size1 = $image1->getSize();
+            
+            $image1->move(ROOTPATH . 'public/uploads/ikon', $name1);
+
+            $this->commonModel->updateByKey(
+                'pengaturan'
+                ,[
+                    'deskripsi' => $name1
+                    ,'created_by' => session('id')
+                ]
+                ,'field'
+                ,'WEBSITE_ICON_LKPP'
+            );
+        }
 
         foreach($this->request->getPost() as $key => $value)
         {
@@ -137,9 +201,43 @@ class Pengaturan extends BaseController
         else if($tipe == "dropdown"){
             $pengaturan_dropdown_options = $this->Mcommon->get_select_options($this->tableoption1, $this->option1, $this->labeloption1, array('grup_dropdown' => $tipe_param_value));
             $input = form_dropdown($data['pengaturan_field'], $pengaturan_dropdown_options, set_value($data['pengaturan_field'], ($data) ? $data['pengaturan_deskripsi'] : ''), 'class="form-control select2" id="input-' . $data['pengaturan_field'] . '"');
+        }else if($tipe == "file"){
+            if($data['pengaturan_deskripsi'])
+                $input = '
+                    <img id="image" src="' . base_url('uploads/ikon/'.$data['pengaturan_deskripsi']) . '" alt="" style="width: 350px;"/>
+                    </br></br><a href="' . base_url("pengaturan/delete/" . $data['pengaturan_field'] . "/" . $data['pengaturan_deskripsi']) . '" class="btn btn-danger"">Delete</a>
+                ';
+            else
+                $input = '<input class="form-control" id="' . $data['pengaturan_field'] . '" name="' . $data['pengaturan_field'] . '" type="' . $data['pengaturan_tipe'] . '" value="' . $data['pengaturan_deskripsi'] . '" placeholder="Enter ...">';
         }else
             $input = '<input class="form-control" id="' . $data['pengaturan_field'] . '" name="' . $data['pengaturan_field'] . '" type="' . $data['pengaturan_tipe'] . '" value="' . $data['pengaturan_deskripsi'] . '" placeholder="Enter ...">';
 
         return $input;
     }
+
+    public function delete($field, $value){
+        $result = $this->commonModel->updateByKey(
+            'pengaturan'
+            ,[
+                'deskripsi' => ''
+                ,'created_by' => session('id')
+            ]
+            ,'field'
+            ,$field
+        );
+
+		if($result){
+			$path = getcwd() . '/uploads/ikon/' . $value;
+        
+			if (is_file($path)) {
+				unlink($path);
+			}
+
+			session()->setFlashdata('pesan', 'Data berhasil dihapus.');
+		}else{
+			session()->setFlashdata('warning', 'Data tidak berhasil ditemukan');
+		}
+
+        return redirect()->to("/pengaturan");
+	}
 }
