@@ -33,7 +33,7 @@ CREATE TABLE `pengaturan` (
   `created_at` datetime NOT NULL,
   `updated_at` datetime DEFAULT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=11 DEFAULT CHARSET=latin1 ROW_FORMAT=DYNAMIC;
+) ENGINE=InnoDB AUTO_INCREMENT=14 DEFAULT CHARSET=latin1 ROW_FORMAT=DYNAMIC;
 
 #
 # Dumping data for table pengaturan
@@ -51,6 +51,8 @@ INSERT INTO `pengaturan` VALUES (7,'WEBSITE_NAMA','Nama','text',NULL,'DASHBOARD 
 INSERT INTO `pengaturan` VALUES (8,'WEBSITE_SCRIPT_GOOGLE_ANALYTIC','Script Google Analytic','textarea',NULL,NULL,NULL,'website',0,1,'2017-12-25 09:36:58','2017-12-25 09:36:58');
 INSERT INTO `pengaturan` VALUES (9,'WEBISTE_VERSI','Versi','text',NULL,'1.0.0',NULL,'website',1,1,'2017-12-25 09:36:58','2017-12-25 09:36:58');
 INSERT INTO `pengaturan` VALUES (10,'WEBSITE_DESKRIPSI','Deskripsi','textarea',NULL,'Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry\'s standard dummy text ever since the 1500s, when an unknown printer took a galley of type a',NULL,'website',1,1,'2017-12-25 09:36:58','2017-12-25 09:36:58');
+INSERT INTO `pengaturan` VALUES (11,'WEBSITE_ICON','Gambar Ikon Aplikasi','file',NULL,NULL,NULL,'website',1,1,'2017-12-25 09:36:58','2017-12-25 09:36:58');
+INSERT INTO `pengaturan` VALUES (12,'WEBSITE_ICON_LKPP','Gambar Ikon LKPP','file',NULL,NULL,NULL,'website',1,1,'2017-12-25 09:36:58','2017-12-25 09:36:58');
 /*!40000 ALTER TABLE `pengaturan` ENABLE KEYS */;
 UNLOCK TABLES;
 
