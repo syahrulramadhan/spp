@@ -26,10 +26,11 @@ class JenisAdvokasi extends BaseController
 	public function index()
 	{
 		$keyword = $this->request->getVar('q');
+		$tahun = ($this->request->getVar('tahun')) ? $this->request->getVar('tahun') : ''; //date('Y');
 		$per_page = ($this->request->getVar('per_page')) ? $this->request->getVar('per_page') : 10;
 
-		if($keyword){
-			$result = $this->jenisAdvokasiModel->getPaginatedJenisAdvokasiData('', $keyword);
+		if($tahun || $keyword){
+			$result = $this->jenisAdvokasiModel->getPaginatedJenisAdvokasiData($tahun, $keyword);
 		}else
 			$result = $this->jenisAdvokasiModel->getPaginatedJenisAdvokasiData();
 
@@ -40,8 +41,10 @@ class JenisAdvokasi extends BaseController
 			'result_grafik_layanan' => $this->grafik(),
 			'result_grafik_valuasi' => $this->grafik('grafik_valuasi'),
 			'result' => $result->paginate($per_page, 'jenis_advokasi'),
+			'options_tahun' => $this->options_tahun_layanan(),
 			'options_per_page' => $this->options_per_page(),
 			'keyword' => $keyword,
+			'tahun' => $tahun,
 			'pager' => $result->pager,
 			'per_page' => $per_page,
 			'currentPage' => $currentPage
