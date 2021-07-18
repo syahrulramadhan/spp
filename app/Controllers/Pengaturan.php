@@ -205,7 +205,7 @@ class Pengaturan extends BaseController
             if($data['pengaturan_deskripsi'])
                 $input = '
                     <img id="image" src="' . base_url('uploads/ikon/'.$data['pengaturan_deskripsi']) . '" alt="" style="width: 350px;"/>
-                    </br></br><a href="' . base_url("pengaturan/delete/" . $data['pengaturan_field'] . "/" . $data['pengaturan_deskripsi']) . '" class="btn btn-danger"">Delete</a>
+                    </br></br><a href="' . base_url("pengaturan/delete/" . $data['id']) . '" class="btn btn-danger"">Delete</a>
                 ';
             else
                 $input = '<input class="form-control" id="' . $data['pengaturan_field'] . '" name="' . $data['pengaturan_field'] . '" type="' . $data['pengaturan_tipe'] . '" value="' . $data['pengaturan_deskripsi'] . '" placeholder="Enter ...">';
@@ -215,25 +215,31 @@ class Pengaturan extends BaseController
         return $input;
     }
 
-    public function delete($field, $value){
-        $result = $this->commonModel->updateByKey(
-            'pengaturan'
-            ,[
-                'deskripsi' => ''
-                ,'created_by' => session('id')
-            ]
-            ,'field'
-            ,$field
-        );
+    public function delete($id){
+        $result = $this->pengaturanModel->find($id);
 
-		if($result){
-			$path = getcwd() . '/uploads/ikon/' . $value;
-        
-			if (is_file($path)) {
-				unlink($path);
-			}
+        if($result){
+            if($result['tipe'] == 'file'){
+                $this->commonModel->updateByKey(
+                    'pengaturan'
+                    ,[
+                        'deskripsi' => ''
+                        ,'created_by' => session('id')
+                    ]
+                    ,'field'
+                    ,$result['field']
+                );
 
-			session()->setFlashdata('pesan', 'Data berhasil dihapus.');
+                $path = getcwd() . '/uploads/ikon/' . $result['deskripsi'];
+            
+                if (is_file($path)) {
+                    unlink($path);
+                }
+
+                session()->setFlashdata('pesan', 'Data berhasil dihapus.');
+            }else{
+                session()->setFlashdata('warning', 'Data tidak berhasil ditemukan');
+            }
 		}else{
 			session()->setFlashdata('warning', 'Data tidak berhasil ditemukan');
 		}
