@@ -479,10 +479,11 @@ class Pages extends BaseController
 	public function jenis_pengadaan()
 	{
 		$keyword = $this->request->getVar('q');
+		$tahun = ($this->request->getVar('tahun')) ? $this->request->getVar('tahun') : ''; //date('Y');
 		$per_page = ($this->request->getVar('per_page')) ? $this->request->getVar('per_page') : 10;
 
-		if($keyword){
-			$result = $this->jenisPengadaanModel->getPaginatedJenisPengadaanData($keyword);
+		if($tahun || $keyword){
+			$result = $this->jenisPengadaanModel->getPaginatedJenisPengadaanData($tahun, $keyword);
 		}else
 			$result = $this->jenisPengadaanModel->getPaginatedJenisPengadaanData();
 
@@ -493,8 +494,10 @@ class Pages extends BaseController
 			'result_grafik_layanan' => $this->jenis_pengadaan_grafik(),
 			'result_grafik_valuasi' => $this->jenis_pengadaan_grafik('grafik_valuasi'),
 			'result' => $result->paginate($per_page, 'jenis_pengadaan'),
+			'options_tahun' => $this->options_tahun_layanan(),
 			'options_per_page' => $this->options_per_page(),
 			'keyword' => $keyword,
+			'tahun' => $tahun,
 			'pager' => $result->pager,
 			'per_page' => $per_page,
 			'currentPage' => $currentPage

@@ -38,24 +38,29 @@ class JenisPengadaanModel extends Model
         return $this->where(['id' => $jenis_pengadaan_id])->first();
     }
 
-    public function getPaginatedJenisPengadaanData(string $keyword = ''){
-        $select = '
+    public function getPaginatedJenisPengadaanData($tahun = '', string $keyword = ''){
+        $year = "";
+        
+        if($tahun)
+            $year = "AND YEAR(pelayanan.tanggal_pelaksanaan) = '$tahun'";
+
+        $select = "
             jenis_pengadaan.id
             , jenis_pengadaan.nama_jenis_pengadaan
             , jenis_pengadaan.keterangan
             , (
                 SELECT COUNT(*)
                 FROM pelayanan
-                WHERE pelayanan.paket_jenis_pengadaan_id = jenis_pengadaan.id
+                WHERE pelayanan.paket_jenis_pengadaan_id = jenis_pengadaan.id $year
                 GROUP BY pelayanan.paket_jenis_pengadaan_id
             ) jumlah_pelayanan
             , (
                 SELECT SUM(pelayanan.paket_nilai_pagu)
                 FROM pelayanan
-                WHERE pelayanan.paket_jenis_pengadaan_id = jenis_pengadaan.id
+                WHERE pelayanan.paket_jenis_pengadaan_id = jenis_pengadaan.id $year
                 GROUP BY pelayanan.paket_jenis_pengadaan_id
             ) jumlah_valuasi
-        ';
+        ";
 
         if ($keyword)
         {
