@@ -117,7 +117,7 @@ class PelayananModel extends Model
         return $builder->get()->getResultArray();
     }
 
-    public function getPaginatedPelayananData($jenis_advokasi_id = 0, $tahun = '', $sort = '', $keyword = ''){
+    public function getPaginatedPelayananData($jenis_advokasi_id = 0, $tahun = '', $sort = '', $klpd = '', $keyword = ''){
         $select = '
             pelayanan.id
             , pelayanan.kegiatan_id
@@ -161,6 +161,10 @@ class PelayananModel extends Model
 
         if($tahun){
             $builder->where('YEAR(tanggal_pelaksanaan)', $tahun);
+        }
+
+        if($klpd){
+            $builder->where('klpd_id', $klpd);
         }
 
         if($sort){

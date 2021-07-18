@@ -42,11 +42,12 @@ class Pelayanan extends BaseController
 		$keyword = $this->request->getVar('q');
 		$jenis_advokasi_id = $this->request->getVar('jenis_advokasi_id');
 		$tahun = ($this->request->getVar('tahun')) ? $this->request->getVar('tahun') : ''; //date('Y');
+		$klpd = ($this->request->getVar('klpd')) ? $this->request->getVar('klpd') : '';
 		$per_page = ($this->request->getVar('per_page')) ? $this->request->getVar('per_page') : 10;
 		$sort = ($this->request->getVar('sort')) ? $this->request->getVar('sort') : 'TglBaru';
 		
-		if($jenis_advokasi_id || $tahun || $sort || $keyword){
-			$pelayanan = $this->pelayananModel->getPaginatedPelayananData($jenis_advokasi_id, $tahun, $sort, $keyword);
+		if($jenis_advokasi_id || $tahun || $sort || $klpd || $keyword){
+			$pelayanan = $this->pelayananModel->getPaginatedPelayananData($jenis_advokasi_id, $tahun, $sort, $klpd, $keyword);
 		}else
 			$pelayanan = $this->pelayananModel->getPaginatedPelayananData();
 
@@ -55,12 +56,14 @@ class Pelayanan extends BaseController
 		$data = [
             'title' => 'Layanan',
 			'result' => $pelayanan->paginate($per_page, 'pelayanan'),
+			'options_klpd' => $this->options_klpd(),
 			'options_jenis_advokasi' => $this->options_jenis_advokasi(),
 			'options_tahun' => $this->options_tahun_layanan(),
 			'options_per_page' => $this->options_per_page(),
 			'options_sort' => $this->options_sort(),
 			'keyword' => $keyword,
 			'jenis_advokasi_id' => $jenis_advokasi_id,
+			'klpd' => $klpd,
 			'tahun' => $tahun,
 			'sort' => $sort,
 			'pager' => $this->pelayananModel->pager,
