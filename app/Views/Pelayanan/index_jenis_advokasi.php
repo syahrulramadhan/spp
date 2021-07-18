@@ -28,7 +28,7 @@
 </form>
 
 <?php
-    $i = 1; $jumlah = 3;
+    $i = 1; $jumlah = 6;
 
     foreach($jenis_advokasi_all as $rows):
 
@@ -39,7 +39,7 @@
     }
 ?>
 
-<div class="col-md-4 text-center">
+<div class="col-md-2 text-center">
     <div class="row no-gutters border rounded overflow-hidden flex-md-row mb-4 shadow-sm h-md-250 position-relative">
         <div class="col p-4 d-flex flex-column position-static">
             <?php if($rows['image_jenis_advokasi']){ ?>
@@ -47,7 +47,7 @@
                 <img src="<?php echo base_url('uploads/jenis-advokasi/'.$rows['image_jenis_advokasi']) ?>" class="rounded-circle img-thumbnail" style="width: 200px;">
             </center>
             <?php } ?>
-            <div style="height: 60px;" class="mb-2"><h3><?= $rows['nama_jenis_advokasi']; ?></h3></div>
+            <div style="height: 40px;" class="mb-2"><h6><?= $rows['nama_jenis_advokasi']; ?></h6></div>
             <div class="fluid text-center"><strong class="d-inline-block mb-2 text-primary"><?php echo ($rows['jumlah_pelayanan']) ? $rows['jumlah_pelayanan'] : 0; ?></strong></div>
             <br/>
 
