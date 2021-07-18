@@ -348,8 +348,11 @@
                 <div class="card-body">
                     <div class="form-group row">
                         <div class="col-sm-10">
+
+                        <?php $url = "jenis_advokasi_id=" . $result['id']; ?>
+
                         <button type="submit" class="btn btn-info">Tambah Data</button>
-                        <a class="btn btn-info" href="/pelayanan/jenis-advokasi">Lihat Rekap</a>
+                        <a class="btn btn-info" href="<?= base_url("pelayanan?" . $url); ?>" <?php /* href="/pelayanan/jenis-advokasi" */ ?>>Lihat Rekap</a>
                         </div>
                     </div>
                 </div>
