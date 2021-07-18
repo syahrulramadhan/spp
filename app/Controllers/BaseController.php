@@ -52,10 +52,10 @@ class BaseController extends Controller
 
 	function dateOutput($dateInput){
 		$dateOutput = NULL;
-
 		if($dateInput){
-			$dateInput = explode('/', $dateInput);
-			$dateOutput = $dateInput[2] . '-' . $dateInput[0] . '-' . $dateInput[1];
+			$dateInput = explode('-', $dateInput);
+			//$dateOutput = $dateInput[2] . '-' . $dateInput[0] . '-' . $dateInput[1];
+			$dateOutput = $dateInput[2] . '-' . $dateInput[1] . '-' . $dateInput[0];
 		}
 
 		return $dateOutput;
@@ -66,7 +66,8 @@ class BaseController extends Controller
 
 		if($dateOutput){
 			$dateOutput = explode('-', $dateOutput);
-			$dateInput = $dateOutput[1] . '/' . $dateOutput[2] . '/' . $dateOutput[0];
+			//$dateInput = $dateOutput[1] . '/' . $dateOutput[2] . '/' . $dateOutput[0];
+			$dateInput = $dateOutput[2] . '-' . $dateOutput[1] . '-' . $dateOutput[0];
 		}
 
 		return $dateInput;

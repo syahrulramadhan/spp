@@ -44,7 +44,7 @@
                     <div class="form-group row">
                         <label for="tanggal_pelaksanaan" class="col-sm-2 col-form-label">Tanggal Pelaksanaan <span class="text-danger font-weight-bold">*</span></label>
                         <div class="col-sm-10">
-                        <input type="text" class="form-control <?= ($validation->hasError('tanggal_pelaksanaan')) ? 'is-invalid' : ''; ?>" id="tanggal_pelaksanaan" name="tanggal_pelaksanaan" placeholder="MM/DD/YYYY" autofocus value="<?= (old('tanggal_pelaksanaan')) ? old('tanggal_pelaksanaan') : $result['tanggal_pelaksanaan']; ?>">
+                        <input type="text" class="form-control <?= ($validation->hasError('tanggal_pelaksanaan')) ? 'is-invalid' : ''; ?>" id="tanggal_pelaksanaan" name="tanggal_pelaksanaan" placeholder="DD-MM-YYYY" autofocus value="<?= (old('tanggal_pelaksanaan')) ? old('tanggal_pelaksanaan') : $result['tanggal_pelaksanaan']; ?>">
                             <div class="invalid-feedback"><?= $validation->getError('tanggal_pelaksanaan'); ?></div>
                         </div>
                     </div>

@@ -81,8 +81,8 @@
     </div>
     <script>
         $(document).ready(function() {
-          $("#tanggal_pelaksanaan").datepicker();
-          $('#tanggal_pelaksanaan').mask('00/00/0000');
+          $("#tanggal_pelaksanaan").datepicker({ dateFormat: 'dd-mm-yy' });
+          $('#tanggal_pelaksanaan').mask('00-00-0000');
  
           submit_disable();
 
