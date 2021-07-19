@@ -18,7 +18,40 @@ class PelayananModel extends Model
 
     public function getPelayananJoin($pelayanan_id = false){
         if($pelayanan_id == false){
-            $builder = $this->db->table('pelayanan p');
+            $builder = $this->db->table('(
+                SELECT id
+                    , kegiatan_id
+                    , tanggal_pelaksanaan
+                    , nomor_surat_keluar
+                    , nomor_undangan
+                    , nama
+                    , jabatan
+                    , nomor_telepon
+                    , aktifitas
+                    , klpd_id
+                    , klpd_nama
+                    , satuan_kerja_id
+                    , satuan_kerja_nama
+                    , klpd_id_lainnya
+                    , klpd_nama_lainnya
+                    , paket_kode
+                    , paket_nama
+                    , paket_nilai_pagu
+                    , paket_jenis_pengadaan_id
+                    , paket_jenis_pengadaan_nama
+                    , paket_status
+                    , efisiensi
+                    , jenis_advokasi_id
+                    , jenis_advokasi_nama
+                    , kategori_permasalahan_id
+                    , kategori_permasalahan_nama
+                    , keterangan
+                    , created_by
+                FROM pelayanan
+                ORDER BY created_at DESC
+                LIMIT 10
+            ) p');
+            
             $builder->select('
                 p.id
                 , p.kegiatan_id
@@ -54,8 +87,9 @@ class PelayananModel extends Model
             
             $builder->join('klpd', 'klpd.klpd_id = p.klpd_id', 'left');
             $builder->join('satuan_kerja sk', 'sk.kd_satker = p.satuan_kerja_id', 'left');
-            $builder->orderBy('p.id', 'DESC');
-            $builder->limit(10);
+            
+            //$builder->orderBy('p.id', 'DESC');
+            //$builder->limit(10);
 
             return $builder->get()->getResultArray();
         }
