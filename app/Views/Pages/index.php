@@ -164,10 +164,14 @@
         <div class="p-3 my-1 text-center bg-white rounded">
             <div class="row">
                 <div class="pb-2 col-md-8 d-flex flex-wrap align-items-center">
-                    <img src="<?= base_url('uploads/ikon/' . WEBSITE_ICON_LKPP) ?>" class="img-fluid" alt="Lembaga Kebijakan Pengadaan Barang/Jasa Pemerintah">
+                    <?php $url_iconlkpp = WEBSITE_ICON_LKPP ? 'uploads/ikon/' . WEBSITE_ICON_LKPP : 'uploads/lkpp.png'; ?>
+
+                    <img src="<?= base_url($url_iconlkpp) ?>" class="img-fluid" alt="Lembaga Kebijakan Pengadaan Barang/Jasa Pemerintah">
                 </div>
                 <div class="pb-2 col-md-4">
-                    <img src="<?= base_url('uploads/ikon/' . WEBSITE_ICON) ?>" class="img-fluid" alt="Deputy Chairman D4">
+                    <?php $url_icon = WEBSITE_ICON ? 'uploads/ikon/' . WEBSITE_ICON : 'uploads/Logo D4-08.png'; ?>
+
+                    <img src="<?= base_url($url_icon) ?>" class="img-fluid" alt="Deputy Chairman D4">
                 </div>
             </div>
         </div>
@@ -194,26 +198,26 @@
     $('#tahun').select2();
     
     $(document).ready(function(){
-        var delay = 1000;
+        //var delay = 1000;
 
         load_layanan_list();
         google.charts.load('current', {'packages':['corechart']});
 
-        setTimeout(function(){
+        //setTimeout(function(){
             google.charts.setOnLoadCallback(drawChartLayanan);
-        }, delay * 1)
+        //}, delay * 1)
 
-        setTimeout(function(){
+        //setTimeout(function(){
             google.charts.setOnLoadCallback(drawChartValuasi);
-        }, delay * 2);
+        //}, delay * 2);
 
-        setTimeout(function(){
+        //setTimeout(function(){
             google.charts.setOnLoadCallback(drawChartCoverage);
-        }, delay * 3);
+        //}, delay * 3);
 
-        setTimeout(function(){
+        //setTimeout(function(){
             google.charts.setOnLoadCallback(drawChartKualitas);
-        }, delay * 4);
+        //}, delay * 4);
 
         $('#cari_chart_layanan').click(function(e){  
             e.preventDefault();
