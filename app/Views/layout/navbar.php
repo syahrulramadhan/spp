@@ -52,7 +52,9 @@
         <a class="nav-link dropdown-toggle" href="#" id="dropdown01" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><?= session('nama_lengkap') ?></strong></a>
         <div class="dropdown-menu" aria-labelledby="dropdown01">
           <a class="dropdown-item" href="<?= base_url('/pages/ubah-kata-sandi/' . session('id')); ?>">Kata Sandi</a>
+          <?php if(permission(['ADMINISTRATOR'])){ ?>
           <a class="dropdown-item" href="<?= base_url('/pengaturan'); ?>">Pengaturan</a>
+          <?php } ?>
           <a class="dropdown-item" href="<?= base_url('/pages/profil/' . session('id')); ?>">Profile</a>
           <div class="dropdown-divider"></div>
           <a class="dropdown-item" href="<?= base_url('logout') ?>">Log Out</a>
